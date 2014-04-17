@@ -1,0 +1,194 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{27BE94C0-3829-4BCA-862C-6BF5818A05D4}</ProjectGuid>
+			<MainSource>TZDBPK.dpk</MainSource>
+			<ProjectVersion>14.4</ProjectVersion>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<AppType>Package</AppType>
+			<FrameworkType>None</FrameworkType>
+			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>3</TargetedPlatforms>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+			<Cfg_1_Win64>true</Cfg_1_Win64>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+			<Cfg_1_Win32>true</Cfg_1_Win32>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
+			<Cfg_2_Win32>true</Cfg_2_Win32>
+			<CfgParent>Cfg_2</CfgParent>
+			<Cfg_2>true</Cfg_2>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_BplOutput>..\..\bin\$(Config)\$(Platform)</DCC_BplOutput>
+			<DCC_DcpOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcpOutput>
+			<DCC_UnitSearchPath>..\..\bin\$(Config)\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<VerInfo_Build>73</VerInfo_Build>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZDBPK;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
+			<VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
+			<VerInfo_MinorVer>8</VerInfo_MinorVer>
+			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<RuntimeOnlyPackage>true</RuntimeOnlyPackage>
+			<GenPackage>true</GenPackage>
+			<DCC_DcuOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcuOutput>
+			<DCC_ImageBase>00400000</DCC_ImageBase>
+			<DCC_CBuilderOutput>All</DCC_CBuilderOutput>
+			<DCC_E>false</DCC_E>
+			<DCC_S>false</DCC_S>
+			<GenDll>true</GenDll>
+			<DCC_N>false</DCC_N>
+			<DCC_F>false</DCC_F>
+			<DCC_K>false</DCC_K>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<Icon_MainIcon>TZDBPK_Icon.ico</Icon_MainIcon>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<Icon_MainIcon>TZDBPK_Icon.ico</Icon_MainIcon>
+			<DCC_Namespace>Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=
+IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZDBPK;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
+			<Debugger_HostApplication>D:\Projects\TimeZoneDB\bin\TZTest.exe</Debugger_HostApplication>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<VerInfo_Debug>true</VerInfo_Debug>
+			<VerInfo_PreRelease>true</VerInfo_PreRelease>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+			<DCC_BplOutput>..\..\bin\$(Config)\$(Platform)</DCC_BplOutput>
+			<DCC_DcpOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcpOutput>
+			<DCC_DcuOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcuOutput>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<DCC_MapFile>3</DCC_MapFile>
+			<VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=;IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZDBPK;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>false</DCC_DebugInformation>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+			<VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=
+IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZDBPK;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="TZDB.pas"/>
+			<None Include="TZDB.inc"/>
+			<None Include="Version.inc"/>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType>Package</Borland.ProjectType>
+			<BorlandProject>
+				<Delphi.Personality>
+					<Source>
+						<Source Name="MainSource">TZDBPK.dpk</Source>
+					</Source>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">True</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">7</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">97</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1033</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName">Ciobanu Alexandru</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription">Olson Time Zone Database for Delphi</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.7.0.97</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName">Olson Time Zone Database for Delphi</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalCopyright">Ciobanu Alexandru</VersionInfoKeys>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename">TZDBPK</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductName">Olson Time Zone Database for Delphi</VersionInfoKeys>
+						<VersionInfoKeys Name="ProductVersion">1.7-110627</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Parameters>
+						<Parameters Name="HostApplication">D:\Projects\TimeZoneDB\bin\TZTest.exe</Parameters>
+					</Parameters>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k170.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\bcbofficexp170.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k170.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp170.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+				</Delphi.Personality>
+				<Platforms>
+					<Platform value="OSX32">False</Platform>
+					<Platform value="Win64">True</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+				<UnitTesting>
+					<TestProjectName>E:\Works\TZDB\src\TZTest\TZTest.dproj</TestProjectName>
+				</UnitTesting>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+	</Project>
