@@ -1,0 +1,8 @@
+*.dcu
+*.map
+*.drc
+*.bpi
+*.dproj.local
+__history
+bin
+
