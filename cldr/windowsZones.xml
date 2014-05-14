@@ -179,8 +179,8 @@ For terms of use, see http://www.unicode.org/copyright.html
 			<mapZone other="E. South America Standard Time" territory="BR" type="America/Sao_Paulo"/>
 
 			<!-- (UTC-03:00) Buenos Aires -->
-			<mapZone other="Argentina Standard Time" territory="001" type="America/Argentina/Buenos_Aires"/>
-			<mapZone other="Argentina Standard Time" territory="AR" type="America/Argentina/Buenos_Aires America/Argentina/La_Rioja America/Argentina/Rio_Gallegos America/Argentina/Salta America/Argentina/San_Juan America/Argentina/San_Luis America/Argentina/Tucuman America/Argentina/Ushuaia America/Catamarca America/Cordoba America/Jujuy America/Mendoza"/>
+			<mapZone other="Argentina Standard Time" territory="001" type="America/Buenos_Aires"/>
+			<mapZone other="Argentina Standard Time" territory="AR" type="America/Buenos_Aires America/Argentina/La_Rioja America/Argentina/Rio_Gallegos America/Argentina/Salta America/Argentina/San_Juan America/Argentina/San_Luis America/Argentina/Tucuman America/Argentina/Ushuaia America/Catamarca America/Cordoba America/Jujuy America/Mendoza"/>
 
 			<!-- (UTC-03:00) Cayenne, Fortaleza -->
 			<mapZone other="SA Eastern Standard Time" territory="001" type="America/Cayenne"/>
