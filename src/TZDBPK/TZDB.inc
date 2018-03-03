@@ -83,991 +83,1977 @@ var
 var
   { This array contains the definitions of DST rules. Used by rule families. }
   CRules: array[0 .. 985] of TRule = (
+   {CRules[0]}
     (FInMonth: 6; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[1]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[2]}
     (FInMonth: 3; FOnDay: @CRelativeDays[2]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[3]}
     (FInMonth: 3; FOnDay: @CRelativeDays[3]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[4]}
     (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[5]}
     (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[6]}
     (FInMonth: 10; FOnDay: @CRelativeDays[5]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[7]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[8]}
     (FInMonth: 6; FOnDay: @CRelativeDays[6]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[9]}
     (FInMonth: 9; FOnDay: @CRelativeDays[7]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[10]}
     (FInMonth: 11; FOnDay: @CRelativeDays[8]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[11]}
     (FInMonth: 4; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[12]}
     (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[13]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[14]}
     (FInMonth: 4; FOnDay: @CRelativeDays[12]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[15]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[16]}
     (FInMonth: 5; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[17]}
     (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[18]}
     (FInMonth: 3; FOnDay: @CRelativeDays[2]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[19]}
     (FInMonth: 9; FOnDay: @CRelativeDays[15]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[20]}
     (FInMonth: 4; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[21]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[22]}
     (FInMonth: 7; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[23]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[24]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[25]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[26]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[27]}
     (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[28]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[29]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[30]}
     (FInMonth: 5; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[31]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[32]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[33]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[34]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[35]}
     (FInMonth: 7; FOnDay: @CRelativeDays[12]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[36]}
     (FInMonth: 7; FOnDay: @CRelativeDays[23]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[37]}
     (FInMonth: 5; FOnDay: @CRelativeDays[14]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[38]}
     (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[39]}
     (FInMonth: 9; FOnDay: @CRelativeDays[25]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[40]}
     (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[41]}
     (FInMonth: 9; FOnDay: @CRelativeDays[26]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[42]}
     (FInMonth: 8; FOnDay: @CRelativeDays[25]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[43]}
     (FInMonth: 8; FOnDay: @CRelativeDays[27]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[44]}
     (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[45]}
     (FInMonth: 9; FOnDay: @CRelativeDays[3]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[46]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[47]}
     (FInMonth: 6; FOnDay: @CRelativeDays[13]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[48]}
     (FInMonth: 7; FOnDay: @CRelativeDays[16]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[49]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1200; FFmtPart: 'GHST'),
+   {CRules[50]}
     (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[51]}
     (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[52]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[53]}
     (FInMonth: 10; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[54]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[55]}
     (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[56]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[57]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[58]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[59]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[60]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[61]}
     (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[62]}
     (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[63]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[64]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[65]}
     (FInMonth: 9; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[66]}
     (FInMonth: 11; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[67]}
     (FInMonth: 2; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[68]}
     (FInMonth: 11; FOnDay: @CRelativeDays[31]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[69]}
     (FInMonth: 6; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[70]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[71]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 43200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[72]}
     (FInMonth: 6; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[73]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[74]}
     (FInMonth: 8; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[75]}
     (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[76]}
     (FInMonth: 6; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[77]}
     (FInMonth: 8; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[78]}
     (FInMonth: 8; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[79]}
     (FInMonth: 5; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[80]}
     (FInMonth: 8; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[81]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[82]}
     (FInMonth: 7; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[83]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[84]}
     (FInMonth: 7; FOnDay: @CRelativeDays[27]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[85]}
     (FInMonth: 8; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[86]}
     (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[87]}
     (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[88]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[89]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[90]}
     (FInMonth: 6; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[91]}
     (FInMonth: 8; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[92]}
     (FInMonth: 6; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[93]}
     (FInMonth: 7; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[94]}
     (FInMonth: 6; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[95]}
     (FInMonth: 7; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[96]}
     (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[97]}
     (FInMonth: 7; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[98]}
     (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[99]}
     (FInMonth: 6; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[100]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[101]}
     (FInMonth: 6; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[102]}
     (FInMonth: 4; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[103]}
     (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[104]}
     (FInMonth: 4; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[105]}
     (FInMonth: 5; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[106]}
     (FInMonth: 5; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[107]}
     (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[108]}
     (FInMonth: 4; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[109]}
     (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[110]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[111]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[112]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[113]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[114]}
     (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[115]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[116]}
     (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[117]}
     (FInMonth: 4; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[118]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[119]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[120]}
     (FInMonth: 11; FOnDay: @CRelativeDays[31]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[121]}
     (FInMonth: 2; FOnDay: @CRelativeDays[12]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[122]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[123]}
     (FInMonth: 3; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[124]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[125]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[126]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[127]}
     (FInMonth: 4; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[128]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[129]}
     (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[130]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[131]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[132]}
     (FInMonth: 3; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[133]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[134]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[135]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 7200; FFmtPart: '+02'),
+   {CRules[136]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: '+00'),
+   {CRules[137]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[138]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[139]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[140]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[141]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[142]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[143]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 14400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[144]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 18000; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[145]}
     (FInMonth: 6; FOnDay: @CRelativeDays[8]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[146]}
     (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[147]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[148]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[149]}
     (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[150]}
     (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[151]}
     (FInMonth: 9; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[152]}
     (FInMonth: 4; FOnDay: @CRelativeDays[39]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[153]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[154]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[155]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[156]}
     (FInMonth: 12; FOnDay: @CRelativeDays[4]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[157]}
     (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[158]}
     (FInMonth: 12; FOnDay: @CRelativeDays[22]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[159]}
     (FInMonth: 5; FOnDay: @CRelativeDays[33]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[160]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[161]}
     (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[162]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[163]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[164]}
     (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[165]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[166]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[167]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[168]}
     (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[169]}
     (FInMonth: 12; FOnDay: @CRelativeDays[22]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[170]}
     (FInMonth: 5; FOnDay: @CRelativeDays[42]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[171]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[172]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[173]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[174]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[175]}
     (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[176]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[177]}
     (FInMonth: 6; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[178]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[179]}
     (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[180]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[181]}
     (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[182]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[183]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[184]}
     (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[185]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[186]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[187]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[188]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[189]}
     (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[190]}
     (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[191]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[192]}
     (FInMonth: 10; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[193]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[194]}
     (FInMonth: 9; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[195]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[196]}
     (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[197]}
     (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[198]}
     (FInMonth: 9; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[199]}
     (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[200]}
     (FInMonth: 5; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[201]}
     (FInMonth: 3; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[202]}
     (FInMonth: 9; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[203]}
     (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[204]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[205]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[206]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[207]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[208]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[209]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[210]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[211]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[212]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[213]}
     (FInMonth: 5; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
+   {CRules[214]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[215]}
     (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[216]}
     (FInMonth: 11; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[217]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[218]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[219]}
     (FInMonth: 4; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[220]}
     (FInMonth: 9; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[221]}
     (FInMonth: 6; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[222]}
     (FInMonth: 9; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[223]}
     (FInMonth: 6; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[224]}
     (FInMonth: 9; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[225]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[226]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[227]}
     (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[228]}
     (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[229]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[230]}
     (FInMonth: 8; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[231]}
     (FInMonth: 4; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[232]}
     (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[233]}
     (FInMonth: 5; FOnDay: @CRelativeDays[31]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[234]}
     (FInMonth: 9; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[235]}
     (FInMonth: 9; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[236]}
     (FInMonth: 4; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[237]}
     (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[238]}
     (FInMonth: 4; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[239]}
     (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[240]}
     (FInMonth: 3; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[241]}
     (FInMonth: 8; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[242]}
     (FInMonth: 3; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[243]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[244]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[245]}
     (FInMonth: 9; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[246]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[247]}
     (FInMonth: 9; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[248]}
     (FInMonth: 8; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[249]}
     (FInMonth: 3; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[250]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[251]}
     (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[252]}
     (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[253]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[254]}
     (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[255]}
     (FInMonth: 4; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[256]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[257]}
     (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[258]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[259]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[260]}
     (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[261]}
     (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[262]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[263]}
     (FInMonth: 4; FOnDay: @CRelativeDays[18]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[264]}
     (FInMonth: 9; FOnDay: @CRelativeDays[15]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[265]}
     (FInMonth: 10; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[266]}
     (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[267]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[268]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[269]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[270]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[271]}
     (FInMonth: 9; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[272]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[273]}
     (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[274]}
     (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[275]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[276]}
     (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[277]}
     (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[278]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[279]}
     (FInMonth: 6; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[280]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[281]}
     (FInMonth: 4; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[282]}
     (FInMonth: 10; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[283]}
     (FInMonth: 5; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[284]}
     (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[285]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[286]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[287]}
     (FInMonth: 4; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[288]}
     (FInMonth: 9; FOnDay: @CRelativeDays[47]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[289]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[290]}
     (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[291]}
     (FInMonth: 3; FOnDay: @CRelativeDays[25]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[292]}
     (FInMonth: 3; FOnDay: @CRelativeDays[25]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[293]}
     (FInMonth: 10; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[294]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[295]}
     (FInMonth: 12; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[296]}
     (FInMonth: 4; FOnDay: @CRelativeDays[48]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[297]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 9000; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[298]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[299]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[300]}
     (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[301]}
     (FInMonth: 5; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[302]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[303]}
     (FInMonth: 9; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[304]}
     (FInMonth: 5; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[305]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[306]}
     (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[307]}
     (FInMonth: 9; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[308]}
     (FInMonth: 5; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[309]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[310]}
     (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[311]}
     (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[312]}
     (FInMonth: 4; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[313]}
     (FInMonth: 6; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[314]}
     (FInMonth: 10; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[315]}
     (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 1200; FFmtPart: 'TS'),
+   {CRules[316]}
     (FInMonth: 12; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[317]}
     (FInMonth: 4; FOnDay: @CRelativeDays[49]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[318]}
     (FInMonth: 9; FOnDay: @CRelativeDays[49]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[319]}
     (FInMonth: 3; FOnDay: @CRelativeDays[49]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[320]}
     (FInMonth: 9; FOnDay: @CRelativeDays[49]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[321]}
     (FInMonth: 4; FOnDay: @CRelativeDays[50]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[322]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[323]}
     (FInMonth: 4; FOnDay: @CRelativeDays[47]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[324]}
     (FInMonth: 10; FOnDay: @CRelativeDays[47]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[325]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[326]}
     (FInMonth: 9; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[327]}
     (FInMonth: 9; FOnDay: @CRelativeDays[51]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[328]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[329]}
     (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[330]}
     (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[331]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[332]}
     (FInMonth: 8; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[333]}
     (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[334]}
     (FInMonth: 9; FOnDay: @CRelativeDays[52]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[335]}
     (FInMonth: 10; FOnDay: @CRelativeDays[52]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[336]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[337]}
     (FInMonth: 3; FOnDay: @CRelativeDays[49]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[338]}
     (FInMonth: 10; FOnDay: @CRelativeDays[49]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[339]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[340]}
     (FInMonth: 2; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[341]}
     (FInMonth: 4; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[342]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[343]}
     (FInMonth: 3; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[344]}
     (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[345]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[346]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[347]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[348]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[349]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[350]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[351]}
     (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[352]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[353]}
     (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[354]}
     (FInMonth: 2; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[355]}
     (FInMonth: 10; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[356]}
     (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[357]}
     (FInMonth: 3; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[358]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[359]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[360]}
     (FInMonth: 4; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[361]}
     (FInMonth: 3; FOnDay: @CRelativeDays[53]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[362]}
     (FInMonth: 11; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[363]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[364]}
     (FInMonth: 3; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[365]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[366]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[367]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[368]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[369]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[370]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[371]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[372]}
     (FInMonth: 11; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[373]}
     (FInMonth: 12; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[374]}
     (FInMonth: 2; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[375]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[376]}
     (FInMonth: 2; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[377]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[378]}
     (FInMonth: 3; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[379]}
     (FInMonth: 3; FOnDay: @CRelativeDays[15]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[380]}
     (FInMonth: 3; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[381]}
     (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[382]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[383]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[384]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[385]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[386]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[387]}
     (FInMonth: 10; FOnDay: @CRelativeDays[54]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[388]}
     (FInMonth: 8; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[389]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'D'),
+   {CRules[390]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'D'),
+   {CRules[391]}
     (FInMonth: 8; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'D'),
+   {CRules[392]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'D'),
+   {CRules[393]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[394]}
     (FInMonth: 2; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[395]}
     (FInMonth: 11; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[396]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[397]}
     (FInMonth: 10; FOnDay: @CRelativeDays[55]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[398]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[399]}
     (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[400]}
     (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[401]}
     (FInMonth: 1; FOnDay: @CRelativeDays[56]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[402]}
     (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[403]}
     (FInMonth: 2; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[404]}
     (FInMonth: 12; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[405]}
     (FInMonth: 3; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[406]}
     (FInMonth: 11; FOnDay: @CRelativeDays[14]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[407]}
     (FInMonth: 3; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+   {CRules[408]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
+   {CRules[409]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+   {CRules[410]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+   {CRules[411]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
+   {CRules[412]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[413]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[414]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[415]}
     (FInMonth: 2; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[416]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[417]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[418]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[419]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[420]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[421]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[422]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[423]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[424]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[425]}
     (FInMonth: 11; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[426]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[427]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[428]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[429]}
     (FInMonth: 4; FOnDay: @CRelativeDays[57]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[430]}
     (FInMonth: 9; FOnDay: @CRelativeDays[49]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[431]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[432]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[433]}
     (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[434]}
     (FInMonth: 3; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[435]}
     (FInMonth: 1; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[436]}
     (FInMonth: 1; FOnDay: @CRelativeDays[37]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[437]}
     (FInMonth: 9; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[438]}
     (FInMonth: 3; FOnDay: @CRelativeDays[58]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[439]}
     (FInMonth: 10; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[440]}
     (FInMonth: 9; FOnDay: @CRelativeDays[58]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[441]}
     (FInMonth: 1; FOnDay: @CRelativeDays[58]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[442]}
     (FInMonth: 10; FOnDay: @CRelativeDays[58]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[443]}
     (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[444]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[445]}
     (FInMonth: 4; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[446]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[447]}
     (FInMonth: 3; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[448]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[449]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[450]}
     (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[451]}
     (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[452]}
     (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[453]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[454]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[455]}
     (FInMonth: 3; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[456]}
     (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[457]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[458]}
     (FInMonth: 9; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[459]}
     (FInMonth: 4; FOnDay: @CRelativeDays[59]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[460]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[461]}
     (FInMonth: 11; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[462]}
     (FInMonth: 2; FOnDay: @CRelativeDays[58]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[463]}
     (FInMonth: 5; FOnDay: @CRelativeDays[50]; FAt: 3600; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'BDST'),
+   {CRules[464]}
     (FInMonth: 8; FOnDay: @CRelativeDays[59]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[465]}
     (FInMonth: 4; FOnDay: @CRelativeDays[50]; FAt: 3600; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'BDST'),
+   {CRules[466]}
     (FInMonth: 9; FOnDay: @CRelativeDays[41]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[467]}
     (FInMonth: 4; FOnDay: @CRelativeDays[60]; FAt: 3600; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'BDST'),
+   {CRules[468]}
     (FInMonth: 7; FOnDay: @CRelativeDays[59]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[469]}
     (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[470]}
     (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 3600; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'BDST'),
+   {CRules[471]}
     (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[472]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[473]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[474]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[475]}
     (FInMonth: 10; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[476]}
     (FInMonth: 4; FOnDay: @CRelativeDays[56]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[477]}
     (FInMonth: 10; FOnDay: @CRelativeDays[55]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[478]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[479]}
     (FInMonth: 10; FOnDay: @CRelativeDays[58]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[480]}
     (FInMonth: 3; FOnDay: @CRelativeDays[61]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[481]}
     (FInMonth: 2; FOnDay: @CRelativeDays[31]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[482]}
     (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[483]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'BST'),
+   {CRules[484]}
     (FInMonth: 10; FOnDay: @CRelativeDays[58]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[485]}
     (FInMonth: 10; FOnDay: @CRelativeDays[54]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'GMT'),
+   {CRules[486]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trUniversal; FOffset: -3600; FFmtPart: 'GMT'),
+   {CRules[487]}
     (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'IST'),
+   {CRules[488]}
     (FInMonth: 10; FOnDay: @CRelativeDays[58]; FAt: 7200; FAtMode: trUniversal; FOffset: -3600; FFmtPart: 'GMT'),
+   {CRules[489]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'IST'),
+   {CRules[490]}
     (FInMonth: 10; FOnDay: @CRelativeDays[58]; FAt: 3600; FAtMode: trUniversal; FOffset: -3600; FFmtPart: 'GMT'),
+   {CRules[491]}
     (FInMonth: 10; FOnDay: @CRelativeDays[54]; FAt: 3600; FAtMode: trUniversal; FOffset: -3600; FFmtPart: 'GMT'),
+   {CRules[492]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trUniversal; FOffset: -3600; FFmtPart: 'GMT'),
+   {CRules[493]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[494]}
     (FInMonth: 4; FOnDay: @CRelativeDays[22]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[495]}
     (FInMonth: 4; FOnDay: @CRelativeDays[62]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[496]}
     (FInMonth: 9; FOnDay: @CRelativeDays[62]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[497]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[498]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[499]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[500]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[501]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'MST'),
+   {CRules[502]}
     (FInMonth: 12; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'MMT'),
+   {CRules[503]}
     (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 79200; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'MDST'),
+   {CRules[504]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'MST'),
+   {CRules[505]}
     (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 82800; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'MDST'),
+   {CRules[506]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'MSD'),
+   {CRules[507]}
     (FInMonth: 8; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'MSK'),
+   {CRules[508]}
     (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'MSD'),
+   {CRules[509]}
     (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 82800; FAtMode: trLocal; FOffset: 7200; FFmtPart: '+05'),
+   {CRules[510]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'MSD'),
+   {CRules[511]}
     (FInMonth: 6; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[512]}
     (FInMonth: 4; FOnDay: @CRelativeDays[21]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[513]}
     (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[514]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[515]}
     (FInMonth: 5; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[516]}
     (FInMonth: 4; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[517]}
     (FInMonth: 4; FOnDay: @CRelativeDays[31]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[518]}
     (FInMonth: 4; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[519]}
     (FInMonth: 9; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[520]}
     (FInMonth: 4; FOnDay: @CRelativeDays[31]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[521]}
     (FInMonth: 10; FOnDay: @CRelativeDays[57]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[522]}
     (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[523]}
     (FInMonth: 3; FOnDay: @CRelativeDays[12]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[524]}
     (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[525]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[526]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[527]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[528]}
     (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[529]}
     (FInMonth: 4; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[530]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[531]}
     (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[532]}
     (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[533]}
     (FInMonth: 4; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[534]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[535]}
     (FInMonth: 3; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[536]}
     (FInMonth: 4; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[537]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[538]}
     (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[539]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[540]}
     (FInMonth: 11; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[541]}
     (FInMonth: 2; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[542]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[543]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[544]}
     (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[545]}
     (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[546]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[547]}
     (FInMonth: 4; FOnDay: @CRelativeDays[57]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[548]}
     (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[549]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[550]}
     (FInMonth: 11; FOnDay: @CRelativeDays[31]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[551]}
     (FInMonth: 5; FOnDay: @CRelativeDays[14]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[552]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[553]}
     (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[554]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[555]}
     (FInMonth: 8; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[556]}
     (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[557]}
     (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[558]}
     (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[559]}
     (FInMonth: 8; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[560]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[561]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[562]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[563]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[564]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[565]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[566]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[567]}
     (FInMonth: 5; FOnDay: @CRelativeDays[13]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[568]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[569]}
     (FInMonth: 4; FOnDay: @CRelativeDays[23]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[570]}
     (FInMonth: 4; FOnDay: @CRelativeDays[31]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[571]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[572]}
     (FInMonth: 4; FOnDay: @CRelativeDays[18]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[573]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[574]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[575]}
     (FInMonth: 3; FOnDay: @CRelativeDays[13]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[576]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[577]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[578]}
     (FInMonth: 3; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[579]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[580]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[581]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[582]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[583]}
     (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[584]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[585]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[586]}
     (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[587]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[588]}
     (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 10800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[589]}
     (FInMonth: 5; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[590]}
     (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[591]}
     (FInMonth: 4; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[592]}
     (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[593]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[594]}
     (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[595]}
     (FInMonth: 4; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[596]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[597]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[598]}
     (FInMonth: 11; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[599]}
     (FInMonth: 4; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[600]}
     (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[601]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[602]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[603]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 32400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[604]}
     (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[605]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[606]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[607]}
     (FInMonth: 11; FOnDay: @CRelativeDays[2]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[608]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[609]}
     (FInMonth: 4; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[610]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[611]}
     (FInMonth: 10; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[612]}
     (FInMonth: 5; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[613]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[614]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[615]}
     (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[616]}
     (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[617]}
     (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[618]}
     (FInMonth: 11; FOnDay: @CRelativeDays[11]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[619]}
     (FInMonth: 3; FOnDay: @CRelativeDays[8]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[620]}
     (FInMonth: 6; FOnDay: @CRelativeDays[5]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[621]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[622]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[623]}
     (FInMonth: 11; FOnDay: @CRelativeDays[50]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[624]}
     (FInMonth: 3; FOnDay: @CRelativeDays[50]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[625]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[626]}
     (FInMonth: 10; FOnDay: @CRelativeDays[54]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[627]}
     (FInMonth: 10; FOnDay: @CRelativeDays[22]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[628]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[629]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[630]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[631]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[632]}
     (FInMonth: 3; FOnDay: @CRelativeDays[3]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[633]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[634]}
     (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[635]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[636]}
     (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[637]}
     (FInMonth: 9; FOnDay: @CRelativeDays[31]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[638]}
     (FInMonth: 6; FOnDay: @CRelativeDays[0]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[639]}
     (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[640]}
     (FInMonth: 3; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[641]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[642]}
     (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[643]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[644]}
     (FInMonth: 2; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[645]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[646]}
     (FInMonth: 5; FOnDay: @CRelativeDays[54]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[647]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[648]}
     (FInMonth: 9; FOnDay: @CRelativeDays[54]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[649]}
     (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[650]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[651]}
     (FInMonth: 5; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[652]}
     (FInMonth: 5; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[653]}
     (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[654]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[655]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[656]}
     (FInMonth: 10; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[657]}
     (FInMonth: 10; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[658]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[659]}
     (FInMonth: 4; FOnDay: @CRelativeDays[34]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[660]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[661]}
     (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[662]}
     (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[663]}
     (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[664]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[665]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'AMT'),
+   {CRules[666]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[667]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'AMT'),
+   {CRules[668]}
     (FInMonth: 4; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[669]}
     (FInMonth: 9; FOnDay: @CRelativeDays[53]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'AMT'),
+   {CRules[670]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[671]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'AMT'),
+   {CRules[672]}
     (FInMonth: 6; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[673]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[674]}
     (FInMonth: 5; FOnDay: @CRelativeDays[15]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'NST'),
+   {CRules[675]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[676]}
     (FInMonth: 5; FOnDay: @CRelativeDays[15]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[677]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[678]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[679]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[680]}
     (FInMonth: 4; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[681]}
     (FInMonth: 6; FOnDay: @CRelativeDays[33]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[682]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[683]}
     (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[684]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[685]}
     (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[686]}
     (FInMonth: 5; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[687]}
     (FInMonth: 6; FOnDay: @CRelativeDays[36]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[688]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[689]}
     (FInMonth: 2; FOnDay: @CRelativeDays[32]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[690]}
     (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[691]}
     (FInMonth: 2; FOnDay: @CRelativeDays[19]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[692]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[693]}
     (FInMonth: 2; FOnDay: @CRelativeDays[2]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[694]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[695]}
     (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[696]}
     (FInMonth: 4; FOnDay: @CRelativeDays[12]; FAt: 79200; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[697]}
     (FInMonth: 8; FOnDay: @CRelativeDays[17]; FAt: 79200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[698]}
     (FInMonth: 10; FOnDay: @CRelativeDays[64]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[699]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 79200; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[700]}
     (FInMonth: 8; FOnDay: @CRelativeDays[65]; FAt: 79200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[701]}
     (FInMonth: 4; FOnDay: @CRelativeDays[66]; FAt: 79200; FAtMode: trStandard; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[702]}
     (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[703]}
     (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[704]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[705]}
     (FInMonth: 5; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[706]}
     (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[707]}
     (FInMonth: 10; FOnDay: @CRelativeDays[57]; FAt: 86400; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[708]}
     (FInMonth: 6; FOnDay: @CRelativeDays[11]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[709]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 86400; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[710]}
     (FInMonth: 4; FOnDay: @CRelativeDays[22]; FAt: 82800; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'M'),
+   {CRules[711]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[712]}
     (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 86400; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[713]}
     (FInMonth: 5; FOnDay: @CRelativeDays[33]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[714]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[715]}
     (FInMonth: 4; FOnDay: @CRelativeDays[67]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[716]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[717]}
     (FInMonth: 4; FOnDay: @CRelativeDays[68]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[718]}
     (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[719]}
     (FInMonth: 5; FOnDay: @CRelativeDays[9]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[720]}
     (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[721]}
     (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[722]}
     (FInMonth: 6; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[723]}
     (FInMonth: 12; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[724]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[725]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[726]}
     (FInMonth: 4; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[727]}
     (FInMonth: 5; FOnDay: @CRelativeDays[50]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[728]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[729]}
     (FInMonth: 11; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[730]}
     (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 18000; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[731]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[732]}
     (FInMonth: 10; FOnDay: @CRelativeDays[69]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[733]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[734]}
     (FInMonth: 7; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[735]}
     (FInMonth: 4; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[736]}
     (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[737]}
     (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
+   {CRules[738]}
     (FInMonth: 8; FOnDay: @CRelativeDays[0]; FAt: 82800; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'P'),
+   {CRules[739]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[740]}
     (FInMonth: 1; FOnDay: @CRelativeDays[14]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[741]}
     (FInMonth: 2; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[742]}
     (FInMonth: 6; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[743]}
     (FInMonth: 5; FOnDay: @CRelativeDays[15]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[744]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 7260; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[745]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[746]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[747]}
     (FInMonth: 6; FOnDay: @CRelativeDays[15]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[748]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[749]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[750]}
     (FInMonth: 6; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[751]}
     (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[752]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[753]}
     (FInMonth: 4; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[754]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[755]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[756]}
     (FInMonth: 8; FOnDay: @CRelativeDays[23]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[757]}
     (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[758]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[759]}
     (FInMonth: 5; FOnDay: @CRelativeDays[70]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[760]}
     (FInMonth: 10; FOnDay: @CRelativeDays[60]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[761]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[762]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[763]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[764]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
+   {CRules[765]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[766]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[767]}
     (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[768]}
     (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[769]}
     (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[770]}
     (FInMonth: 5; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[771]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[772]}
     (FInMonth: 5; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[773]}
     (FInMonth: 9; FOnDay: @CRelativeDays[71]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[774]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[775]}
     (FInMonth: 6; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[776]}
     (FInMonth: 5; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[777]}
     (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[778]}
     (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[779]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[780]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[781]}
     (FInMonth: 5; FOnDay: @CRelativeDays[20]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[782]}
     (FInMonth: 9; FOnDay: @CRelativeDays[66]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[783]}
     (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[784]}
     (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[785]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 84600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[786]}
     (FInMonth: 10; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[787]}
     (FInMonth: 5; FOnDay: @CRelativeDays[33]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[788]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[789]}
     (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[790]}
     (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[791]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[792]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[793]}
     (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[794]}
     (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[795]}
     (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[796]}
     (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[797]}
     (FInMonth: 5; FOnDay: @CRelativeDays[11]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[798]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[799]}
     (FInMonth: 5; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[800]}
     (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[801]}
     (FInMonth: 9; FOnDay: @CRelativeDays[15]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[802]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[803]}
     (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[804]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[805]}
     (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[806]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[807]}
     (FInMonth: 5; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[808]}
     (FInMonth: 5; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[809]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
+   {CRules[810]}
     (FInMonth: 2; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[811]}
     (FInMonth: 6; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[812]}
     (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[813]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[814]}
     (FInMonth: 12; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
+   {CRules[815]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[816]}
     (FInMonth: 2; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[817]}
     (FInMonth: 7; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[818]}
     (FInMonth: 6; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[819]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[820]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[821]}
     (FInMonth: 9; FOnDay: @CRelativeDays[12]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[822]}
     (FInMonth: 10; FOnDay: @CRelativeDays[50]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0530'),
+   {CRules[823]}
     (FInMonth: 2; FOnDay: @CRelativeDays[59]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+   {CRules[824]}
     (FInMonth: 12; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
+   {CRules[825]}
     (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+   {CRules[826]}
     (FInMonth: 12; FOnDay: @CRelativeDays[31]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
+   {CRules[827]}
     (FInMonth: 2; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+   {CRules[828]}
     (FInMonth: 2; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[829]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[830]}
     (FInMonth: 1; FOnDay: @CRelativeDays[72]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[831]}
     (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[832]}
     (FInMonth: 3; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[833]}
     (FInMonth: 6; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[834]}
     (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[835]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[836]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[837]}
     (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[838]}
     (FInMonth: 4; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[839]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[840]}
     (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[841]}
     (FInMonth: 5; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[842]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[843]}
     (FInMonth: 5; FOnDay: @CRelativeDays[73]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[844]}
     (FInMonth: 3; FOnDay: @CRelativeDays[56]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[845]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[846]}
     (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[847]}
     (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[848]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[849]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[850]}
     (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[851]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[852]}
     (FInMonth: 10; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'EDT'),
+   {CRules[853]}
     (FInMonth: 2; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+   {CRules[854]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0430'),
+   {CRules[855]}
     (FInMonth: 2; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+   {CRules[856]}
     (FInMonth: 1; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+   {CRules[857]}
     (FInMonth: 1; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+   {CRules[858]}
     (FInMonth: 11; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[859]}
     (FInMonth: 2; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[860]}
     (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[861]}
     (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[862]}
     (FInMonth: 5; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[863]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[864]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[865]}
     (FInMonth: 8; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[866]}
     (FInMonth: 6; FOnDay: @CRelativeDays[74]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[867]}
     (FInMonth: 4; FOnDay: @CRelativeDays[22]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[868]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[869]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[870]}
     (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[871]}
     (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[872]}
     (FInMonth: 6; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[873]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[874]}
     (FInMonth: 12; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[875]}
     (FInMonth: 4; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[876]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[877]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[878]}
     (FInMonth: 1; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[879]}
     (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[880]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[881]}
     (FInMonth: 3; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[882]}
     (FInMonth: 12; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[883]}
     (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[884]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[885]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[886]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 39600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[887]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[888]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[889]}
     (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[890]}
     (FInMonth: 1; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[891]}
     (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[892]}
     (FInMonth: 11; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[893]}
     (FInMonth: 3; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[894]}
     (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[895]}
     (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[896]}
     (FInMonth: 2; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[897]}
     (FInMonth: 10; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[898]}
     (FInMonth: 1; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[899]}
     (FInMonth: 2; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[900]}
     (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[901]}
     (FInMonth: 2; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[902]}
     (FInMonth: 10; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[903]}
     (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[904]}
     (FInMonth: 1; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[905]}
     (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[906]}
     (FInMonth: 2; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[907]}
     (FInMonth: 2; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[908]}
     (FInMonth: 10; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[909]}
     (FInMonth: 2; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[910]}
     (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[911]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[912]}
     (FInMonth: 11; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[913]}
     (FInMonth: 2; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[914]}
     (FInMonth: 2; FOnDay: @CRelativeDays[54]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[915]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[916]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[917]}
     (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[918]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[919]}
     (FInMonth: 11; FOnDay: @CRelativeDays[5]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[920]}
     (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[921]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[922]}
     (FInMonth: 10; FOnDay: @CRelativeDays[59]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[923]}
     (FInMonth: 3; FOnDay: @CRelativeDays[59]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[924]}
     (FInMonth: 9; FOnDay: @CRelativeDays[22]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[925]}
     (FInMonth: 4; FOnDay: @CRelativeDays[23]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[926]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[927]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[928]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[929]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[930]}
     (FInMonth: 5; FOnDay: @CRelativeDays[50]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[931]}
     (FInMonth: 8; FOnDay: @CRelativeDays[41]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[932]}
     (FInMonth: 4; FOnDay: @CRelativeDays[58]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[933]}
     (FInMonth: 9; FOnDay: @CRelativeDays[50]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[934]}
     (FInMonth: 5; FOnDay: @CRelativeDays[59]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+   {CRules[935]}
     (FInMonth: 8; FOnDay: @CRelativeDays[59]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[936]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[937]}
     (FInMonth: 11; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[938]}
     (FInMonth: 2; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[939]}
     (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[940]}
     (FInMonth: 3; FOnDay: @CRelativeDays[61]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[941]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[942]}
     (FInMonth: 9; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[943]}
     (FInMonth: 9; FOnDay: @CRelativeDays[59]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[944]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[945]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[946]}
     (FInMonth: 10; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[947]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[948]}
     (FInMonth: 2; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[949]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[950]}
     (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[951]}
     (FInMonth: 3; FOnDay: @CRelativeDays[54]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[952]}
     (FInMonth: 1; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[953]}
     (FInMonth: 3; FOnDay: @CRelativeDays[75]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[954]}
     (FInMonth: 10; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[955]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[956]}
     (FInMonth: 3; FOnDay: @CRelativeDays[65]; FAt: 84600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[957]}
     (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[958]}
     (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[959]}
     (FInMonth: 8; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[960]}
     (FInMonth: 12; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[961]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[962]}
     (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[963]}
     (FInMonth: 11; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[964]}
     (FInMonth: 1; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[965]}
     (FInMonth: 3; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[966]}
     (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[967]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[968]}
     (FInMonth: 5; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[969]}
     (FInMonth: 12; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[970]}
     (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[971]}
     (FInMonth: 8; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[972]}
     (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'HS'),
+   {CRules[973]}
     (FInMonth: 12; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[974]}
     (FInMonth: 12; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[975]}
     (FInMonth: 12; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[976]}
     (FInMonth: 3; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[977]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[978]}
     (FInMonth: 10; FOnDay: @CRelativeDays[55]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[979]}
     (FInMonth: 10; FOnDay: @CRelativeDays[31]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[980]}
     (FInMonth: 2; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[981]}
     (FInMonth: 9; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[982]}
     (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[983]}
     (FInMonth: 3; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[984]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[985]}
     (FInMonth: 3; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: '')
   );
 
