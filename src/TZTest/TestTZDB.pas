@@ -68,6 +68,7 @@ type
     procedure Test_America_Araguaina_1950;
     procedure Test_Etc_GTM12_2010;
     procedure Test_Etc_GTMMin9_1991;
+    procedure Test_Europe_London_2018;
   end;
 
 implementation
@@ -436,6 +437,10 @@ begin
   CompareKnown(CEurope_Bucharest_2010, 'Europe/Bucharest', 2010);
 end;
 
+procedure TTZDBTest.Test_Europe_London_2018;
+begin
+  CompareKnown(CEurope_London_2018, 'Europe/London', 2018);
+end;
 
 procedure TTZDBTest.Test_TZ_Contructor;
 var

@@ -1113,16 +1113,18 @@ begin
 
     if AType = lttDaylight then
       ADstSave := LRule.FOffset
-    else if AType = lttAmbiguous then
+    else
+    if AType = lttAmbiguous then
     begin
-      { In case of ambiguous, fill in the dst save accordingly }
+      // In case of ambiguous, fill in the dst save accordingly
       if LRule.FPrev <> nil then
         ADstSave := LRule.FPrev.FOffset - LRule.FOffset
       else
         ADstSave := LRule.FOffset;
-    end else if AType = lttInvalid then
+    end
+    else if AType = lttInvalid then
     begin
-      { In case of invalid, fill in the dst save accordingly }
+      // In case of invalid, fill in the dst save accordingly
       if LRule.FNext <> nil then
         ADstSave := LRule.FNext.FOffset - LRule.FOffset
       else
