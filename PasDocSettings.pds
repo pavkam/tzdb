@@ -4,7 +4,7 @@ Language=en
 OutputDir=docs
 GenerateFormat=0
 ProjectName=
-Verbosity=2
+Verbosity=3
 ClassMembers_0=1
 ClassMembers_1=1
 ClassMembers_2=1
@@ -12,7 +12,7 @@ ClassMembers_3=0
 ClassMembers_4=0
 ClassMembers_5=0
 ClassMembers_6=1
-ClassMembers_7=0
+ClassMembers_7=1
 ImplicitVisibility=0
 Sorting_0=1
 Sorting_1=1
@@ -28,7 +28,7 @@ CssFileName=
 IntroductionFileName=
 ConclusionFileName=
 WriteUsesList=1
-AutoAbstract=0
+AutoAbstract=1
 AutoLink=1
 HandleMacros=0
 UseTipueSearch=1
@@ -40,12 +40,13 @@ VizGraphUses=0
 CheckSpelling=1
 LatexGraphicsPackage=0
 [Defines]
-Count=5
-Item_0=UNICODE
-Item_1=MSWINDOWS
-Item_2=WIN32
-Item_3=CPU386
-Item_4=CONDITIONALEXPRESSIONS
+Count=6
+Item_0=PASDOC
+Item_1=UNICODE
+Item_2=MSWINDOWS
+Item_3=WIN32
+Item_4=CPU386
+Item_5=CONDITIONALEXPRESSIONS
 [Header]
 Count=1
 Item_0=TZDB for Delphi Documentation by pasdoc 2018-03-04
@@ -53,11 +54,13 @@ Item_0=TZDB for Delphi Documentation by pasdoc 2018-03-04
 Count=1
 Item_0=prepared by M.Taylor
 [IncludeDirectories]
-Count=1
+Count=2
 Item_0=src\TZDBPK
+Item_1=src\TZDBLIB
 [Files]
-Count=1
-Item_0=src\TZDBPK\TZDB.pas
+Count=2
+Item_0=src\TZDBLIB\TZCAPI.pas
+Item_1=src\TZDBPK\TZDB.pas
 [HyphenatedWords]
 Count=0
 [SpecialMarkers]
