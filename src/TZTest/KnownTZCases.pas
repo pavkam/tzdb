@@ -62,13 +62,13 @@ const
 const
   CEtc_GMT12_2010: array[0 .. 0] of TDecomposedPeriod = (
     (FStartsAt: 40179; FEndsAt: 40543.9999884259; FType: lttStandard; FAbbrv_AsDST: 'GMT-12'; FAbbrv_AsSTD: 'GMT-12';
-      FName_AsDST: 'GMT+12'; FName_AsSTD: 'GMT+12'; FBias_AsDST: -43200; FBias_AsSTD: -43200)
+      FName_AsDST: '-12'; FName_AsSTD: '-12'; FBias_AsDST: -43200; FBias_AsSTD: -43200)
   );
 
 const
   CEtc_GMTMin9_1991: array[0 .. 0] of TDecomposedPeriod = (
     (FStartsAt: 33239; FEndsAt: 33603.9999884259; FType: lttStandard; FAbbrv_AsDST: 'GMT+09'; FAbbrv_AsSTD: 'GMT+09';
-      FName_AsDST: 'GMT-9'; FName_AsSTD: 'GMT-9'; FBias_AsDST: 32400; FBias_AsSTD: 32400)
+      FName_AsDST: '+09'; FName_AsSTD: '+09'; FBias_AsDST: 32400; FBias_AsSTD: 32400)
   );
 
 
@@ -79,8 +79,8 @@ const
       FType: lttStandard;
       FAbbrv_AsDST: 'GMT';
       FAbbrv_AsSTD: 'GMT';
-      FName_AsDST: 'GMT/+0020';
-      FName_AsSTD: 'GMT/+0020';
+      FName_AsDST: 'GMT';
+      FName_AsSTD: 'GMT';
       FBias_AsDST: 0;
       FBias_AsSTD: 0)
   );
@@ -92,8 +92,8 @@ const
       FType: lttDaylight;
       FAbbrv_AsDST: 'GMT-02';
       FAbbrv_AsSTD: 'GMT-02';
-      FName_AsDST: 'BRST';
-      FName_AsSTD: 'BRST';
+      FName_AsDST: '-02';
+      FName_AsSTD: '-02';
       FBias_AsDST: -7200;
       FBias_AsSTD: -7200),
 
@@ -102,8 +102,8 @@ const
       FType: lttAmbiguous;
       FAbbrv_AsDST: 'GMT-02';
       FAbbrv_AsSTD: 'GMT-03';
-      FName_AsDST: 'BRST';
-      FName_AsSTD: 'BRT';
+      FName_AsDST: '-02';
+      FName_AsSTD: '-03';
       FBias_AsDST: -7200;
       FBias_AsSTD: -10800),
 
@@ -112,8 +112,8 @@ const
       FType: lttStandard;
       FAbbrv_AsDST: 'GMT-03';
       FAbbrv_AsSTD: 'GMT-03';
-      FName_AsDST: 'BRT';
-      FName_AsSTD: 'BRT';
+      FName_AsDST: '-03';
+      FName_AsSTD: '-03';
       FBias_AsDST: -10800;
       FBias_AsSTD: -10800),
 
@@ -132,8 +132,8 @@ const
       FType: lttDaylight;
       FAbbrv_AsDST: 'GMT-02';
       FAbbrv_AsSTD: 'GMT-02';
-      FName_AsDST: 'BRST';
-      FName_AsSTD: 'BRST';
+      FName_AsDST: '-02';
+      FName_AsSTD: '-02';
       FBias_AsDST: -7200;
       FBias_AsSTD: -7200)
   );
@@ -294,8 +294,8 @@ const
       FType: lttStandard;
       FAbbrv_AsDST: 'GMT';
       FAbbrv_AsSTD: 'GMT';
-      FName_AsDST: 'GMT/BST';
-      FName_AsSTD: 'GMT/BST';
+      FName_AsDST: 'GMT';
+      FName_AsSTD: 'GMT';
       FBias_AsDST: 0;
       FBias_AsSTD: 0),
     //1
@@ -314,8 +314,8 @@ const
       FType: lttDaylight;
       FAbbrv_AsDST: 'GMT+01';
       FAbbrv_AsSTD: 'GMT+01';
-      FName_AsDST: 'GMT/BST';
-      FName_AsSTD: 'GMT/BST';
+      FName_AsDST: 'BST';
+      FName_AsSTD: 'BST';
       FBias_AsDST: 3600;
       FBias_AsSTD: 3600),
     //3
@@ -324,8 +324,8 @@ const
       FType: lttAmbiguous;
       FAbbrv_AsDST: 'GMT+01';
       FAbbrv_AsSTD: 'GMT';
-      FName_AsDST: 'GMT/BST';
-      FName_AsSTD: 'GMT/BST';
+      FName_AsDST: 'BST';
+      FName_AsSTD: 'GMT';
       FBias_AsDST: 3600;
       FBias_AsSTD: 0),
     //4
@@ -334,8 +334,8 @@ const
       FType: lttStandard;
       FAbbrv_AsDST: 'GMT';
       FAbbrv_AsSTD: 'GMT';
-      FName_AsDST: 'GMT/BST';
-      FName_AsSTD: 'GMT/BST';
+      FName_AsDST: 'GMT';
+      FName_AsSTD: 'GMT';
       FBias_AsDST: 0;
       FBias_AsSTD: 0)
   );

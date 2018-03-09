@@ -392,15 +392,48 @@ begin
   Result := IncSecond(Result, ATimeOfDay);
 end;
 
-function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule): string;
+function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule;
+  const aLocaltimeType: TLocalTimeType): string;
+var
+  fmt :TStringList;
 begin
-  if Pos('%s', APeriod^.FFmtStr) > 0 then
+
+{
+  From IANA TZDB  https://data.iana.org/time-zones/tz-how-to.html
+
+The FORMAT column specifies the usual abbreviation of the time zone name. It can have one of three forms:
+
+a string of three or more characters that are either ASCII alphanumerics, “+”, or “-”, in which case that’s the abbreviation
+a pair of strings separated by a slash (‘/’), in which case the first string is the abbreviation for the standard time name and the second string is the abbreviation for the daylight saving time name
+a string containing “%s,” in which case the “%s” will be replaced by the text in the appropriate Rule’s LETTER column
+}
+
+  if pos('/', APeriod^.FFmtStr) > 0 then
+  begin
+    fmt := TStringList.Create;
+    try
+      fmt.StrictDelimiter := True;
+      fmt.Delimiter := '/';
+      fmt.DelimitedText := APeriod^.FFmtStr;
+
+      case aLocaltimeType of
+        lttStandard   : Result := fmt[0];
+        lttDaylight   : Result := fmt[1];
+      end;
+
+    finally
+      fmt.Free;
+    end;
+
+  end
+  else if Pos('%s', APeriod^.FFmtStr) > 0 then
   begin
     { There is a place holder in the format string. Replace if with the current letter in the rule }
     if ARule <> nil then
       Result := Format(APeriod^.FFmtStr, [ARule^.FFmtPart])
     else
       Result := Format(APeriod^.FFmtStr, ['']);
+
 
     { In case no rule is defined, replace the placeholder with an empty string }
   end else
@@ -1139,12 +1172,15 @@ begin
   else
     LPRule := nil;
 
-  ADisplayName := FormatAbbreviation(LPeriod.FPeriod, LPRule);
+  ADisplayName := FormatAbbreviation(LPeriod.FPeriod, LPRule, AType);
 
   { The DST display name, only of ambiguity was found and we have a rule to prove it -- otherwise
     its just the standard name. }
   if (AType = lttAmbiguous) and (LRule.FPrev <> nil) then
-    ADstDisplayName := FormatAbbreviation(LPeriod.FPeriod, LRule.FPrev.FRule)
+  begin
+    ADisplayName := FormatAbbreviation(LPeriod.FPeriod, LPRule, lttStandard);
+    ADstDisplayName := FormatAbbreviation(LPeriod.FPeriod, LRule.FPrev.FRule, lttDaylight);
+  end
   else
     ADstDisplayName := ADisplayName;
 end;
