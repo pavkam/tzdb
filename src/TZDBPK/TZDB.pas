@@ -131,6 +131,41 @@ type
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
+    ///  <summary>Get the start point of daylight time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The start time of daylight time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function DaylightTimeStart(const aYear: word): TDateTime;
+
+    ///  <summary>Get the start point of Standard time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The start time of daylight time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function StardardTimeStart(const aYear: word): TDateTime;
+
+    ///  <summary>Get the end point of daylight time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The end time of daylight time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function DaylightTimeEnd(const aYear: word): TDateTime;
+
+    ///  <summary>Get the end point of standard time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The end time of daylight time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function StandardTimeEnd(const aYear: word): TDateTime;
+
+    ///  <summary>Determin if the timezone has daylight time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>True if the timezone operates daylight time in the year specified</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function OperatesDayligtTime(const aYear: word): boolean;
+
+    ///  <summary>Converts an UTC time to an ISO8601 date time string.</summary>
+    ///  <param name="ADateTime">The UTC time.</param>
+    ///  <returns>The ISO8601 date time string that corresponds to the passed UTC time.</returns>
+    function ToISO8601Str(const ADateTime: TDateTime): String;
+
 {$IFNDEF SUPPORTS_TTIMEZONE}
     ///  <summary>Generates an abbreviation string for the given local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
@@ -225,10 +260,7 @@ resourcestring
   SNoBundledTZForName = 'Could not find any data for timezone "%s".';
   STimeZoneHasNoPeriod =
     'There is no matching period that matches date [%s] in timezone "%s".';
-
-{$IFNDEF SUPPORTS_TTIMEZONE}
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
-{$ENDIF}
 
 type
   { Day type. Specifies the "relative" day in a month }
@@ -814,6 +846,146 @@ begin
   CompilePeriods();
 end;
 
+function TBundledTimeZone.DaylightTimeEnd(const aYear: word): TDateTime;
+var
+  LPeriod: TCompiledPeriod;
+  LRule: TCompiledRule;
+  ADateTime: TDateTime;
+  AType: TLocalTimeType;
+begin
+  Result := 0.0;
+  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+
+ //Get period and rule
+  if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
+
+    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
+      [DateTimeToStr(ADateTime), DoGetID()]);
+
+  if LRule <> nil then
+  begin
+      //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
+      //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
+      //ambiguous and invalid times.
+
+    AType := LRule.GetLocalTimeType(ADateTime);
+
+    case AType of
+      lttStandard:
+        begin
+          if LRule.FNext.FNext <> nil then
+            Result := LRule.FNext.FNext.FStartsOn + ((LRule.FNext.FOffset - 1)/SecsPerDay);
+        end;
+      lttDaylight:
+        begin
+          if LRule.FNext <> nil then
+          Result := LRule.FNext.FStartsOn  + ((LRule.FOffset - 1)/SecsPerDay);
+        end;
+      lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
+    end;
+
+  end;
+
+end;
+
+function TBundledTimeZone.DaylightTimeStart(const aYear: word): TDateTime;
+var
+  LPeriod: TCompiledPeriod;
+  LRule: TCompiledRule;
+  ADateTime: TDateTime;
+  AType: TLocalTimeType;
+begin
+  Result := 0.0;
+  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+
+  //Get period and rule
+  if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
+
+    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
+      [DateTimeToStr(ADateTime), DoGetID()]);
+
+  if LRule <> nil then
+  begin
+    //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
+    //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
+    //ambiguous and invalid times.
+
+    AType := LRule.GetLocalTimeType(ADateTime);
+
+    case AType of
+      lttStandard:
+        begin
+          if LRule.FNext <> nil then
+            Result := LRule.FNext.FStartsOn;// - ((LRule.FNext.FOffset +1)/SecsPerDay);
+        end;
+      lttDaylight:
+        begin
+          if LRule.FNext.FNext <> nil then
+          Result := LRule.FNext.FNext.FStartsOn;// - ((LRule.FNext.FNext.FOffset +1)/SecsPerDay);
+        end;
+      lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
+    end;
+
+  end;
+
+end;
+
+
+function TBundledTimeZone.ToISO8601Str(const ADateTime: TDateTime): String;
+const
+  ISO_Fmt = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%d%s%.2d:%.2d';
+var
+  LBias, LDstSave: Int64;
+  LTimeType: TLocalTimeType;
+  LStd, LDst: string; // Dummy!
+  LAdjusted: TDateTime;
+  Local: TDateTime;
+  Year, Month, Day,
+  Hrs, Mins, Secs, Msecs: Word;
+  Offset: Int64;
+  OffsetPrefix: Char;
+  OffsetHrs, OffsetMins: Word;
+begin
+  Offset := 0;
+  { Get all the expected data for this UTC time. }
+  GetTZData(ADateTime, LBias, LDstSave, LTimeType, LStd, LDst);
+
+  { Create a new date-time adjusted by the standard bias. Now, we might have
+    landed into an invalid yer period or an ambiguous year period.
+    We will check for that and adjust properly. }
+  LAdjusted := IncSecond(ADateTime, LBias);
+  inc(Offset, LBias);
+
+  { Get all the expected data for the adjust UTC (now local) time. }
+  GetTZData(LAdjusted, LBias, LDstSave, LTimeType, LStd, LDst);
+
+  { If we have indeed landed into the 2 nasty periods, simply add
+    the DST save so we can get into the safe zone. }
+  if (LTimeType = lttInvalid) or (LTimeType = lttDaylight) then
+  begin
+    Local := IncSecond(LAdjusted, LDSTSave);
+    inc(Offset, LDstSave);
+  end
+  else
+  begin
+    Local := LAdjusted;
+  end;
+
+  DecodeDateTime(Local, Year, Month, Day, Hrs, Mins, Secs, Msecs);
+
+  if (Offset >= 0) then
+    OffsetPrefix := '+'
+  else
+    OffsetPrefix := '-';
+
+  OffsetHrs   := abs(Offset div (MinsPerHour*SecsPerMin));
+  OffsetMins  := abs((Offset mod (MinsPerHour*SecsPerMin)) div SecsPerMin);
+
+  Result := Format(ISO_Fmt, [Year, Month, Day, Hrs, Mins, Secs, Msecs,
+    OffsetPrefix, OffsetHrs, OffsetMins]);
+
+end;
+
 destructor TBundledTimeZone.Destroy;
 begin
   FPeriods.Free;
@@ -1211,6 +1383,95 @@ begin
       Result[LIndex] := CAliases[I].FName;
       Inc(LIndex);
     end;
+end;
+
+function TBundledTimeZone.OperatesDayligtTime(const aYear: word): boolean;
+begin
+  Result := YearOf(DaylightTimeStart(aYear)) = aYear;
+end;
+
+function TBundledTimeZone.StandardTimeEnd(const aYear: word): TDateTime;
+var
+  LPeriod: TCompiledPeriod;
+  LRule: TCompiledRule;
+  ADateTime: TDateTime;
+  AType: TLocalTimeType;
+begin
+  Result := 0.0;
+  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+
+ //Get period and rule
+  if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
+
+    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
+      [DateTimeToStr(ADateTime), DoGetID()]);
+
+  if LRule <> nil then
+  begin
+      //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
+      //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
+      //ambiguous and invalid times.
+
+    AType := LRule.GetLocalTimeType(ADateTime);
+
+    case AType of
+      lttStandard:
+        begin
+          if LRule.FNext <> nil then
+            Result := LRule.FNext.FStartsOn - ((LRule.FNext.FOffset + 1)/SecsPerDay);
+        end;
+      lttDaylight:
+        begin
+          if LRule.FNext.FNext <> nil then
+          Result := LRule.FNext.FNext.FStartsOn  - ((LRule.FOffset + 1)/SecsPerDay);
+        end;
+      lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
+    end;
+
+  end;
+
+end;
+
+function TBundledTimeZone.StardardTimeStart(const aYear: word): TDateTime;
+var
+  LPeriod: TCompiledPeriod;
+  LRule: TCompiledRule;
+  ADateTime: TDateTime;
+  AType: TLocalTimeType;
+begin
+  Result := 0.0;
+  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+
+  //Get period and rule
+  if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
+
+    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
+      [DateTimeToStr(ADateTime), DoGetID()]);
+
+  if LRule <> nil then
+  begin
+    //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
+    //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
+    //ambiguous and invalid times.
+
+    AType := LRule.GetLocalTimeType(ADateTime);
+
+    case AType of
+      lttStandard:
+        begin
+          if LRule.FNext.FNext <> nil then
+            Result := LRule.FNext.FNext.FStartsOn;
+        end;
+      lttDaylight:
+        begin
+          if LRule.FNext <> nil then
+          Result := LRule.FNext.FStartsOn;
+        end;
+      lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
+    end;
+
+  end;
+
 end;
 
 {$IFNDEF SUPPORTS_TSTRINGS_OWNSOBJECTS}

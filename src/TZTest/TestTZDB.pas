@@ -60,6 +60,7 @@ type
     procedure Test_TZ_Contructor;
     procedure Test_TZ_GetTimeZone;
     procedure Test_TZ_KnownTimeZones;
+    procedure Test_TZ_ISO8601_Conversion;
 
     procedure Test_Africa_Cairo_2010;
     procedure Test_Africa_Cairo_2009;
@@ -71,7 +72,66 @@ type
     procedure Test_Europe_London_2018;
   end;
 
+
+  TTZDBTimezoneTest = class(TTestCase)
+  const
+    FMT_D_T_ISO = 'yyyy-mm-dd hh:nn:ss';
+  private
+    fTimeZoneID: string;
+    fTimeZone: TBundledTimeZone;
+    fYear : Word;
+
+    fStdEnd,
+    fInvStart,
+    fInvEnd,
+    fDstStart,
+    fDstEnd,
+    fAmbStart,
+    fAmbEnd,
+    fStdStart :tdatetime;
+    function RandomDate(aFromDatetime, aToDatetime : TDateTime) : TDateTime;
+  protected
+    procedure Setup; override;
+    procedure TearDown; override;
+
+  published
+    procedure Test_StandardTimeEnd;
+    procedure Test_DaylightTimeStart;
+    procedure Test_DaylightTimeEnd;
+    procedure Test_StandardTimeStart;
+
+    procedure Test_InvalidTime;
+    procedure Test_AmbiguousTime;
+    procedure Test_StandardTime;
+    procedure Test_DaylightTime;
+
+    procedure Test_OperatesDST;
+
+  end;
+
+  TTZDB_St_Johns_2018_Test = class(TTZDBTimezoneTest)
+  protected
+    procedure Setup; override;
+    procedure TearDown; override;
+  end;
+
+  TTZDB_London_2018_Test = class(TTZDBTimezoneTest)
+  protected
+    procedure Setup; override;
+    procedure TearDown; override;
+  end;
+
+  TTZDB_Canberra_2018_Test = class(TTZDBTimezoneTest)
+  protected
+    procedure Setup; override;
+    procedure TearDown; override;
+  end;
+
+
 implementation
+
+uses
+  math;
 
 { TTZDBTest }
 
@@ -519,6 +579,62 @@ begin
     CheckEquals(L1[I], L2[I], 'Expected same order for known tables');
 end;
 
+procedure ttzdbTest.Test_TZ_ISO8601_Conversion;
+var
+  LTZ: TBundledTimeZone;
+  sTimezone: string;
+  sDatetime: string;
+  Datetime: TDateTime;
+begin
+
+  {
+  When local daylight time is about to reach
+  Sunday, 1 April 2018, 03:00:00 clocks are turned backward 1 hour to
+  Sunday, 1 April 2018, 02:00:00 local standard time instead.
+  }
+
+  sTimezone := 'Australia/Canberra';
+  LTZ := TBundledTimeZone.Create(sTimezone);
+  try
+    //Local time 2018-04-01 02:00:00  DST
+    Datetime  := EncodeDateTime(2018,3,31,15,00,00,0); //UTC Datetime
+    sDatetime := LTZ.ToISO8601Str(Datetime);
+    CheckEquals('2018-04-01 02:00:00.0+11:00', sDatetime, sTimezone);
+
+    //Local time 2018-04-01 02:00:00  STD
+    Datetime  := EncodeDateTime(2018,3,31,16,00,00,0); //UTC Datetime
+    sDatetime := LTZ.ToISO8601Str(Datetime);
+    CheckEquals('2018-04-01 02:00:00.0+10:00', sDatetime, sTimezone);
+  finally
+   LTZ.Free;
+  end;
+
+  {
+  When local daylight time is about to reach
+  Sunday, 28 October 2018, 02:00:00 clocks are turned backward 1 hour to
+  Sunday, 28 October 2018, 01:00:00 local standard time instead.
+  }
+
+  sTimezone := 'Europe/London';
+  LTZ := TBundledTimeZone.Create(sTimezone);
+  try
+    //Local time 2018-10-28 02:00:00  DST
+    Datetime  := EncodeDateTime(2018,10,28,00,00,00,0); //UTC Datetime
+    sDatetime := LTZ.ToISO8601Str(Datetime);
+    CheckEquals('2018-10-28 01:00:00.0+01:00', sDatetime, sTimezone);
+
+    //Local time 2018-10-28 02:00:00  STD
+    Datetime  := EncodeDateTime(2018,10,28,01,00,00,0); //UTC Datetime
+    sDatetime := LTZ.ToISO8601Str(Datetime);
+    CheckEquals('2018-10-28 01:00:00.0+00:00', sDatetime, sTimezone);
+  finally
+   LTZ.Free;
+  end;
+
+  
+
+end;
+
 {  -- Generates proper constants out of what we need
 procedure TTZDBTest.DumpShit;
 var
@@ -555,8 +671,240 @@ begin
 end;
 }
 
+{ TTZDBStJohnsTest2018 }
+
+function TTZDBTimezoneTest.RandomDate(aFromDatetime,
+  aToDatetime: TDateTime): TDateTime;
+var
+  iFrom,
+  iTo: Cardinal;
+  iDay :Cardinal;
+  fTime: Single;
+begin
+  Result := 0.0;
+  Randomize;
+  iFrom := Trunc(aFromDatetime);
+  iTo := Trunc(aToDatetime);
+
+  iDay := RandomRange(ifrom, ito);
+
+  repeat
+    fTime := Random;
+    Result := iDay + fTime;
+  until (Result > aFromDatetime) and (Result < aToDatetime);
+
+
+end;
+
+procedure TTZDBTimezoneTest.Setup;
+begin
+  inherited;
+  fTimeZone := TBundledTimeZone.Create(fTimeZoneID);
+end;
+
+procedure TTZDBTimezoneTest.TearDown;
+begin
+  fTimeZone.Free;
+  inherited;
+end;
+
+procedure TTZDBTimezoneTest.Test_AmbiguousTime;
+var
+  lType : TLocalTimeType;
+  AmbiguousDt: TDateTime;
+begin
+  AmbiguousDt := RandomDate(fAmbStart, fAmbEnd);
+  lType := fTimeZone.GetLocalTimeType(AmbiguousDt);
+  CheckEquals(ord(lttAmbiguous), ord(lType), 'Expected local Ambiguous time type for: '+
+    DateTimeToStr(AmbiguousDt));
+end;
+
+procedure TTZDBTimezoneTest.Test_DaylightTime;
+var
+  lType : TLocalTimeType;
+begin
+  lType := fTimeZone.GetLocalTimeType(fDstStart);
+  CheckEquals(ord(lttDaylight), ord(lType), 'Expected local Daylight time type');
+end;
+
+procedure TTZDBTimezoneTest.Test_DaylightTimeEnd;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.DaylightTimeEnd(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbEnd);
+  CheckEquals(ExpDatetime, ActDattime, 'DaylightTimeEnd');
+end;
+
+procedure TTZDBTimezoneTest.Test_DaylightTimeStart;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.DaylightTimeStart(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fDstStart);
+  CheckEquals(ExpDatetime, ActDattime, 'DaylightTimeStart');
+end;
+
+procedure TTZDBTimezoneTest.Test_InvalidTime;
+var
+  InvalidDt: TDateTime;
+  lType : TLocalTimeType;
+  LWasEx: Boolean;
+begin
+  InvalidDt := RandomDate(fInvStart, fInvEnd);
+
+  lType := fTimeZone.GetLocalTimeType(InvalidDt);
+  CheckEquals(ord(lttInvalid), ord(lType), 'Expected local Invalid time type for:' +
+  datetimetostr(InvalidDt));
+end;
+
+procedure TTZDBTimezoneTest.Test_OperatesDST;
+var
+  OperatesdDST: Boolean;
+begin
+  OperatesdDST := fTimeZone.OperatesDayligtTime(fYear);
+  CheckTrue(OperatesdDST, 'Operates DaylightSaving:');
+end;
+
+procedure TTZDBTimezoneTest.Test_StandardTime;
+var
+  lType : TLocalTimeType;
+begin
+  lType := fTimeZone.GetLocalTimeType(fStdStart);
+  CheckEquals(ord(lttStandard), ord(lType), 'Expected local Standard time type');
+end;
+
+procedure TTZDBTimezoneTest.Test_StandardTimeEnd;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StandardTimeEnd(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fStdEnd);
+  CheckEquals(ExpDatetime, ActDattime, 'StandardTimeEnd');
+end;
+
+procedure TTZDBTimezoneTest.Test_StandardTimeStart;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StardardTimeStart(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbStart);
+  CheckEquals(ExpDatetime, ActDattime, 'StandardTimeStart');
+end;
+
+{ TTZDB_St_Johns_2018_Test }
+
+procedure TTZDB_St_Johns_2018_Test.Setup;
+begin
+  fyear := 2018;
+  FtimeZoneID := 'America/St_Johns';
+
+  {
+  When local standard time was about to reach
+  Sunday, 11 March 2018, 02:00:00 clocks were turned forward 1 hour to
+  Sunday, 11 March 2018, 03:00:00 local daylight time instead.
+
+  When local daylight time is about to reach
+  Sunday, 4 November 2018, 02:00:00 clocks are turned backward 1 hour to
+  Sunday, 4 November 2018, 01:00:00 local standard time instead.
+  }
+  fStdEnd   := 43170 +((1/86400)*7199);   //2018-03-11 01:59:59
+  fInvStart := 43170 +((1/86400)*7200);   //2018-03-11 02:00:00
+  fInvEnd   := 43170 +((1/86400)*10799);  //2018-03-11 02:59:59
+  fDstStart := 43170 +((1/86400)*10800);  //2018-03-11 03:00:00
+  fDstEnd   := 43408 +((1/86400)*3599);   //2018-11-04 00:59:59
+  fAmbStart := 43408 +((1/86400)*3600);   //2018-11-04 01:00:00
+  fAmbEnd   := 43408 +((1/86400)*7199);   //2018-11-04 01:59:59
+  fStdStart := 43408 +((1/86400)*7200);   //2018-11-04 02:00:00
+
+
+  inherited;
+end;
+
+procedure TTZDB_St_Johns_2018_Test.TearDown;
+begin
+  inherited;
+end;
+
+{ TTZDB_London_2018_Test }
+
+procedure TTZDB_London_2018_Test.Setup;
+begin
+  fyear := 2018;
+  FtimeZoneID := 'Europe/London';
+
+  {
+  When local standard time is about to reach
+  Sunday, 25 March 2018, 01:00:00 clocks are turned forward 1 hour to
+  Sunday, 25 March 2018, 02:00:00 local daylight time instead.
+
+  When local daylight time is about to reach
+  Sunday, 28 October 2018, 02:00:00 clocks are turned backward 1 hour to
+  Sunday, 28 October 2018, 01:00:00 local standard time instead.
+  }
+
+  fStdEnd   := 43184 +((1/86400)*3599); //2018-03-25 00:59:59
+  fInvStart := 43184 +((1/86400)*3600); //2018-03-25 01:00:00
+  fInvEnd   := 43184 +((1/86400)*7199); //2018-03-25 01:59:59
+  fDstStart := 43184 +((1/86400)*7200); //2018-03-25 02:00:00
+  fDstEnd   := 43401 +((1/86400)*3599); //2018-10-28 00:59:59
+  fAmbStart := 43401 +((1/86400)*3600); //2018-10-28 01:00:00
+  fAmbEnd   := 43401 +((1/86400)*7199); //2018-10-28 01:59:59
+  fStdStart := 43401 +((1/86400)*7200); //2018-10-28 02:00:00
+
+  inherited;
+end;
+
+procedure TTZDB_London_2018_Test.TearDown;
+begin
+  inherited;
+
+end;
+
+{ TTZDB_Canberra_2018_Test }
+
+procedure TTZDB_Canberra_2018_Test.Setup;
+begin
+  fyear := 2018;
+  FtimeZoneID := 'Australia/Canberra';
+
+  {
+  When local daylight time is about to reach
+  Sunday, 1 April 2018, 03:00:00 clocks are turned backward 1 hour to
+  Sunday, 1 April 2018, 02:00:00 local standard time instead.
+
+  When local standard time is about to reach
+  Sunday, 7 October 2018, 02:00:00 clocks are turned forward 1 hour to
+  Sunday, 7 October 2018, 03:00:00 local daylight time instead.
+
+  }
+  fDstEnd   := 43191 +((1/86400)*7199);   //2018-04-01 01:59:59
+  fAmbStart := 43191 +((1/86400)*7200);   //2018-04-01 02:00:00
+  fAmbEnd   := 43191 +((1/86400)*10799);  //2018-04-01 02:59:59
+  fStdStart := 43191 +((1/86400)*10800);  //2018-04-01 03:00:00
+  fStdEnd   := 43380 +((1/86400)*7199);   //2018-10-07 01:59:59
+  fInvStart := 43380 +((1/86400)*7200);   //2018-10-07 02:00:00
+  fInvEnd   := 43380 +((1/86400)*10799);   //2018-10-07 01:59:59
+  fDstStart := 43380 +((1/86400)*10800);   //2018-10-07 02:00:00
+
+
+  inherited;
+end;
+
+procedure TTZDB_Canberra_2018_Test.TearDown;
+begin
+  inherited;
+
+end;
+
 initialization
   RegisterTest(TTZDBTest.Suite);
-
+  RegisterTest(TTZDB_St_Johns_2018_Test.Suite);
+  RegisterTest(TTZDB_London_2018_Test.Suite);
+  RegisterTest(TTZDB_Canberra_2018_Test.Suite);
 end.
 
