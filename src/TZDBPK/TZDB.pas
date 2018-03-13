@@ -139,9 +139,21 @@ type
 
     ///  <summary>Get the start point of Standard time</summary>
     ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The start time of daylight time in timezone local time</returns>
+    ///  <returns>The start time of Standard time in timezone local time</returns>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function StardardTimeStart(const aYear: word): TDateTime;
+
+     ///  <summary>Get the start point of Invalid time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The start time of Invalid time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function InvalidTimeStart(const aYear: word): TDateTime;
+
+    ///  <summary>Get the start point of Ambiguous time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The start time of Ambiguous time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function AmbiguousTimeStart(const aYear: word): TDateTime;
 
     ///  <summary>Get the end point of daylight time</summary>
     ///  <param name="aYear">The Year to get data for</param>
@@ -151,9 +163,21 @@ type
 
     ///  <summary>Get the end point of standard time</summary>
     ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The end time of daylight time in timezone local time</returns>
+    ///  <returns>The end time of standard time in timezone local time</returns>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function StandardTimeEnd(const aYear: word): TDateTime;
+
+    ///  <summary>Get the end point of Invalid time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The end time of Invalid time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function InvalidTimeEnd(const aYear: word): TDateTime;
+
+    ///  <summary>Get the end point of Ambiguous time</summary>
+    ///  <param name="aYear">The Year to get data for</param>
+    ///  <returns>The end time of Ambiguous time in timezone local time</returns>
+    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    function AmbiguousTimeEnd(const aYear: word): TDateTime;
 
     ///  <summary>Determin if the timezone has daylight time</summary>
     ///  <param name="aYear">The Year to get data for</param>
@@ -475,17 +499,24 @@ end;
 type
   { Contains a compiled rule }
   TCompiledRule = class
+  strict private
+    FStartsOn: TDateTime;
+    function GetStartsOn: TDateTime;
   private
     FRule: PRule;
-    FStartsOn: TDateTime;
-    FOffset: Int64;
+    FTimeMode: TTimeMode;
+
+    FOffset,
+    FPeriodOffset: Int64;
     FNext, FPrev: TCompiledRule;
 
   public
     constructor Create(const ARule: PRule; const AStartsOn: TDateTime;
-      const AOffset: Int64);
+      const AOffset, aPeriodOffset: Int64; const aTimeMode: TTimeMode);
 
     function GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType;
+
+    property StartsOn: TDateTime read GetStartsOn;
   end;
 
   { Contains a compiled period (easier for lookup) }
@@ -530,8 +561,8 @@ end;
 function CompiledRuleComparison(ALeft, ARight: Pointer): Integer;
 begin
   { Use standard DT comparison operation }
-  Result := CompareDateTime(TCompiledRule(ALeft).FStartsOn,
-    TCompiledRule(ARight).FStartsOn);
+  Result := CompareDateTime(TCompiledRule(ALeft).StartsOn,
+    TCompiledRule(ARight).StartsOn);
 end;
 
 procedure ForEachYearlyRule(AInfo, AItem, AData: Pointer; out AContinue: Boolean);
@@ -561,7 +592,8 @@ begin
 
     { Add the the last year rule since 1 jan 00:00 this year }
     if LLastYearRule <> nil then
-      Result.Add(TCompiledRule.Create(LLastYearRule, EncodeDate(AYear, 1, 1), LLastYearRule^.FOffset));
+      Result.Add(TCompiledRule.Create(LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
+        LLastYearRule^.FOffset, FPeriod^.FOffset, trStandard));
 
     { Obtain the first rule in chain }
     LCurrRule := FPeriod^.FRuleFamily^.FFirstRule;
@@ -575,21 +607,21 @@ begin
         LAbsolute := RelativeToDateTime(AYear,
             LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
             LCurrRule^.FRule^.FAt);
-
-        { Adjust the value based on the specified time mode (do nothing for local mode) }
+        {
+        // Adjust the value based on the specified time mode (do nothing for local mode)
         case LCurrRule^.FRule^.FAtMode of
           trStandard:
-            { This value is specified in the currect period's statndard time. Add the rule offset to get to local time. }
+            //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
             LAbsolute := IncSecond(LAbsolute, LCurrRule^.FRule^.FOffset);
 
           trUniversal:
-            { This value is specified in universal time. Add both the standard deviation plus the local time }
+            //This value is specified in universal time. Add both the standard deviation plus the local time
             LAbsolute := IncSecond(LAbsolute, FPeriod^.FOffset + LCurrRule^.FRule^.FOffset);
-        end;
+        end;}
 
         { Add the new compiled rule to the list }
         Result.Add(TCompiledRule.Create(LCurrRule^.FRule, LAbsolute,
-            LCurrRule^.FRule^.FOffset));
+            LCurrRule^.FRule^.FOffset, FPeriod^.FOffset, LCurrRule^.FRule^.FAtMode));
       end;
 
       { Go to next rule }
@@ -677,7 +709,7 @@ begin
     for I := 0 to LCompiledList.Count - 1 do
     begin
       LCompResult := CompareDateTime(ADateTime,
-        TCompiledRule(LCompiledList[I]).FStartsOn);
+        TCompiledRule(LCompiledList[I]).StartsOn);
 
       if LCompResult >= 0 then
         Result := TCompiledRule(LCompiledList[I]);
@@ -713,6 +745,7 @@ begin
     { Check we're in the required year }
     if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
     begin
+
       { Obtain the absolute date when the rule activates in this year }
       LAbsolute := RelativeToDateTime(AYear, LCurrRule^.FRule^.FInMonth,
         LCurrRule^.FRule^.FOnDay, LCurrRule^.FRule^.FAt);
@@ -733,24 +766,26 @@ end;
 { TCompiledRule }
 
 constructor TCompiledRule.Create(const ARule: PRule;
-  const AStartsOn: TDateTime; const AOffset: Int64);
+  const AStartsOn: TDateTime; const AOffset, aPeriodOffset: Int64;  const aTimeMode: TTimeMode);
 begin
   FRule := ARule;
   FStartsOn := AStartsOn;
   FOffset := AOffset;
+  FPeriodOffset := aPeriodOffset;
+  FTimeMode := aTimeMode;
 end;
 
 function TCompiledRule.GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType;
 begin
   { Try with the ending of the rule }
   if (FNext <> nil) and (FNext.FOffset > FOffset) and
-     (CompareDateTime(ADateTime, IncSecond(FNext.FStartsOn, FOffset - FNext.FOffset)) >= 0) then
+     (CompareDateTime(ADateTime, IncSecond(FNext.StartsOn, FOffset - FNext.FOffset)) >= 0) then
      Result := lttInvalid
   else if (FPrev = nil) and (FOffset < 0) and
-       (CompareDateTime(ADateTime, IncSecond(FStartsOn, -FOffset)) < 0) then
+       (CompareDateTime(ADateTime, IncSecond(StartsOn, -FOffset)) < 0) then
        Result := lttAmbiguous
   else if (FPrev <> nil) and (FPrev.FOffset > FOffset) and
-     (CompareDateTime(ADateTime, IncSecond(FStartsOn, FPrev.FOffset - FOffset)) < 0) then
+     (CompareDateTime(ADateTime, IncSecond(StartsOn, FPrev.FOffset - FOffset)) < 0) then
        Result := lttAmbiguous
   else if FOffset <> 0 then
       Result := lttDaylight
@@ -758,7 +793,49 @@ begin
     Result := lttStandard;
 end;
 
+function TCompiledRule.GetStartsOn: TDateTime;
+begin
+  Result := FStartsOn;
+  // Adjust the value based on the specified time mode.
+  case FTimeMode of
+    trLocal:
+      begin
+        if (FOffset <> 0) then
+          Result := IncSecond(Result, FOffset)
+        else if (FPrev <> nil) and (FPrev.FOffset <> 0) then
+          Result := IncSecond(Result, (-1*FPrev.FOffset))
+        else if (FNext <> nil) and (FNext.FOffset <> 0) then
+          Result := IncSecond(Result, (-1*FNext.FOffset))
+
+      end;
+    //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
+    trStandard: Result := IncSecond(Result, FOffset);
+    //This value is specified in universal time. Add both the standard deviation plus the local time
+    trUniversal: Result := IncSecond(Result, FPeriodOffset + FOffset);
+  end;
+end;
+
 { TBundledTimeZone }
+
+function TBundledTimeZone.AmbiguousTimeEnd(const aYear: word): TDateTime;
+begin
+  Result := IncSecond(StardardTimeStart(aYear), -1);
+end;
+
+function TBundledTimeZone.AmbiguousTimeStart(const aYear: word): TDateTime;
+begin
+  Result := IncSecond(DaylightTimeEnd(aYear), 1);
+end;
+
+function TBundledTimeZone.InvalidTimeEnd(const aYear: word): TDateTime;
+begin
+  Result := IncSecond(DaylightTimeStart(aYear), -1);
+end;
+
+function TBundledTimeZone.InvalidTimeStart(const aYear: word): TDateTime;
+begin
+  Result := IncSecond(StandardTimeEnd(aYear), 1);
+end;
 
 procedure TBundledTimeZone.CompilePeriods;
 var
@@ -874,12 +951,12 @@ begin
       lttStandard:
         begin
           if LRule.FNext.FNext <> nil then
-            Result := LRule.FNext.FNext.FStartsOn + ((LRule.FNext.FOffset - 1)/SecsPerDay);
+            Result := IncSecond(LRule.FNext.FNext.StartsOn, -1);
         end;
       lttDaylight:
         begin
           if LRule.FNext <> nil then
-          Result := LRule.FNext.FStartsOn  + ((LRule.FOffset - 1)/SecsPerDay);
+            Result := IncSecond(LRule.FNext.StartsOn, -1);
         end;
       lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
     end;
@@ -916,12 +993,12 @@ begin
       lttStandard:
         begin
           if LRule.FNext <> nil then
-            Result := LRule.FNext.FStartsOn;// - ((LRule.FNext.FOffset +1)/SecsPerDay);
+            Result := LRule.FNext.StartsOn;
         end;
       lttDaylight:
         begin
           if LRule.FNext.FNext <> nil then
-          Result := LRule.FNext.FNext.FStartsOn;// - ((LRule.FNext.FNext.FOffset +1)/SecsPerDay);
+          Result := LRule.FNext.FNext.StartsOn;
         end;
       lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
     end;
@@ -1149,6 +1226,7 @@ begin
   else if (LTimeType = lttDaylight) or ((LTimeType = lttAmbiguous) and ForceDaylight) then
     Inc(Result, LDSTSave);
 end;
+
 
 function TBundledTimeZone.IsAmbiguousTime(const ADateTime: TDateTime): Boolean;
 begin
@@ -1418,12 +1496,12 @@ begin
       lttStandard:
         begin
           if LRule.FNext <> nil then
-            Result := LRule.FNext.FStartsOn - ((LRule.FNext.FOffset + 1)/SecsPerDay);
+            Result := LRule.FNext.StartsOn - ((LRule.FNext.FOffset + 1)/SecsPerDay);
         end;
       lttDaylight:
         begin
           if LRule.FNext.FNext <> nil then
-          Result := LRule.FNext.FNext.FStartsOn  - ((LRule.FOffset + 1)/SecsPerDay);
+          Result := LRule.FNext.FNext.StartsOn  - ((LRule.FOffset + 1)/SecsPerDay);
         end;
       lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
     end;
@@ -1460,12 +1538,12 @@ begin
       lttStandard:
         begin
           if LRule.FNext.FNext <> nil then
-            Result := LRule.FNext.FNext.FStartsOn;
+            Result := IncSecond(LRule.FNext.FNext.StartsOn, LRule.FNext.FOffset);
         end;
       lttDaylight:
         begin
           if LRule.FNext <> nil then
-          Result := LRule.FNext.FStartsOn;
+          Result := IncSecond(LRule.FNext.StartsOn, LRule.FOffset);
         end;
       lttInvalid: raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(ADateTime)]);
     end;

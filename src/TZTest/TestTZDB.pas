@@ -56,6 +56,9 @@ type
 
     procedure CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
 
+    procedure DumpShit(const aTimezoneID: string; const aYear: Word;
+      const aFilename: string);
+
   published
     procedure Test_TZ_Contructor;
     procedure Test_TZ_GetTimeZone;
@@ -70,6 +73,7 @@ type
     procedure Test_Etc_GTM12_2010;
     procedure Test_Etc_GTMMin9_1991;
     procedure Test_Europe_London_2018;
+    procedure Test_America_St_Johns_2018;
   end;
 
 
@@ -100,6 +104,11 @@ type
     procedure Test_DaylightTimeEnd;
     procedure Test_StandardTimeStart;
 
+    procedure Test_InvalidTimeStart;
+    procedure Test_InvalidTimeEnd;
+    procedure Test_AmbiguousTimeStart;
+    procedure Test_AmbiguousTimeEnd;
+
     procedure Test_InvalidTime;
     procedure Test_AmbiguousTime;
     procedure Test_StandardTime;
@@ -127,6 +136,11 @@ type
     procedure TearDown; override;
   end;
 
+  TTZDB_NewYork_2018_Test = class(TTZDBTimezoneTest)
+  protected
+    procedure Setup; override;
+    procedure TearDown; override;
+  end;
 
 implementation
 
@@ -469,17 +483,26 @@ end;
 
 procedure TTZDBTest.Test_Africa_Cairo_2009;
 begin
+  //DumpShit('Africa/Cairo', 2009, 'D:\SourceCode\Temp\Cairo_2009.txt');
   CompareKnown(CAfrica_Cairo_2009, 'Africa/Cairo', 2009);
 end;
 
 procedure TTZDBTest.Test_Africa_Cairo_2010;
 begin
+  //DumpShit('Africa/Cairo', 2010, 'D:\SourceCode\Temp\Cairo_2010.txt');
   CompareKnown(CAfrica_Cairo_2010, 'Africa/Cairo', 2010);
 end;
 
 procedure TTZDBTest.Test_America_Araguaina_1950;
 begin
+  //DumpShit('America/Araguaina', 1950, 'D:\SourceCode\Temp\Araguaina_1950.txt');
   CompareKnown(CAmerica_Araguaina_1950, 'America/Araguaina', 1950);
+end;
+
+procedure TTZDBTest.Test_America_St_Johns_2018;
+begin
+  //DumpShit('America/St_Johns', 2018, 'D:\SourceCode\Temp\St_Johns_2018.txt');
+  CompareKnown(CAmerica_St_Johns_2018, 'America/St_Johns', 2018);
 end;
 
 procedure TTZDBTest.Test_Etc_GTM12_2010;
@@ -499,6 +522,7 @@ end;
 
 procedure TTZDBTest.Test_Europe_London_2018;
 begin
+  //DumpShit('Europe/London', 2018, 'D:\SourceCode\Temp\London_2010.txt');
   CompareKnown(CEurope_London_2018, 'Europe/London', 2018);
 end;
 
@@ -635,8 +659,9 @@ begin
 
 end;
 
-{  -- Generates proper constants out of what we need
-procedure TTZDBTest.DumpShit;
+//  -- Generates proper constants out of what we need
+procedure TTZDBTest.DumpShit(const aTimezoneID: string; const aYear: Word;
+  const aFilename: string);
 var
   LTZ: TBundledTimeZone;
   LDec: TList<TDecomposedPeriod>;
@@ -644,11 +669,11 @@ var
   LWr: TStreamWriter;
   I: Integer;
 begin
-  LTZ := TBundledTimeZone.GetTimeZone('Africa/Cairo');
-  LDec := Decompose(LTZ, 2009);
+  LTZ := TBundledTimeZone.GetTimeZone(aTimezoneID);
+  LDec := Decompose(LTZ, aYear);
 
   FormatSettings.DecimalSeparator := '.';
-  LWr := TStreamWriter.Create('c:\const.txt');
+  LWr := TStreamWriter.Create(aFilename);
   LWr.WriteLine('const');
   LWr.WriteLine('  CDump: array[0 .. ' + IntToStr(LDec.Count - 1) + '] of TDecomposedPeriod = (');
   for I := 0 to LDec.Count - 1 do
@@ -669,9 +694,9 @@ begin
   LWr.Free;
   LDec.Free;
 end;
-}
 
-{ TTZDBStJohnsTest2018 }
+
+{ TTZDBTimezoneTest }
 
 function TTZDBTimezoneTest.RandomDate(aFromDatetime,
   aToDatetime: TDateTime): TDateTime;
@@ -691,9 +716,7 @@ begin
   repeat
     fTime := Random;
     Result := iDay + fTime;
-  until (Result > aFromDatetime) and (Result < aToDatetime);
-
-
+  until (Result >= aFromDatetime) and (Result <= aToDatetime);
 end;
 
 procedure TTZDBTimezoneTest.Setup;
@@ -719,6 +742,26 @@ begin
     DateTimeToStr(AmbiguousDt));
 end;
 
+procedure TTZDBTimezoneTest.Test_AmbiguousTimeEnd;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeEnd(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbEnd);
+  CheckEquals(ExpDatetime, ActDattime, 'AmbiguousTimeEnd');
+end;
+
+procedure TTZDBTimezoneTest.Test_AmbiguousTimeStart;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeStart(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbStart);
+  CheckEquals(ExpDatetime, ActDattime, 'AmbiguousTimeStart');
+end;
+
 procedure TTZDBTimezoneTest.Test_DaylightTime;
 var
   lType : TLocalTimeType;
@@ -733,7 +776,7 @@ var
   ActDattime: string;
 begin
   DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.DaylightTimeEnd(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbEnd);
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fDstEnd);
   CheckEquals(ExpDatetime, ActDattime, 'DaylightTimeEnd');
 end;
 
@@ -751,13 +794,32 @@ procedure TTZDBTimezoneTest.Test_InvalidTime;
 var
   InvalidDt: TDateTime;
   lType : TLocalTimeType;
-  LWasEx: Boolean;
 begin
   InvalidDt := RandomDate(fInvStart, fInvEnd);
 
   lType := fTimeZone.GetLocalTimeType(InvalidDt);
   CheckEquals(ord(lttInvalid), ord(lType), 'Expected local Invalid time type for:' +
-  datetimetostr(InvalidDt));
+    datetimetostr(InvalidDt));
+end;
+
+procedure TTZDBTimezoneTest.Test_InvalidTimeEnd;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.InvalidTimeEnd(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fInvEnd);
+  CheckEquals(ExpDatetime, ActDattime, 'InvalidTimeEnd');
+end;
+
+procedure TTZDBTimezoneTest.Test_InvalidTimeStart;
+var
+  ExpDatetime: string;
+  ActDattime: string;
+begin
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.InvalidTimeStart(fYear));
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fInvStart);
+  CheckEquals(ExpDatetime, ActDattime, 'InvalidTimeStart');
 end;
 
 procedure TTZDBTimezoneTest.Test_OperatesDST;
@@ -792,7 +854,7 @@ var
   ActDattime: string;
 begin
   DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StardardTimeStart(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbStart);
+  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fStdStart);
   CheckEquals(ExpDatetime, ActDattime, 'StandardTimeStart');
 end;
 
@@ -862,7 +924,6 @@ end;
 procedure TTZDB_London_2018_Test.TearDown;
 begin
   inherited;
-
 end;
 
 { TTZDB_Canberra_2018_Test }
@@ -898,7 +959,39 @@ end;
 procedure TTZDB_Canberra_2018_Test.TearDown;
 begin
   inherited;
+end;
 
+{ TTZDB_NewYork_2018_Test }
+
+procedure TTZDB_NewYork_2018_Test.Setup;
+begin
+  fyear := 2018;
+  FtimeZoneID := 'America/New_York';
+
+  {
+  When local standard time was about to reach
+  Sunday, 11 March 2018, 02:00:00 clocks were turned forward 1 hour to
+  Sunday, 11 March 2018, 03:00:00 local daylight time instead.
+
+  When local daylight time is about to reach
+  Sunday, 4 November 2018, 02:00:00 clocks are turned backward 1 hour to
+  Sunday, 4 November 2018, 01:00:00 local standard time instead.
+  }
+  fStdEnd   := 43170 +((1/86400)*7199);   //2018-03-11 01:59:59
+  fInvStart := 43170 +((1/86400)*7200);   //2018-03-11 02:00:00
+  fInvEnd   := 43170 +((1/86400)*10799);  //2018-03-11 02:59:59
+  fDstStart := 43170 +((1/86400)*10800);  //2018-03-11 03:00:00
+  fDstEnd   := 43408 +((1/86400)*3599);   //2018-11-04 00:59:59
+  fAmbStart := 43408 +((1/86400)*3600);   //2018-11-04 01:00:00
+  fAmbEnd   := 43408 +((1/86400)*7199);   //2018-11-04 01:59:59
+  fStdStart := 43408 +((1/86400)*7200);   //2018-11-04 02:00:00
+
+  inherited;
+end;
+
+procedure TTZDB_NewYork_2018_Test.TearDown;
+begin
+  inherited;
 end;
 
 initialization
@@ -906,5 +999,6 @@ initialization
   RegisterTest(TTZDB_St_Johns_2018_Test.Suite);
   RegisterTest(TTZDB_London_2018_Test.Suite);
   RegisterTest(TTZDB_Canberra_2018_Test.Suite);
+  RegisterTest(TTZDB_NewYork_2018_Test.Suite);
 end.
 
