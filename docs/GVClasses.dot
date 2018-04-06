@@ -1,0 +1,7 @@
+DiGraph Classes {
+  Exception -> TObject
+  ETimeZoneInvalid -> Exception
+  ETimeZoneInvalid [href="TZDB.ETimeZoneInvalid.html"]
+  TBundledTimeZone -> TTimeZone
+  TBundledTimeZone [href="TZDB.TBundledTimeZone.html"]
+}

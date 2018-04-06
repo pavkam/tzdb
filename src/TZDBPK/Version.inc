@@ -1,4 +1,4 @@
-
+{$IFNDEF PASDOC}
 {$DEFINE UNSUPPORTED_VERSION}
 {$IFDEF FPC}
   {$IFNDEF VER1_0}
@@ -36,4 +36,5 @@
 {$ENDIF}
 {$IFDEF UNSUPPORTED_VERSION}
   {$MESSAGE ERROR 'TZDB requires at least Delphi 6 or FreePascal 2.0 to compile!'}
+{$ENDIF}
 {$ENDIF}

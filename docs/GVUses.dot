@@ -1,0 +1,13 @@
+DiGraph Uses {
+  "Decomposer" -> "SysUtils"
+  "Decomposer" -> "DateUtils"
+  "Decomposer" -> "TimeSpan"
+  "Decomposer" -> "Generics.Collections"
+  "Decomposer" [href="Decomposer.html"]
+  "TZCAPI" [href="TZCAPI.html"]
+  "TZDB" -> "SysUtils"
+  "TZDB" -> "DateUtils"
+  "TZDB" -> "Classes"
+  "TZDB" -> "TimeSpan"
+  "TZDB" [href="TZDB.html"]
+}

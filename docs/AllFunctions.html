@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Delphi TZDB: All Functions and Procedures</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.15.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="tipuesearch/tipuesearch.css">
+
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>Delphi TZDB</h2><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><form class="search-form" action="_tipue_results.html"><div class="search-input"><input type="text" name="q" id="tipue_search_input"></div><div class="search-button"><input type="button" id="tipue_search_button" onclick="this.form.submit();"></div></form>
+<div style="clear: both"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#tipue_search_input').tipuesearch({
+        /* 10 items to display seems standard */
+        'show': 10,
+        /* For PasDoc docs, showing urls is not very useful,
+           since the page title already shows the unit and identifier. */
+        'showURL': false
+    });
+});
+</script>
+</td><td class="content">
+TZDB for Delphi Documentation by pasdoc 2018-03-04
+<h1 class="allitems">All Functions and Procedures</h1>
+<table class="itemstable wide_list">
+<tr class="listheader">
+<th class="itemname">Name</th>
+<th class="itemunit">Unit</th>
+<th class="itemdesc">Description</th>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_EnumTimeZones">TZ_EnumTimeZones</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Lists all known/supported time zone names.&lt;/summary&gt; &lt;param name=&quot;Data&quot;&gt;User provided data that is passed along to &lt;paramref name=&quot;EnumProc&quot;/&gt;.&lt;/param&gt; &lt;param name=&quot;IncludeAliases&quot;&gt;Pass &lt;c&gt;True&lt;/c&gt; to include time zone aliases into the list.&lt;/param&gt; &lt;param name=&quot;EnumProc&quot;&gt;The enumerator procedure called for each item in the list.&lt;/param&gt; &lt;returns&gt;&lt;c&gt;True&lt;/c&gt; is returned if the enumeration process was interrupted by the consumer.</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_GetAbbreviation">TZ_GetAbbreviation</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Generates an abbreviation string for the given local time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;Time&quot;&gt;The local time (C format).&lt;/param&gt; &lt;param name=&quot;ForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;param name=&quot;Abbrev&quot;&gt;The output string parameter.</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_GetDisplayName">TZ_GetDisplayName</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Generates a diplay name for the given local time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;Time&quot;&gt;The local time (C format).&lt;/param&gt; &lt;param name=&quot;ForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;param name=&quot;DispName&quot;&gt;The output string parameter.</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_GetLocalTimeType">TZ_GetLocalTimeType</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Returns the type of the local time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;Time&quot;&gt;The local time.&lt;/param&gt; &lt;returns&gt;A zero or a positive result means success.</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_GetUtcOffset">TZ_GetUtcOffset</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Returns the UTC offset of the given local time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;Time&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;ForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;param name=&quot;TimeType&quot;&gt;An output parameter to which the UTC offset if copied.&lt;/param&gt; &lt;returns&gt;A zero or a positive value means success.</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_InitInstance">TZ_InitInstance</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Looks up a time zone object by the given &lt;paramref name=&quot;Name&quot;/&gt;.&lt;/summary&gt; &lt;param name=&quot;Name&quot;&gt;The name time zone name to lookup.</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_LocalToUtc">TZ_LocalToUtc</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Converts a local time to UTC time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;LocalTime&quot;&gt;The local time to be converted.&lt;/param&gt; &lt;param name=&quot;ForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;param name=&quot;UtcTime&quot;&gt;The output parameter to hold the converted UTC time.&lt;/param&gt; &lt;returns&gt;A zero or a positive value means success.</p></td>
+</tr>
+<tr class="list2">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_ReleaseInstance">TZ_ReleaseInstance</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Releases a previously acquired instance.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;returns&gt;A zero or a positive value means success.</p></td>
+</tr>
+<tr class="list">
+<td class="itemname"><a class="bold" href="TZCAPI.html#TZ_UtcToLocal">TZ_UtcToLocal</a></td>
+<td class="itemunit"><a class="bold" href="TZCAPI.html">TZCAPI</a></td>
+<td class="itemdesc"><p>&lt;summary&gt;Converts an UTC time to a local time.&lt;/summary&gt; &lt;param name=&quot;Instance&quot;&gt;The time zone instance.&lt;/param&gt; &lt;param name=&quot;UtcTime&quot;&gt;The UTC time to be converted.&lt;/param&gt; &lt;param name=&quot;LocalTime&quot;&gt;The output parameter to hold the converted local time.&lt;/param&gt; &lt;returns&gt;A zero or a positive value means success.</p></td>
+</tr>
+</table>
+prepared by M.Taylor
+<hr><span class="appinfo"><em>Generated by <a  href="https://github.com/pasdoc/pasdoc/wiki">PasDoc 0.15.0</a>. </em>
+</span>
+</td></tr></table></body></html>

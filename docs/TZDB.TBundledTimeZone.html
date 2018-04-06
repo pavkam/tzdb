@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Delphi TZDB: TZDB: Class TBundledTimeZone</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="PasDoc 0.15.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="tipuesearch/tipuesearch.css">
+
+<link rel="StyleSheet" type="text/css" href="pasdoc.css">
+</head>
+<body>
+<table class="container"><tr><td class="navigation">
+<h2>Delphi TZDB</h2><p><a href="AllUnits.html" class="navigation">Units</a></p><p><a href="ClassHierarchy.html" class="navigation">Class Hierarchy</a></p><p><a href="AllClasses.html" class="navigation">Classes, Interfaces, Objects and Records</a></p><p><a href="AllTypes.html" class="navigation">Types</a></p><p><a href="AllVariables.html" class="navigation">Variables</a></p><p><a href="AllConstants.html" class="navigation">Constants</a></p><p><a href="AllFunctions.html" class="navigation">Functions and Procedures</a></p><p><a href="AllIdentifiers.html" class="navigation">Identifiers</a></p><form class="search-form" action="_tipue_results.html"><div class="search-input"><input type="text" name="q" id="tipue_search_input"></div><div class="search-button"><input type="button" id="tipue_search_button" onclick="this.form.submit();"></div></form>
+<div style="clear: both"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#tipue_search_input').tipuesearch({
+        /* 10 items to display seems standard */
+        'show': 10,
+        /* For PasDoc docs, showing urls is not very useful,
+           since the page title already shows the unit and identifier. */
+        'showURL': false
+    });
+});
+</script>
+</td><td class="content">
+TZDB for Delphi Documentation by pasdoc 2018-03-04
+<span id="TBundledTimeZone"></span><h1 class="cio">Class TBundledTimeZone</h1>
+<div class="sections">
+<div class="one_section"><a class="section" href="#PasDoc-Description">Description</a></div><div class="one_section"><a class="section" href="#PasDoc-Hierarchy">Hierarchy</a></div><div class="one_section">Fields</div><div class="one_section"><a class="section" href="#PasDoc-Methods">Methods</a></div><div class="one_section"><a class="section" href="#PasDoc-Properties">Properties</a></div></div>
+<span id="PasDoc-Description"></span><h2 class="unit">Unit</h2>
+<p class="unitlink">
+<a  href="TZDB.html">TZDB</a></p>
+<h2 class="declaration">Declaration</h2>
+<p class="declaration">
+<code>type TBundledTimeZone = class(TObject)</code></p>
+<h2 class="description">Description</h2>
+<p>
+&lt;summary&gt;A timezone class implementation that retreives its data from the bundled database.&lt;/summary&gt; &lt;remarks&gt;This class inherits the standard &lt;c&gt;TTimeZone&lt;/c&gt; class in Delphi XE.&lt;/remarks&gt;</p>
+<span id="PasDoc-Hierarchy"></span><h2 class="hierarchy">Hierarchy</h2>
+<ul class="hierarchy"><li class="ancestor">TObject</li>
+<li class="thisitem">TBundledTimeZone</li></ul><h2 class="overview">Overview</h2>
+<span id="PasDoc-Methods"></span><h3 class="summary">Methods</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>constructor <b><a  href="TZDB.TBundledTimeZone.html#Create">Create</a></b>(const ATimeZoneID: string);</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>destructor <b><a  href="TZDB.TBundledTimeZone.html#Destroy">Destroy</a></b>; override;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#AmbiguousTimeEnd">AmbiguousTimeEnd</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#AmbiguousTimeStart">AmbiguousTimeStart</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#DaylightTimeEnd">DaylightTimeEnd</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#DaylightTimeStart">DaylightTimeStart</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#GetAbbreviation">GetAbbreviation</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#GetDisplayName">GetDisplayName</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#GetLocalTimeType">GetLocalTimeType</a></b>(const ADateTime: TDateTime): <a  href="TZDB.html#TLocalTimeType">TLocalTimeType</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <b><a  href="TZDB.TBundledTimeZone.html#GetTimeZone">GetTimeZone</a></b>(const ATimeZoneID: string): <a  href="TZDB.TBundledTimeZone.html">TBundledTimeZone</a>;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#GetUtcOffset">GetUtcOffset</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Int64;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#InvalidTimeEnd">InvalidTimeEnd</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#InvalidTimeStart">InvalidTimeStart</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#IsAmbiguousTime">IsAmbiguousTime</a></b>(const ADateTime: TDateTime): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#IsDaylightTime">IsDaylightTime</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#IsInvalidTime">IsInvalidTime</a></b>(const ADateTime: TDateTime): Boolean;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#IsStandardTime">IsStandardTime</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>class function <b><a  href="TZDB.TBundledTimeZone.html#KnownTimeZones">KnownTimeZones</a></b>(const AIncludeAliases: Boolean = False): TStringDynArray;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#OperatesDayligtTime">OperatesDayligtTime</a></b>(const aYear: word): boolean;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#StandardTimeEnd">StandardTimeEnd</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#StardardTimeStart">StardardTimeStart</a></b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#ToISO8601Str">ToISO8601Str</a></b>(const ADateTime: TDateTime): String;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#ToLocalTime">ToLocalTime</a></b>(const ADateTime: TDateTime): TDateTime;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#ToUniversalTime">ToUniversalTime</a></b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): TDateTime;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><code>function <b><a  href="TZDB.TBundledTimeZone.html#DoGetID">DoGetID</a></b>: string;</code></td>
+</tr>
+</table>
+<span id="PasDoc-Properties"></span><h3 class="summary">Properties</h3>
+<table class="summary wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a  href="TZDB.TBundledTimeZone.html#Abbreviation">Abbreviation</a></b>: string read GetCurrentAbbreviation;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a  href="TZDB.TBundledTimeZone.html#DisplayName">DisplayName</a></b>: string read GetCurrentDisplayName;</code></td>
+</tr>
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a  href="TZDB.TBundledTimeZone.html#ID">ID</a></b>: string read <a  href="TZDB.TBundledTimeZone.html#DoGetID">DoGetID</a>;</code></td>
+</tr>
+<tr class="list2">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><code>property <b><a  href="TZDB.TBundledTimeZone.html#UtcOffset">UtcOffset</a></b>: Int64 read GetCurrentUtcOffset;</code></td>
+</tr>
+</table>
+<h2 class="description">Description</h2>
+<h3 class="detail">Methods</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Create"></span><code>constructor <b>Create</b>(const ATimeZoneID: string);</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Creates a new instance of this timezone class.&lt;/summary&gt; &lt;param name=&quot;ATimeZoneID&quot;&gt;The <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> of the timezone to use (ex. &quot;Europe/Bucharest&quot;).&lt;/param&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ETimeZoneInvalid.html">ETimeZoneInvalid</a>&quot;&gt;The specified <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> cannot be found in the bundled database.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Destroy"></span><code>destructor <b>Destroy</b>; override;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Destroys the current instance.&lt;/summary&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AmbiguousTimeEnd"></span><code>function <b>AmbiguousTimeEnd</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the end point of Ambiguous time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The end time of Ambiguous time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="AmbiguousTimeStart"></span><code>function <b>AmbiguousTimeStart</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the start point of Ambiguous time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The start time of Ambiguous time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="DaylightTimeEnd"></span><code>function <b>DaylightTimeEnd</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the end point of daylight time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The end time of daylight time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="DaylightTimeStart"></span><code>function <b>DaylightTimeStart</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the start point of daylight time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The start time of daylight time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetAbbreviation"></span><code>function <b>GetAbbreviation</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Generates an <a class="normal" href="TZDB.TBundledTimeZone.html#Abbreviation">abbreviation</a> string for the given local time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;A string containing the <a class="normal" href="TZDB.TBundledTimeZone.html#Abbreviation">abbreviation</a>.&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetDisplayName"></span><code>function <b>GetDisplayName</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Generates a diplay string for the given local time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;A string containing the display name.&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetLocalTimeType"></span><code>function <b>GetLocalTimeType</b>(const ADateTime: TDateTime): <a  href="TZDB.html#TLocalTimeType">TLocalTimeType</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the type of the local time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;returns&gt;An enumeration value specifying the type of the local time.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetTimeZone"></span><code>class function <b>GetTimeZone</b>(const ATimeZoneID: string): <a  href="TZDB.TBundledTimeZone.html">TBundledTimeZone</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns an instance of this time zone class.&lt;/summary&gt; &lt;param name=&quot;ATimeZoneID&quot;&gt;The <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> of the timezone to use (ex. &quot;Europe/Bucharest&quot;).&lt;/param&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ETimeZoneInvalid.html">ETimeZoneInvalid</a>&quot;&gt;The specified <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> cannot be found in the bundled database.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="GetUtcOffset"></span><code>function <b>GetUtcOffset</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Int64;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the UTC offset of the given local time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;The UTC offset of the given local time. Subtract this value from the passed local time to obtain an UTC time.&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="InvalidTimeEnd"></span><code>function <b>InvalidTimeEnd</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the end point of Invalid time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The end time of Invalid time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="InvalidTimeStart"></span><code>function <b>InvalidTimeStart</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the start point of Invalid time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The start time of Invalid time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsAmbiguousTime"></span><code>function <b>IsAmbiguousTime</b>(const ADateTime: TDateTime): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Checks whether the specified local time is ambiguous.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;returns&gt;&lt;c&gt;True&lt;/c&gt; if the local time is ambiguous; &lt;c&gt;False&lt;/c&gt; otherwise.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsDaylightTime"></span><code>function <b>IsDaylightTime</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Checks whether the specified local time is daylight.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;&lt;c&gt;True&lt;/c&gt; if the local time is ambiguous; &lt;c&gt;False&lt;/c&gt; otherwise.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsInvalidTime"></span><code>function <b>IsInvalidTime</b>(const ADateTime: TDateTime): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Checks whether the specified local time is invalid.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;returns&gt;&lt;c&gt;True&lt;/c&gt; if the local time is invalid; &lt;c&gt;False&lt;/c&gt; otherwise.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="IsStandardTime"></span><code>function <b>IsStandardTime</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Checks whether the specified local time is standard.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;&lt;c&gt;True&lt;/c&gt; if the local time is standard; &lt;c&gt;False&lt;/c&gt; otherwise.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="KnownTimeZones"></span><code>class function <b>KnownTimeZones</b>(const AIncludeAliases: Boolean = False): TStringDynArray;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns a list of known time zones.&lt;/summary&gt; &lt;param name=&quot;AIncludeAliases&quot;&gt;Pass &lt;c&gt;True&lt;/c&gt; to include time zone aliases into the list.&lt;/param&gt; &lt;returns&gt;An array of strings representing the IDs of the known time zones.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="OperatesDayligtTime"></span><code>function <b>OperatesDayligtTime</b>(const aYear: word): boolean;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Determin if the timezone has daylight time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;True if the timezone operates daylight time in the year specified&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="StandardTimeEnd"></span><code>function <b>StandardTimeEnd</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the end point of standard time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The end time of standard time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="StardardTimeStart"></span><code>function <b>StardardTimeStart</b>(const aYear: word): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Get the start point of Standard time&lt;/summary&gt; &lt;param name=&quot;aYear&quot;&gt;The Year to get data for&lt;/param&gt; &lt;returns&gt;The start time of Standard time in timezone local time&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToISO8601Str"></span><code>function <b>ToISO8601Str</b>(const ADateTime: TDateTime): String;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Converts an UTC time to an ISO8601 date time string.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The UTC time.&lt;/param&gt; &lt;returns&gt;The ISO8601 date time string that corresponds to the passed UTC time.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToLocalTime"></span><code>function <b>ToLocalTime</b>(const ADateTime: TDateTime): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Converts an UTC time to a local time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The UTC time.&lt;/param&gt; &lt;returns&gt;The local time that corresponds to the passed UTC time.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ToUniversalTime"></span><code>function <b>ToUniversalTime</b>(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): TDateTime;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Converts a local time to an UTC time.&lt;/summary&gt; &lt;param name=&quot;ADateTime&quot;&gt;The local time.&lt;/param&gt; &lt;param name=&quot;AForceDaylight&quot;&gt;Specify a &lt;c&gt;True&lt;/c&gt; value if ambiguous periods should be treated as DST.&lt;/param&gt; &lt;returns&gt;The UTC time that corresponds to the passed local time.&lt;/returns&gt; &lt;exception cref=&quot;<a class="normal" href="TZDB.html">TZDB</a>|<a class="normal" href="TZDB.ELocalTimeInvalid.html">ELocalTimeInvalid</a>&quot;&gt;The specified local time is invalid.&lt;/exception&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="protected.gif" alt="Protected" title="Protected"></a></td>
+<td class="itemcode"><span id="DoGetID"></span><code>function <b>DoGetID</b>: string;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> of the timezone. An <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> is a string that should uniquely identify the timezone.&lt;/summary&gt; &lt;returns&gt;The <a class="normal" href="TZDB.TBundledTimeZone.html#ID">ID</a> of the timezone.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<h3 class="detail">Properties</h3>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="Abbreviation"></span><code>property <b>Abbreviation</b>: string read GetCurrentAbbreviation;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the current time zone's <code>abbreviation</code> string.&lt;/summary&gt; &lt;returns&gt;A string containing the <code>abbreviation</code>.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="DisplayName"></span><code>property <b>DisplayName</b>: string read GetCurrentDisplayName;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the current time zone's display name string.&lt;/summary&gt; &lt;returns&gt;A string containing the display name.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="ID"></span><code>property <b>ID</b>: string read <a  href="TZDB.TBundledTimeZone.html#DoGetID">DoGetID</a>;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the <code>ID</code> of the timezone. An <code>ID</code> is a string that should uniquely identify the timezone.&lt;/summary&gt; &lt;returns&gt;The <code>ID</code> of the timezone.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+<table class="detail wide_list">
+<tr class="list">
+<td class="visibility"><a  href="legend.html"><img  src="public.gif" alt="Public" title="Public"></a></td>
+<td class="itemcode"><span id="UtcOffset"></span><code>property <b>UtcOffset</b>: Int64 read GetCurrentUtcOffset;</code></td>
+</tr>
+<tr><td colspan="2">
+<p>
+&lt;summary&gt;Returns the current time zone's UTC offset.&lt;/summary&gt; &lt;returns&gt;The current UTC offset.&lt;/returns&gt;</p>
+</td></tr>
+</table>
+prepared by M.Taylor
+<hr><span class="appinfo"><em>Generated by <a  href="https://github.com/pasdoc/pasdoc/wiki">PasDoc 0.15.0</a>. </em>
+</span>
+</td></tr></table></body></html>

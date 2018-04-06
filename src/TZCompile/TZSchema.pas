@@ -957,7 +957,7 @@ begin
     begin
       LRule := FRules[I];
       LRule.FIndexInFile := I;
-
+      LWriter.WriteLine('   {CRules['+inttostr(i)+']}');
       LWriter.Write
         (Format('    (FInMonth: %d; FOnDay: @CRelativeDays[%d]; FAt: %d; FAtMode: %s; FOffset: %d; FFmtPart: ''%s'')',
           [LRule.FInMonth, LRule.FOnDay.FIndexInFile, LRule.FAt, CharToRel(LRule.FAtChar), LRule.FSave,
