@@ -126,6 +126,12 @@ type
     class function KnownTimeZones(const
       AIncludeAliases: Boolean = False): {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 
+    ///  <summary>Returns a list of known time zone aliases.</summary>
+    ///  <returns>An array of strings representing the aliases of the known time zones.</returns>
+    class function KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+
+    class function GetTimezoneFromAlias(const AIDStr: string): string;
+
     ///  <summary>Returns an instance of this time zone class.</summary>
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
@@ -376,6 +382,7 @@ type
   end;
 
   {$I TZDB.inc}
+
 
 function EncodeDateMonthLastDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TDateTime;
 var
@@ -1367,6 +1374,12 @@ begin
   end;
 end;
 
+class function TBundledTimeZone.GetTimezoneFromAlias(
+  const AIDStr: string): string;
+begin
+  Result := GetTimeZone(AIDStr).ID;
+end;
+
 procedure TBundledTimeZone.GetTZData(
   const ADateTime: TDateTime;
   out AOffset, ADstSave: Int64;
@@ -1435,7 +1448,22 @@ begin
     ADstDisplayName := ADisplayName;
 end;
 
-class function TBundledTimeZone.KnownTimeZones(const AIncludeAliases: Boolean): 
+class function TBundledTimeZone.KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+var
+  I: Integer;
+begin
+  { Prepare the output array }
+  SetLength(Result, Length(CAliases));
+
+  { Copy the aliases in (if requested) }
+  for I := Low(CAliases) to High(CAliases) do
+  begin
+    Result[I] := CAliases[I].FName;
+  end;
+
+end;
+
+class function TBundledTimeZone.KnownTimeZones(const AIncludeAliases: Boolean):
   {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 var
   I, LIndex: Integer;
