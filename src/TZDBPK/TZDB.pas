@@ -566,8 +566,11 @@ begin
 end;
 
 procedure ForEachYearlyRule(AInfo, AItem, AData: Pointer; out AContinue: Boolean);
+var i: Integer;
 begin
   { Free the value list }
+  for i := 0 to TList(AData).Count - 1 do
+    TObject(TList(AData).Items[i]).Free;
   TList(AData).Free;
   AContinue := True;
 end;
@@ -582,7 +585,7 @@ var
   I: Integer;
 begin
   { Initialize the compiled list }
-  Result := TObjectList.Create(true);
+  Result := TList.Create;
 
   { Check whether we actually have a fule family attached }
   if FPeriod^.FRuleFamily <> nil then
@@ -919,7 +922,7 @@ begin
     raise ETimeZoneInvalid.CreateResFmt(@SNoBundledTZForName, [ATimeZoneID]);
 
   { Initialize internals }
-  FPeriods := TObjectList.Create(true);
+  FPeriods := TList.Create;
   CompilePeriods();
 end;
 
@@ -1064,7 +1067,10 @@ begin
 end;
 
 destructor TBundledTimeZone.Destroy;
+var i: Integer;
 begin
+  for i := 0 to FPeriods.Count - 1 do
+    TObject(FPeriods[i]).Free;
   FPeriods.Free;
   inherited;
 end;
