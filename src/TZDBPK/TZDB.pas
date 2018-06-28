@@ -277,7 +277,11 @@ uses
 {$IFNDEF SUPPORTS_MONITOR}
   SyncObjs,
 {$ENDIF}
+{$IFDEF FPC}
   Contnrs,
+{$ELSE}
+  Generics.Collections,
+{$ENDIF}
   IniFiles;
 
 resourcestring
@@ -529,7 +533,11 @@ type
     FRulesByYearLock: TCriticalSection;
 {$ENDIF}
     { Year -> List of Rules for that year }
+{$IFDEF FPC}
     FRulesByYear: TBucketList;  { Word, TList<TCompiledRule> }
+{$ELSE}
+    FRulesByYear: TDictionary<Word,TList>;  { Word, TList<TCompiledRule> }
+{$ENDIF}
 
     { Obtain the last rule that is active in a given year }
     function GetLastRuleForYear(const AYear: Word): PRule;
@@ -649,7 +657,11 @@ begin
 
   { Register the new list into the dictionary }
 {$WARNINGS OFF}
+{$IFDEF FPC}
   FRulesByYear.Add(Pointer(AYear), Result);
+{$ELSE}
+  FRulesByYear.Add(AYear, Result);
+{$ENDIF}
 {$WARNINGS ON}
 end;
 
@@ -662,10 +674,16 @@ begin
 {$IFNDEF SUPPORTS_MONITOR}
   FRulesByYearLock := TCriticalSection.Create;
 {$ENDIF}
+{$IFDEF FPC}
   FRulesByYear := TBucketList.Create();
+{$ELSE}
+  FRulesByYear := TDictionary<Word,TList>.Create;
+{$ENDIF}
 end;
 
 destructor TCompiledPeriod.Destroy;
+var L: TList;
+    c: Boolean;
 begin
 {$IFNDEF SUPPORTS_MONITOR}
   FRulesByYearLock.Free;
@@ -677,7 +695,8 @@ begin
 {$IFDEF FPC}
     FRulesByYear.ForEach(@ForEachYearlyRule);
 {$ELSE}
-    FRulesByYear.ForEach(ForEachYearlyRule);
+    for L in FRulesByYear.Values do
+      ForEachYearlyRule(nil, nil, L, c);
 {$ENDIF}
 
     FRulesByYear.Free;
@@ -704,7 +723,11 @@ begin
   try
 {$WARNINGS OFF}
     { Check if we have a cached list of matching rules for this date's year }
+{$IFDEF FPC}
     if not FRulesByYear.Find(Pointer(LYear), Pointer(LCompiledList)) then
+{$ELSE}
+    if not FRulesByYear.TryGetValue(LYear, LCompiledList) then
+{$ENDIF}
       LCompiledList := CompileRulesForYear(LYear);
 {$WARNINGS ON}
 
