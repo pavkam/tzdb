@@ -33,7 +33,7 @@ uses
   TestFramework,
 {$IFNDEF SUPPORTS_TARRAY}Types,{$ENDIF}
 {$IFDEF SUPPORTS_TTIMESPAN}TimeSpan,{$ENDIF}
-  Generics.Collections,
+Generics.Collections,
   Classes,
   SysUtils,
   TypInfo,
