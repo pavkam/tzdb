@@ -729,7 +729,7 @@ begin
   GlobalCache.AddAlias('Turks And Caicos Standard Time', 'America/Grand_Turk');
   GlobalCache.AddAlias('US Eastern Standard Time', 'America/Indianapolis');
   GlobalCache.AddAlias('US Mountain Standard Time', 'America/Phoenix');
-  GlobalCache.AddAlias('UTC', 'Etc/GMT');
+  //GlobalCache.AddAlias('UTC', 'Etc/GMT');
   GlobalCache.AddAlias('UTC+12', 'Etc/GMT-12');
   GlobalCache.AddAlias('UTC+13', 'Etc/GMT-13');
   GlobalCache.AddAlias('UTC-02', 'Etc/GMT+2');
