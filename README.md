@@ -3,7 +3,8 @@ TZDB - IANA Time Zone Database for Delphi/FPC
 
 This project is used to compile IANA's (https://www.iana.org/time-zones) TZDB project for Delphi and FPC.
 
-Current version was updated with IANA TZDB **v2018c** (_released 2018-01-22_)
+Current version was updated with IANA TZDB **v2018e** (_released 2018-09-06_)
+WINDOWS translation table (from CLDR project) updated to CLDR 33.1
 
 API documentation can be found at https://mbtaylor1982.github.io/tzdb/
 

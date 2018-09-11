@@ -33,7 +33,7 @@ uses
   TestFramework,
 {$IFNDEF SUPPORTS_TARRAY}Types,{$ENDIF}
 {$IFDEF SUPPORTS_TTIMESPAN}TimeSpan,{$ENDIF}
-  Generics.Collections,
+Generics.Collections,
   Classes,
   SysUtils,
   TypInfo,
@@ -949,8 +949,8 @@ begin
   fStdStart := 43191 +((1/86400)*10800);  //2018-04-01 03:00:00
   fStdEnd   := 43380 +((1/86400)*7199);   //2018-10-07 01:59:59
   fInvStart := 43380 +((1/86400)*7200);   //2018-10-07 02:00:00
-  fInvEnd   := 43380 +((1/86400)*10799);   //2018-10-07 01:59:59
-  fDstStart := 43380 +((1/86400)*10800);   //2018-10-07 02:00:00
+  fInvEnd   := 43380 +((1/86400)*10799);   //2018-10-07 02:59:59
+  fDstStart := 43380 +((1/86400)*10800);   //2018-10-07 03:00:00
 
 
   inherited;

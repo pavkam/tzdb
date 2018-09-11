@@ -126,6 +126,12 @@ type
     class function KnownTimeZones(const
       AIncludeAliases: Boolean = False): {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 
+    ///  <summary>Returns a list of known time zone aliases.</summary>
+    ///  <returns>An array of strings representing the aliases of the known time zones.</returns>
+    class function KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+
+    class function GetTimezoneFromAlias(const AIDStr: string): string;
+
     ///  <summary>Returns an instance of this time zone class.</summary>
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
@@ -277,10 +283,10 @@ uses
 {$IFNDEF SUPPORTS_MONITOR}
   SyncObjs,
 {$ENDIF}
-{$IFDEF FPC}
-  Contnrs,
-{$ELSE}
+{$IFDEF SUPPORTS_GENERICS}
   Generics.Collections,
+{$ELSE}
+    Contnrs,
 {$ENDIF}
   IniFiles;
 
@@ -380,6 +386,7 @@ type
   end;
 
   {$I TZDB.inc}
+
 
 function EncodeDateMonthLastDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TDateTime;
 var
@@ -533,10 +540,10 @@ type
     FRulesByYearLock: TCriticalSection;
 {$ENDIF}
     { Year -> List of Rules for that year }
-{$IFDEF FPC}
-    FRulesByYear: TBucketList;  { Word, TList<TCompiledRule> }
-{$ELSE}
+{$IFDEF SUPPORTS_GENERICS}
     FRulesByYear: TDictionary<Word,TList>;  { Word, TList<TCompiledRule> }
+{$ELSE}
+    FRulesByYear: TBucketList;  { Word, TList<TCompiledRule> }
 {$ENDIF}
 
     { Obtain the last rule that is active in a given year }
@@ -577,9 +584,15 @@ procedure ForEachYearlyRule(AInfo, AItem, AData: Pointer; out AContinue: Boolean
 var i: Integer;
 begin
   { Free the value list }
-  for i := 0 to TList(AData).Count - 1 do
-    TObject(TList(AData).Items[i]).Free;
-  TList(AData).Free;
+  if AData <> nil then
+  begin
+    if (TList(AData).Count > 0) then
+    begin
+      for i := 0 to TList(AData).Count - 1 do
+        TObject(TList(AData).Items[i]).Free;
+    end;
+    TList(AData).Free;
+  end;
   AContinue := True;
 end;
 
@@ -657,10 +670,10 @@ begin
 
   { Register the new list into the dictionary }
 {$WARNINGS OFF}
-{$IFDEF FPC}
-  FRulesByYear.Add(Pointer(AYear), Result);
-{$ELSE}
+{$IFDEF SUPPORTS_GENERICS}
   FRulesByYear.Add(AYear, Result);
+{$ELSE}
+  FRulesByYear.Add(Pointer(AYear), Result);
 {$ENDIF}
 {$WARNINGS ON}
 end;
@@ -674,10 +687,10 @@ begin
 {$IFNDEF SUPPORTS_MONITOR}
   FRulesByYearLock := TCriticalSection.Create;
 {$ENDIF}
-{$IFDEF FPC}
-  FRulesByYear := TBucketList.Create();
-{$ELSE}
+{$IFDEF SUPPORTS_GENERICS}
   FRulesByYear := TDictionary<Word,TList>.Create;
+{$ELSE}
+  FRulesByYear := TBucketList.Create();
 {$ENDIF}
 end;
 
@@ -695,8 +708,13 @@ begin
 {$IFDEF FPC}
     FRulesByYear.ForEach(@ForEachYearlyRule);
 {$ELSE}
+  {$IFDEF SUPPORTS_GENERICS}
     for L in FRulesByYear.Values do
       ForEachYearlyRule(nil, nil, L, c);
+  {$ELSE}
+    FRulesByYear.ForEach(ForEachYearlyRule);
+  {$ENDIF}
+
 {$ENDIF}
 
     FRulesByYear.Free;
@@ -723,10 +741,10 @@ begin
   try
 {$WARNINGS OFF}
     { Check if we have a cached list of matching rules for this date's year }
-{$IFDEF FPC}
-    if not FRulesByYear.Find(Pointer(LYear), Pointer(LCompiledList)) then
-{$ELSE}
+{$IFDEF SUPPORTS_GENERICS}
     if not FRulesByYear.TryGetValue(LYear, LCompiledList) then
+{$ELSE}
+    if not FRulesByYear.Find(Pointer(LYear), Pointer(LCompiledList)) then
 {$ENDIF}
       LCompiledList := CompileRulesForYear(LYear);
 {$WARNINGS ON}
@@ -1092,9 +1110,17 @@ end;
 destructor TBundledTimeZone.Destroy;
 var i: Integer;
 begin
-  for i := 0 to FPeriods.Count - 1 do
-    TObject(FPeriods[i]).Free;
-  FPeriods.Free;
+  if Assigned(FPeriods) then
+  begin
+
+    if (FPeriods.Count > 0) then
+    begin
+      for i := 0 to FPeriods.Count - 1 do
+        TObject(FPeriods[i]).Free;
+    end;
+
+    FPeriods.Free;
+  end;
   inherited;
 end;
 
@@ -1396,6 +1422,12 @@ begin
   end;
 end;
 
+class function TBundledTimeZone.GetTimezoneFromAlias(
+  const AIDStr: string): string;
+begin
+  Result := GetTimeZone(AIDStr).ID;
+end;
+
 procedure TBundledTimeZone.GetTZData(
   const ADateTime: TDateTime;
   out AOffset, ADstSave: Int64;
@@ -1464,7 +1496,22 @@ begin
     ADstDisplayName := ADisplayName;
 end;
 
-class function TBundledTimeZone.KnownTimeZones(const AIncludeAliases: Boolean): 
+class function TBundledTimeZone.KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+var
+  I: Integer;
+begin
+  { Prepare the output array }
+  SetLength(Result, Length(CAliases));
+
+  { Copy the aliases in (if requested) }
+  for I := Low(CAliases) to High(CAliases) do
+  begin
+    Result[I] := CAliases[I].FName;
+  end;
+
+end;
+
+class function TBundledTimeZone.KnownTimeZones(const AIncludeAliases: Boolean):
   {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 var
   I, LIndex: Integer;

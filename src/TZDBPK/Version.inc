@@ -10,24 +10,25 @@
   {$IFDEF CONDITIONALEXPRESSIONS}
 
     {$IF DECLARED(CompilerVersion)}
-      {$IF CompilerVersion >= 14}
+      {$IF CompilerVersion >= 14} //Delphi 6
         {$UNDEF UNSUPPORTED_VERSION}
       {$IFEND}
-      {$IF CompilerVersion >= 17}
+      {$IF CompilerVersion >= 17} //Delphi 2005
         {$DEFINE SUPPORTS_INLINE}
       {$IFEND}
     {$IFEND}
 
     {$IF DECLARED(RTLVersion)}
-      {$IF RTLVersion >= 20}
+      {$IF RTLVersion >= 20} //Delphi 2009
         {$DEFINE SUPPORTS_MONITOR}
         {$DEFINE SUPPORTS_TSTRINGS_OWNSOBJECTS}
+        {$DEFINE SUPPORTS_GENERICS}
       {$IFEND}
-      {$IF RTLVersion >= 21}
+      {$IF RTLVersion >= 21} //Delphi 2010
         {$DEFINE SUPPORTS_TARRAY}
         {$DEFINE SUPPORTS_TTIMESPAN}
       {$IFEND}
-      {$IF RTLVersion >= 22}
+      {$IF RTLVersion >= 22} //Delphi XE
         {$DEFINE SUPPORTS_TTIMEZONE}
       {$IFEND}
     {$IFEND}
