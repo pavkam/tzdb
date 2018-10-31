@@ -611,8 +611,8 @@ begin
   GlobalCache.AddAlias('GMT-14', 'Etc/GMT-14');
 
 
-{ WINDOWS translation table (from CLDR project) .. last updated by Mike Taylor. (Thurs, 6 Sep 2018) }
-{ Source Data CLDR 33.1 }
+{ WINDOWS translation table (from CLDR project) .. last updated by Mike Taylor. (Wed, 31 Oct 2018) }
+{ Source Data CLDR Trunk as of 31 oct 2018}
   GlobalCache.AddAlias('AUS Central Standard Time', 'Australia/Darwin');
   GlobalCache.AddAlias('AUS Eastern Standard Time', 'Australia/Sydney');
   GlobalCache.AddAlias('Afghanistan Standard Time', 'Asia/Kabul');
@@ -712,6 +712,7 @@ begin
   GlobalCache.AddAlias('Saint Pierre Standard Time', 'America/Miquelon');
   GlobalCache.AddAlias('Sakhalin Standard Time', 'Asia/Sakhalin');
   GlobalCache.AddAlias('Samoa Standard Time', 'Pacific/Apia');
+  GlobalCache.AddAlias('Sao Tome Standard Time', 'Africa/Sao_Tome');
   GlobalCache.AddAlias('Saratov Standard Time', 'Europe/Saratov');
   GlobalCache.AddAlias('Singapore Standard Time', 'Asia/Singapore');
   GlobalCache.AddAlias('South Africa Standard Time', 'Africa/Johannesburg');
@@ -729,6 +730,7 @@ begin
   GlobalCache.AddAlias('Turks And Caicos Standard Time', 'America/Grand_Turk');
   GlobalCache.AddAlias('US Eastern Standard Time', 'America/Indianapolis');
   GlobalCache.AddAlias('US Mountain Standard Time', 'America/Phoenix');
+
   //GlobalCache.AddAlias('UTC', 'Etc/GMT');
   GlobalCache.AddAlias('UTC+12', 'Etc/GMT-12');
   GlobalCache.AddAlias('UTC+13', 'Etc/GMT-13');
