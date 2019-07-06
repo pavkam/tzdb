@@ -3,3 +3,9 @@ cldr/*			linguist-vendored
 docs/*			linguist-vendored
 tz_database_latest/	tz_database_latest
 *			text=auto
+*.pas			text
+*.inc			text
+*.dpr			text
+*.dproj			text
+*.dfm			text
+*.groupproj		text
