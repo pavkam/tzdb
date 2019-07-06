@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010, Ciobanu Alexandru
+* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -27,6 +27,7 @@
 
 program TZCompile;
 
+{$I ../TZDBPK/Version.inc}
 {$APPTYPE CONSOLE}
 
 uses
@@ -34,7 +35,6 @@ uses
   DateUtils,
   Character,
   Classes,
-  IOUtils,
   Types,
   StrUtils,
   TZSchema in 'TZSchema.pas',
@@ -70,7 +70,5 @@ begin
     on E: Exception do
       CLIFatal(Format(CCLIGlobalException, [E.ClassName, E.Message]));
   end;
-
-  readln;
 end.
 
