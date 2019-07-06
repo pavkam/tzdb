@@ -68,6 +68,8 @@ fi
 
 rm tzdata-latest.tar.gz
 
+IANAV=`cat $REPO/iana_temp/version`
+echo "Current TZDB database version is v$IANAV."
 FILES=( africa antarctica asia australasia backward etcetera europe northamerica pacificnew southamerica systemv )
 for fn in "${FILES[@]}"; do
     echo "Replacing file $fn ..."
@@ -94,5 +96,8 @@ if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to finalize the process."
     exit 1
 fi
+
+echo "Updating README with the new version..."
+sed -i "s/\(.*\*\*\).*\(\*\*.*\)/\1$IANAV\2/g" README.md
 
 echo "The process has finished! Whoop Whoop!"
