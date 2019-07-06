@@ -68,7 +68,9 @@ begin
     Process(LInputDir, LOutputFile);
   except
     on E: Exception do
+    begin
       CLIFatal(Format(CCLIGlobalException, [E.ClassName, E.Message]));
+    end;
   end;
 end.
 

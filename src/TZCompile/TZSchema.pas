@@ -215,10 +215,10 @@ begin
     end;
   end;
 
-  if P < I then LOutList.Add(Copy(AString, P, I - P)) else LOutList.Add('');
+  if P <= I then LOutList.Add(Copy(AString, P, I - P + 1));
 
   SetLength(Result, LOutList.Count);
-  for I := 0 to LOutList.Count do Result[I] := LOutList[I];
+  for I := 0 to LOutList.Count - 1 do Result[I] := LOutList[I];
 end;
 
 function ListFiles(const ADir: string): TStringDynArray;
@@ -228,7 +228,7 @@ var
   LOutList: TFPGList<string>;
 begin
   LOutList := TFPGList<string>.Create();
-  if FindFirst(ConcatPaths([ADir, '*.*']), faAnyFile, LInfo) = 0 then 
+  if FindFirst(ConcatPaths([ADir, '*']), faAnyFile, LInfo) = 0 then 
   begin
     repeat
       LOutList.Add(ConcatPaths([ADir, LInfo.Name])) 
@@ -238,7 +238,7 @@ begin
   FindClose(LInfo);
 
   SetLength(Result, LOutList.Count);
-  for I := 0 to LOutList.Count do Result[I] := LOutList[I];
+  for I := 0 to LOutList.Count - 1 do Result[I] := LOutList[I];
 end;
 
 function ReadFileLines(const AFile: string): TStringDynArray;
@@ -253,7 +253,7 @@ begin
     LContents.LoadFromFile(AFile);
 
     SetLength(Result, LContents.Count);
-    for I := 0 to LContents.Count do Result[I] := LContents.Strings[I];
+    for I := 0 to LContents.Count - 1 do Result[I] := LContents.Strings[I];
   finally
     LContents.Free();
   end;
@@ -746,150 +746,8 @@ begin
   GlobalCache.AddAlias('GMT-13', 'Etc/GMT-13');
   GlobalCache.AddAlias('GMT-14', 'Etc/GMT-14');
 
-
-{ WINDOWS translation table (from CLDR project) .. last updated by Mike Taylor. (Wed, 31 Oct 2018) }
-{ Source Data CLDR Trunk as of 31 oct 2018}
-  GlobalCache.AddAlias('AUS Central Standard Time', 'Australia/Darwin');
-  GlobalCache.AddAlias('AUS Eastern Standard Time', 'Australia/Sydney');
-  GlobalCache.AddAlias('Afghanistan Standard Time', 'Asia/Kabul');
-  GlobalCache.AddAlias('Alaskan Standard Time', 'America/Anchorage');
-  GlobalCache.AddAlias('Aleutian Standard Time', 'America/Adak');
-  GlobalCache.AddAlias('Altai Standard Time', 'Asia/Barnaul');
-  GlobalCache.AddAlias('Arab Standard Time', 'Asia/Riyadh');
-  GlobalCache.AddAlias('Arabian Standard Time', 'Asia/Dubai');
-  GlobalCache.AddAlias('Arabic Standard Time', 'Asia/Baghdad');
-  GlobalCache.AddAlias('Argentina Standard Time', 'America/Buenos_Aires');
-  GlobalCache.AddAlias('Astrakhan Standard Time', 'Europe/Astrakhan');
-  GlobalCache.AddAlias('Atlantic Standard Time', 'America/Halifax');
-  GlobalCache.AddAlias('Aus Central W. Standard Time', 'Australia/Eucla');
-  GlobalCache.AddAlias('Azerbaijan Standard Time', 'Asia/Baku');
-  GlobalCache.AddAlias('Azores Standard Time', 'Atlantic/Azores');
-  GlobalCache.AddAlias('Bahia Standard Time', 'America/Bahia');
-  GlobalCache.AddAlias('Bangladesh Standard Time', 'Asia/Dhaka');
-  GlobalCache.AddAlias('Belarus Standard Time', 'Europe/Minsk');
-  GlobalCache.AddAlias('Bougainville Standard Time', 'Pacific/Bougainville');
-  GlobalCache.AddAlias('Canada Central Standard Time', 'America/Regina');
-  GlobalCache.AddAlias('Cape Verde Standard Time', 'Atlantic/Cape_Verde');
-  GlobalCache.AddAlias('Caucasus Standard Time', 'Asia/Yerevan');
-  GlobalCache.AddAlias('Cen. Australia Standard Time', 'Australia/Adelaide');
-  GlobalCache.AddAlias('Central America Standard Time', 'America/Guatemala');
-  GlobalCache.AddAlias('Central Asia Standard Time', 'Asia/Almaty');
-  GlobalCache.AddAlias('Central Brazilian Standard Time', 'America/Cuiaba');
-  GlobalCache.AddAlias('Central Europe Standard Time', 'Europe/Budapest');
-  GlobalCache.AddAlias('Central European Standard Time', 'Europe/Warsaw');
-  GlobalCache.AddAlias('Central Pacific Standard Time', 'Pacific/Guadalcanal');
-  GlobalCache.AddAlias('Central Standard Time (Mexico)', 'America/Mexico_City');
-  GlobalCache.AddAlias('Central Standard Time', 'America/Chicago');
-  GlobalCache.AddAlias('Chatham Islands Standard Time', 'Pacific/Chatham');
-  GlobalCache.AddAlias('China Standard Time', 'Asia/Shanghai');
-  GlobalCache.AddAlias('Cuba Standard Time', 'America/Havana');
-  GlobalCache.AddAlias('Dateline Standard Time', 'Etc/GMT+12');
-  GlobalCache.AddAlias('E. Africa Standard Time', 'Africa/Nairobi');
-  GlobalCache.AddAlias('E. Australia Standard Time', 'Australia/Brisbane');
-  GlobalCache.AddAlias('E. Europe Standard Time', 'Europe/Chisinau');
-  GlobalCache.AddAlias('E. South America Standard Time', 'America/Sao_Paulo');
-  GlobalCache.AddAlias('Easter Island Standard Time', 'Pacific/Easter');
-  GlobalCache.AddAlias('Eastern Standard Time (Mexico)', 'America/Cancun');
-  GlobalCache.AddAlias('Eastern Standard Time', 'America/New_York');
-  GlobalCache.AddAlias('Egypt Standard Time', 'Africa/Cairo');
-  GlobalCache.AddAlias('Ekaterinburg Standard Time', 'Asia/Yekaterinburg');
-  GlobalCache.AddAlias('FLE Standard Time', 'Europe/Kiev');
-  GlobalCache.AddAlias('Fiji Standard Time', 'Pacific/Fiji');
-  GlobalCache.AddAlias('GMT Standard Time', 'Europe/London');
-  GlobalCache.AddAlias('GTB Standard Time', 'Europe/Bucharest');
-  GlobalCache.AddAlias('Georgian Standard Time', 'Asia/Tbilisi');
-  GlobalCache.AddAlias('Greenland Standard Time', 'America/Godthab');
-  GlobalCache.AddAlias('Greenwich Standard Time', 'Atlantic/Reykjavik');
-  GlobalCache.AddAlias('Haiti Standard Time', 'America/Port-au-Prince');
-  GlobalCache.AddAlias('Hawaiian Standard Time', 'Pacific/Honolulu');
-  GlobalCache.AddAlias('India Standard Time', 'Asia/Calcutta');
-  GlobalCache.AddAlias('Iran Standard Time', 'Asia/Tehran');
-  GlobalCache.AddAlias('Israel Standard Time', 'Asia/Jerusalem');
-  GlobalCache.AddAlias('Jordan Standard Time', 'Asia/Amman');
-  GlobalCache.AddAlias('Kaliningrad Standard Time', 'Europe/Kaliningrad');
-  GlobalCache.AddAlias('Korea Standard Time', 'Asia/Seoul');
-  GlobalCache.AddAlias('Libya Standard Time', 'Africa/Tripoli');
-  GlobalCache.AddAlias('Line Islands Standard Time', 'Pacific/Kiritimati');
-  GlobalCache.AddAlias('Lord Howe Standard Time', 'Australia/Lord_Howe');
-  GlobalCache.AddAlias('Magadan Standard Time', 'Asia/Magadan');
-  GlobalCache.AddAlias('Magallanes Standard Time', 'America/Punta_Arenas');
-  GlobalCache.AddAlias('Marquesas Standard Time', 'Pacific/Marquesas');
-  GlobalCache.AddAlias('Mauritius Standard Time', 'Indian/Mauritius');
-  GlobalCache.AddAlias('Middle East Standard Time', 'Asia/Beirut');
-  GlobalCache.AddAlias('Montevideo Standard Time', 'America/Montevideo');
-  GlobalCache.AddAlias('Morocco Standard Time', 'Africa/Casablanca');
-  GlobalCache.AddAlias('Mountain Standard Time (Mexico)', 'America/Chihuahua');
-  GlobalCache.AddAlias('Mountain Standard Time', 'America/Denver');
-  GlobalCache.AddAlias('Myanmar Standard Time', 'Asia/Rangoon');
-  GlobalCache.AddAlias('N. Central Asia Standard Time', 'Asia/Novosibirsk');
-  GlobalCache.AddAlias('Namibia Standard Time', 'Africa/Windhoek');
-  GlobalCache.AddAlias('Nepal Standard Time', 'Asia/Katmandu');
-  GlobalCache.AddAlias('New Zealand Standard Time', 'Pacific/Auckland');
-  GlobalCache.AddAlias('Newfoundland Standard Time', 'America/St_Johns');
-  GlobalCache.AddAlias('Norfolk Standard Time', 'Pacific/Norfolk');
-  GlobalCache.AddAlias('North Asia East Standard Time', 'Asia/Irkutsk');
-  GlobalCache.AddAlias('North Asia Standard Time', 'Asia/Krasnoyarsk');
-  GlobalCache.AddAlias('North Korea Standard Time', 'Asia/Pyongyang');
-  GlobalCache.AddAlias('Omsk Standard Time', 'Asia/Omsk');
-  GlobalCache.AddAlias('Pacific SA Standard Time', 'America/Santiago');
-  GlobalCache.AddAlias('Pacific Standard Time (Mexico)', 'America/Tijuana');
-  GlobalCache.AddAlias('Pacific Standard Time', 'America/Los_Angeles');
-  GlobalCache.AddAlias('Pakistan Standard Time', 'Asia/Karachi');
-  GlobalCache.AddAlias('Paraguay Standard Time', 'America/Asuncion');
-  GlobalCache.AddAlias('Romance Standard Time', 'Europe/Paris');
-  GlobalCache.AddAlias('Russia Time Zone 10', 'Asia/Srednekolymsk');
-  GlobalCache.AddAlias('Russia Time Zone 11', 'Asia/Kamchatka');
-  GlobalCache.AddAlias('Russia Time Zone 3', 'Europe/Samara');
-  GlobalCache.AddAlias('Russian Standard Time', 'Europe/Moscow');
-  GlobalCache.AddAlias('SA Eastern Standard Time', 'America/Cayenne');
-  GlobalCache.AddAlias('SA Pacific Standard Time', 'America/Bogota');
-  GlobalCache.AddAlias('SA Western Standard Time', 'America/La_Paz');
-  GlobalCache.AddAlias('SE Asia Standard Time', 'Asia/Bangkok');
-  GlobalCache.AddAlias('Saint Pierre Standard Time', 'America/Miquelon');
-  GlobalCache.AddAlias('Sakhalin Standard Time', 'Asia/Sakhalin');
-  GlobalCache.AddAlias('Samoa Standard Time', 'Pacific/Apia');
-  GlobalCache.AddAlias('Sao Tome Standard Time', 'Africa/Sao_Tome');
-  GlobalCache.AddAlias('Saratov Standard Time', 'Europe/Saratov');
-  GlobalCache.AddAlias('Singapore Standard Time', 'Asia/Singapore');
-  GlobalCache.AddAlias('South Africa Standard Time', 'Africa/Johannesburg');
-  GlobalCache.AddAlias('Sri Lanka Standard Time', 'Asia/Colombo');
-  GlobalCache.AddAlias('Sudan Standard Time', 'Africa/Khartoum');
-  GlobalCache.AddAlias('Syria Standard Time', 'Asia/Damascus');
-  GlobalCache.AddAlias('Taipei Standard Time', 'Asia/Taipei');
-  GlobalCache.AddAlias('Tasmania Standard Time', 'Australia/Hobart');
-  GlobalCache.AddAlias('Tocantins Standard Time', 'America/Araguaina');
-  GlobalCache.AddAlias('Tokyo Standard Time', 'Asia/Tokyo');
-  GlobalCache.AddAlias('Tomsk Standard Time', 'Asia/Tomsk');
-  GlobalCache.AddAlias('Tonga Standard Time', 'Pacific/Tongatapu');
-  GlobalCache.AddAlias('Transbaikal Standard Time', 'Asia/Chita');
-  GlobalCache.AddAlias('Turkey Standard Time', 'Europe/Istanbul');
-  GlobalCache.AddAlias('Turks And Caicos Standard Time', 'America/Grand_Turk');
-  GlobalCache.AddAlias('US Eastern Standard Time', 'America/Indianapolis');
-  GlobalCache.AddAlias('US Mountain Standard Time', 'America/Phoenix');
-
-  //GlobalCache.AddAlias('UTC', 'Etc/GMT');
-  GlobalCache.AddAlias('UTC+12', 'Etc/GMT-12');
-  GlobalCache.AddAlias('UTC+13', 'Etc/GMT-13');
-  GlobalCache.AddAlias('UTC-02', 'Etc/GMT+2');
-  GlobalCache.AddAlias('UTC-08', 'Etc/GMT+8');
-  GlobalCache.AddAlias('UTC-09', 'Etc/GMT+9');
-  GlobalCache.AddAlias('UTC-11', 'Etc/GMT+11');
-  GlobalCache.AddAlias('Ulaanbaatar Standard Time', 'Asia/Ulaanbaatar');
-  GlobalCache.AddAlias('Venezuela Standard Time', 'America/Caracas');
-  GlobalCache.AddAlias('Vladivostok Standard Time', 'Asia/Vladivostok');
-  GlobalCache.AddAlias('W. Australia Standard Time', 'Australia/Perth');
-  GlobalCache.AddAlias('W. Central Africa Standard Time', 'Africa/Lagos');
-  GlobalCache.AddAlias('W. Europe Standard Time', 'Europe/Berlin');
-  GlobalCache.AddAlias('W. Mongolia Standard Time', 'Asia/Hovd');
-  GlobalCache.AddAlias('West Asia Standard Time', 'Asia/Tashkent');
-  GlobalCache.AddAlias('West Bank Standard Time', 'Asia/Hebron');
-  GlobalCache.AddAlias('West Pacific Standard Time', 'Pacific/Port_Moresby');
-  GlobalCache.AddAlias('Yakutsk Standard Time', 'Asia/Yakutsk');
-
-  { Missing translations in CLDR table }
-//  GlobalCache.AddAlias('E. Europe Standard Time', 'Europe/Minsk'); { unmappable }
-  GlobalCache.AddAlias('Kamchatka Standard Time', 'Asia/Kamchatka');
-  GlobalCache.AddAlias('Mid-Atlantic Standard Time', 'Etc/GMT+2');
+  { Windows mapping }
+  {$I WindowsTZ.inc}
 end;
 
 function CharToRel(const Ch: Char): string;
@@ -1280,7 +1138,7 @@ begin
     { ======= ALIASES ======== }
 {$IFDEF FPC}
     LAliasList := TFPGList<string>.Create();
-    for I := 0 to FLinks.Count do LAliasList.Add(FLinks.Keys[I]);
+    for I := 0 to FLinks.Count - 1 do LAliasList.Add(FLinks.Keys[I]);
     LAliasList.Sort(CompareStrings);
 {$ELSE}
     LAliasList := TList<string>.Create(FLinks.Keys);

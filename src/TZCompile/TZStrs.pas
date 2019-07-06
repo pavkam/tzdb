@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010, Ciobanu Alexandru
+* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@ const
   CZoneId = 'Zone';
 
 resourcestring
-  CCLIHeader = 'TZ file updater. (c) 2010 Ciobanu Alexandru. Part of TZDB project.';
-  CCLIUsage  = 'USAGE: <TzUpdate> input-dir output-file' + sLineBreak +
+  CCLIHeader = 'TZ Compiler. (c) 2010-2019 Alexandru Ciobanu (alex+git@ciobanu.org). Part of TZDB project.';
+  CCLIUsage  = 'USAGE: <TZCompile> input-dir output-file' + sLineBreak +
                '  input-dir  : The path to the directory containing tzinfo database files.' + sLineBreak +
                '  output-file: The path to the INC file that will contain the converted data.';
 
@@ -104,7 +104,7 @@ begin
   Write(CCLIFatal_Prefix, ' ');
   WriteLn(AMessage);
 
-  Halt;
+  Halt(1);
 end;
 
 procedure CLIError(const AMessage: string);
