@@ -14,14 +14,15 @@ if [ ! -d "$REPO/tz_database_latest" ] || [ ! -e "$REPO/cldr/windowsZones.xml" ]
 fi
 
 echo "Running in '$REPO' path."
-echo "Updating CLDR Windows mappings..."
+echo "Pulling the latest CLDR data from GitHub..."
 wget https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml -q -O ./cldr/windowsZoned.xml
 
 if [ "$?" -ne 0 ]; then
     echo "[WARN] Failed pulling down updated CLDR Windows zone information from GitHub."
 fi
 
-cat "$REPO/cldr/windowsZones.xml" | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/try GlobalCache.AddAlias("\1", "\2"); except end;/p' | sed "s/\"/'/g" > $REPO/src/TZCompile/WindowsTZ.inc
+echo "Converting the latest CLDR xml file to inc..."
+cat $REPO/cldr/windowsZones.xml | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/try GlobalCache.AddAlias("\1", "\2"); except end;/p' | sed "s/\"/'/g" > $REPO/src/TZCompile/WindowsTZ.inc
 
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to convert CLDR xml file to inc."
@@ -45,12 +46,38 @@ fi
 
 echo "Found FreePascal version `fpc -iV` installed."
 
-rm -fr "$REPO/bin" 2> /dev/null
+rm -fr $REPO/bin 2> /dev/null
 mkdir $REPO/bin
 
-fpc "$REPO/src/TZCompile/TZCompile.dpr" -FEbin -FUbin
+fpc $REPO/src/TZCompile/TZCompile.dpr -FEbin -FUbin
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to compile the TZCompile program."
+    exit 1
+fi
+
+echo "Pulling the latest TZDB database from IANA ..."
+
+rm -rf $REPO/iana_temp 2> /dev/null
+wget -q https://www.iana.org/time-zones/repository/tzdata-latest.tar.gz
+mkdir $REPO/iana_temp
+tar -xf tzdata-latest.tar.gz -C $REPO/iana_temp
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to pull the latest TZDB tar ball."
+    exit 1;
+fi
+
+rm tzdata-latest.tar.gz
+
+FILES=( africa antarctica asia australasia backward etcetera europe northamerica pacificnew southamerica systemv )
+for fn in "${FILES[@]}"; do
+    echo "Replacing file $fn ..."
+    cp $REPO/iana_temp/$fn $REPO/tz_database_latest/$fn
+done
+
+rm -rf $REPO/iana_temp
+
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to replace required TZ files from the IANA archive."
     exit 1
 fi
 
@@ -68,3 +95,4 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
+echo "The process has finished! Whoop Whoop!"

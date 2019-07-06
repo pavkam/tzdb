@@ -40,6 +40,8 @@ const
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
 
   CLastDoW = 'last';
+  CNthDoW  = '>=';
+  CPreDoW  = '<=';
   CMinDate = 'min';
   CMaxDate = 'max';
   COnlyDate = 'only';

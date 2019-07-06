@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010-2013, Ciobanu Alexandru
+* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without

@@ -47,7 +47,7 @@ uses
   DateUtils;
 
 type
-  TzDayType = (tzdFixed, tzdLast, tzdGEThan);
+  TzDayType = (tzdFixed, tzdLast, tzdGEThan, tzdLEThan);
 
   TzObject = class
     FIndexInFile: Integer;
@@ -146,6 +146,7 @@ type
     function GetFixedDay(const ADay: Word): TzDay;
     function GetLastDayOf(const ADayOfWeek: Word): TzDay;
     function GetNthDayOf(const ADayOfWeek, AIndex: Word): TzDay;
+    function GetPredDayOf(const ADayOfWeek, AIndex: Word): TzDay;
 
     function GetRule(const AInMonth: Word; const AOnDay: TzDay;
       const AAt: Integer; const AAtChar: Char; const ASave: Integer; const ALetters: UnicodeString): TzRule;
@@ -446,13 +447,13 @@ begin
 
     Result := GlobalCache.GetLastDayOf(LDoW);
 
-  end else if Pos('>=', AStr) > 0 then
+  end else if Pos(CNthDoW, AStr) > 0 then
   begin
-    LPos := Pos('>=', AStr);
+    LPos := Pos(CNthDoW, AStr);
 
     { Reccurence on Nth day of specified kind }
     LDoWStr := Copy(AStr, 1, LPos - 1);
-    LIndexStr := Copy(AStr, LPos + 2, Length(AStr));
+    LIndexStr := Copy(AStr, LPos + Length(CNthDoW), Length(AStr));
 
     try
       LDoW := TzStrToDayOfWeek(LDoWStr);
@@ -467,7 +468,27 @@ begin
     end;
 
     Result := GlobalCache.GetNthDayOf(LDoW, LIndex);
+  end else if Pos(CPreDoW, AStr) > 0 then
+  begin
+    LPos := Pos(CPreDoW, AStr);
 
+    { Reccurence on Nth day of specified kind }
+    LDoWStr := Copy(AStr, 1, LPos - 1);
+    LIndexStr := Copy(AStr, LPos + Length(CPreDoW), Length(AStr));
+
+    try
+      LDoW := TzStrToDayOfWeek(LDoWStr);
+    except
+      raise EProcessDayRecurError.CreateFmt(CPMBadDoWInNth, [LDoWStr]);
+    end;
+
+    try
+      LIndex := StrToInt(LIndexStr);
+    except
+      raise EProcessDayRecurError.CreateFmt(CPMBadIndexInNth, [LIndexStr]);
+    end;
+
+    Result := GlobalCache.GetPredDayOf(LDoW, LIndex);
   end else
   begin
     try
@@ -1224,6 +1245,23 @@ begin
 
   Result := TzDay.Create;
   Result.FType := tzdGEThan;
+  Result.FDayOfWeek := ADayOfWeek;
+  Result.FDayIndex := AIndex;
+
+  FDays.Add(Result);
+end;
+
+function TzCache.GetPredDayOf(const ADayOfWeek, AIndex: Word): TzDay;
+var
+  LDay: TzDay;
+begin
+  for LDay in FDays do
+    if (LDay.FType = tzdLEThan) and (LDay.FDayOfWeek = ADayOfWeek) and
+      (LDay.FDayIndex = AIndex) then
+      Exit(LDay);
+
+  Result := TzDay.Create;
+  Result.FType := tzdLEThan;
   Result.FDayOfWeek := ADayOfWeek;
   Result.FDayIndex := AIndex;
 
