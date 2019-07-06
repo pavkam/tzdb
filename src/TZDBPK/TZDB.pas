@@ -286,7 +286,7 @@ uses
 {$IFDEF SUPPORTS_GENERICS}
   Generics.Collections,
 {$ELSE}
-    Contnrs,
+  Contnrs,
 {$ENDIF}
   IniFiles;
 
@@ -298,7 +298,7 @@ resourcestring
 
 type
   { Day type. Specifies the "relative" day in a month }
-  TDayType = (dtFixed, dtLastOfMonth, tdNthOfMonth);
+  TDayType = (dtFixed, dtLastOfMonth, dtNthOfMonth, dtPredOfMonth);
 
   { Specifies the mode in which a time value is specified }
   TTimeMode = (trLocal, trStandard, trUniversal);
@@ -310,9 +310,10 @@ type
         (FFixedDay: Word);
       dtLastOfMonth:
         (FLastDayOfWeek: Word);
-      tdNthOfMonth:
-        (FNthDayOfWeek: Word;
-          FDayIndex: Word);
+      dtNthOfMonth:
+        (FNthDayOfWeek: Word; FNthDayIndex: Word);
+      dtPredOfMonth:
+        (FPredDayOfWeek: Word; FPredDayIndex: Word);
   end;
 
   { Pointer to a relative day }
@@ -441,6 +442,16 @@ begin
   end;
 end;
 
+function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, ABefore: Word): TDateTime;
+begin
+  { Generate a date with the given day of week as first in month }
+  Result := EncodeDateMonthFirstDayOfWeek(AYear, AMonth, ADayOfWeek);
+  
+  { If the DoW falls on the ABefore of the initial month then we're golden! Otherwise pick the last DoW of prev. month. }
+  if DayOf(Result) > ABefore then
+    Result := IncWeek(Result, -1);
+end;
+
 function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay; const ATimeOfDay: Int64): TDateTime;
 begin
   Result := 0;
@@ -452,46 +463,37 @@ begin
     Result := EncodeDate(AYear, AMonth, ARelativeDay^.FFixedDay)
   else if ARelativeDay^.FDayType = dtLastOfMonth then
     Result := EncodeDateMonthLastDayOfWeek(AYear, AMonth, ARelativeDay^.FLastDayOfWeek)
-  else if ARelativeDay^.FDayType = tdNthOfMonth then
-    Result := EncodeDateMonthFirstDayOfWeekAfter(AYear, AMonth, ARelativeDay^.FNthDayOfWeek, ARelativeDay^.FDayIndex);
+  else if ARelativeDay^.FDayType = dtNthOfMonth then
+    Result := EncodeDateMonthFirstDayOfWeekAfter(AYear, AMonth, ARelativeDay^.FNthDayOfWeek, ARelativeDay^.FNthDayIndex);
+  else if ARelativeDay^.FDayType = dtPredOfMonth then
+    Result := EncodeDateMonthFirstDayOfWeekBefore(AYear, AMonth, ARelativeDay^.FPredDayOfWeek, ARelativeDay^.FPredDayIndex);
 
   { Attach the time part now }
   Result := IncSecond(Result, ATimeOfDay);
 end;
 
-function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule;
-  const aLocaltimeType: TLocalTimeType): string;
+function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule; const ALocalTimeType: TLocalTimeType): string;
 var
-  fmt :TStringList;
+  LDelimIndex: Integer;
 begin
 
 {
   From IANA TZDB  https://data.iana.org/time-zones/tz-how-to.html
-
-The FORMAT column specifies the usual abbreviation of the time zone name. It can have one of three forms:
-
-a string of three or more characters that are either ASCII alphanumerics, “+”, or “-”, in which case that’s the abbreviation
-a pair of strings separated by a slash (‘/’), in which case the first string is the abbreviation for the standard time name and the second string is the abbreviation for the daylight saving time name
-a string containing “%s,” in which case the “%s” will be replaced by the text in the appropriate Rule’s LETTER column
+  
+  The FORMAT column specifies the usual abbreviation of the time zone name. It can have one of three forms:
+    * A string of three or more characters that are either ASCII alphanumerics, \93+\94, or \93-\94, in which case that\92s the abbreviation.
+    * A pair of strings separated by a slash (\91/\92), in which case the first string is the abbreviation for the standard 
+      time name and the second string is the abbreviation for the daylight saving time name.
+    * A string containing \93%s,\94 in which case the \93%s\94 will be replaced by the text in the appropriate Rule\92s LETTER column.
 }
 
-  if pos('/', APeriod^.FFmtStr) > 0 then
+  LDelimIndex := Pos('/', APeriod^.FFmtStr);
+  if LDelimIndex > 0 then
   begin
-    fmt := TStringList.Create;
-    try
-      fmt.StrictDelimiter := True;
-      fmt.Delimiter := '/';
-      fmt.DelimitedText := APeriod^.FFmtStr;
-
-      case aLocaltimeType of
-        lttStandard   : Result := fmt[0];
-        lttDaylight   : Result := fmt[1];
-      end;
-
-    finally
-      fmt.Free;
+    case ALocalTimeType of
+      lttStandard: Result := Copy(APeriod^.FFmtStr, 1, LDelimIndex - 1);
+      lttDaylight: Result := Copy(APeriod^.FFmtStr, LDelimIndex + 1, Length(APeriod^.FFmtStr));
     end;
-
   end
   else if Pos('%s', APeriod^.FFmtStr) > 0 then
   begin
@@ -500,7 +502,6 @@ a string containing “%s,” in which case the “%s” will be replaced by the text in
       Result := Format(APeriod^.FFmtStr, [ARule^.FFmtPart])
     else
       Result := Format(APeriod^.FFmtStr, ['']);
-
 
     { In case no rule is defined, replace the placeholder with an empty string }
   end else

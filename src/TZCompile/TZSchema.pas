@@ -977,8 +977,13 @@ begin
           Write(LFile, 'dtLastOfMonth; FLastDayOfWeek: ' + IntToStr(LDay.FDayOfWeek));
 
         tzdGEThan:
-          Write(LFile, 'tdNthOfMonth; FNthDayOfWeek: ' +
-              IntToStr(LDay.FDayOfWeek) + '; FDayIndex: ' +
+          Write(LFile, 'dtNthOfMonth; FNthDayOfWeek: ' +
+              IntToStr(LDay.FDayOfWeek) + '; FNthDayIndex: ' +
+              IntToStr(LDay.FDayIndex));
+
+        tzdLEThan:
+          Write(LFile, 'dtPredOfMonth; FPredDayOfWeek: ' +
+              IntToStr(LDay.FDayOfWeek) + '; FPredDayIndex: ' +
               IntToStr(LDay.FDayIndex));
       end;
 

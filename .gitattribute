@@ -1,4 +1,5 @@
-media/* linguist-vendored
-cldr/* linguist-vendored
-docs/* linguist-vendored
-tz_database_latest/ tz_database_latest
+media/*			linguist-vendored
+cldr/*			linguist-vendored
+docs/*			linguist-vendored
+tz_database_latest/	tz_database_latest
+*			text=auto
