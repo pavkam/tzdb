@@ -464,7 +464,7 @@ begin
   else if ARelativeDay^.FDayType = dtLastOfMonth then
     Result := EncodeDateMonthLastDayOfWeek(AYear, AMonth, ARelativeDay^.FLastDayOfWeek)
   else if ARelativeDay^.FDayType = dtNthOfMonth then
-    Result := EncodeDateMonthFirstDayOfWeekAfter(AYear, AMonth, ARelativeDay^.FNthDayOfWeek, ARelativeDay^.FNthDayIndex);
+    Result := EncodeDateMonthFirstDayOfWeekAfter(AYear, AMonth, ARelativeDay^.FNthDayOfWeek, ARelativeDay^.FNthDayIndex)
   else if ARelativeDay^.FDayType = dtPredOfMonth then
     Result := EncodeDateMonthFirstDayOfWeekBefore(AYear, AMonth, ARelativeDay^.FPredDayOfWeek, ARelativeDay^.FPredDayIndex);
 
@@ -696,8 +696,11 @@ begin
 end;
 
 destructor TCompiledPeriod.Destroy;
-var L: TList;
-    c: Boolean;
+{$IFDEF SUPPORTS_GENERICS}
+var 
+  L: TList;
+  C: Boolean;
+{$ENDIF}
 begin
 {$IFNDEF SUPPORTS_MONITOR}
   FRulesByYearLock.Free;
@@ -711,7 +714,7 @@ begin
 {$ELSE}
   {$IFDEF SUPPORTS_GENERICS}
     for L in FRulesByYear.Values do
-      ForEachYearlyRule(nil, nil, L, c);
+      ForEachYearlyRule(nil, nil, L, C);
   {$ELSE}
     FRulesByYear.ForEach(ForEachYearlyRule);
   {$ENDIF}
