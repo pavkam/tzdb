@@ -5,3 +5,4 @@
 *.dproj.local
 __history
 bin
+*.stat
