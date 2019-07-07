@@ -95,7 +95,7 @@ type
     fStdStart :tdatetime;
     function RandomDate(aFromDatetime, aToDatetime : TDateTime) : TDateTime;
   protected
-    procedure Setup; override;
+    procedure SetUp; override;
     procedure TearDown; override;
 
   published
@@ -120,25 +120,25 @@ type
 
   TTZDB_St_Johns_2018_Test = class(TTZDBTimezoneTest)
   protected
-    procedure Setup; override;
+    procedure SetUp; override;
     procedure TearDown; override;
   end;
 
   TTZDB_London_2018_Test = class(TTZDBTimezoneTest)
   protected
-    procedure Setup; override;
+    procedure SetUp; override;
     procedure TearDown; override;
   end;
 
   TTZDB_Canberra_2018_Test = class(TTZDBTimezoneTest)
   protected
-    procedure Setup; override;
+    procedure SetUp; override;
     procedure TearDown; override;
   end;
 
   TTZDB_NewYork_2018_Test = class(TTZDBTimezoneTest)
   protected
-    procedure Setup; override;
+    procedure SetUp; override;
     procedure TearDown; override;
   end;
 
@@ -706,7 +706,6 @@ var
   iDay :Cardinal;
   fTime: Single;
 begin
-  Result := 0.0;
   Randomize;
   iFrom := Trunc(aFromDatetime);
   iTo := Trunc(aToDatetime);
