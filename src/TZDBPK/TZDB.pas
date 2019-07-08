@@ -130,66 +130,61 @@ type
     ///  <returns>An array of strings representing the aliases of the known time zones.</returns>
     class function KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 
-    class function GetTimezoneFromAlias(const AIDStr: string): string;
+    ///  <summary>Returns the time zone name for a given alias.</summary>
+    ///  <param name="AAlias">The alias to lookup.</param>
+    ///  <returns>The name of the time zone, if found. <c>nil</c> otherwise.</returns>
+    class function GetTimeZoneFromAlias(const AAliasID: string): string;
 
     ///  <summary>Returns an instance of this time zone class.</summary>
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
-    ///  <summary>Get the start point of daylight time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The start time of daylight time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function DaylightTimeStart(const aYear: word): TDateTime;
+    ///  <summary>Get the starting date/time of daylight period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The start time of daylight saving period in the local time.</returns>
+    function DaylightTimeStart(const AYear: Word): TDateTime;
 
-    ///  <summary>Get the start point of Standard time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The start time of Standard time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function StardardTimeStart(const aYear: word): TDateTime;
+    ///  <summary>Get the starting date/time of standard period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The start date/time of standard period in local time.</returns>
+    function StandardTimeStart(const AYear: Word): TDateTime;
 
-     ///  <summary>Get the start point of Invalid time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The start time of Invalid time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function InvalidTimeStart(const aYear: word): TDateTime;
+    ///  <summary>Get the starting date/time of invalid period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The start date/time of invalid period in local time.</returns>
+    function InvalidTimeStart(const AYear: word): TDateTime;
 
-    ///  <summary>Get the start point of Ambiguous time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The start time of Ambiguous time in timezone local time</returns>
+    ///  <summary>Get the starting date/time of ambiguous period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The start date/time of ambiguous period in local time.</returns>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function AmbiguousTimeStart(const aYear: word): TDateTime;
 
-    ///  <summary>Get the end point of daylight time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The end time of daylight time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    ///  <summary>Get the ending date/time of daylight saving period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The end date/time of daylight saving period in local time.</returns>
     function DaylightTimeEnd(const aYear: word): TDateTime;
 
-    ///  <summary>Get the end point of standard time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The end time of standard time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function StandardTimeEnd(const aYear: word): TDateTime;
+    ///  <summary>Get the ending date/time of standard period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The ending date/time of standard period in local time.</returns>
+    function StandardTimeEnd(const AYear: word): TDateTime;
 
-    ///  <summary>Get the end point of Invalid time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The end time of Invalid time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    ///  <summary>Get the ending date/time of invalid period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The end date/time of invalid period in local time.</returns>
     function InvalidTimeEnd(const aYear: word): TDateTime;
 
-    ///  <summary>Get the end point of Ambiguous time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>The end time of Ambiguous time in timezone local time</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    ///  <summary>Get the ending date/time of ambiguous period.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <returns>The end date/time of ambiguous period in local time.</returns>
     function AmbiguousTimeEnd(const aYear: word): TDateTime;
 
-    ///  <summary>Determin if the timezone has daylight time</summary>
-    ///  <param name="aYear">The Year to get data for</param>
-    ///  <returns>True if the timezone operates daylight time in the year specified</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function OperatesDayligtTime(const aYear: word): boolean;
+    ///  <summary>Determines if the timezone has daylight saving period.</summary>
+    ///  <param name="AYear">The year to check.</param>
+    ///  <returns><c>true</c> if the timezone has daylight saving time in the specified year.</returns>
+    function HasDaylightTime(const aYear: word): Boolean;
 
     ///  <summary>Converts an UTC time to an ISO8601 date time string.</summary>
     ///  <param name="ADateTime">The UTC time.</param>
@@ -867,7 +862,7 @@ end;
 
 function TBundledTimeZone.AmbiguousTimeEnd(const aYear: word): TDateTime;
 begin
-  Result := IncSecond(StardardTimeStart(aYear), -1);
+  Result := IncSecond(StandardTimeStart(aYear), -1);
 end;
 
 function TBundledTimeZone.AmbiguousTimeStart(const aYear: word): TDateTime;
@@ -971,7 +966,7 @@ begin
   CompilePeriods();
 end;
 
-function TBundledTimeZone.DaylightTimeEnd(const aYear: word): TDateTime;
+function TBundledTimeZone.DaylightTimeEnd(const AYear: word): TDateTime;
 var
   LPeriod: TCompiledPeriod;
   LRule: TCompiledRule;
@@ -979,7 +974,7 @@ var
   AType: TLocalTimeType;
 begin
   Result := 0.0;
-  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+  ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
  //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
@@ -1013,7 +1008,7 @@ begin
 
 end;
 
-function TBundledTimeZone.DaylightTimeStart(const aYear: word): TDateTime;
+function TBundledTimeZone.DaylightTimeStart(const AYear: word): TDateTime;
 var
   LPeriod: TCompiledPeriod;
   LRule: TCompiledRule;
@@ -1021,7 +1016,7 @@ var
   AType: TLocalTimeType;
 begin
   Result := 0.0;
-  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+  ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
   //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
@@ -1092,9 +1087,7 @@ begin
     inc(Offset, LDstSave);
   end
   else
-  begin
     Local := LAdjusted;
-  end;
 
   DecodeDateTime(Local, Year, Month, Day, Hrs, Mins, Secs, Msecs);
 
@@ -1103,12 +1096,11 @@ begin
   else
     OffsetPrefix := '-';
 
-  OffsetHrs   := abs(Offset div (MinsPerHour*SecsPerMin));
-  OffsetMins  := abs((Offset mod (MinsPerHour*SecsPerMin)) div SecsPerMin);
+  OffsetHrs := Abs(Offset div (MinsPerHour*SecsPerMin));
+  OffsetMins := Abs((Offset mod (MinsPerHour*SecsPerMin)) div SecsPerMin);
 
   Result := Format(ISO_Fmt, [Year, Month, Day, Hrs, Mins, Secs, Msecs,
     OffsetPrefix, OffsetHrs, OffsetMins]);
-
 end;
 
 destructor TBundledTimeZone.Destroy;
@@ -1426,10 +1418,9 @@ begin
   end;
 end;
 
-class function TBundledTimeZone.GetTimezoneFromAlias(
-  const AIDStr: string): string;
+class function TBundledTimeZone.GetTimezoneFromAlias(const AAliasID: string): string;
 begin
-  Result := GetTimeZone(AIDStr).ID;
+  Result := GetTimeZone(AAliasID).ID;
 end;
 
 procedure TBundledTimeZone.GetTZData(
@@ -1543,12 +1534,12 @@ begin
     end;
 end;
 
-function TBundledTimeZone.OperatesDayligtTime(const aYear: word): boolean;
+function TBundledTimeZone.HasDaylightTime(const AYear: Word): boolean;
 begin
-  Result := YearOf(DaylightTimeStart(aYear)) = aYear;
+  Result := YearOf(DaylightTimeStart(aYear)) = AYear;
 end;
 
-function TBundledTimeZone.StandardTimeEnd(const aYear: word): TDateTime;
+function TBundledTimeZone.StandardTimeEnd(const AYear: Word): TDateTime;
 var
   LPeriod: TCompiledPeriod;
   LRule: TCompiledRule;
@@ -1556,7 +1547,7 @@ var
   AType: TLocalTimeType;
 begin
   Result := 0.0;
-  ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
+  ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
  //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
@@ -1590,7 +1581,7 @@ begin
 
 end;
 
-function TBundledTimeZone.StardardTimeStart(const aYear: word): TDateTime;
+function TBundledTimeZone.StandardTimeStart(const aYear: word): TDateTime;
 var
   LPeriod: TCompiledPeriod;
   LRule: TCompiledRule;

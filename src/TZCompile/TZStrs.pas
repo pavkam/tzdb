@@ -99,6 +99,7 @@ resourcestring
 
   CPMAliasExists = 'Alias "%s" already points to zone "%s". Cannot reassign to zone "%s".';
   CPMAddedAlias = 'Added new alias "%s" for zone "%s".';
+  CPMAliasFailed = 'Failed to add alias "%s". The referenced time zone "%s" does not exist.';
   CPMAddedZone = 'Added new zone "%s".';
   CPMAddedRuleFamily = 'Added new rule family "%s".';
   CPMAddedRule = 'Added new rule for month %d, day [%d/%d/%d/%d], at %d, char "%s", offset %d and letters "%s".';

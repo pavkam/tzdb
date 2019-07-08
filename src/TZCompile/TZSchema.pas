@@ -126,17 +126,25 @@ type
   end;
 
   TzCache = class
+  private type
+    TAliasEntry = record
+      FAlias, FTimeZone: String;
+{$IFDEF FPC}
+      class operator Equal(const ALeft, ARight: TAliasEntry): Boolean;
+{$ENDIF}
+    end;
   private
     FDays: {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzDay>;
     FRules: {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzRule>;
     FRuleFamilies: {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzRuleFamily>;
     FZones: {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzZone>;
-    FLinks: {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>;
+    FAliases: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TAliasEntry>;
+    FResAliases: {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>;
 
     function GetUniqueDays: Cardinal;
     function GetUniqueRules: Cardinal;
     function GetUniqueRuleFamilies: Cardinal;
-
+    
   public
     { Construction and related }
     constructor Create;
@@ -154,9 +162,7 @@ type
     function GetRuleFamily(const AName: string): TzRuleFamily;
 
     function GetZone(const AName: string): TzZone;
-
-    procedure AddAlias(const AAlias: string; const AZone: TzZone); overload;
-    function AddAlias(const AAlias, AToZone: string): Boolean; overload;
+    procedure AddAlias(const AAlias, AToZone: string);
 
     { Properties }
     property UniqueDays: Cardinal read GetUniqueDays;
@@ -164,6 +170,7 @@ type
     property UniqueRuleFamilies: Cardinal read GetUniqueRuleFamilies;
 
     { Dumper! }
+    procedure Finalize;
     procedure DumpToFile(const AFile: string);
   end;
 
@@ -287,6 +294,13 @@ begin
     (ALeft.FUntilDay = ARight.FUntilDay) and
     (ALeft.FUntilTime = ARight.FUntilTime) and
     (ALeft.FUntilChar = ARight.FUntilChar);
+end;
+
+class operator TzCache.TAliasEntry.Equal(const ALeft, ARight: TzCache.TAliasEntry): Boolean;
+begin
+  Result :=
+    (ALeft.FAlias = ARight.FAlias) and
+    (ALeft.FTimeZone = ARight.FTimeZone);
 end;
 
 const SecsPerHour = 60 * 60;
@@ -714,8 +728,6 @@ end;
 procedure ProcessLink(const AParts: TStringDynArray);
 var
   LRealName, LAlias: string;
-
-  LZone: TzZone;
 begin
   if Length(AParts) < 2 then
     raise EProcessZoneError.CreateFmt(CPMBadLineSplitCount, [Length(AParts)]);
@@ -733,8 +745,7 @@ begin
     raise EProcessLinkError.Create(CPMBadLineTO);
 
   { Get real zone }
-  LZone := GlobalCache.GetZone(LRealName);
-  GlobalCache.AddAlias(LAlias, LZone);
+  GlobalCache.AddAlias(LAlias, LRealName);
 end;
 
 procedure RegisterStandardAliases();
@@ -867,8 +878,11 @@ begin
   end;
 
   RegisterStandardAliases();
+  GlobalCache.Finalize;
 
-  CLIMessage(Format(CPMStats, [LRules, LZones, GlobalCache.UniqueDays, GlobalCache.UniqueRules, GlobalCache.UniqueRuleFamilies, LLinks]));
+  CLIMessage(Format(CPMStats, [LRules, LZones, GlobalCache.UniqueDays, 
+    GlobalCache.UniqueRules, GlobalCache.UniqueRuleFamilies, GlobalCache.FResAliases.Count]));
+
   CLIMessage(Format(CPMStartDump, [AOutputFile]));
 
   GlobalCache.DumpToFile(AOutputFile);
@@ -876,41 +890,16 @@ begin
   CLIMessage('Processing finished!');
 end;
 
-
 { TzCache }
 
-procedure TzCache.AddAlias(const AAlias: string; const AZone: TzZone);
+procedure TzCache.AddAlias(const AAlias, AToZone: string);
 var
-  LZone: TzZone;
+  LAlias: TAliasEntry;
 begin
-  if FLinks.{$IFDEF FPC}TryGetData{$ELSE}TryGetValue{$ENDIF}(AAlias, LZone) then
-    CLIError(Format(CPMAliasExists, [AAlias, LZone.FName, AZone.FName]))
-  else begin
-    CLIMessage(Format(CPMAddedAlias, [AAlias, AZone.FName]));
-    FLinks.Add(AAlias, AZone);
-  end;
-end;
+  LAlias.FAlias := AAlias;
+  LAlias.FTimeZone := AToZone;
 
-function TzCache.AddAlias(const AAlias, AToZone: string): boolean;
-var
-  LZone: TzZone;
-begin
-  for LZone in FZones do
-    if SameText(LZone.FName, AToZone) then
-    begin
-      { Only add alias if the "to" zone actually exists }
-      AddAlias(AAlias, LZone);
-      Exit(true);
-    end;
-
-  if FLinks.{$IFDEF FPC}TryGetData{$ELSE}TryGetValue{$ENDIF}(AToZone, LZone) then
-  begin
-    AddAlias(AAlias, LZone);
-    Exit(True);
-  end;
-
-  { failed! }
-  Result := false;
+  FAliases.Add(LAlias);
 end;
 
 constructor TzCache.Create;
@@ -919,7 +908,7 @@ begin
   FRules := {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzRule>.Create(true);
   FRuleFamilies := {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzRuleFamily>.Create(true);
   FZones := {$IFDEF FPC}TFPGObjectList{$ELSE}TObjectList{$ENDIF}<TzZone>.Create();
-  FLinks := {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>.Create();
+  FAliases := {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TAliasEntry>.Create();
 end;
 
 destructor TzCache.Destroy;
@@ -928,9 +917,59 @@ begin
   FRules.Free;
   FRuleFamilies.Free;
   FZones.Free;
-  FLinks.Free;
+  FAliases.Free;
+  if FResAliases <> nil then FResAliases.Free;
 
   inherited;
+end;
+
+procedure TzCache.Finalize;
+var
+  LAliasEntry: TAliasEntry;
+  LResult: {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>;
+
+  procedure AddTzAlias(const AAlias: string; const AZone: TzZone);
+  var
+    LZone: TzZone;
+  begin
+    if LResult.{$IFDEF FPC}TryGetData{$ELSE}TryGetValue{$ENDIF}(AAlias, LZone) then
+      CLIError(Format(CPMAliasExists, [AAlias, LZone.FName, AZone.FName]))
+    else
+    begin
+      CLIMessage(Format(CPMAddedAlias, [AAlias, AZone.FName]));
+      LResult.Add(AAlias, AZone);
+    end;
+  end;
+
+  procedure AddAlias(const AAlias, AToZone: string);
+  var
+    LZone: TzZone;
+  begin
+    for LZone in FZones do
+    begin
+      if SameText(LZone.FName, AToZone) then
+      begin
+        AddTzAlias(AAlias, LZone);
+        Exit;
+      end;
+    end;
+
+    if LResult.{$IFDEF FPC}TryGetData{$ELSE}TryGetValue{$ENDIF}(AToZone, LZone) then
+    begin
+      AddTzAlias(AAlias, LZone);
+      Exit;
+    end;
+
+    CLIError(Format(CPMAliasFailed, [AAlias, AToZone]));
+  end;
+
+begin
+  LResult := {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>.Create;
+  
+  for LAliasEntry in FAliases do
+    AddAlias(LAliasEntry.FAlias, LAliasEntry.FTimeZone);
+
+  FResAliases := LResult;
 end;
 
 procedure TzCache.DumpToFile(const AFile: string);
@@ -943,7 +982,6 @@ var
   I, X, LGhosts: Integer;
   LDayIdx, LRuleIdx: string;
   LAliasList: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<string>;
-
 begin
   { SOOOOOORT the collections that require lookup later }
 {$IFDEF FPC}
@@ -1164,10 +1202,10 @@ begin
     { ======= ALIASES ======== }
 {$IFDEF FPC}
     LAliasList := TFPGList<string>.Create();
-    for I := 0 to FLinks.Count - 1 do LAliasList.Add(FLinks.Keys[I]);
+    for I := 0 to FResAliases.Count - 1 do LAliasList.Add(FResAliases.Keys[I]);
     LAliasList.Sort(CompareStrings);
 {$ELSE}
-    LAliasList := TList<string>.Create(FLinks.Keys);
+    LAliasList := TList<string>.Create(FResAliases.Keys);
     LAliasList.Sort();
 {$ENDIF}
 
@@ -1175,7 +1213,7 @@ begin
     LGhosts := 0;
     for I := 0 to LAliasList.Count - 1 do
     begin
-      LZone := FLinks[LAliasList[I]];
+      LZone := FResAliases[LAliasList[I]];
       if LZone.FIndexInFile = -1 then
         Inc(LGhosts);
     end;
@@ -1186,7 +1224,7 @@ begin
 
     for I := 0 to LAliasList.Count - 1 do
     begin
-      LZone := FLinks[LAliasList[I]];
+      LZone := FResAliases[LAliasList[I]];
 
       if LZone.FIndexInFile = -1 then
         continue;
@@ -1203,7 +1241,7 @@ begin
     WriteLn(LFile, '  );');
     WriteLn(LFile);
 
-    LAliasList.Free();
+    LAliasList.Free;
   finally
     CloseFile(LFile);
   end;
