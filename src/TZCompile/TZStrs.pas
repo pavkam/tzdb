@@ -97,7 +97,16 @@ resourcestring
   CPMBadLineFROM = 'Found an invalid FROM field (empty or bad format).';
   CPMBadLineTO = 'Found an invalid TO field (empty or bad format).';
 
+  CPMAliasExists = 'Alias "%s" already points to zone "%s". Cannot reassign to zone "%s".';
+  CPMAddedAlias = 'Added new alias "%s" for zone "%s".';
+  CPMAddedZone = 'Added new zone "%s".';
+  CPMAddedRuleFamily = 'Added new rule family "%s".';
+  CPMAddedRule = 'Added new rule for month %d, day [%d/%d/%d/%d], at %d, char "%s", offset %d and letters "%s".';
   CPMBadFile = 'Unable to parse "%s" line in file (%s). Skipping!';
+  
+  CPMStartedFile = 'Processing file "%s" ...';
+  CPMStats = 'Processed %d rules; %d zones; %d day parts; %d unique rules; %d unique rule families; %d aliases.';
+CPMStartDump = 'Dumping parsed contents to "%s" ...';
 
 implementation
 

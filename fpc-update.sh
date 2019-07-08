@@ -22,7 +22,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "Converting the latest CLDR xml file to inc..."
-cat $REPO/cldr/windowsZones.xml | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/try GlobalCache.AddAlias("\1", "\2"); except end;/p' | sed "s/\"/'/g" > $REPO/src/TZCompile/WindowsTZ.inc
+cat $REPO/cldr/windowsZones.xml | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/GlobalCache.AddAlias("\1", "\2");/p' | sed "s/\"/'/g" > $REPO/src/TZCompile/WindowsTZ.inc
 
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to convert CLDR xml file to inc."
@@ -70,7 +70,7 @@ rm tzdata-latest.tar.gz
 
 IANAV=`cat $REPO/iana_temp/version`
 echo "Current TZDB database version is v$IANAV."
-FILES=( africa antarctica asia australasia backward etcetera europe northamerica pacificnew southamerica systemv )
+FILES=( africa antarctica asia australasia backward backzone etcetera europe northamerica pacificnew southamerica systemv )
 for fn in "${FILES[@]}"; do
     echo "Replacing file $fn ..."
     cp $REPO/iana_temp/$fn $REPO/tz_database_latest/$fn
@@ -98,6 +98,11 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "Updating README with the new version..."
-sed -i "s/\(.*\*\*\).*\(\*\*.*\)/\1$IANAV\2/g" README.md
+cat README.md | sed "s/\(.*\*\*\).*\(\*\*.*\)/\1$IANAV\2/g" > README.md
+
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to update README.md with the newest DB version."
+    exit 1
+fi
 
 echo "The process has finished! Whoop Whoop!"

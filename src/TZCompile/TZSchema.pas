@@ -71,7 +71,7 @@ type
     FOnDay: TzDay;
     FAt: Integer;
     FAtChar: Char;
-    FSave: Integer;	
+    FSave: Integer;
     FLetters: string;
   end;
 
@@ -197,7 +197,7 @@ begin
 end;
 
 function SplitString(const AString: string; const ADelimiters: AnsiString): TStringDynArray;
-var 
+var
   I, P: Integer;
   LSet: TSysCharSet;
   LOutList: TFPGList<string>;
@@ -229,10 +229,12 @@ var
   LOutList: TFPGList<string>;
 begin
   LOutList := TFPGList<string>.Create();
-  if FindFirst(ConcatPaths([ADir, '*']), faAnyFile, LInfo) = 0 then 
+  if FindFirst(ConcatPaths([ADir, '*']), faAnyFile, LInfo) = 0 then
   begin
     repeat
-      LOutList.Add(ConcatPaths([ADir, LInfo.Name])) 
+      if (LInfo.Attr and faDirectory) <> faDirectory then
+        LOutList.Add(ConcatPaths([ADir, LInfo.Name]))
+
     until FindNext(LInfo) <> 0;
   end;
 
@@ -268,7 +270,7 @@ end;
 
 class operator TzRuleFamily.TRuleWithSpan.Equal(const ALeft, ARight: TzRuleFamily.TRuleWithSpan): Boolean;
 begin
-  Result := 
+  Result :=
     (ALeft.FStart = ARight.FStart) and
     (ALeft.FEnd = ARight.FEnd) and
     (ALeft.FRule = ARight.FRule);
@@ -276,7 +278,7 @@ end;
 
 class operator TzZone.TZoneLine.Equal(const ALeft, ARight: TzZone.TZoneLine): Boolean;
 begin
-  Result := 
+  Result :=
     (ALeft.FGmtOff = ARight.FGmtOff) and
     (ALeft.FRuleFamily = ARight.FRuleFamily) and
     (ALeft.FFormatStr = ARight.FFormatStr) and
@@ -644,7 +646,7 @@ begin
   { The FORMAT parameter }
   LFormatStr := TzStrToFormat(AParts[LFixIdx + 2]);
 
-  { Defaultz for optinal parameters }
+  { Defaults for optional parameters }
   LUntilYear := 9999; { max year }
   LUntilMonth := 1;
   LUntilDay := nil;
@@ -799,6 +801,8 @@ begin
   { now the work can begin! }
   for LFile in ListFiles(AInputDir) do
   begin
+    CLIMessage(Format(CPMStartedFile, [LFile]));
+
     { read line-by-line }
     LZoneName := '';
     LAllLines := ReadFileLines(LFile);
@@ -864,16 +868,12 @@ begin
 
   RegisterStandardAliases();
 
-  Writeln(Format('Processed %d rules and %d zones', [LRules, LZones]));
-  Writeln(Format('  => %d day parts', [GlobalCache.UniqueDays]));
-  Writeln(Format('  => %d rules', [GlobalCache.UniqueRules]));
-  Writeln(Format('  => %d rule families', [GlobalCache.UniqueRuleFamilies]));
-  Writeln(Format('  => %d aliases', [LLinks]));
-
-  Write('Dumping to "', AOutputFile, '" ...');
+  CLIMessage(Format(CPMStats, [LRules, LZones, GlobalCache.UniqueDays, GlobalCache.UniqueRules, GlobalCache.UniqueRuleFamilies, LLinks]));
+  CLIMessage(Format(CPMStartDump, [AOutputFile]));
 
   GlobalCache.DumpToFile(AOutputFile);
-  Writeln('[DONE]');
+
+  CLIMessage('Processing finished!');
 end;
 
 
@@ -884,11 +884,11 @@ var
   LZone: TzZone;
 begin
   if FLinks.{$IFDEF FPC}TryGetData{$ELSE}TryGetValue{$ENDIF}(AAlias, LZone) then
-    raise EInvalidOp.CreateFmt
-      ('Alias "%s" (to "%s") already registered with zone "%s".',
-      [AAlias, AZone.FName, LZone.FName]);
-
-  FLinks.Add(AAlias, AZone);
+    CLIError(Format(CPMAliasExists, [AAlias, LZone.FName, AZone.FName]))
+  else begin
+    CLIMessage(Format(CPMAddedAlias, [AAlias, AZone.FName]));
+    FLinks.Add(AAlias, AZone);
+  end;
 end;
 
 function TzCache.AddAlias(const AAlias, AToZone: string): boolean;
@@ -1292,6 +1292,8 @@ begin
   Result.FSave := ASave;
   Result.FLetters := ALetters;
 
+  CLIMessage(Format(CPMAddedRule, [AInMonth, Ord(AOnDay.FType), AOnDay.FFixedDay, AOnDay.FDayOfWeek, AOnDay.FDayIndex, AAt, AAtChar, ASave, ALetters]));
+
   FRules.Add(Result);
 end;
 
@@ -1305,6 +1307,8 @@ begin
 
   Result := TzRuleFamily.Create;
   Result.FName := AName;
+
+  CLIMessage(Format(CPMAddedRuleFamily, [AName]));
 
   FRuleFamilies.Add(Result);
 end;
@@ -1335,6 +1339,8 @@ begin
   Result := TzZone.Create;
   Result.FName := AName;
 
+  CLIMessage(Format(CPMAddedZone, [AName]));
+
   FZones.Add(Result);
 end;
 
@@ -1348,7 +1354,7 @@ begin
   LSpan.FStart := AStart;
   LSpan.FEnd := AEnd;
   LSpan.FRule := ARule;
-	
+
   FRules.Add(LSpan);
 end;
 
