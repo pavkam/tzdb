@@ -825,8 +825,8 @@ procedure TTZDBTimezoneTest.Test_OperatesDST;
 var
   OperatesdDST: Boolean;
 begin
-  OperatesdDST := fTimeZone.OperatesDayligtTime(fYear);
-  CheckTrue(OperatesdDST, 'Operates DaylightSaving:');
+  OperatesdDST := fTimeZone.HasDayligthTime(fYear);
+  CheckTrue(OperatesdDST, 'Has DaylightSaving:');
 end;
 
 procedure TTZDBTimezoneTest.Test_StandardTime;
@@ -852,7 +852,7 @@ var
   ExpDatetime: string;
   ActDattime: string;
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StardardTimeStart(fYear));
+  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StandardTimeStart(fYear));
   DateTimeToString(ExpDatetime, FMT_D_T_ISO, fStdStart);
   CheckEquals(ExpDatetime, ActDattime, 'StandardTimeStart');
 end;
