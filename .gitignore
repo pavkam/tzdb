@@ -6,3 +6,6 @@
 __history
 bin
 *.stat
+*.o
+*.ppu
+*.rsj
