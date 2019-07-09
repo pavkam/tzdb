@@ -52,6 +52,7 @@ uses
     WriteLn('usage: tzview command [options...]');
     WriteLn('       --');
     WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
+    WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
     WriteLn('       tzview dump start_year end_year  --  dumps all periods for all known timezones between the given years.');
 
     Halt(1);

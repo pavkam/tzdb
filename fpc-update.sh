@@ -15,7 +15,7 @@ fi
 
 echo "Running in '$REPO' path."
 echo "Pulling the latest CLDR data from GitHub..."
-wget https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml -q -O ./cldr/windowsZoned.xml
+wget https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml -q -O ./cldr/windowsZones.xml
 
 if [ "$?" -ne 0 ]; then
     echo "[WARN] Failed pulling down updated CLDR Windows zone information from GitHub."
