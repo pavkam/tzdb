@@ -158,13 +158,12 @@ type
     ///  <summary>Get the starting date/time of ambiguous period.</summary>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The start date/time of ambiguous period in local time.</returns>
-    ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function AmbiguousTimeStart(const aYear: word): TDateTime;
+    function AmbiguousTimeStart(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of daylight saving period.</summary>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of daylight saving period in local time.</returns>
-    function DaylightTimeEnd(const aYear: word): TDateTime;
+    function DaylightTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of standard period.</summary>
     ///  <param name="AYear">The year to get data for.</param>
@@ -174,22 +173,22 @@ type
     ///  <summary>Get the ending date/time of invalid period.</summary>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of invalid period in local time.</returns>
-    function InvalidTimeEnd(const aYear: word): TDateTime;
+    function InvalidTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of ambiguous period.</summary>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of ambiguous period in local time.</returns>
-    function AmbiguousTimeEnd(const aYear: word): TDateTime;
+    function AmbiguousTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Determines if the timezone has daylight saving period.</summary>
     ///  <param name="AYear">The year to check.</param>
     ///  <returns><c>true</c> if the timezone has daylight saving time in the specified year.</returns>
-    function HasDaylightTime(const aYear: word): Boolean;
+    function HasDaylightTime(const AYear: word): Boolean;
 
-    ///  <summary>Converts an UTC time to an ISO8601 date time string.</summary>
-    ///  <param name="ADateTime">The UTC time.</param>
-    ///  <returns>The ISO8601 date time string that corresponds to the passed UTC time.</returns>
-    function ToISO8601Str(const ADateTime: TDateTime): String;
+    ///  <summary>Converts an UTC date/time to ISO8601 date time string.</summary>
+    ///  <param name="ADateTime">The UTC date/time to convert.</param>
+    ///  <returns>The ISO8601 date/time string that corresponds to the passed UTC time.</returns>
+    function ToISO8601Format(const ADateTime: TDateTime): String;
 
 {$IFNDEF SUPPORTS_TTIMEZONE}
     ///  <summary>Generates an abbreviation string for the given local time.</summary>
@@ -441,7 +440,7 @@ function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, AB
 begin
   { Generate a date with the given day of week as first in month }
   Result := EncodeDateMonthFirstDayOfWeek(AYear, AMonth, ADayOfWeek);
-  
+
   { If the DoW falls on the ABefore of the initial month then we're golden! Otherwise pick the last DoW of prev. month. }
   if DayOf(Result) > ABefore then
     Result := IncWeek(Result, -1);
@@ -474,10 +473,10 @@ begin
 
 {
   From IANA TZDB  https://data.iana.org/time-zones/tz-how-to.html
-  
+
   The FORMAT column specifies the usual abbreviation of the time zone name. It can have one of three forms:
     * A string of three or more characters that are either ASCII alphanumerics, \93+\94, or \93-\94, in which case that\92s the abbreviation.
-    * A pair of strings separated by a slash (\91/\92), in which case the first string is the abbreviation for the standard 
+    * A pair of strings separated by a slash (\91/\92), in which case the first string is the abbreviation for the standard
       time name and the second string is the abbreviation for the daylight saving time name.
     * A string containing \93%s,\94 in which case the \93%s\94 will be replaced by the text in the appropriate Rule\92s LETTER column.
 }
@@ -692,7 +691,7 @@ end;
 
 destructor TCompiledPeriod.Destroy;
 {$IFDEF SUPPORTS_GENERICS}
-var 
+var
   L: TList;
   C: Boolean;
 {$ENDIF}
@@ -1051,56 +1050,29 @@ begin
 end;
 
 
-function TBundledTimeZone.ToISO8601Str(const ADateTime: TDateTime): String;
+function TBundledTimeZone.ToISO8601Format(const ADateTime: TDateTime): string;
 const
-  ISO_Fmt = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%d%s%.2d:%.2d';
+  CFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%d%s%.2d:%.2d';
+
 var
-  LBias, LDstSave: Int64;
-  LTimeType: TLocalTimeType;
-  LStd, LDst: string; // Dummy!
-  LAdjusted: TDateTime;
-  Local: TDateTime;
-  Year, Month, Day,
-  Hrs, Mins, Secs, Msecs: Word;
-  Offset: Int64;
-  OffsetPrefix: Char;
-  OffsetHrs, OffsetMins: Word;
+  LLocalTime: TDateTime;
+  LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis: Word;
+  LBias, LBiasHours, LBiasMinutes: Integer;
+  LBiasSign: Char;
 begin
-  Offset := 0;
-  { Get all the expected data for this UTC time. }
-  GetTZData(ADateTime, LBias, LDstSave, LTimeType, LStd, LDst);
+  { Convert to local time. and then do the delta. }
+  LLocalTime := ToLocalTime(ADateTime);
+  LBias := MinutesBetween(LLocalTime, ADateTime);
 
-  { Create a new date-time adjusted by the standard bias. Now, we might have
-    landed into an invalid yer period or an ambiguous year period.
-    We will check for that and adjust properly. }
-  LAdjusted := IncSecond(ADateTime, LBias);
-  inc(Offset, LBias);
+  { Decode the local time (as we will include the bias into the repr.) }
+  DecodeDateTime(LLocalTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
 
-  { Get all the expected data for the adjust UTC (now local) time. }
-  GetTZData(LAdjusted, LBias, LDstSave, LTimeType, LStd, LDst);
+  if (LBias >= 0) then LBiasSign := '+' else LBiasSign := '-';
+  LBiasHours := Abs(LBias div (MinsPerHour * SecsPerMin));
+  LBiasMinutes := Abs((LBias mod (MinsPerHour * SecsPerMin)) div SecsPerMin);
 
-  { If we have indeed landed into the 2 nasty periods, simply add
-    the DST save so we can get into the safe zone. }
-  if (LTimeType = lttInvalid) or (LTimeType = lttDaylight) then
-  begin
-    Local := IncSecond(LAdjusted, LDSTSave);
-    inc(Offset, LDstSave);
-  end
-  else
-    Local := LAdjusted;
-
-  DecodeDateTime(Local, Year, Month, Day, Hrs, Mins, Secs, Msecs);
-
-  if (Offset >= 0) then
-    OffsetPrefix := '+'
-  else
-    OffsetPrefix := '-';
-
-  OffsetHrs := Abs(Offset div (MinsPerHour*SecsPerMin));
-  OffsetMins := Abs((Offset mod (MinsPerHour*SecsPerMin)) div SecsPerMin);
-
-  Result := Format(ISO_Fmt, [Year, Month, Day, Hrs, Mins, Secs, Msecs,
-    OffsetPrefix, OffsetHrs, OffsetMins]);
+  Result := Format(CFormat,
+    [LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis, LBiasSign, LBiasHours, LBiasMinutes]);
 end;
 
 destructor TBundledTimeZone.Destroy;
@@ -1413,7 +1385,7 @@ begin
 {$IFDEF SUPPORTS_MONITOR}
   MonitorExit(FTimeZoneCache);
 {$ELSE}
-  FTimeZoneCacheLock.Leave();
+  FTimeZoneCacheLock.Leave;
 {$ENDIF}
   end;
 end;
@@ -1659,4 +1631,3 @@ finalization
   FTimeZoneCache.Free;
 
 end.
-

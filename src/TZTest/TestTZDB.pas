@@ -603,7 +603,7 @@ begin
     CheckEquals(L1[I], L2[I], 'Expected same order for known tables');
 end;
 
-procedure ttzdbTest.Test_TZ_ISO8601_Conversion;
+procedure TTZDBTest.Test_TZ_ISO8601_Conversion;
 var
   LTZ: TBundledTimeZone;
   sTimezone: string;
@@ -618,16 +618,16 @@ begin
   }
 
   sTimezone := 'Australia/Canberra';
-  LTZ := TBundledTimeZone.Create(sTimezone);
+  LTZ := TBundledTimeZone.Create(sTimeZone);
   try
     //Local time 2018-04-01 02:00:00  DST
     Datetime  := EncodeDateTime(2018,3,31,15,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Str(Datetime);
+    sDatetime := LTZ.ToISO8601Format(DateTime);
     CheckEquals('2018-04-01 02:00:00.0+11:00', sDatetime, sTimezone);
 
     //Local time 2018-04-01 02:00:00  STD
     Datetime  := EncodeDateTime(2018,3,31,16,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Str(Datetime);
+    sDatetime := LTZ.ToISO8601Format(DateTime);
     CheckEquals('2018-04-01 02:00:00.0+10:00', sDatetime, sTimezone);
   finally
    LTZ.Free;
@@ -640,16 +640,16 @@ begin
   }
 
   sTimezone := 'Europe/London';
-  LTZ := TBundledTimeZone.Create(sTimezone);
+  LTZ := TBundledTimeZone.Create(sTimeZone);
   try
     //Local time 2018-10-28 02:00:00  DST
     Datetime  := EncodeDateTime(2018,10,28,00,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Str(Datetime);
+    sDatetime := LTZ.ToISO8601Format(DateTime);
     CheckEquals('2018-10-28 01:00:00.0+01:00', sDatetime, sTimezone);
 
     //Local time 2018-10-28 02:00:00  STD
     Datetime  := EncodeDateTime(2018,10,28,01,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Str(Datetime);
+    sDatetime := LTZ.ToISO8601Format(DateTime);
     CheckEquals('2018-10-28 01:00:00.0+00:00', sDatetime, sTimezone);
   finally
    LTZ.Free;
