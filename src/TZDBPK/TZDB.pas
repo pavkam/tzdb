@@ -1068,8 +1068,8 @@ begin
   DecodeDateTime(LLocalTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
 
   if (LBias >= 0) then LBiasSign := '+' else LBiasSign := '-';
-  LBiasHours := Abs(LBias div (MinsPerHour * SecsPerMin));
-  LBiasMinutes := Abs((LBias mod (MinsPerHour * SecsPerMin)) div SecsPerMin);
+  LBiasHours := Abs(LBias) div MinsPerHour;
+  LBiasMinutes := Abs(LBias) mod MinsPerHour;
 
   Result := Format(CFormat,
     [LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis, LBiasSign, LBiasHours, LBiasMinutes]);
