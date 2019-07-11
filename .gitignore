@@ -9,3 +9,9 @@ bin
 *.o
 *.ppu
 *.rsj
+src/TZCompile/TZCompile.identcache
+src/TZDB_Group.groupproj.local
+src/TZDBLIB/TZDBLIB.identcache
+src/TZDBPK/TZDBPK.identcache
+src/TZTest/TZTest.identcache
+src/TZVisualizer/TZVisualizer.identcache
