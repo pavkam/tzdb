@@ -1068,7 +1068,7 @@ begin
   { Convert to local time. and then do the delta. }
   LLocalTime := ToLocalTime(ADateTime);
 
-  LBias := GetUtcOffset(LLocalTime) div 60; // MinutesBetween(LLocalTime, ADateTime);
+  LBias := MinutesBetween(LLocalTime, ADateTime);
 
   { Decode the local time (as we will include the bias into the repr.) }
   DecodeDateTime(LLocalTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
