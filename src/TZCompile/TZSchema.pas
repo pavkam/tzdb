@@ -1100,8 +1100,9 @@ begin
     { ======= RULE FAMILIES ======== }
     WriteLn(LFile, 'var');
     WriteLn(LFile, '  { This array contains rule families. }');
-    WriteLn(LFile, '  CRuleFamilies: array[0 .. ' + IntToStr(FRuleFamilies.Count - LGhosts - 1) +
-        '] of TRuleFamily = (');
+    
+    X := FRuleFamilies.Count - LGhosts;
+    WriteLn(LFile, '  CRuleFamilies: array[0 .. ' + IntToStr(X - 1) + '] of TRuleFamily = (');
 
     for I := 0 to FRuleFamilies.Count - 1 do
     begin
@@ -1113,7 +1114,8 @@ begin
 
       Write(LFile, Format('    (FCount: %d; FFirstRule: @CFamily_%d_Arr)', [LFam.FRules.Count, LFam.FIndexInFile]));
 
-      if I < (FRuleFamilies.Count - 1) then
+      Dec(X);
+      if X > 0 then 
         Write(LFile, ',');
 
       WriteLn(LFile);
