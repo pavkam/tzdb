@@ -1,7 +1,7 @@
 media/*			linguist-vendored
 cldr/*			linguist-vendored
 docs/*			linguist-vendored
-tz_database_latest/	tz_database_latest
+tz_database_latest/*	linguist-vendored
 *			text=auto
 *.pas			text
 *.inc			text
