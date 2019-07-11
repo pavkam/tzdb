@@ -12,5 +12,4 @@ bin
 .vscode/
 vscode.code-workspace
 *.identcache
-*..local
-src/TZDB_Group.groupproj.local
+*.groupproj.local
