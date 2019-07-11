@@ -10,4 +10,4 @@ bin
 *.ppu
 *.rsj
 .vscode/
-.vscode.code-workspace
+src/vscode.code-workspace
