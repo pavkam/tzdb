@@ -10,4 +10,6 @@ bin
 *.ppu
 *.rsj
 .vscode/
-src/vscode.code-workspace
+vscode.code-workspace
+*.identcache
+*..local
