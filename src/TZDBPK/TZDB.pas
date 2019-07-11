@@ -437,13 +437,20 @@ begin
 end;
 
 function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, ABefore: Word): TDateTime;
-begin
-  { Generate a date with the given day of week as first in month }
-  Result := EncodeDateMonthFirstDayOfWeek(AYear, AMonth, ADayOfWeek);
+  var
+    WeekDayDiff : Integer;
 
-  { If the DoW falls on the ABefore of the initial month then we're golden! Otherwise pick the last DoW of prev. month. }
-  if DayOf(Result) > ABefore then
-    Result := IncWeek(Result, -1);
+begin
+  { Generate a date with ABefore as the Day in AMonth and AYear }
+  Result := EncodeDate(AYear, AMonth, ABefore);
+
+  { Adjust Date by difference in DayOfWeek of Date and ADayOfWeek.  If that difference is negative subtract a week. }
+  WeekDayDiff := DayOfTheWeek(Result) - ADayOfWeek;
+  if WeekDayDiff <> 0 then
+    if WeekDayDiff > 0 then
+      Result := Result - WeekDayDiff
+    else
+      Result := Result - WeekDayDiff - 7;
 end;
 
 function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay; const ATimeOfDay: Int64): TDateTime;
