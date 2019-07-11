@@ -74,6 +74,8 @@ type
     procedure Test_Etc_GTMMin9_1991;
     procedure Test_Europe_London_2018;
     procedure Test_America_St_Johns_2018;
+    procedure Test_Asia_Jerusalem_2005;
+    procedure Test_Asia_Jerusalem_2006;
   end;
 
 
@@ -499,6 +501,16 @@ end;
 procedure TTZDBTest.Test_America_St_Johns_2018;
 begin
   CompareKnown(CAmerica_St_Johns_2018, 'America/St_Johns', 2018);
+end;
+
+procedure TTZDBTest.Test_Asia_Jerusalem_2005;
+begin
+  CompareKnown(CAsia_Jerusalem_2005, 'Asia/Jerusalem', 2005);
+end;
+
+procedure TTZDBTest.Test_Asia_Jerusalem_2006;
+begin
+  CompareKnown(CAsia_Jerusalem_2006, 'Asia/Jerusalem', 2006);
 end;
 
 procedure TTZDBTest.Test_Etc_GTM12_2010;

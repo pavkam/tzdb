@@ -141,8 +141,7 @@ const
       FName_AsDST: 'EET'; FName_AsSTD: 'EET'; FBias_AsDST: 7200; FBias_AsSTD: 7200)
   );
 
-  const
-
+const
   CEurope_London_2018: array[0 .. 4] of TDecomposedPeriod = (
     (FStartsAt: 43101; FEndsAt: 43184.0416550926; FType: lttStandard; FAbbrv_AsDST: 'GMT'; FAbbrv_AsSTD: 'GMT';
       FName_AsDST: 'GMT'; FName_AsSTD: 'GMT'; FBias_AsDST: 0; FBias_AsSTD: 0),
@@ -156,8 +155,7 @@ const
       FName_AsDST: 'GMT'; FName_AsSTD: 'GMT'; FBias_AsDST: 0; FBias_AsSTD: 0)
   );
 
-  const
-
+const
   CAmerica_St_Johns_2018: array[0 .. 4] of TDecomposedPeriod = (
     (FStartsAt: 43101; FEndsAt: 43170.0833217593; FType: lttStandard; FAbbrv_AsDST: 'GMT-03:30'; FAbbrv_AsSTD: 'GMT-03:30';
       FName_AsDST: 'NST'; FName_AsSTD: 'NST'; FBias_AsDST: -12600; FBias_AsSTD: -12600),
@@ -170,6 +168,35 @@ const
     (FStartsAt: 43408.0833333333; FEndsAt: 43465.9999884259; FType: lttStandard; FAbbrv_AsDST: 'GMT-03:30'; FAbbrv_AsSTD: 'GMT-03:30';
       FName_AsDST: 'NST'; FName_AsSTD: 'NST'; FBias_AsDST: -12600; FBias_AsSTD: -12600)
   );
+
+const
+  CAsia_Jerusalem_2005: array[0 .. 4] of TDecomposedPeriod = (
+    (FStartsAt: 38353; FEndsAt: 38443.0833217593; FType: lttStandard; FAbbrv_AsDST: 'GMT+02'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IST'; FName_AsSTD: 'IST'; FBias_AsDST: 7200; FBias_AsSTD: 7200),
+    (FStartsAt: 38443.0833333333; FEndsAt: 38443.1249884259; FType: lttInvalid; FAbbrv_AsDST: ''; FAbbrv_AsSTD: '';
+      FName_AsDST: ''; FName_AsSTD: ''; FBias_AsDST: 0; FBias_AsSTD: 0),
+    (FStartsAt: 38443.125; FEndsAt: 38634.0416550926; FType: lttDaylight; FAbbrv_AsDST: 'GMT+03'; FAbbrv_AsSTD: 'GMT+03';
+      FName_AsDST: 'IDT'; FName_AsSTD: 'IDT'; FBias_AsDST: 10800; FBias_AsSTD: 10800),
+    (FStartsAt: 38634.0416666667; FEndsAt: 38634.0833217593; FType: lttAmbiguous; FAbbrv_AsDST: 'GMT+03'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IDT'; FName_AsSTD: 'IST'; FBias_AsDST: 10800; FBias_AsSTD: 7200),
+    (FStartsAt: 38634.0833333333; FEndsAt: 38717.9999884259; FType: lttStandard; FAbbrv_AsDST: 'GMT+02'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IST'; FName_AsSTD: 'IST'; FBias_AsDST: 7200; FBias_AsSTD: 7200)
+  );
+
+const
+  CAsia_Jerusalem_2006: array[0 .. 4] of TDecomposedPeriod = (
+    (FStartsAt: 38718; FEndsAt: 38807.0833217593; FType: lttStandard; FAbbrv_AsDST: 'GMT+02'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IST'; FName_AsSTD: 'IST'; FBias_AsDST: 7200; FBias_AsSTD: 7200),
+    (FStartsAt: 38807.0833333333; FEndsAt: 38807.1249884259; FType: lttInvalid; FAbbrv_AsDST: ''; FAbbrv_AsSTD: '';
+      FName_AsDST: ''; FName_AsSTD: ''; FBias_AsDST: 0; FBias_AsSTD: 0),
+    (FStartsAt: 38807.125; FEndsAt: 38991.0416550926; FType: lttDaylight; FAbbrv_AsDST: 'GMT+03'; FAbbrv_AsSTD: 'GMT+03';
+      FName_AsDST: 'IDT'; FName_AsSTD: 'IDT'; FBias_AsDST: 10800; FBias_AsSTD: 10800),
+    (FStartsAt: 38991.0416666667; FEndsAt: 38991.0833217593; FType: lttAmbiguous; FAbbrv_AsDST: 'GMT+03'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IDT'; FName_AsSTD: 'IST'; FBias_AsDST: 10800; FBias_AsSTD: 7200),
+    (FStartsAt: 38991.0833333333; FEndsAt: 39082.9999884259; FType: lttStandard; FAbbrv_AsDST: 'GMT+02'; FAbbrv_AsSTD: 'GMT+02';
+      FName_AsDST: 'IST'; FName_AsSTD: 'IST'; FBias_AsDST: 7200; FBias_AsSTD: 7200)
+  );
+
 
 implementation
 
