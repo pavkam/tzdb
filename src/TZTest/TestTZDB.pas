@@ -30,10 +30,15 @@ unit TestTZDB;
 interface
 
 uses
+{$IFNDEF FPC}
   TestFramework,
+  Generics.Collections,
+{$ELSE}
+  FPCUnit, TestUtils, TestRegistry,
+  FGL,
+{$ENDIF}
 {$IFNDEF SUPPORTS_TARRAY}Types,{$ENDIF}
 {$IFDEF SUPPORTS_TTIMESPAN}TimeSpan,{$ENDIF}
-Generics.Collections,
   Classes,
   SysUtils,
   TypInfo,
@@ -52,13 +57,8 @@ type
     function ProcessPeriod(const ATZ: TBundledTimeZone; const AStart: TDateTime; out AEnd: TDateTime;
       out AType: TLocalTimeType; out AAbbr_DST, AAbbr_STD, ADisp_DST, ADisp_STD: string; out ABias_DST, ABias_STD: Int64): Boolean;
 
-    function Decompose(const ATimeZone: TBundledTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
-
+    function Decompose(const ATimeZone: TBundledTimeZone; const AYear: Word): {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>;
     procedure CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
-
-    procedure DumpShit(const aTimezoneID: string; const aYear: Word;
-      const aFilename: string);
-
   published
     procedure Test_TZ_Contructor;
     procedure Test_TZ_GetTimeZone;
@@ -360,7 +360,7 @@ end;
 procedure TTZDBTest.CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
 var
   LTZ: TBundledTimeZone;
-  LDecomposed: TList<TDecomposedPeriod>;
+  LDecomposed: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>;
   I: Integer;
   LExp, LAct: TDecomposedPeriod;
   LNow: TDateTime;
@@ -437,15 +437,15 @@ begin
   end;
 end;
 
-function TTZDBTest.Decompose(const ATimeZone: TBundledTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
+function TTZDBTest.Decompose(const ATimeZone: TBundledTimeZone; const AYear: Word): {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>;
 var
   LShouldStop: Boolean;
   LStart, LEnd: TDateTime;
   LRec: TDecomposedPeriod;
 begin
   { Start the process from the beggining of the year }
-  LStart := EncodeDateTime(AYear, MonthJanuary, 1, 0, 0, 0, 0);
-  Result := TList<TDecomposedPeriod>.Create();
+  LStart := EncodeDateTime(AYear, 1, 1, 0, 0, 0, 0);
+  Result := {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>.Create();
 
   LShouldStop := false;
 
@@ -483,25 +483,21 @@ end;
 
 procedure TTZDBTest.Test_Africa_Cairo_2009;
 begin
-  //DumpShit('Africa/Cairo', 2009, 'D:\SourceCode\Temp\Cairo_2009.txt');
   CompareKnown(CAfrica_Cairo_2009, 'Africa/Cairo', 2009);
 end;
 
 procedure TTZDBTest.Test_Africa_Cairo_2010;
 begin
-  //DumpShit('Africa/Cairo', 2010, 'D:\SourceCode\Temp\Cairo_2010.txt');
   CompareKnown(CAfrica_Cairo_2010, 'Africa/Cairo', 2010);
 end;
 
 procedure TTZDBTest.Test_America_Araguaina_1950;
 begin
-  //DumpShit('America/Araguaina', 1950, 'D:\SourceCode\Temp\Araguaina_1950.txt');
   CompareKnown(CAmerica_Araguaina_1950, 'America/Araguaina', 1950);
 end;
 
 procedure TTZDBTest.Test_America_St_Johns_2018;
 begin
-  //DumpShit('America/St_Johns', 2018, 'D:\SourceCode\Temp\St_Johns_2018.txt');
   CompareKnown(CAmerica_St_Johns_2018, 'America/St_Johns', 2018);
 end;
 
@@ -522,7 +518,6 @@ end;
 
 procedure TTZDBTest.Test_Europe_London_2018;
 begin
-  //DumpShit('Europe/London', 2018, 'D:\SourceCode\Temp\London_2010.txt');
   CompareKnown(CEurope_London_2018, 'Europe/London', 2018);
 end;
 
@@ -659,43 +654,6 @@ begin
 
 end;
 
-//  -- Generates proper constants out of what we need
-procedure TTZDBTest.DumpShit(const aTimezoneID: string; const aYear: Word;
-  const aFilename: string);
-var
-  LTZ: TBundledTimeZone;
-  LDec: TList<TDecomposedPeriod>;
-  LPer: TDecomposedPeriod;
-  LWr: TStreamWriter;
-  I: Integer;
-begin
-  LTZ := TBundledTimeZone.GetTimeZone(aTimezoneID);
-  LDec := Decompose(LTZ, aYear);
-
-  FormatSettings.DecimalSeparator := '.';
-  LWr := TStreamWriter.Create(aFilename);
-  LWr.WriteLine('const');
-  LWr.WriteLine('  CDump: array[0 .. ' + IntToStr(LDec.Count - 1) + '] of TDecomposedPeriod = (');
-  for I := 0 to LDec.Count - 1 do
-  begin
-    LPer := LDec[I];
-
-    LWr.Write('    (FStartsAt: ' + FloatToStr(LPer.FStartsAt) + '; FEndsAt: ' + FloatToStr(LPer.FEndsAt) + '; FType: ' + GetEnumName(TypeInfo(TLocalTimeType), Ord(LPer.FType)) + '; ');
-    LWr.WriteLine('FAbbrv_AsDST: ''' + LPer.FAbbrv_AsDST + '''; FAbbrv_AsSTD: ''' + LPer.FAbbrv_AsSTD + '''; ');
-    LWr.Write('      FName_AsDST: ''' + LPer.FName_AsDST + '''; FName_AsSTD: ''' + LPer.FName_AsSTD + '''; FBias_AsDST: ' + IntToStr(LPer.FBias_AsDST) + '; FBias_AsSTD: ' + IntToStr(LPer.FBias_AsSTD));
-
-    if I < (LDec.Count - 1) then
-      LWr.WriteLine('),')
-    else
-      LWr.WriteLine(')');
-  end;
-  LWr.WriteLine('  );');
-
-  LWr.Free;
-  LDec.Free;
-end;
-
-
 { TTZDBTimezoneTest }
 
 function TTZDBTimezoneTest.RandomDate(aFromDatetime,
@@ -743,22 +701,22 @@ end;
 
 procedure TTZDBTimezoneTest.Test_AmbiguousTimeEnd;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeEnd(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbEnd);
-  CheckEquals(ExpDatetime, ActDattime, 'AmbiguousTimeEnd');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeEnd(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fAmbEnd);
+  CheckEquals(LExpDateTime, LActDateTime, 'AmbiguousTimeEnd');
 end;
 
 procedure TTZDBTimezoneTest.Test_AmbiguousTimeStart;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeStart(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fAmbStart);
-  CheckEquals(ExpDatetime, ActDattime, 'AmbiguousTimeStart');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeStart(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fAmbStart);
+  CheckEquals(LExpDateTime, LActDateTime, 'AmbiguousTimeStart');
 end;
 
 procedure TTZDBTimezoneTest.Test_DaylightTime;
@@ -771,22 +729,23 @@ end;
 
 procedure TTZDBTimezoneTest.Test_DaylightTimeEnd;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.DaylightTimeEnd(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fDstEnd);
-  CheckEquals(ExpDatetime, ActDattime, 'DaylightTimeEnd');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.DaylightTimeEnd(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fDstEnd);
+  CheckEquals(LExpDateTime, LActDateTime, 'DaylightTimeEnd');
 end;
 
 procedure TTZDBTimezoneTest.Test_DaylightTimeStart;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.DaylightTimeStart(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fDstStart);
-  CheckEquals(ExpDatetime, ActDattime, 'DaylightTimeStart');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.DaylightTimeStart(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fDstStart);
+
+  CheckEquals(LExpDateTime, LActDateTime, 'DaylightTimeStart');
 end;
 
 procedure TTZDBTimezoneTest.Test_InvalidTime;
@@ -803,29 +762,30 @@ end;
 
 procedure TTZDBTimezoneTest.Test_InvalidTimeEnd;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.InvalidTimeEnd(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fInvEnd);
-  CheckEquals(ExpDatetime, ActDattime, 'InvalidTimeEnd');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.InvalidTimeEnd(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fInvEnd);
+  CheckEquals(LExpDateTime, LActDateTime, 'InvalidTimeEnd');
 end;
 
 procedure TTZDBTimezoneTest.Test_InvalidTimeStart;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.InvalidTimeStart(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fInvStart);
-  CheckEquals(ExpDatetime, ActDattime, 'InvalidTimeStart');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.InvalidTimeStart(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fInvStart);
+
+  CheckEquals(LExpDateTime, LActDateTime, 'InvalidTimeStart');
 end;
 
 procedure TTZDBTimezoneTest.Test_OperatesDST;
 var
   OperatesdDST: Boolean;
 begin
-  OperatesdDST := fTimeZone.HasDayligthTime(fYear);
+  OperatesdDST := fTimeZone.HasDaylightTime(fYear);
   CheckTrue(OperatesdDST, 'Has DaylightSaving:');
 end;
 
@@ -839,22 +799,24 @@ end;
 
 procedure TTZDBTimezoneTest.Test_StandardTimeEnd;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StandardTimeEnd(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fStdEnd);
-  CheckEquals(ExpDatetime, ActDattime, 'StandardTimeEnd');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.StandardTimeEnd(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fStdEnd);
+  
+  CheckEquals(LExpDateTime, LActDateTime, 'StandardTimeEnd');
 end;
 
 procedure TTZDBTimezoneTest.Test_StandardTimeStart;
 var
-  ExpDatetime: string;
-  ActDattime: string;
+  LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
+  LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(ActDattime, FMT_D_T_ISO, fTimeZone.StandardTimeStart(fYear));
-  DateTimeToString(ExpDatetime, FMT_D_T_ISO, fStdStart);
-  CheckEquals(ExpDatetime, ActDattime, 'StandardTimeStart');
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.StandardTimeStart(fYear));
+  DateTimeToString(LExpDateTime, FMT_D_T_ISO, fStdStart);
+
+  CheckEquals(LExpDateTime, LActDateTime, 'StandardTimeStart');
 end;
 
 { TTZDB_St_Johns_2018_Test }
@@ -994,10 +956,9 @@ begin
 end;
 
 initialization
-  RegisterTest(TTZDBTest.Suite);
-  RegisterTest(TTZDB_St_Johns_2018_Test.Suite);
-  RegisterTest(TTZDB_London_2018_Test.Suite);
-  RegisterTest(TTZDB_Canberra_2018_Test.Suite);
-  RegisterTest(TTZDB_NewYork_2018_Test.Suite);
+  RegisterTest(TTZDBTest{$IFNDEF FPC}.Suite{$ENDIF});
+  RegisterTest(TTZDB_St_Johns_2018_Test{$IFNDEF FPC}.Suite{$ENDIF});
+  RegisterTest(TTZDB_London_2018_Test{$IFNDEF FPC}.Suite{$ENDIF});
+  RegisterTest(TTZDB_Canberra_2018_Test{$IFNDEF FPC}.Suite{$ENDIF});
+  RegisterTest(TTZDB_NewYork_2018_Test{$IFNDEF FPC}.Suite{$ENDIF});
 end.
-

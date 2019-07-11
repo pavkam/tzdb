@@ -10,19 +10,41 @@ program TZTest;
 
 }
 
+{$INCLUDE '..\TZDBPK\Version.inc'}
+
 {$IFDEF CONSOLE_TESTRUNNER}
 {$APPTYPE CONSOLE}
 {$ENDIF}
 
 uses
+{$IFNDEF FPC}
   Forms,
   TestFramework,
   GUITestRunner,
   TextTestRunner,
+{$ELSE}
+  FPCUnit, TestUtils, TestRegistry,
+  ConsoleTestRunner, CustApp,
+{$ENDIF}
   TestTZDB in 'TestTZDB.pas',
   TZDB in '..\TZDBPK\TZDB.pas',
   KnownTZCases in 'KnownTZCases.pas',
   TZCAPI in '..\TZDBLIB\TZCAPI.pas';
+
+{$IFDEF FPC}
+var
+  LRunner: TCustomApplication;
+begin
+  LRunner := TTestRunner.Create(nil);
+  try
+    LRunner.Initialize;
+    LRunner.Title := 'FPCUnit Console Test Case runner.';
+    LRunner.Run;
+  finally
+    LRunner.Free;
+  end;
+end.
+{$ELSE}
 
 {$R *.RES}
 
@@ -34,4 +56,4 @@ begin
   else
     GUITestRunner.RunRegisteredTests;
 end.
-
+{$ENDIF}

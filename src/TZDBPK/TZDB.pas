@@ -437,20 +437,18 @@ begin
 end;
 
 function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, ABefore: Word): TDateTime;
-  var
-    WeekDayDiff : Integer;
-
+var
+  LWeekDayDiff : Integer;
 begin
   { Generate a date with ABefore as the Day in AMonth and AYear }
   Result := EncodeDate(AYear, AMonth, ABefore);
 
   { Adjust Date by difference in DayOfWeek of Date and ADayOfWeek.  If that difference is negative subtract a week. }
-  WeekDayDiff := DayOfTheWeek(Result) - ADayOfWeek;
-  if WeekDayDiff <> 0 then
-    if WeekDayDiff > 0 then
-      Result := Result - WeekDayDiff
-    else
-      Result := Result - WeekDayDiff - 7;
+  LWeekDayDiff := DayOfTheWeek(Result) - ADayOfWeek;
+  if LWeekDayDiff > 0 then
+    Result := IncDay(Result, -LWeekDayDiff)
+  else if LWeekDayDiff < 0 then
+    Result := IncDay(Result, - (LWeekDayDiff + 7));
 end;
 
 function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay; const ATimeOfDay: Int64): TDateTime;
@@ -1069,7 +1067,8 @@ var
 begin
   { Convert to local time. and then do the delta. }
   LLocalTime := ToLocalTime(ADateTime);
-  LBias := MinutesBetween(LLocalTime, ADateTime);
+
+  LBias := GetUtcOffset(LLocalTime) div 60; // MinutesBetween(LLocalTime, ADateTime);
 
   { Decode the local time (as we will include the bias into the repr.) }
   DecodeDateTime(LLocalTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);

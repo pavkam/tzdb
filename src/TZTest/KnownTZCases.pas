@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010, Alexandru Ciobanu (alex+git@ciobanu.org)
+* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -25,6 +25,8 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+{$INCLUDE '..\TZDBPK\Version.inc'}
+
 unit KnownTZCases;
 interface
 uses
@@ -43,6 +45,9 @@ type
        FName_AsSTD: string;
     FBias_AsDST,
      FBias_AsSTD: Int64;
+{$IFDEF FPC}
+      class operator Equal(const ALeft, ARight: TDecomposedPeriod): Boolean;
+{$ENDIF}
   end;
 
 const
@@ -166,8 +171,22 @@ const
       FName_AsDST: 'NST'; FName_AsSTD: 'NST'; FBias_AsDST: -12600; FBias_AsSTD: -12600)
   );
 
-
-
 implementation
+
+{$IFDEF FPC}
+class operator TDecomposedPeriod.Equal(const ALeft, ARight: TDecomposedPeriod): Boolean;
+begin
+  Result :=
+    (ALeft.FStartsAt = ARight.FStartsAt) and
+    (ALeft.FEndsAt = ARight.FEndsAt) and
+    (ALeft.FType = ARight.FType) and
+    (ALeft.FAbbrv_AsDST = ARight.FAbbrv_AsDST) and
+    (ALeft.FAbbrv_AsSTD = ARight.FAbbrv_AsSTD) and
+    (ALeft.FName_AsDST = ARight.FName_AsDST) and
+    (ALeft.FName_AsSTD = ARight.FName_AsSTD) and
+    (ALeft.FBias_AsDST = ARight.FBias_AsDST) and
+    (ALeft.FBias_AsSTD = ARight.FBias_AsSTD);
+end;
+{$ENDIF}
 
 end.
