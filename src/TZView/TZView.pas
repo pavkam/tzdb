@@ -46,30 +46,37 @@ uses
   TZDB in '../TZDBPK/TZDB.pas',
   Deconstruction;
 
-  procedure PrintHeaderAndExit;
-  begin
-    WriteLn('tzview - view and compare time zone data. (c) 2019 Alexandru Ciobanu (alex+git@ciobanu.org).');
-    WriteLn('usage: tzview command [options...]');
-    WriteLn('       --');
-    WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
-    WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
-    WriteLn('       tzview dump start_year end_year  --  dumps all periods for all known timezones between the given years.');
+procedure PrintHeaderAndExit;
+begin
+  WriteLn('tzview - view and compare time zone data. (c) 2019 Alexandru Ciobanu (alex+git@ciobanu.org).');
+  WriteLn('usage: tzview command [options...]');
+  WriteLn('       --');
+  WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
+  WriteLn('       tzview view <year> <timezone>    --  deconstructs a time zone for a given year.');
 
-    Halt(1);
-  end;
+  Halt(1);
+end;
+
+procedure ErrorAndExit(const AMessage: string);
+begin
+  WriteLn('[ERR] ' + AMessage);
+  Halt(2);
+end;
 
 var
-  LCommand: string;
-  LStartYear, LEndYear: Integer;
+  LYear: Integer;
   LTimeZones: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
   S: string;
+  LTZ: TBundledTimeZone;
+  LList: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDateSegment>;
+  LSegment: TDateSegment;
 begin
   if (ParamCount < 1) then PrintHeaderAndExit;
 
   if LowerCase(ParamStr(1)) = 'list' then
   begin
     if (ParamCount < 2) then
-      PrintHeaderAndExit;
+      ErrorAndExit('The "list" command expects two other arguments.');
 
     if ParamStr(2) = 'all' then
       LTimeZones := TBundledTimeZone.KnownTimeZones
@@ -78,17 +85,52 @@ begin
     else if ParamStr(2) = 'aliases' then
       LTimeZones := TBundledTimeZone.KnownAliases
     else
-      PrintHeaderAndExit;
+      ErrorAndExit('The "list" command expects either "all", "tz" or "aliases".');
 
     for S in LTimeZones do
       WriteLn(S);
-  end else if LowerCase(ParamStr(1)) = 'dump' then
+  end else if LowerCase(ParamStr(1)) = 'view' then
   begin
-    if (ParamCount < 3) then PrintHeaderAndExit;
-    if (not TryStrToInt(ParamStr(2), LStartYear)) or
-       (not TryStrToInt(ParamStr(3), LEndYear)) or
-       (LStartYear > LEndYear)
-    then PrintHeaderAndExit;
+    if (ParamCount < 2) then
+      ErrorAndExit('The "view" command expects two other arguments.');
+
+    if (not TryStrToInt(ParamStr(2), LYear)) then
+      ErrorAndExit('The "view" command expects a valid year.');
+
+    try
+      LTZ := TBundledTimeZone.Create(ParamStr(3));
+    except
+      on E: ETimeZoneInvalid do
+        ErrorAndExit('The time zone "' + ParamStr(3) + '" cannot be found.');
+    end;
+    
+    LList := Decompose(LTZ, LYear);
+
+    WriteLn(
+      PadRight('Period', 10),
+      PadRight('Start', 32),
+      PadRight('End', 32),
+      PadRight('Abbrv.', 10),
+      PadRight('Name', 10),
+      'Bias');
+
+    for LSegment in LList do
+    begin
+      case LSegment.LocalType of 
+        lttStandard: S := 'Standard';
+        lttDaylight: S := 'Daylight';
+        lttAmbiguous: S := 'Ambiguous';
+        lttInvalid: S := 'Invalid';
+      end;
+      
+      WriteLn(
+        PadRight(S, 10), 
+        PadRight(LTZ.ToISO8601Format(LSegment.StartsAt), 32), 
+        PadRight(LTZ.ToISO8601Format(LSegment.StartsAt), 32), 
+        PadRight(LSegment.Abbreviation, 10),
+        PadRight(LSegment.DisplayName, 10),
+        LSegment.Bias);
+    end;
   end
-  else PrintHeaderAndExit;
+    else PrintHeaderAndExit;
 end.
