@@ -1,8 +1,9 @@
-media/*			linguist-vendored
-cldr/*			linguist-vendored
-docs/*			linguist-vendored
+media/*			          linguist-vendored
+cldr/*			          linguist-vendored
+docs/*			          linguist-vendored
 tz_database_latest/*	linguist-vendored
-*			text=auto
+*.inc                 linguist-language=Pascal
+*			                text=auto
 *.pas			text
 *.inc			text
 *.dpr			text
