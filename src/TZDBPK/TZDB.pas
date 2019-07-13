@@ -62,6 +62,10 @@ type
   ///  is not present in the bundled database or that its format is invalid.</summary>
   ETimeZoneInvalid = class(Exception);
 
+  ///  <summary>Exception type used to signal the caller code that date/time year details are not
+  ///  bundled for the given time zone.</summary>
+  EUnknownTimeZoneYear = class(Exception);
+
   ///  <summary>A timezone class implementation that retreives its data from the bundled database.</summary>
   ///  <remarks>This class inherits the standard <c>TTimeZone</c> class in Delphi XE.</remarks>
   TBundledTimeZone = class{$IFDEF SUPPORTS_TTIMEZONE}(TTimeZone){$ENDIF}
@@ -132,7 +136,8 @@ type
 
     ///  <summary>Returns the time zone name for a given alias.</summary>
     ///  <param name="AAlias">The alias to lookup.</param>
-    ///  <returns>The name of the time zone, if found. <c>nil</c> otherwise.</returns>
+    ///  <returns>The name of the time zone, if found.</returns>
+    ///  <exception cref="TZDB|ETimeZoneInvalid">The specified alias cannot be found in the bundled database.</exception>
     class function GetTimeZoneFromAlias(const AAliasID: string): string;
 
     ///  <summary>Returns an instance of this time zone class.</summary>
@@ -141,53 +146,71 @@ type
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
     ///  <summary>Get the starting date/time of daylight period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The start time of daylight saving period in the local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function DaylightTimeStart(const AYear: Word): TDateTime;
 
     ///  <summary>Get the starting date/time of standard period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The start date/time of standard period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function StandardTimeStart(const AYear: Word): TDateTime;
 
     ///  <summary>Get the starting date/time of invalid period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The start date/time of invalid period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function InvalidTimeStart(const AYear: word): TDateTime;
 
     ///  <summary>Get the starting date/time of ambiguous period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The start date/time of ambiguous period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function AmbiguousTimeStart(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of daylight saving period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of daylight saving period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function DaylightTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of standard period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The ending date/time of standard period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function StandardTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of invalid period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of invalid period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function InvalidTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Get the ending date/time of ambiguous period.</summary>
+    ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <returns>The end date/time of ambiguous period in local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function AmbiguousTimeEnd(const AYear: word): TDateTime;
 
     ///  <summary>Determines if the timezone has daylight saving period.</summary>
     ///  <param name="AYear">The year to check.</param>
     ///  <returns><c>true</c> if the timezone has daylight saving time in the specified year.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function HasDaylightTime(const AYear: word): Boolean;
 
     ///  <summary>Converts an UTC date/time to ISO8601 date time string.</summary>
     ///  <param name="ADateTime">The UTC date/time to convert.</param>
     ///  <returns>The ISO8601 date/time string that corresponds to the passed UTC time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function ToISO8601Format(const ADateTime: TDateTime): String;
 
 {$IFNDEF SUPPORTS_TTIMEZONE}
@@ -195,6 +218,7 @@ type
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns>A string containing the abbreviation.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function GetAbbreviation(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;
 
@@ -202,34 +226,40 @@ type
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns>A string containing the display name.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function GetDisplayName(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;
 
     ///  <summary>Returns the type of the local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <returns>An enumeration value specifying the type of the local time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
     ///  <summary>Checks whether the specified local time is ambiguous.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <returns><c>True</c> if the local time is ambiguous; <c>False</c> otherwise.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function IsAmbiguousTime(const ADateTime: TDateTime): Boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
     ///  <summary>Checks whether the specified local time is daylight.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns><c>True</c> if the local time is ambiguous; <c>False</c> otherwise.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function IsDaylightTime(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;
 
     ///  <summary>Checks whether the specified local time is invalid.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <returns><c>True</c> if the local time is invalid; <c>False</c> otherwise.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function IsInvalidTime(const ADateTime: TDateTime): Boolean; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
     ///  <summary>Checks whether the specified local time is standard.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns><c>True</c> if the local time is standard; <c>False</c> otherwise.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function IsStandardTime(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): Boolean;
 
     ///  <summary>Returns the UTC offset of the given local time.</summary>
@@ -237,12 +267,14 @@ type
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns>The UTC offset of the given local time. Subtract this value from the passed local time to obtain an UTC time.</returns>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function GetUtcOffset(const ADateTime: TDateTime; const AForceDaylight: Boolean = false):
       {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF}; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
     ///  <summary>Converts an UTC time to a local time.</summary>
     ///  <param name="ADateTime">The UTC time.</param>
     ///  <returns>The local time that corresponds to the passed UTC time.</returns>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function ToLocalTime(const ADateTime: TDateTime): TDateTime;
 
     ///  <summary>Converts a local time to an UTC time.</summary>
@@ -250,6 +282,7 @@ type
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns>The UTC time that corresponds to the passed local time.</returns>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     function ToUniversalTime(const ADateTime: TDateTime;
       const AForceDaylight: Boolean = false): TDateTime; {$IFDEF SUPPORTS_INLINE}inline;{$ENDIF}
 
@@ -286,8 +319,10 @@ uses
 
 resourcestring
   SNoBundledTZForName = 'Could not find any data for timezone "%s".';
-  STimeZoneHasNoPeriod =
-    'There is no matching period that matches date [%s] in timezone "%s".';
+  SDateTimeNotResolvable =
+    'The date [%s] cannot be matched to a period in the bundled timezone "%s".';
+  SYearNotResolvable =
+    'The year [%d] cannot is not in the bundled timezone "%s".';
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 type
@@ -980,11 +1015,8 @@ begin
   Result := 0.0;
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
- //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-
-    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
-      [DateTimeToStr(ADateTime), DoGetID()]);
+    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1022,11 +1054,8 @@ begin
   Result := 0.0;
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
-  //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-
-    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
-      [DateTimeToStr(ADateTime), DoGetID()]);
+    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1413,7 +1442,7 @@ var
 begin
   { Get period and rule }
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
+    raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable,
       [DateTimeToStr(ADateTime), DoGetID()]);
 
   { Go ahead baby }
@@ -1527,11 +1556,8 @@ begin
   Result := 0.0;
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
- //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-
-    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
-      [DateTimeToStr(ADateTime), DoGetID()]);
+    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1569,11 +1595,8 @@ begin
   Result := 0.0;
   ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
 
-  //Get period and rule
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-
-    raise ETimeZoneInvalid.CreateResFmt(@STimeZoneHasNoPeriod,
-      [DateTimeToStr(ADateTime), DoGetID()]);
+    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
