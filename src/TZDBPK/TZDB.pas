@@ -1024,10 +1024,6 @@ begin
 
   if LRule <> nil then
   begin
-      //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
-      //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
-      //ambiguous and invalid times.
-
     AType := LRule.GetLocalTimeType(ADateTime);
 
     case AType of
@@ -1063,10 +1059,6 @@ begin
 
   if LRule <> nil then
   begin
-    //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
-    //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
-    //ambiguous and invalid times.
-
     AType := LRule.GetLocalTimeType(ADateTime);
 
     case AType of
@@ -1086,7 +1078,6 @@ begin
   end;
 
 end;
-
 
 function TBundledTimeZone.ToISO8601Format(const ADateTime: TDateTime): string;
 const
@@ -1565,10 +1556,6 @@ begin
 
   if LRule <> nil then
   begin
-      //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
-      //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
-      //ambiguous and invalid times.
-
     AType := LRule.GetLocalTimeType(ADateTime);
 
     case AType of
@@ -1604,10 +1591,6 @@ begin
 
   if LRule <> nil then
   begin
-    //Some little hacks to integrate this more powerful system in DateUtils' TTimeZone system.
-    //AOffset in TTimeZone is always set to the same value all year long. ADstSave is provided in case of
-    //ambiguous and invalid times.
-
     AType := LRule.GetLocalTimeType(ADateTime);
 
     case AType of
