@@ -586,6 +586,7 @@ type
 
     { Compiles the Rules for a given year }
     function CompileRulesForYear(const AYear: Word): TList;  { TCompiledRule }
+    function GetRulesForYear(const AYear: Word): TList; { TCompiledRule }
   public
     { Basic stuffs }
     constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TDateTime);
@@ -761,14 +762,9 @@ begin
   inherited;
 end;
 
-function TCompiledPeriod.FindMatchingRule(const ADateTime: TDateTime): TCompiledRule;
-var
-  LYear: Word;
-  LCompiledList: TList;
-  I, LCompResult: Integer;
+function TCompiledPeriod.GetRulesForYear(const AYear: Word): TList;
 begin
   Result := nil;
-  LYear := YearOf(ADateTime);
 
   { Protect this part of the code since it may change internal structures over time }
 {$IFDEF SUPPORTS_MONITOR}
@@ -780,28 +776,36 @@ begin
 {$WARNINGS OFF}
     { Check if we have a cached list of matching rules for this date's year }
 {$IFDEF SUPPORTS_GENERICS}
-    if not FRulesByYear.TryGetValue(LYear, LCompiledList) then
+    if not FRulesByYear.TryGetValue(AYear, Result) then
 {$ELSE}
-    if not FRulesByYear.Find(Pointer(LYear), Pointer(LCompiledList)) then
+    if not FRulesByYear.Find(Pointer(AYear), Pointer(Result)) then
 {$ENDIF}
-      LCompiledList := CompileRulesForYear(LYear);
+      Result := CompileRulesForYear(AYear);
 {$WARNINGS ON}
-
-    { Iterate over and search what we like. Do not stop on the first one obviously }
-    for I := 0 to LCompiledList.Count - 1 do
-    begin
-      LCompResult := CompareDateTime(ADateTime,
-        TCompiledRule(LCompiledList[I]).StartsOn);
-
-      if LCompResult >= 0 then
-        Result := TCompiledRule(LCompiledList[I]);
-    end;
   finally
 {$IFDEF SUPPORTS_MONITOR}
     MonitorExit(FRulesByYear);
 {$ELSE}
     FRulesByYearLock.Leave();
 {$ENDIF}
+  end;
+end;
+
+function TCompiledPeriod.FindMatchingRule(const ADateTime: TDateTime): TCompiledRule;
+var
+  LCompiledList: TList;
+  I, LCompResult: Integer;
+begin
+  Result := nil;
+
+  LCompiledList := GetRulesForYear(YearOf(ADateTime));
+
+  { Iterate over and search what we like. Do not stop on the first one obviously }
+  for I := 0 to LCompiledList.Count - 1 do
+  begin
+    LCompResult := CompareDateTime(ADateTime, TCompiledRule(LCompiledList[I]).StartsOn);
+    if LCompResult >= 0 then
+      Result := TCompiledRule(LCompiledList[I]);
   end;
 end;
 
