@@ -83,19 +83,20 @@ type
   const
     FMT_D_T_ISO = 'yyyy-mm-dd hh:nn:ss';
   private
-    fTimeZoneID: string;
-    fTimeZone: TBundledTimeZone;
-    fYear : Word;
+    FTimeZoneID: string;
+    FTZ: TBundledTimeZone;
+    FYear : Word;
 
     fStdEnd,
-    fInvStart,
-    fInvEnd,
-    fDstStart,
-    fDstEnd,
-    fAmbStart,
-    fAmbEnd,
-    fStdStart :tdatetime;
-    function RandomDate(aFromDatetime, aToDatetime : TDateTime) : TDateTime;
+    FInvStart,
+    FInvEnd,
+    FDstStart,
+    FDstEnd,
+    FAmbStart,
+    FAmbEnd,
+    FStdStart: TDateTime;
+
+    function RandomDate(AFromDateTime, AToDateTime: TDateTime) : TDateTime;
   protected
     procedure SetUp; override;
     procedure TearDown; override;
@@ -613,9 +614,9 @@ end;
 procedure TTZDBTest.Test_TZ_ISO8601_Conversion;
 var
   LTZ: TBundledTimeZone;
-  sTimezone: string;
-  sDatetime: string;
-  Datetime: TDateTime;
+  LTimeZone: string;
+  LDateTimeStr: string;
+  LDateTime: TDateTime;
 begin
 
   {
@@ -624,18 +625,18 @@ begin
   Sunday, 1 April 2018, 02:00:00 local standard time instead.
   }
 
-  sTimezone := 'Australia/Canberra';
-  LTZ := TBundledTimeZone.Create(sTimeZone);
+  LTimeZone := 'Australia/Canberra';
+  LTZ := TBundledTimeZone.Create(LTimeZone);
   try
     //Local time 2018-04-01 02:00:00  DST
-    Datetime  := EncodeDateTime(2018,3,31,15,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Format(DateTime);
-    CheckEquals('2018-04-01 02:00:00.0+11:00', sDatetime, sTimezone);
+    LDateTime  := EncodeDateTime(2018,3,31,15,00,00,0); //UTC Datetime
+    LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
+    CheckEquals('2018-03-31 15:00:00.000+11:00', LDateTimeStr, LTimeZone);
 
     //Local time 2018-04-01 02:00:00  STD
-    Datetime  := EncodeDateTime(2018,3,31,16,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Format(DateTime);
-    CheckEquals('2018-04-01 02:00:00.0+10:00', sDatetime, sTimezone);
+    LDateTime  := EncodeDateTime(2018,3,31,16,00,00,0); //UTC Datetime
+    LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
+    CheckEquals('2018-03-31 16:00:00.000+10:00', LDateTimeStr, LTimeZone);
   finally
    LTZ.Free;
   end;
@@ -646,30 +647,27 @@ begin
   Sunday, 28 October 2018, 01:00:00 local standard time instead.
   }
 
-  sTimezone := 'Europe/London';
-  LTZ := TBundledTimeZone.Create(sTimeZone);
+  LTimeZone := 'Europe/London';
+  LTZ := TBundledTimeZone.Create(LTimeZone);
   try
     //Local time 2018-10-28 02:00:00  DST
-    Datetime  := EncodeDateTime(2018,10,28,00,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Format(DateTime);
-    CheckEquals('2018-10-28 01:00:00.0+01:00', sDatetime, sTimezone);
+    LDateTime  := EncodeDateTime(2018,10,28,00,00,00,0); //UTC Datetime
+    LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
+    CheckEquals('2018-10-28 00:00:00.000+01:00', LDateTimeStr, LTimeZone);
 
     //Local time 2018-10-28 02:00:00  STD
-    Datetime  := EncodeDateTime(2018,10,28,01,00,00,0); //UTC Datetime
-    sDatetime := LTZ.ToISO8601Format(DateTime);
-    CheckEquals('2018-10-28 01:00:00.0+00:00', sDatetime, sTimezone);
+    LDateTime  := EncodeDateTime(2018,10,28,01,00,00,0); //UTC Datetime
+    LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
+    CheckEquals('2018-10-28 01:00:00.000Z', LDateTimeStr, LTimeZone);
   finally
    LTZ.Free;
   end;
-
-  
 
 end;
 
 { TTZDBTimezoneTest }
 
-function TTZDBTimezoneTest.RandomDate(aFromDatetime,
-  aToDatetime: TDateTime): TDateTime;
+function TTZDBTimezoneTest.RandomDate(AFromDatetime, AToDatetime: TDateTime): TDateTime;
 var
   iFrom,
   iTo: Cardinal;
@@ -685,30 +683,30 @@ begin
   repeat
     fTime := Random;
     Result := iDay + fTime;
-  until (Result >= aFromDatetime) and (Result <= aToDatetime);
+  until (Result >= AFromDatetime) and (Result <= AToDatetime);
 end;
 
 procedure TTZDBTimezoneTest.Setup;
 begin
   inherited;
-  fTimeZone := TBundledTimeZone.Create(fTimeZoneID);
+  FTZ := TBundledTimeZone.Create(fTimeZoneID);
 end;
 
 procedure TTZDBTimezoneTest.TearDown;
 begin
-  fTimeZone.Free;
+  FTZ.Free;
   inherited;
 end;
 
 procedure TTZDBTimezoneTest.Test_AmbiguousTime;
 var
-  lType : TLocalTimeType;
-  AmbiguousDt: TDateTime;
+  LType : TLocalTimeType;
+  LAmbiguousDateTime: TDateTime;
 begin
-  AmbiguousDt := RandomDate(fAmbStart, fAmbEnd);
-  lType := fTimeZone.GetLocalTimeType(AmbiguousDt);
-  CheckEquals(ord(lttAmbiguous), ord(lType), 'Expected local Ambiguous time type for: '+
-    DateTimeToStr(AmbiguousDt));
+  LAmbiguousDateTime := RandomDate(fAmbStart, fAmbEnd);
+  LType := FTZ.GetLocalTimeType(LAmbiguousDateTime);
+  CheckEquals(ord(lttAmbiguous), Ord(LType), 'Expected local Ambiguous time type for: '+
+    DateTimeToStr(LAmbiguousDateTime));
 end;
 
 procedure TTZDBTimezoneTest.Test_AmbiguousTimeEnd;
@@ -716,7 +714,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeEnd(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.AmbiguousTimeEnd(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fAmbEnd);
   CheckEquals(LExpDateTime, LActDateTime, 'AmbiguousTimeEnd');
 end;
@@ -726,7 +724,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.AmbiguousTimeStart(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.AmbiguousTimeStart(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fAmbStart);
   CheckEquals(LExpDateTime, LActDateTime, 'AmbiguousTimeStart');
 end;
@@ -735,7 +733,7 @@ procedure TTZDBTimezoneTest.Test_DaylightTime;
 var
   lType : TLocalTimeType;
 begin
-  lType := fTimeZone.GetLocalTimeType(fDstStart);
+  lType := FTZ.GetLocalTimeType(fDstStart);
   CheckEquals(ord(lttDaylight), ord(lType), 'Expected local Daylight time type');
 end;
 
@@ -744,7 +742,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.DaylightTimeEnd(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.DaylightTimeEnd(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fDstEnd);
   CheckEquals(LExpDateTime, LActDateTime, 'DaylightTimeEnd');
 end;
@@ -754,7 +752,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.DaylightTimeStart(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.DaylightTimeStart(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fDstStart);
 
   CheckEquals(LExpDateTime, LActDateTime, 'DaylightTimeStart');
@@ -767,7 +765,7 @@ var
 begin
   InvalidDt := RandomDate(fInvStart, fInvEnd);
 
-  lType := fTimeZone.GetLocalTimeType(InvalidDt);
+  lType := FTZ.GetLocalTimeType(InvalidDt);
   CheckEquals(ord(lttInvalid), ord(lType), 'Expected local Invalid time type for:' +
     datetimetostr(InvalidDt));
 end;
@@ -777,7 +775,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.InvalidTimeEnd(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.InvalidTimeEnd(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fInvEnd);
   CheckEquals(LExpDateTime, LActDateTime, 'InvalidTimeEnd');
 end;
@@ -787,7 +785,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.InvalidTimeStart(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.InvalidTimeStart(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fInvStart);
 
   CheckEquals(LExpDateTime, LActDateTime, 'InvalidTimeStart');
@@ -797,7 +795,7 @@ procedure TTZDBTimezoneTest.Test_OperatesDST;
 var
   OperatesdDST: Boolean;
 begin
-  OperatesdDST := fTimeZone.HasDaylightTime(fYear);
+  OperatesdDST := FTZ.HasDaylightTime(fYear);
   CheckTrue(OperatesdDST, 'Has DaylightSaving:');
 end;
 
@@ -805,7 +803,7 @@ procedure TTZDBTimezoneTest.Test_StandardTime;
 var
   lType : TLocalTimeType;
 begin
-  lType := fTimeZone.GetLocalTimeType(fStdStart);
+  lType := FTZ.GetLocalTimeType(fStdStart);
   CheckEquals(ord(lttStandard), ord(lType), 'Expected local Standard time type');
 end;
 
@@ -814,7 +812,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.StandardTimeEnd(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.StandardTimeEnd(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fStdEnd);
   
   CheckEquals(LExpDateTime, LActDateTime, 'StandardTimeEnd');
@@ -825,7 +823,7 @@ var
   LExpDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
   LActDateTime: {$IFDEF FPC}AnsiString{$ELSE}String{$ENDIF};
 begin
-  DateTimeToString(LActDateTime, FMT_D_T_ISO, fTimeZone.StandardTimeStart(fYear));
+  DateTimeToString(LActDateTime, FMT_D_T_ISO, FTZ.StandardTimeStart(fYear));
   DateTimeToString(LExpDateTime, FMT_D_T_ISO, fStdStart);
 
   CheckEquals(LExpDateTime, LActDateTime, 'StandardTimeStart');
