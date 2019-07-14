@@ -15,9 +15,9 @@ API documentation can be found at https://mbtaylor1982.github.io/tzdb/
 
 To use TZDB you only require three files: 
 
-* [TZDB.pas](src/TZDBPK/TZDB.pas)
-* [Version.inc](src/TZDBPK/Version.inc)
-* [TZDB.inc](src/TZDBPK/TZDB.inc)
+* (TZDB.pas)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/TZDB.pas]
+* (Version.inc)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/Version.inc]
+* (TZDB.inc)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/TZDB.inc]
 
 All the other files in the project are optional.
 

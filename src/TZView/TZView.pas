@@ -46,13 +46,51 @@ uses
   TZDB in '../TZDBPK/TZDB.pas',
   Deconstruction;
 
+const
+  CDateTimePatterns: array[0..4] of string = (
+    'now',
+    'yyyy-MM-dd',
+    'yyyy-MM-dd hh:mm',
+    'yyyy-MM-dd hh:mm:ss',
+    'yyyy-MM-dd hh:mm:ss.zzz'
+  );
+  COutDateTimeFormat = 'yyyy-MM-dd hh:mm:ss.zzz';
+
+function TryScanDateTime(const AStr: string; out ADateTime: TDateTime): boolean;
+var
+  I: Integer;
+begin
+  if SameText(AStr, 'now') then
+  begin
+    ADateTime := Now;
+    Exit(true);
+  end;
+
+  for I := Length(CDateTimePatterns) - 1 downto 1 do
+  try
+    ADateTime := ScanDateTime(CDateTimePatterns[I], AStr);
+    Exit(true);
+  except
+  end;
+
+  Result := false;
+end;
+
 procedure PrintHeaderAndExit;
+var 
+  I: Integer;
 begin
   WriteLn('tzview - view and compare time zone data. (c) 2019 Alexandru Ciobanu (alex+git@ciobanu.org).');
   WriteLn('usage: tzview command [options...]');
   WriteLn('       --');
   WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
-  WriteLn('       tzview view <year> <timezone>    --  deconstructs a time zone for a given year.');
+  WriteLn('       tzview dump <timezone> <year>    --  deconstructs a time zone for a given year.');
+  WriteLn('       tzview local <timezone> <date>   --  displays info on a given local date/time.');
+  WriteLn('       tzview utc <timezone> <date>     --  displays info on a given UTC date/time.');
+  WriteLn;
+  WriteLn('accepted date/time patterns:');
+  for I := 0 to Length(CDateTimePatterns) - 1 do
+    WriteLn('       ', CDateTimePatterns[I]);
 
   Halt(1);
 end;
@@ -65,15 +103,18 @@ end;
 
 var
   LYear: Integer;
+  LDate: TDateTime;
   LTimeZones: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+  LCommand: string;
   S: string;
   LTZ: TBundledTimeZone;
   LList: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDateSegment>;
   LSegment: TDateSegment;
 begin
-  if (ParamCount < 1) then PrintHeaderAndExit;
+  if (ParamCount >= 1) then
+    LCommand := Trim(ParamStr(1));
 
-  if LowerCase(ParamStr(1)) = 'list' then
+  if SameText(LCommand, 'list') then
   begin
     if (ParamCount < 2) then
       ErrorAndExit('The "list" command expects two other arguments.');
@@ -89,30 +130,39 @@ begin
 
     for S in LTimeZones do
       WriteLn(S);
-  end else if LowerCase(ParamStr(1)) = 'view' then
+  end else if SameText(LCommand, 'dump') then
   begin
     if (ParamCount < 2) then
       ErrorAndExit('The "view" command expects two other arguments.');
 
-    if (not TryStrToInt(ParamStr(2), LYear)) then
+    if (not TryStrToInt(Trim(ParamStr(3)), LYear)) then
       ErrorAndExit('The "view" command expects a valid year.');
 
+    S := Trim(ParamStr(2));
     try
-      LTZ := TBundledTimeZone.Create(ParamStr(3));
+      LTZ := TBundledTimeZone.Create(S);
+      LList := Decompose(LTZ, LYear);
+
+      if not SameText(LTZ.ID, S) then
+        WriteLn(S + ' (' + LTZ.ID + '):')
+      else
+        WriteLn(LTZ.ID +  ':');
+      
     except
       on E: ETimeZoneInvalid do
-        ErrorAndExit('The time zone "' + ParamStr(3) + '" cannot be found.');
+        ErrorAndExit('The time zone "' + S + '" cannot be found.');
+      on E: EUnknownTimeZoneYear do
+        ErrorAndExit('The time zone "' + S + '" does not have data for year ' + IntToStr(LYear) + '.');
     end;
     
-    LList := Decompose(LTZ, LYear);
-
     WriteLn(
       PadRight('Period', 10),
-      PadRight('Start', 32),
-      PadRight('End', 32),
+      PadRight('Start (Local)', 25),
+      PadRight('End (Local)', 25),
       PadRight('Abbrv.', 10),
       PadRight('Name', 10),
-      'Bias');
+      'Bias'
+    );
 
     for LSegment in LList do
     begin
@@ -125,11 +175,71 @@ begin
       
       WriteLn(
         PadRight(S, 10), 
-        PadRight(LTZ.ToISO8601Format(LSegment.StartsAt), 32), 
-        PadRight(LTZ.ToISO8601Format(LSegment.StartsAt), 32), 
+        PadRight(FormatDateTime(COutDateTimeFormat, LSegment.StartsAt), 25), 
+        PadRight(FormatDateTime(COutDateTimeFormat, LSegment.EndsAt), 25), 
         PadRight(LSegment.Abbreviation, 10),
         PadRight(LSegment.DisplayName, 10),
-        LSegment.Bias);
+        LSegment.Bias div 3600, 'h',
+        (LSegment.Bias mod 3600) div 60, 'm'
+      );
+    end;
+  end else if SameText(LCommand, 'local') or SameText(LCommand, 'utc')  then
+  begin
+    if (ParamCount < 2) then
+      ErrorAndExit('The "' + LCommand + '" command expects two other arguments.');
+
+    if (not TryScanDateTime(Trim(ParamStr(3)), LDate)) then
+      ErrorAndExit('The "' + LCommand + '" command expects a valid date/time.');
+
+    S := Trim(ParamStr(2));
+    try
+      LTZ := TBundledTimeZone.Create(S);
+
+      if SameText(LCommand, 'utc') then
+        LDate := LTZ.ToLocalTime(LDate);
+
+      case LTZ.GetLocalTimeType(LDate) of 
+        lttStandard: S := 'Standard';
+        lttDaylight: S := 'Daylight';
+        lttAmbiguous: S := 'Ambiguous';
+        lttInvalid: S := 'Invalid';
+      end;
+
+      WriteLn(
+        PadRight('Period', 10),
+        PadRight('Local', 25),
+        PadRight('UTC', 25),
+        PadRight('Abbrv.', 10),
+        PadRight('Name', 10),
+        'Bias'
+      );
+
+      if LTZ.GetLocalTimeType(LDate) = lttInvalid then
+      begin
+        WriteLn(
+          PadRight(S, 10),
+          PadRight(FormatDateTime(COutDateTimeFormat, LDate), 25),
+          PadRight('', 25), 
+          PadRight('', 10),
+          PadRight('', 10)
+        );
+      end else
+      begin
+        WriteLn(
+          PadRight(S, 10), 
+          PadRight(FormatDateTime(COutDateTimeFormat, LDate), 25),
+          PadRight(FormatDateTime(COutDateTimeFormat, LTZ.ToUniversalTime(LDate)), 25),
+          PadRight(LTZ.GetAbbreviation(LDate), 10),
+          PadRight(LTZ.GetDisplayName(LDate), 10),
+          LTZ.GetUtcOffset(LDate) div 3600, 'h',
+          (LTZ.GetUtcOffset(LDate) mod 3600) div 60, 'm'
+        );
+      end;
+    except
+      on E: ETimeZoneInvalid do
+        ErrorAndExit('The time zone "' + S + '" cannot be found.');
+      on E: EUnknownTimeZoneYear do
+        ErrorAndExit('The time zone "' + S + '" does not have data for date ' + ParamStr(3) + '.');
     end;
   end
     else PrintHeaderAndExit;

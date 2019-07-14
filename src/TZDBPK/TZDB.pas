@@ -1081,8 +1081,8 @@ end;
 
 function TBundledTimeZone.ToISO8601Format(const ADateTime: TDateTime): string;
 const
-  CFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%d%s%.2d:%.2d';
-
+  CZFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3dZ';
+  CFullFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3d%s%.2d:%.2d';
 var
   LLocalTime: TDateTime;
   LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis: Word;
@@ -1095,14 +1095,19 @@ begin
   LBias := MinutesBetween(LLocalTime, ADateTime);
 
   { Decode the local time (as we will include the bias into the repr.) }
-  DecodeDateTime(LLocalTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
+  DecodeDateTime(ADateTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
 
-  if (LBias >= 0) then LBiasSign := '+' else LBiasSign := '-';
-  LBiasHours := Abs(LBias) div MinsPerHour;
-  LBiasMinutes := Abs(LBias) mod MinsPerHour;
+  if LBias = 0 then
+    Result := Format(CZFormat, [LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis])
+  else
+  begin
+    if (LBias >= 0) then LBiasSign := '+' else LBiasSign := '-';
+    LBiasHours := Abs(LBias) div MinsPerHour;
+    LBiasMinutes := Abs(LBias) mod MinsPerHour;
 
-  Result := Format(CFormat,
-    [LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis, LBiasSign, LBiasHours, LBiasMinutes]);
+    Result := Format(CFullFormat,
+      [LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis, LBiasSign, LBiasHours, LBiasMinutes]);
+  end;
 end;
 
 destructor TBundledTimeZone.Destroy;
