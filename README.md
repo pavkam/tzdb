@@ -7,9 +7,9 @@ TZDB - IANA Time Zone Database for Delphi/FreePascal
 
 The source code is compatible with **Delphi 7+** and **FreePascal 3+**, though some components are only available for Delphi.
 
-The current version of TZDB  is compiled with **2019b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project) .
+The current version of TZDB  is compiled with **2019b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
 
-[API Documentation]
+[API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) and [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples). 
 
 ## Using the Library
 
