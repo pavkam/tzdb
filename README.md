@@ -14,7 +14,7 @@ The current version of TZDB  is compiled with **2019b** version of IANA TZDB and
 
 To use TZDB you only require three files: 
 
-* (TZDB.pas)[https://raw.githubusercontent.com/pavkam/tzdb/master/src/TZDBPK/TZDB.pas]
+* [TZDB.pas](https://raw.githubusercontent.com/pavkam/tzdb/master/src/TZDBPK/TZDB.pas)
 * (Version.inc)[https://raw.githubusercontent.com/pavkam/tzdb/master/src/TZDBPK/Version.inc]
 * (TZDB.inc)[https://raw.githubusercontent.com/pavkam/tzdb/master/src/TZDBPK/TZDB.inc]
 
