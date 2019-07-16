@@ -15,7 +15,7 @@ Additional documentation can be found in (Code Examples)[https://github.com/pavk
 
 To use TZDB you only require three files: 
 
-* (TZDB.pas)[src/TZDBPK/TZDB.pas]
+* (TZDB.pas)[https://github.com/pavkam/tzdb/master/src/TZDBPK/TZDB.pas]
 * (Version.inc)[src/TZDBPK/Version.inc]
 * (TZDB.inc)[src/TZDBPK/TZDB.inc]
 
