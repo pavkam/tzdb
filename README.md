@@ -9,15 +9,15 @@ The source code is compatible with **Delphi 7+** and **FreePascal 3+**, though s
 
 The current version of TZDB  is compiled with **2019b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project) .
 
-Additional documentation can be found in [Code-Examples] and [API Documentation].
+Additional documentation can be found in (Code Examples)[https://github.com/pavkam/tzdb/wiki/Code-Examples] and [API Documentation].
 
 ## Using the Library
 
 To use TZDB you only require three files: 
 
-* (TZDB.pas)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/TZDB.pas]
-* (Version.inc)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/Version.inc]
-* (TZDB.inc)[https://github.com/pavkam/tzdb/blob/master/src/TZDBPK/TZDB.inc]
+* (TZDB.pas)[src/TZDBPK/TZDB.pas]
+* (Version.inc)[src/TZDBPK/Version.inc]
+* (TZDB.inc)[src/TZDBPK/TZDB.inc]
 
 All the other files in the project are optional.
 
