@@ -9,7 +9,7 @@ The source code is compatible with **Delphi 7+** and **FreePascal 3+**, though s
 
 The current version of TZDB  is compiled with **2019b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project) .
 
-API documentation and code samples can be found [here][Code Examples] and [here][API Documentation].
+Additional documentation can be found in [Code Examples] and [API Documentation].
 
 ## Using the Library
 
