@@ -3,9 +3,9 @@ TZDB - IANA Time Zone Database for Delphi/FreePascal
 
 ## Introduction
 
-**TZDB project** is an offline, in-process compiled database for  IANA's (https://www.iana.org/time-zones) TZDB project.
+**2019b** is an offline, in-process compiled database for  IANA's (https://www.iana.org/time-zones) TZDB project.
 
-The source code is compatible with **Delphi 7+** and **FreePascal 3+**, though some components are only available for Delphi.
+The source code is compatible with **Delphi 7+** and **2019b**, though some components are only available for Delphi.
 
 The current version of TZDB  is compiled with **2019b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
 
