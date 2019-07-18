@@ -39,7 +39,6 @@ uses
 {$IFNDEF SUPPORTS_TARRAY}, Types{$ENDIF}
 {$IFDEF SUPPORTS_TTIMESPAN}, TimeSpan{$ENDIF};
 
-
 type
 {$IFNDEF SUPPORTS_TTIMEZONE}
   ///  <summary>Exception thrown when the passed local time is invalid.</summary>
@@ -65,6 +64,49 @@ type
   ///  <summary>Exception type used to signal the caller code that date/time year details are not
   ///  bundled for the given time zone.</summary>
   EUnknownTimeZoneYear = class(Exception);
+
+  /// <summary>Represents a specific date/time segment of the year.</summary>
+  /// <remarks>A calendar year in most time zones is divided into standard/ambiguous/daylight/invalid/standard segments.</remarks>
+  TYearSegment = record
+  private
+    FStartsAt, FEndsAt: TDateTime;
+    FType: TLocalTimeType;
+    FName: string;
+    FUtcOffset: {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF};
+  public
+    /// <summary>The date/time when the segment starts.</summary>
+    /// <returns>A date/time value representing the start of the segment.</returns> 
+    property StartsAt: TDateTime read FStartsAt;
+
+    /// <summary>The date/time when the segment ends.</summary>
+    /// <returns>A date/time value representing the end of the segment.</returns> 
+    property EndsAt: TDateTime read FEndsAt;
+
+    /// <summary>The type of the segment.</summary>
+    /// <returns>An enum value representing the type of the segment.</returns> 
+    property LocalType: TLocalTimeType read FType;
+
+    /// <summary>The time zone display name used to describe the segment.</summary>
+    /// <returns>The string value of the display name.</returns> 
+    property DisplayName: string read FName;
+
+    /// <summary>The time zone abbreviation used to describe the segment.</summary>
+    /// <returns>The string value of the abbreviation.</returns> 
+    property UtcOffset: {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF} read FUtcOffset;
+
+{$IFDEF FPC}
+    /// <summary>Equality operator used to compare two values of this type</summary>
+    /// <param name="ALeft">The first segment to compare.</summary>
+    /// <param name="ARight">The second segment to compare.</summary>
+    /// <returns><c>True</c> if the segments are equal.</returns>
+    class operator Equal(const ALeft, ARight: TYearSegment): Boolean;
+{$ENDIF}
+  end;
+
+{$IFNDEF SUPPORTS_TARRAY}
+  /// <summary>An array of year segments.</summary>
+  TYearSegmentArray = array of TYearSegment;
+{$ENDIF}
 
   ///  <summary>A timezone class implementation that retreives its data from the bundled database.</summary>
   ///  <remarks>This class inherits the standard <c>TTimeZone</c> class in Delphi XE.</remarks>
@@ -144,6 +186,11 @@ type
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
+
+    ///  <summary>Breaks a given year into components segments.</summary>
+    ///  <param name="AYear">The year to get data for.</param>
+    ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
+    function GetYearBreakdown(const AYear: Word): {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
 
     ///  <summary>Get the starting date/time of daylight period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
@@ -576,7 +623,7 @@ type
 {$ENDIF}
     { Year -> List of Rules for that year }
 {$IFDEF SUPPORTS_GENERICS}
-    FRulesByYear: TDictionary<Word,TList>;  { Word, TList<TCompiledRule> }
+    FRulesByYear: TDictionary<Word, TList>;  { Word, TList<TCompiledRule> }
 {$ELSE}
     FRulesByYear: TBucketList;  { Word, TList<TCompiledRule> }
 {$ENDIF}
@@ -663,22 +710,12 @@ begin
       { Check we're in the required year }
       if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
       begin
+        
         { Obtain the absolute date when the rule activates in this year }
         LAbsolute := RelativeToDateTime(AYear,
             LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
             LCurrRule^.FRule^.FAt);
-        {
-        // Adjust the value based on the specified time mode (do nothing for local mode)
-        case LCurrRule^.FRule^.FAtMode of
-          trStandard:
-            //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
-            LAbsolute := IncSecond(LAbsolute, LCurrRule^.FRule^.FOffset);
-
-          trUniversal:
-            //This value is specified in universal time. Add both the standard deviation plus the local time
-            LAbsolute := IncSecond(LAbsolute, FPeriod^.FOffset + LCurrRule^.FRule^.FOffset);
-        end;}
-
+       
         { Add the new compiled rule to the list }
         Result.Add(TCompiledRule.Create(LCurrRule^.FRule, LAbsolute,
             LCurrRule^.FRule^.FOffset, FPeriod^.FOffset, LCurrRule^.FRule^.FAtMode));
@@ -852,13 +889,13 @@ end;
 { TCompiledRule }
 
 constructor TCompiledRule.Create(const ARule: PRule;
-  const AStartsOn: TDateTime; const AOffset, aPeriodOffset: Int64;  const aTimeMode: TTimeMode);
+  const AStartsOn: TDateTime; const AOffset, APeriodOffset: Int64; const ATimeMode: TTimeMode);
 begin
   FRule := ARule;
   FStartsOn := AStartsOn;
   FOffset := AOffset;
-  FPeriodOffset := aPeriodOffset;
-  FTimeMode := aTimeMode;
+  FPeriodOffset := APeriodOffset;
+  FTimeMode := ATimeMode;
 end;
 
 function TCompiledRule.GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType;
@@ -900,6 +937,22 @@ begin
     trUniversal: Result := IncSecond(Result, FPeriodOffset + FOffset);
   end;
 end;
+
+{$IFDEF FPC}
+
+{ TYearSegment }
+
+class operator TYearSegment.Equal(const ALeft, ARight: TYearSegment): Boolean;
+begin
+  Result :=
+    (ALeft.FStartsAt = ARight.FStartsAt) and
+    (ALeft.FEndsAt = ARight.FEndsAt) and
+    (ALeft.FType = ARight.FType) and
+    (ALeft.FName = ARight.FName) and
+    (ALeft.FUtcOffset = ARight.FUtcOffset);
+end;
+
+{$ENDIF}
 
 { TBundledTimeZone }
 
@@ -943,7 +996,7 @@ begin
         LCurrentPeriod^.FUntilTime);
 
     { Set the approperiate values }
-    LCompiledPeriod := TCompiledPeriod.Create(LCurrentPeriod, LStart, LAbsolute);
+    LCompiledPeriod := TCompiledPeriod.Create(LCurrentPeriod, LStart, IncMilliSecond(LAbsolute, -1));
 
     { Get the last rule defined in the period }
     if LCurrentPeriod^.FUntilDay <> nil then
@@ -969,7 +1022,7 @@ begin
     FPeriods.Add(LCompiledPeriod);
 
     { Set the last "until" }
-    LStart := LCompiledPeriod.FUntil;
+    LStart := IncMillisecond(LCompiledPeriod.FUntil, 1);
 
     { Move to the next period in the zone }
     Inc(LCurrentPeriod);
@@ -1020,7 +1073,7 @@ begin
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1055,7 +1108,7 @@ begin
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1498,6 +1551,142 @@ begin
     ADstDisplayName := ADisplayName;
 end;
 
+function TBundledTimeZone.GetYearBreakdown(const AYear: Word): {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+var
+  I, X, LSegs: Integer;
+  LPeriod: TCompiledPeriod;
+  LRuleList: TList;
+  LRule, LNextRule, LPrevRule: TCompiledRule;
+  LSegment: TYearSegment;
+begin
+  Result := nil;
+
+  for I := 0 to FPeriods.Count - 1 do
+  begin
+    LPeriod := TCompiledPeriod(FPeriods[I]);
+
+    { Make sure we're skipping stuff we don't want. }
+    if YearOf(LPeriod.FUntil) < AYear then continue;
+    if YearOf(LPeriod.FFrom) > AYear then break;
+
+    { We'll need it later to check if any segments were added from given period. }    
+    LSegs := Length(Result);
+
+    { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
+      But there are a few zone with two periods; maybe three? }
+    LRuleList := LPeriod.GetRulesForYear(AYear);
+
+    { Each rule is processed in order of appearance within the year, within the overlapping periods. }
+    for X := 0 to LRuleList.Count - 1 do
+    begin
+      { Get current rule and next rule. Both are used to calculate things. }
+      LRule := LRuleList[X];
+      if X < (LRuleList.Count - 1) then
+        LNextRule := LRuleList[X + 1]
+      else
+        LNextRule := nil;
+
+      if X > 0 then
+        LPrevRule := LRuleList[X - 1]
+      else
+        LPrevRule := nil;
+
+      if LRule.FOffset = 0 then
+      begin
+        LSegment.FUtcOffset := 
+          {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LRule.FPeriodOffset);{$ELSE}LRule.FPeriodOffset;{$ENDIF}
+        LSegment.FType := lttStandard;
+        LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
+
+        if (LPrevRule <> nil) and (LPrevRule.FOffset <> 0) then
+          LSegment.FStartsAt := IncSecond(LRule.StartsOn, LPrevRule.FOffset)
+        else
+          LSegment.FStartsAt := LRule.StartsOn;
+
+        { Get the invalid segment if correct. }
+        if (LNextRule <> nil) and (LNextRule.FOffset <> 0) then
+        begin
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LNextRule.StartsOn, -LNextRule.FOffset), -1);
+
+          SetLength(Result, Length(Result) + 2);
+          Result[Length(Result) - 2] := LSegment; // Standard
+
+          LSegment.FType := lttInvalid;
+          LSegment.FStartsAt := IncMillisecond(LSegment.FEndsAt, 1);
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LNextRule.FOffset), -1);
+
+          Result[Length(Result) - 1] := LSegment; // Invalid
+        end
+        else begin
+          LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+
+          SetLength(Result, Length(Result) + 1);
+          Result[Length(Result) - 1] := LSegment; // Standard
+        end;
+      end else
+      begin
+        LSegment.FUtcOffset := 
+          {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LRule.FPeriodOffset + LRule.FOffset);
+          {$ELSE}LRule.FPeriodOffset + LRule.FOffset;{$ENDIF}
+          
+        LSegment.FType := lttDaylight;
+        LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
+        LSegment.FStartsAt := LRule.StartsOn;
+
+        { Get the invalid segment if correct. }
+        if (LNextRule <> nil) and (LNextRule.FOffset = 0) then
+        begin
+          LSegment.FEndsAt := IncMillisecond(LNextRule.StartsOn, -1);
+
+          SetLength(Result, Length(Result) + 2);
+          Result[Length(Result) - 2] := LSegment; // Daylight
+
+          LSegment.FType := lttAmbiguous;
+          LSegment.FStartsAt := IncMillisecond(LSegment.FEndsAt, 1);
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LRule.FOffset), -1);
+
+          Result[Length(Result) - 1] := LSegment; // Ambiguous
+        end
+        else begin
+          LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+
+          SetLength(Result, Length(Result) + 1);
+          Result[Length(Result) - 1] := LSegment; // Daylight
+        end;
+      end;
+    end;
+
+    if LSegs = Length(Result) then
+    begin
+      { This situation where there aren't any segments happens when there are no rules for a given year.
+        In this case we fall back to the synthetic "standard" segment. }
+
+      LSegment.FUtcOffset := 
+          {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LPeriod.FPeriod^.FOffset);{$ELSE}LPeriod.FPeriod^.FOffset;{$ENDIF}
+          
+      LSegment.FType := lttStandard;
+      LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, nil, LSegment.FType);
+
+      if YearOf(LPeriod.FFrom) < AYear then
+        LSegment.FStartsAt := EncodeDate(AYear, 1, 1) // start of year
+      else
+        LSegment.FStartsAt := LPeriod.FFrom;
+
+      if YearOf(LPeriod.FUntil) > AYear then
+        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1) // end of year
+      else
+        LSegment.FEndsAt := LPeriod.FUntil;
+
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1] := LSegment; // standard
+    end;
+  end;
+
+  { For the case there is simply no bundled data... }
+  if Length(Result) = 0 then
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+end;
+
 class function TBundledTimeZone.KnownAliases: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
 var
   I: Integer;
@@ -1557,7 +1746,7 @@ begin
   ADateTime := EncodeDateTime(AYear, 1,1,0,0,0,0);
 
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin
@@ -1592,7 +1781,7 @@ begin
   ADateTime := EncodeDateTime(aYear, 1,1,0,0,0,0);
 
   if not GetPeriodAndRule(ADateTime, TObject(LPeriod), TObject(LRule)) then
-    raise ETimeZoneInvalid.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
   if LRule <> nil then
   begin

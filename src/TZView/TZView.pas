@@ -43,8 +43,7 @@ uses
 {$ELSE}
   FGL,
 {$ENDIF}
-  TZDB in '../TZDBPK/TZDB.pas',
-  Deconstruction;
+  TZDB in '../TZDBPK/TZDB.pas';
 
 const
   CDateTimePatterns: array[0..4] of string = (
@@ -74,6 +73,27 @@ begin
   end;
 
   Result := false;
+end;
+
+function FormatOffset(const AOffset: Int64): string;
+var
+  LHours, LMinutes, LSeconds: Integer;
+begin
+   if AOffset = 0 then
+     Result := '-'
+   else begin
+    LHours := AOffset div 3600;
+    LMinutes := (AOffset mod 3600) div 60;
+    LSeconds := AOffset mod 60;
+
+    Result := '';
+    if LHours > 0 then
+      Result := Result + IntToStr(LHours) + 'h';
+    if LMinutes > 0 then
+      Result := Result + IntToStr(LMinutes) + 'm';
+    if LSeconds > 0 then
+      Result := Result + IntToStr(LSeconds) + 's';
+    end;
 end;
 
 procedure PrintHeaderAndExit;
@@ -108,8 +128,7 @@ var
   LCommand: string;
   S: string;
   LTZ: TBundledTimeZone;
-  LList: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDateSegment>;
-  LSegment: TDateSegment;
+  LSegment: TYearSegment;
 begin
   if (ParamCount >= 1) then
     LCommand := Trim(ParamStr(1));
@@ -141,47 +160,42 @@ begin
     S := Trim(ParamStr(2));
     try
       LTZ := TBundledTimeZone.Create(S);
-      LList := Decompose(LTZ, LYear);
 
       if not SameText(LTZ.ID, S) then
         WriteLn(S + ' (' + LTZ.ID + '):')
       else
         WriteLn(LTZ.ID +  ':');
-      
+
+      WriteLn(
+        PadRight('Period', 10),
+        PadRight('Start (Local)', 25),
+        PadRight('End (Local)', 25),
+        PadRight('Abbrv.', 10),
+        'Bias'
+      );
+
+      for LSegment in LTZ.GetYearBreakdown(LYear) do
+      begin
+        case LSegment.LocalType of 
+          lttStandard: S := 'Standard';
+          lttDaylight: S := 'Daylight';
+          lttAmbiguous: S := 'Ambiguous';
+          lttInvalid: S := 'Invalid';
+        end;
+        
+        WriteLn(
+          PadRight(S, 10), 
+          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.StartsAt), 25), 
+          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.EndsAt), 25), 
+          PadRight(LSegment.DisplayName, 10),
+          FormatOffset(LSegment.UtcOffset)
+        );
+      end;
     except
       on E: ETimeZoneInvalid do
         ErrorAndExit('The time zone "' + S + '" cannot be found.');
       on E: EUnknownTimeZoneYear do
         ErrorAndExit('The time zone "' + S + '" does not have data for year ' + IntToStr(LYear) + '.');
-    end;
-    
-    WriteLn(
-      PadRight('Period', 10),
-      PadRight('Start (Local)', 25),
-      PadRight('End (Local)', 25),
-      PadRight('Abbrv.', 10),
-      PadRight('Name', 10),
-      'Bias'
-    );
-
-    for LSegment in LList do
-    begin
-      case LSegment.LocalType of 
-        lttStandard: S := 'Standard';
-        lttDaylight: S := 'Daylight';
-        lttAmbiguous: S := 'Ambiguous';
-        lttInvalid: S := 'Invalid';
-      end;
-      
-      WriteLn(
-        PadRight(S, 10), 
-        PadRight(FormatDateTime(COutDateTimeFormat, LSegment.StartsAt), 25), 
-        PadRight(FormatDateTime(COutDateTimeFormat, LSegment.EndsAt), 25), 
-        PadRight(LSegment.Abbreviation, 10),
-        PadRight(LSegment.DisplayName, 10),
-        LSegment.Bias div 3600, 'h',
-        (LSegment.Bias mod 3600) div 60, 'm'
-      );
     end;
   end else if SameText(LCommand, 'local') or SameText(LCommand, 'utc')  then
   begin
@@ -231,8 +245,7 @@ begin
           PadRight(FormatDateTime(COutDateTimeFormat, LTZ.ToUniversalTime(LDate)), 25),
           PadRight(LTZ.GetAbbreviation(LDate), 10),
           PadRight(LTZ.GetDisplayName(LDate), 10),
-          LTZ.GetUtcOffset(LDate) div 3600, 'h',
-          (LTZ.GetUtcOffset(LDate) mod 3600) div 60, 'm'
+          FormatOffset(LSegment.UtcOffset)
         );
       end;
     except
