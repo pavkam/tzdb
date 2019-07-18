@@ -98,7 +98,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "Updating README with the new version..."
-cat $REPO/README.md | sed "s/\(.*\*\*\).*\(\*\*.*\)/\1$IANAV\2/g" > $REPO/README.md.tmp
+cat $REPO/README.md | sed "s/\(.*\*\*\)[0-9]*[a-z]*\(\*\*.*\)/\1$IANAV\2/g" > $REPO/README.md.tmp
 rm $REPO/README.md
 mv $REPO/README.md.tmp $REPO/README.md
 

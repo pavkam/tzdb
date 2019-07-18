@@ -1,4 +1,4 @@
-{ This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. } 
+{ This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 var
   { This array contains the definitions of relative days used later on in the rules. }
   CRelativeDays: array[0 .. 80] of TRelativeDay = (
