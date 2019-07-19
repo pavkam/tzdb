@@ -75,18 +75,23 @@ begin
   Result := false;
 end;
 
-function FormatOffset(const AOffset: Int64): string;
+function FormatOffset(AOffset: Int64): string;
 var
   LHours, LMinutes, LSeconds: Integer;
+  LSign: Char;
 begin
    if AOffset = 0 then
-     Result := '-'
+     Result := '0'
    else begin
+    if AOffset < 0 then
+      LSign := '-' else LSign := '+';
+    AOffset := Abs(AOffset);
+
     LHours := AOffset div 3600;
     LMinutes := (AOffset mod 3600) div 60;
     LSeconds := AOffset mod 60;
 
-    Result := '';
+    Result := LSign;
     if LHours > 0 then
       Result := Result + IntToStr(LHours) + 'h';
     if LMinutes > 0 then
