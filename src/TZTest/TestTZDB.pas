@@ -70,6 +70,8 @@ type
     procedure Test_TZ_GetYearBreakdown_Sao_Paulo_2014;
     procedure Test_TZ_GetYearBreakdown_Cairo_2014;
 
+    procedure Test_TZ_GetLocalTimeType_Validation;
+
     procedure Test_Africa_Cairo_2010;
     procedure Test_Africa_Cairo_2009;
     procedure Test_Europe_Bucharest_2010;
@@ -626,6 +628,30 @@ begin
   CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType));
   CheckEquals('EET', LSegments[0].DisplayName);
   CheckEquals(7200, LSegments[0].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
+end;
+
+
+procedure TTZDBTest.Test_TZ_GetLocalTimeType_Validation;
+const
+  CTestZones: array[0..5] of string = ('Africa/Cairo', 'Africa/Cairo', 'Africa/Cairo', 'Europe/Dublin', 'Europe/London', 'America/Sao_Paulo');
+  CTestYears: array[0..5] of Word = (1900, 2012, 2014, 2018, 2018, 2017);
+
+var
+  I: Integer;
+  LTZ: TBundledTimeZone;
+  LSegment: TYearSegment;
+begin
+  for I := 0 to Length(CTestZones) - 1 do
+  begin
+    LTZ := TBundledTimeZone.Create(CTestZones[I]);
+    for LSegment in LTZ.GetYearBreakdown(CTestYears[I]) do
+    begin
+      CheckEquals(Ord(LSegment.LocalType), Ord(LTZ.GetLocalTimeType(LSegment.StartsAt)), 
+        'Segment start local time type discrepancy. Zone: "' + LTZ.ID + '"; year: ' + IntToStr(CTestYears[I]));
+      CheckEquals(Ord(LSegment.LocalType), Ord(LTZ.GetLocalTimeType(LSegment.EndsAt)), 
+        'Segment end local time type discrepancy. Zone: "' + LTZ.ID + '"; year: ' + IntToStr(CTestYears[I]));
+    end;
+  end;
 end;
 
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_2014;
