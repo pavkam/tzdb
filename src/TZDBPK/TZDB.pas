@@ -1556,8 +1556,10 @@ var
   I, X, LSegs: Integer;
   LPeriod: TCompiledPeriod;
   LRuleList: TList;
-  LRule, LNextRule, LPrevRule: TCompiledRule;
+  LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
+  LEnd: TDateTime;
+  LCarryDelta, LDelta: Int64;
 begin
   Result := nil;
 
@@ -1575,7 +1577,7 @@ begin
     { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
       But there are a few zone with two periods; maybe three? }
     LRuleList := LPeriod.GetRulesForYear(AYear);
-
+  
     { Each rule is processed in order of appearance within the year, within the overlapping periods. }
     for X := 0 to LRuleList.Count - 1 do
     begin
@@ -1585,74 +1587,68 @@ begin
         LNextRule := LRuleList[X + 1]
       else
         LNextRule := nil;
-
-      if X > 0 then
-        LPrevRule := LRuleList[X - 1]
-      else
-        LPrevRule := nil;
+        
+      LSegment.FUtcOffset := 
+        {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LRule.FPeriodOffset + LRule.FOffset);
+        {$ELSE}LRule.FPeriodOffset + LRule.FOffset;{$ENDIF}
 
       if LRule.FOffset = 0 then
-      begin
-        LSegment.FUtcOffset := 
-          {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LRule.FPeriodOffset);{$ELSE}LRule.FPeriodOffset;{$ENDIF}
-        LSegment.FType := lttStandard;
-        LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
-
-        if (LPrevRule <> nil) and (LPrevRule.FOffset <> 0) then
-          LSegment.FStartsAt := IncSecond(LRule.StartsOn, LPrevRule.FOffset)
-        else
-          LSegment.FStartsAt := LRule.StartsOn;
-
-        { Get the invalid segment if correct. }
-        if (LNextRule <> nil) and (LNextRule.FOffset <> 0) then
-        begin
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LNextRule.StartsOn, -LNextRule.FOffset), -1);
-
-          SetLength(Result, Length(Result) + 2);
-          Result[Length(Result) - 2] := LSegment; // Standard
-
-          LSegment.FType := lttInvalid;
-          LSegment.FStartsAt := IncMillisecond(LSegment.FEndsAt, 1);
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LNextRule.FOffset), -1);
-
-          Result[Length(Result) - 1] := LSegment; // Invalid
-        end
-        else begin
-          LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
-
-          SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment; // Standard
-        end;
-      end else
-      begin
-        LSegment.FUtcOffset := 
-          {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan.FromSeconds(LRule.FPeriodOffset + LRule.FOffset);
-          {$ELSE}LRule.FPeriodOffset + LRule.FOffset;{$ENDIF}
-          
+        LSegment.FType := lttStandard
+      else
         LSegment.FType := lttDaylight;
-        LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
-        LSegment.FStartsAt := LRule.StartsOn;
 
-        { Get the invalid segment if correct. }
-        if (LNextRule <> nil) and (LNextRule.FOffset = 0) then
+      LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
+      LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
+
+      { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
+      if LNextRule <> nil then
+      begin
+        { Calculate the overall delta between two segments. }
+        LDelta := (LNextRule.FPeriodOffset + LNextRule.FOffset) - (LRule.FPeriodOffset + LRule.FOffset);
+
+        { Add the core segment. }
+        if (LDelta < 0) then
         begin
-          LSegment.FEndsAt := IncMillisecond(LNextRule.StartsOn, -1);
+          LCarryDelta := -LDelta;
+          LEnd := LNextRule.StartsOn;
+        end else 
+        begin
+          LCarryDelta := 0;
+          LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
+        end;
 
-          SetLength(Result, Length(Result) + 2);
-          Result[Length(Result) - 2] := LSegment; // Daylight
+        LSegment.FEndsAt := IncMillisecond(LEnd, -1);
 
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment;
+
+        WriteLn(LDelta);
+        if LDelta > 0 then
+        begin
+          { This is a positive bias. This means we have an invalid region. }
+          LSegment.FType := lttInvalid;
+          LSegment.FStartsAt := LEnd;
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
+          
+          SetLength(Result, Length(Result) + 1);
+          Result[Length(Result) - 1] := LSegment;
+        end 
+        else if LDelta < 0 then
+        begin
+          { This is a negative bias. This means we have an ambiguous region. }
           LSegment.FType := lttAmbiguous;
-          LSegment.FStartsAt := IncMillisecond(LSegment.FEndsAt, 1);
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LRule.FOffset), -1);
-
-          Result[Length(Result) - 1] := LSegment; // Ambiguous
-        end
-        else begin
-          LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+          LSegment.FStartsAt := LEnd;
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
 
           SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment; // Daylight
+          Result[Length(Result) - 1] := LSegment;
         end;
+      end else 
+      begin
+        { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
+        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment; 
       end;
     end;
 
