@@ -30,15 +30,15 @@ unit TestTZDB;
 interface
 
 uses
-{$IFNDEF FPC}
+{$IFDEF DELPHI}
   TestFramework,
+  TimeSpan,
   Generics.Collections,
 {$ELSE}
+  Types,
   FPCUnit, TestUtils, TestRegistry,
   FGL,
 {$ENDIF}
-{$IFNDEF SUPPORTS_TARRAY}Types,{$ENDIF}
-{$IFDEF SUPPORTS_TTIMESPAN}TimeSpan,{$ENDIF}
   Classes,
   SysUtils,
   TypInfo,
@@ -47,7 +47,7 @@ uses
   KnownTZCases;
 
 type
-{$IFDEF SUPPORTS_TARRAY}
+{$IFDEF DELPHI}
   TStringDynArray = TArray<string>;
 {$ENDIF}
 
@@ -157,7 +157,7 @@ type
 implementation
 
 uses
-  math;
+  Math;
 
 { TTZDBTest }
 

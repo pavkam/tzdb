@@ -36,7 +36,7 @@ uses
   Character,
   StrUtils,
   TZStrs,
-{$IFNDEF FPC}
+{$IFDEF DELPHI}
   Generics.Collections,
   Generics.Defaults,
   TimeSpan,
