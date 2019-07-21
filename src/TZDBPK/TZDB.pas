@@ -82,7 +82,7 @@ type
     FName: string;
     FPeriodOffset, FBias: Int64;
 
-    function GetUtcOffset: {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF} 
+    function GetUtcOffset: {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF};
   public
     /// <summary>The date/time when the segment starts.</summary>
     /// <returns>A date/time value representing the start of the segment.</returns> 
@@ -138,8 +138,9 @@ type
 
     function GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean; 
       const AFailOnInvalid: Boolean): TYearSegment;
+{$IFNDEF SUPPORTS_TTIMEZONE}
     function GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
-
+{$ENDIF}
     { Helpers }                                                  { TCompiledPeriod }       { TCompiledRule }
     function GetPeriodAndRule(const ADateTime: TDateTime; out APeriod: TObject; out ARule: TObject): Boolean;
 
@@ -1119,11 +1120,11 @@ begin
         SetLength(Result, Length(Result) + 1);
         Result[Length(Result) - 1] := LSegment;
 
-        WriteLn(LDelta);
         if LDelta > 0 then
         begin
           { This is a positive bias. This means we have an invalid region. }
           LSegment.FType := lttInvalid;
+          LSegment.FBias := LDelta;
           LSegment.FStartsAt := LEnd;
           LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
           
@@ -1372,7 +1373,6 @@ procedure TBundledTimeZone.DoGetOffsetsAndType(
   out AType: TLocalTimeType);
 var
   LSegment: TYearSegment;
-  LDummy, LDummy2: string;
 begin
   LSegment := GetSegment(ADateTime, true, false);
 
@@ -1525,7 +1525,7 @@ var
   LSegment: TYearSegment;
 begin
   { Get approximate }
-  LSegment := GetSegmentUtc(YearOf(ADateTime));
+  LSegment := GetSegmentUtc(ADateTime);
   Result := IncSecond(ADateTime, LSegment.FPeriodOffset + LSegment.FBias);
 end;
 
@@ -1571,6 +1571,7 @@ begin
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
 
+{$IFNDEF SUPPORTS_TTIMEZONE}
 function TBundledTimeZone.GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
 var
   LSegment: TYearSegment;
@@ -1588,6 +1589,7 @@ begin
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
+{$ENDIF}
 
 function TBundledTimeZone.GetPeriodAndRule(const ADateTime: TDateTime; out APeriod: TObject; out ARule: TObject): Boolean;
 var

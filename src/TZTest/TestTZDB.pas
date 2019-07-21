@@ -69,8 +69,10 @@ type
     procedure Test_TZ_GetYearBreakdown_Bucharest_2014;
     procedure Test_TZ_GetYearBreakdown_Sao_Paulo_2014;
     procedure Test_TZ_GetYearBreakdown_Cairo_2014;
-
     procedure Test_TZ_GetLocalTimeType_Validation;
+
+    procedure Test_TZ_ToLocal_Regression_1;
+    procedure Test_TZ_GetAbbreviation_Regression_1;
 
     procedure Test_Africa_Cairo_2010;
     procedure Test_Africa_Cairo_2009;
@@ -231,10 +233,12 @@ begin
       SecondsBetween(LUtc_AsDST, LUtc_AsSTD), '[lttAmbiguous] Expected DST-STD offset between conversions.');
 
     LLocal := ATZ.ToLocalTime(LUtc_AsDST);
-    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttAmbiguous] Expected ToLocalTime to return the correct value from Utc (DST)');
+    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttAmbiguous] Expected ToLocalTime to return the correct value from Utc (DST). ' +
+      DateTimeToStr(LUtc_AsDST) + ' > ' + DateTimeToStr(AStart) + ' <> ' + DateTimeToStr(LLocal));
 
     LLocal := ATZ.ToLocalTime(LUtc_AsSTD);
-    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttAmbiguous] Expected ToLocalTime to return the correct value from Utc (STD)');
+    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttAmbiguous] Expected ToLocalTime to return the correct value from Utc (STD). ' +
+      DateTimeToStr(LUtc_AsSTD) + ' > ' + DateTimeToStr(AStart) + ' <> ' + DateTimeToStr(LLocal));
 
     CheckEquals(ABias_DST, SecondsBetweenNoAbs(LUtc_AsDST, AStart), '[lttAmbiguous] Expected OFFSET to be correct for DST.');
     CheckEquals(ABias_STD, SecondsBetweenNoAbs(LUtc_AsSTD, AStart), '[lttAmbiguous] Expected OFFSET to be correct for STD.');
@@ -290,7 +294,8 @@ begin
     CheckEquals(0, CompareDateTime(LUtc_AsDST, LUtc_AsSTD), '[lttStandard] Expected ToUniversalTime to be consistent across DST vs STD.');
 
     LLocal := ATZ.ToLocalTime(LUtc_AsDST);
-    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttStandard] Expected ToLocalTime to return the correct value from Utc');
+    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttStandard] Expected ToLocalTime to return the correct value from Utc. ' +
+      DateTimeToStr(LUtc_AsDST) + ' > ' + DateTimeToStr(AStart) + ' <> ' + DateTimeToStr(LLocal));
 
     CheckEquals(ABias_DST, SecondsBetweenNoAbs(LUtc_AsDST, AStart), '[lttStandard] Expected OFFSET to be correct for DST.');
     CheckEquals(ABias_STD, SecondsBetweenNoAbs(LUtc_AsSTD, AStart), '[lttStandard] Expected OFFSET to be correct for STD.');
@@ -314,7 +319,8 @@ begin
     CheckEquals(0, CompareDateTime(LUtc_AsDST, LUtc_AsSTD), '[lttDaylight] Expected ToUniversalTime to be consistent across DST vs STD.');
 
     LLocal := ATZ.ToLocalTime(LUtc_AsDST);
-    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttDaylight] Expected ToLocalTime to return the correct value from Utc');
+    CheckEquals(0, CompareDateTime(AStart, LLocal), '[lttDaylight] Expected ToLocalTime to return the correct value from Utc. ' +
+      DateTimeToStr(LUtc_AsDST) + ' > ' + DateTimeToStr(AStart) + ' <> ' + DateTimeToStr(LLocal));
 
     CheckEquals(ABias_DST, SecondsBetweenNoAbs(LUtc_AsDST, AStart), '[lttDaylight] Expected OFFSET to be correct for DST.');
     CheckEquals(ABias_STD, SecondsBetweenNoAbs(LUtc_AsSTD, AStart), '[lttDaylight] Expected OFFSET to be correct for STD.');
@@ -563,7 +569,7 @@ begin
   CheckEquals(EncodeDateTime(2014, 3, 30, 3, 59, 59, 999), LSegments[1].EndsAt);
   CheckEquals(Ord(lttInvalid), Ord(LSegments[1].LocalType));
   CheckEquals('EET', LSegments[1].DisplayName);
-  CheckEquals(7200, LSegments[1].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
+  CheckEquals(10800, LSegments[1].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
 
   { Segment 3 }
   CheckEquals(EncodeDateTime(2014, 3, 30, 4, 0, 0, 0), LSegments[2].StartsAt);
@@ -630,6 +636,17 @@ begin
   CheckEquals(7200, LSegments[0].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
 end;
 
+
+procedure TTZDBTest.Test_TZ_GetAbbreviation_Regression_1;
+var
+  LTZ: TBundledTimeZone;
+  C: string;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('Europe/London');
+  C := LTZ.GetAbbreviation(EncodeDateTime(2018, 10, 28, 1, 0, 0, 0), true);
+
+  CheckEquals('GMT+01', C);
+end;
 
 procedure TTZDBTest.Test_TZ_GetLocalTimeType_Validation;
 const
@@ -757,7 +774,7 @@ begin
   CheckEquals(EncodeDateTime(2014, 10, 19, 0, 59, 59, 999), LSegments[3].EndsAt);
   CheckEquals(Ord(lttInvalid), Ord(LSegments[3].LocalType));
   CheckEquals('-03', LSegments[3].DisplayName);
-  CheckEquals(-10800, LSegments[3].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
+  CheckEquals(-7200, LSegments[3].UtcOffset{$IFDEF SUPPORTS_TTIMESPAN}.TotalSeconds{$ENDIF});
 
   { Segment 5 }
   CheckEquals(EncodeDateTime(2014, 10, 19, 1, 0, 0, 0), LSegments[4].StartsAt);
@@ -843,6 +860,17 @@ begin
 
   for I := 0 to Length(L1) - 1 do
     CheckEquals(L1[I], L2[I], 'Expected same order for known tables');
+end;
+
+procedure TTZDBTest.Test_TZ_ToLocal_Regression_1;
+var
+  LTZ: TBundledTimeZone;
+  C: TDateTime;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('Europe/London');
+  C := LTZ.ToLocalTime(EncodeDateTime(2018, 03, 25, 1, 0, 0, 0));
+
+  CheckEquals('2018-03-25 02:00:00.000+01:00', LTZ.ToISO8601Format(C));
 end;
 
 procedure TTZDBTest.Test_TZ_ISO8601_Conversion;
