@@ -136,7 +136,7 @@ type
     function GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
 {$ENDIF}
 
-    function TryFindSegment(const AYear: Word; const AType: TLocalTimeType; out ASegment: TYearSegment): Boolean;
+    function TryFindSegment(const AYear: Word; const AType: TLocalTimeType; const ARev: Boolean; out ASegment: TYearSegment): Boolean;
 
 {$IFNDEF DELPHI}
     { Purely internal getters }
@@ -836,7 +836,7 @@ function TBundledTimeZone.AmbiguousTimeEnd(const AYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttAmbiguous, LSegment) then
+  if TryFindSegment(AYear, lttAmbiguous, false, LSegment) then
     Result := LSegment.FEndsAt
   else
     Result := 0;
@@ -846,7 +846,7 @@ function TBundledTimeZone.AmbiguousTimeStart(const AYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttAmbiguous, LSegment) then
+  if TryFindSegment(AYear, lttAmbiguous, true, LSegment) then
     Result := LSegment.FStartsAt
   else
     Result := 0;
@@ -856,7 +856,7 @@ function TBundledTimeZone.InvalidTimeEnd(const AYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttInvalid, LSegment) then
+  if TryFindSegment(AYear, lttInvalid, false, LSegment) then
     Result := LSegment.FEndsAt
   else
     Result := 0;
@@ -866,7 +866,7 @@ function TBundledTimeZone.InvalidTimeStart(const AYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttInvalid, LSegment) then
+  if TryFindSegment(AYear, lttInvalid, true, LSegment) then
     Result := LSegment.FStartsAt
   else
     Result := 0;
@@ -1114,7 +1114,7 @@ function TBundledTimeZone.DaylightTimeEnd(const AYear: Word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttDaylight, LSegment) then
+  if TryFindSegment(AYear, lttDaylight, true, LSegment) then
     Result := LSegment.FEndsAt
   else
     Result := 0;
@@ -1124,7 +1124,7 @@ function TBundledTimeZone.DaylightTimeStart(const AYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttDaylight, LSegment) then
+  if TryFindSegment(AYear, lttDaylight, false, LSegment) then
     Result := LSegment.FStartsAt
   else
     Result := 0;
@@ -1525,14 +1525,14 @@ function TBundledTimeZone.HasDaylightTime(const AYear: Word): Boolean;
 var
   LSegment: TYearSegment;
 begin
-  Result := TryFindSegment(AYear, lttDaylight, LSegment);
+  Result := TryFindSegment(AYear, lttDaylight, false, LSegment);
 end;
 
 function TBundledTimeZone.StandardTimeEnd(const AYear: Word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttStandard, LSegment) then
+  if TryFindSegment(AYear, lttStandard, true, LSegment) then
     Result := LSegment.FEndsAt
   else
     Result := 0;
@@ -1542,14 +1542,14 @@ function TBundledTimeZone.StandardTimeStart(const aYear: word): TDateTime;
 var
   LSegment: TYearSegment;
 begin
-  if TryFindSegment(AYear, lttStandard, LSegment) then
+  if TryFindSegment(AYear, lttStandard, false, LSegment) then
     Result := LSegment.FStartsAt
   else
     Result := 0;
 end;
 
 function TBundledTimeZone.TryFindSegment(const AYear: Word; const AType: TLocalTimeType; 
-  out ASegment: TYearSegment): Boolean;
+   const ARev: Boolean; out ASegment: TYearSegment): Boolean;
 var
   LSegments: TYearSegmentArray;
   I: Integer;
@@ -1573,12 +1573,25 @@ begin
   end;
 
   { If the type is not the first, just find it. }
-  for I := Low(LSegments) to High(LSegments) do
+  if ARev then
   begin
-    if LSegments[I].FType = AType then
+    for I := Low(LSegments) to High(LSegments) do
     begin
-      ASegment := LSegments[I];
-      Exit(true); 
+      if LSegments[I].FType = AType then
+      begin
+        ASegment := LSegments[I];
+        Exit(true);
+      end;
+    end;
+  end else
+  begin
+    for I := High(LSegments) downto Low(LSegments) do
+    begin
+      if LSegments[I].FType = AType then
+      begin
+        ASegment := LSegments[I];
+        Exit(true);
+      end;
     end;
   end;
 
