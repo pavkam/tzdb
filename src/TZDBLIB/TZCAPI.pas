@@ -158,8 +158,8 @@ implementation
 uses
   SysUtils,
   DateUtils,
-{$IFNDEF SUPPORTS_TARRAY}Types,{$ENDIF}
-{$IFDEF SUPPORTS_TTIMESPAN}TimeSpan,{$ENDIF}
+  Types,
+{$IFDEF DELPHI}TimeSpan,{$ENDIF}
   TZDB;
 
 const
@@ -314,7 +314,7 @@ end;
 
 function TZ_GetUtcOffset(Instance: PTZ_Instance; Time: TZ_Time; ForceDaylight: Boolean; Offset: PInteger): TZ_Result;
 var
-  LValue: {$IFDEF SUPPORTS_TTIMESPAN}TTimeSpan{$ELSE}Int64{$ENDIF};
+  LValue: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
 begin
   { Verify parameters }
   if Instance = nil then
@@ -327,7 +327,7 @@ begin
     LValue := TBundledTimeZone(Instance^.FTZObject).GetUtcOffset(UnixToDateTime(Time), ForceDaylight);
 
     { Transform into milliseconds }
-    Offset^ := {$IFDEF SUPPORTS_TTIMESPAN}Round(LValue.TotalSeconds){$ELSE}LValue{$ENDIF} * 1000;
+    Offset^ := {$IFDEF DELPHI}Round(LValue.TotalSeconds){$ELSE}LValue{$ENDIF} * 1000;
   except
     on ELocalTimeInvalid do
       Exit(ERROR_INVALID_LOCAL_TIME);

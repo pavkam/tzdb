@@ -35,13 +35,14 @@ interface
 uses
   SysUtils,
   DateUtils,
+  Types,
 {$IFDEF DELPHI}
   TimeSpan,
   Generics.Collections,
+  Generics.Defaults,
 {$ELSE}
   FGL,
   SyncObjs,
-  Types,
 {$ENDIF}
   Classes;
 
@@ -631,6 +632,7 @@ var
 {$ENDIF}
   FTimeZoneCache: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<string, TBundledTimeZone>;
 
+{$IFDEF FPC}
 function CompiledPeriodComparison(ALeft, ARight: Pointer): Integer;
 begin
   { Use standard DT comparison operation }
@@ -644,6 +646,7 @@ begin
   Result := CompareDateTime(TCompiledRule(ALeft).StartsOn,
     TCompiledRule(ARight).StartsOn);
 end;
+{$ENDIF}
 
 { TCompiledPeriod }
 
@@ -661,6 +664,9 @@ var
   LLastYearRule: PRule;
   LAbsolute: TDateTime;
   I: Integer;
+{$IFDEF DELPHI}
+  LComparer: IComparer<TCompiledRule>;
+{$ENDIF}
 begin
   { Initialize the compiled list }
   Result := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>.Create(true);
@@ -700,8 +706,16 @@ begin
     end;
 
     { Sort the list ascending by the activation date/time }
+{$IFDEF FPC}
     Result.Sort(@CompiledRuleComparison);
+{$ELSE}
+    LComparer := TComparer<TCompiledRule>.Construct(function(const ALeft, ARight: TCompiledRule): Integer
+    begin
+        Result := CompareDateTime(ALeft.StartsOn, ARight.StartsOn);
+    end);
 
+    Result.Sort(LComparer);
+{$ENDIF}
     { Create a linked list based on offsets and their nexts (will be used on type getting) }
     for I := 0 to Result.Count - 1 do
     begin
@@ -793,8 +807,14 @@ end;
 { TYearSegment }
 
 function TYearSegment.GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
+var
+  LOffset: Int64;
 begin
-  Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(FPeriodOffset + FBias){$ELSE}FPeriodOffset + FBias{$ENDIF};
+  LOffset := FPeriodOffset;
+  if (FType <> lttInvalid) then
+    Inc(LOffset, FBias);
+
+  Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(LOffset){$ELSE}LOffset{$ENDIF};
 end;
 
 {$IFDEF FPC}
@@ -860,6 +880,9 @@ var
   LAbsolute: TDateTime;
   LRule: PRule;
   I: Integer;
+{$IFDEF DELPHI}
+  LComparer: IComparer<TObject>;
+{$ENDIF}
 begin
   LCurrentPeriod := PZone(FZone)^.FFirstPeriod;
   LStart := 0;
@@ -905,7 +928,16 @@ begin
   end;
 
   { Sort the list ascending }
-  FPeriods.Sort(@CompiledPeriodComparison);
+{$IFDEF FPC}
+    FPeriods.Sort(@CompiledPeriodComparison);
+{$ELSE}
+    LComparer := TComparer<TObject>.Construct(function(const ALeft, ARight: TObject): Integer
+    begin
+        Result := CompareDateTime(TCompiledPeriod(ALeft).FUntil, TCompiledPeriod(ARight).FUntil);
+    end);
+
+    FPeriods.Sort(LComparer);
+{$ENDIF}
 end;
 
 function TBundledTimeZone.CompileYearBreakdown(const AYear: Word): TYearSegmentArray;
@@ -1540,23 +1572,6 @@ begin
     Exit(false);
   end;
 
-  if LSegments[0].FType = AType then
-  begin
-    { If the year starts with a given type, find the ending one. }
-    for I := 1 to High(LSegments) do
-    begin
-      if LSegments[I].FType = AType then
-      begin
-        ASegment := LSegments[I];
-        Exit(true); 
-      end;
-    end;
-
-    { In case this appears only once. }
-    ASegment := LSegments[0];
-    Exit(true); 
-  end;
-  
   { If the type is not the first, just find it. }
   for I := Low(LSegments) to High(LSegments) do
   begin

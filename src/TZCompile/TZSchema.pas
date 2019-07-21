@@ -802,12 +802,11 @@ var
   LLineSplit: TStringDynArray;
   LZoneName: string;
 
-  LRules, LZones, LLinks: Integer;
+  LRules, LZones: Integer;
   LAllLines: TStringDynArray;
 begin
   LRules := 0;
   LZones := 0;
-  LLinks := 0;
 
   { now the work can begin! }
   for LFile in ListFiles(AInputDir) do
@@ -845,8 +844,6 @@ begin
       begin
         { Kill zone name }
         LZoneName := '';
-
-        Inc(LLinks);
 
         { Process rule! }
         ProcessLink(LLineSplit);
