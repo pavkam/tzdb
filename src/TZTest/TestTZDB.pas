@@ -544,7 +544,7 @@ end;
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Bucharest_2014;
 var
   LTZ: TBundledTimeZone;
-  LSegments: {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+  LSegments: TYearSegmentArray;
 begin
   LTZ := TBundledTimeZone.Create('Europe/Bucharest');
   LSegments := LTZ.GetYearBreakdown(2014);
@@ -590,7 +590,7 @@ end;
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_1900;
 var
   LTZ: TBundledTimeZone;
-  LSegments: {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+  LSegments: TYearSegmentArray;
 begin
   LTZ := TBundledTimeZone.Create('Africa/Cairo');
   LSegments := LTZ.GetYearBreakdown(1900);
@@ -615,7 +615,7 @@ end;
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_2012;
 var
   LTZ: TBundledTimeZone;
-  LSegments: {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+  LSegments: TYearSegmentArray;
 begin
   LTZ := TBundledTimeZone.Create('Africa/Cairo');
   LSegments := LTZ.GetYearBreakdown(2012);
@@ -657,7 +657,7 @@ end;
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_2014;
 var
   LTZ: TBundledTimeZone;
-  LSegments: {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+  LSegments: TYearSegmentArray;
 begin
   LTZ := TBundledTimeZone.Create('Africa/Cairo');
   LSegments := LTZ.GetYearBreakdown(2014);
@@ -724,7 +724,7 @@ end;
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Sao_Paulo_2014;
 var
   LTZ: TBundledTimeZone;
-  LSegments: {$IFDEF SUPPORTS_TARRAY}TArray<TYearSegment>{$ELSE}TYearSegmentArray{$ENDIF};
+  LSegments: TYearSegmentArray;
 begin
   LTZ := TBundledTimeZone.Create('America/Sao_Paulo');
   LSegments := LTZ.GetYearBreakdown(2014);
