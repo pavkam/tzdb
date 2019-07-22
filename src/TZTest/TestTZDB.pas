@@ -687,63 +687,70 @@ begin
   LTZ := TBundledTimeZone.Create('Africa/Cairo');
   LSegments := LTZ.GetYearBreakdown(2014);
 
-  CheckEquals(8, Length(LSegments));
+  CheckEquals(9, Length(LSegments));
 
   { Segment 1 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 1, 1, 0, 0, 0, 0), LSegments[6].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 5, 15, 23, 59, 59, 999), LSegments[6].EndsAt));
-  CheckEquals(Ord(lttStandard), Ord(LSegments[6].LocalType));
-  CheckEquals('EET', LSegments[6].DisplayName);
-  CheckEquals(7200, LSegments[6].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 1, 1, 0, 0, 0, 0), LSegments[0].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 5, 15, 23, 59, 59, 999), LSegments[0].EndsAt));
+  CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType));
+  CheckEquals('EET', LSegments[0].DisplayName);
+  CheckEquals(7200, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
-  { Segment 2 }
+   { Segment 2 }
   CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 5, 16, 0, 0, 0, 0), LSegments[1].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 22, 59, 59, 999), LSegments[1].EndsAt));
-  CheckEquals(Ord(lttDaylight), Ord(LSegments[1].LocalType));
-  CheckEquals('EEST', LSegments[1].DisplayName);
-  CheckEquals(10800, LSegments[1].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 5, 16, 0, 59, 59, 999), LSegments[1].EndsAt));
+  CheckEquals(Ord(lttInvalid), Ord(LSegments[1].LocalType));
+  CheckEquals('EET', LSegments[1].DisplayName);
+  CheckEquals(7200, LSegments[1].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
   { Segment 3 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 23, 0, 0, 0), LSegments[2].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 23, 59, 59, 999), LSegments[2].EndsAt));
-  CheckEquals(Ord(lttAmbiguous), Ord(LSegments[2].LocalType));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 5, 16, 1, 0, 0, 0), LSegments[2].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 22, 59, 59, 999), LSegments[2].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[2].LocalType));
   CheckEquals('EEST', LSegments[2].DisplayName);
   CheckEquals(10800, LSegments[2].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
   { Segment 4 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 27, 0, 0, 0, 0), LSegments[3].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 7, 31, 23, 59, 59, 999), LSegments[3].EndsAt));
-  CheckEquals(Ord(lttStandard), Ord(LSegments[3].LocalType));
-  CheckEquals('EET', LSegments[3].DisplayName);
-  CheckEquals(7200, LSegments[3].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 23, 0, 0, 0), LSegments[3].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 26, 23, 59, 59, 999), LSegments[3].EndsAt));
+  CheckEquals(Ord(lttAmbiguous), Ord(LSegments[3].LocalType));
+  CheckEquals('EEST', LSegments[3].DisplayName);
+  CheckEquals(10800, LSegments[3].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
   { Segment 5 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 0, 0, 0, 0), LSegments[4].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 0, 59, 59, 999), LSegments[4].EndsAt));
-  CheckEquals(Ord(lttInvalid), Ord(LSegments[4].LocalType));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 6, 27, 0, 0, 0, 0), LSegments[4].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 7, 31, 23, 59, 59, 999), LSegments[4].EndsAt));
+  CheckEquals(Ord(lttStandard), Ord(LSegments[4].LocalType));
   CheckEquals('EET', LSegments[4].DisplayName);
   CheckEquals(7200, LSegments[4].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
-  { Segment 6 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 1, 0, 0, 0), LSegments[5].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 22, 59, 59, 999), LSegments[5].EndsAt));
-  CheckEquals(Ord(lttDaylight), Ord(LSegments[5].LocalType));
-  CheckEquals('EEST', LSegments[5].DisplayName);
-  CheckEquals(10800, LSegments[5].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+  { Segment 5 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 0, 0, 0, 0), LSegments[5].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 0, 59, 59, 999), LSegments[5].EndsAt));
+  CheckEquals(Ord(lttInvalid), Ord(LSegments[5].LocalType));
+  CheckEquals('EET', LSegments[5].DisplayName);
+  CheckEquals(7200, LSegments[5].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
-  { Segment 7 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 23, 0, 0, 0), LSegments[6].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 23, 59, 59, 999), LSegments[6].EndsAt));
-  CheckEquals(Ord(lttAmbiguous), Ord(LSegments[6].LocalType));
+  { Segment 6 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 8, 1, 1, 0, 0, 0), LSegments[6].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 22, 59, 59, 999), LSegments[6].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[6].LocalType));
   CheckEquals('EEST', LSegments[6].DisplayName);
   CheckEquals(10800, LSegments[6].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
+  { Segment 7 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 23, 0, 0, 0), LSegments[7].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 25, 23, 59, 59, 999), LSegments[7].EndsAt));
+  CheckEquals(Ord(lttAmbiguous), Ord(LSegments[7].LocalType));
+  CheckEquals('EEST', LSegments[7].DisplayName);
+  CheckEquals(10800, LSegments[7].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
   { Segment 8 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 26, 0, 0, 0, 0), LSegments[6].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 12, 31, 23, 59, 59, 999), LSegments[6].EndsAt));
-  CheckEquals(Ord(lttStandard), Ord(LSegments[6].LocalType));
-  CheckEquals('EET', LSegments[6].DisplayName);
-  CheckEquals(7200, LSegments[6].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 9, 26, 0, 0, 0, 0), LSegments[8].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2014, 12, 31, 23, 59, 59, 999), LSegments[8].EndsAt));
+  CheckEquals(Ord(lttStandard), Ord(LSegments[8].LocalType));
+  CheckEquals('EET', LSegments[8].DisplayName);
+  CheckEquals(7200, LSegments[8].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 end;
 
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Dublin_2019;

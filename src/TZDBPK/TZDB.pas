@@ -838,7 +838,6 @@ begin
     F := F.FNext;
   end;
   
-  WriteLn(UtcOffset, ' --> ', FMin);
   { Now decide if this is the DST or not }
   Result := UtcOffset = FMin;
 end;
@@ -986,7 +985,7 @@ var
   LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
   LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
-  LPrdStart, LEnd, LYStart: TDateTime;
+  LPrdStart, LEnd, LYStart, LYEnd: TDateTime;
   LCarryDelta, LDelta: Int64;
   LComp: TCompiledRuleArray;
     LNeg: Boolean;
@@ -996,6 +995,7 @@ begin
   LCarryDelta := 0;
 
   LYStart := EncodeDate(AYear, 1, 1);
+  LYEnd := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1);
   LRules := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>.Create(true);
 
   try
@@ -1038,12 +1038,26 @@ begin
       LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
       LSegment.FBias := LRule.FOffset;
 
-      if LRule.IsStandard then
-        LSegment.FType := lttStandard
+      if (LNextRule <> nil) and (LNextRule.FPeriod = LRule.FPeriod) then
+      begin
+        if LNextRule.UtcOffset >= LRule.UtcOffset then
+          LSegment.FType := lttStandard
+        else
+          LSegment.FType := lttDaylight;
+      end else
+      begin
+        if (LCarryDelta <> 0) or ((LRule.FPrev = nil) and (LRule.FNext = nil)) then
+          LSegment.FType := lttStandard
+        else
+          LSegment.FType := lttDaylight;
+      end;
+
+      { This is ridiculous but IsStandard might not be the same as this and the rules are ... well, rules. }
+      if LRule.FOffset = 0 then
+        LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, lttStandard)
       else
-        LSegment.FType := lttDaylight;
-      
-      LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType );
+        LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, lttDaylight);
+
       LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
 
       { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
@@ -1092,7 +1106,10 @@ begin
       end else
       begin
         { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
-        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+        LSegment.FEndsAt := LYEnd;
+        if LSegment.FEndsAt > LRule.FPeriod.FUntil then
+          LSegment.FEndsAt := LRule.FPeriod.FUntil;
+
         SetLength(Result, Length(Result) + 1);
         Result[Length(Result) - 1] := LSegment;
       end;
@@ -1425,7 +1442,6 @@ begin
     end;
   end;
 
-    writeln('pizda');
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
