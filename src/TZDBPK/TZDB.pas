@@ -592,22 +592,24 @@ begin
 end;
 
 type
+  TCompiledPeriod = class;
+
   { Contains a compiled rule }
   TCompiledRule = class
   strict private
     FStartsOn: TDateTime;
     function GetStartsOn: TDateTime;
   private
+    FPeriod: TCompiledPeriod;
     FRule: PRule;
     FTimeMode: TTimeMode;
 
-    FOffset,
-    FPeriodOffset: Int64;
+    FOffset: Int64;
     FNext, FPrev: TCompiledRule;
 
   public
-    constructor Create(const ARule: PRule; const AStartsOn: TDateTime;
-      const AOffset, aPeriodOffset: Int64; const aTimeMode: TTimeMode);
+    constructor Create(const APeriod: TCompiledPeriod; const ARule: PRule; const AStartsOn: TDateTime;
+      const AOffset: Int64; const ATimeMode: TTimeMode);
 
     property StartsOn: TDateTime read GetStartsOn;
   end;
@@ -679,8 +681,8 @@ begin
 
     { Add the the last year rule since 1 jan 00:00 this year }
     if LLastYearRule <> nil then
-      Result.Add(TCompiledRule.Create(LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
-        LLastYearRule^.FOffset, FPeriod^.FOffset, trStandard));
+      Result.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
+        LLastYearRule^.FOffset, trStandard));
 
     { Obtain the first rule in chain }
     LCurrRule := FPeriod^.FRuleFamily^.FFirstRule;
@@ -697,8 +699,8 @@ begin
             LCurrRule^.FRule^.FAt);
        
         { Add the new compiled rule to the list }
-        Result.Add(TCompiledRule.Create(LCurrRule^.FRule, LAbsolute,
-            LCurrRule^.FRule^.FOffset, FPeriod^.FOffset, LCurrRule^.FRule^.FAtMode));
+        Result.Add(TCompiledRule.Create(Self, LCurrRule^.FRule, LAbsolute,
+            LCurrRule^.FRule^.FOffset, LCurrRule^.FRule^.FAtMode));
       end;
 
       { Go to next rule }
@@ -772,13 +774,13 @@ end;
 
 { TCompiledRule }
 
-constructor TCompiledRule.Create(const ARule: PRule;
-  const AStartsOn: TDateTime; const AOffset, APeriodOffset: Int64; const ATimeMode: TTimeMode);
+constructor TCompiledRule.Create(const APeriod: TCompiledPeriod; const ARule: PRule;
+  const AStartsOn: TDateTime; const AOffset: Int64; const ATimeMode: TTimeMode);
 begin
+  FPeriod := APeriod;
   FRule := ARule;
   FStartsOn := AStartsOn;
   FOffset := AOffset;
-  FPeriodOffset := APeriodOffset;
   FTimeMode := ATimeMode;
 end;
 
@@ -800,7 +802,7 @@ begin
     //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
     trStandard: Result := IncSecond(Result, FOffset);
     //This value is specified in universal time. Add both the standard deviation plus the local time
-    trUniversal: Result := IncSecond(Result, FPeriodOffset + FOffset);
+    trUniversal: Result := IncSecond(Result, FPeriod.FPeriod^.FOffset + FOffset);
   end;
 end;
 
@@ -978,7 +980,7 @@ begin
       else
         LNextRule := nil;
         
-      LSegment.FPeriodOffset := LRule.FPeriodOffset;
+      LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
       LSegment.FBias := LRule.FOffset;
 
       if LRule.FOffset = 0 then
@@ -993,7 +995,7 @@ begin
       if LNextRule <> nil then
       begin
         { Calculate the overall delta between two segments. }
-        LDelta := (LNextRule.FPeriodOffset + LNextRule.FOffset) - (LRule.FPeriodOffset + LRule.FOffset);
+        LDelta := (LNextRule.FPeriod.FPeriod^.FOffset + LNextRule.FOffset) - (LRule.FPeriod.FPeriod^.FOffset + LRule.FOffset);
 
         { Add the core segment. }
         if (LDelta < 0) then
