@@ -601,6 +601,7 @@ type
 
     function GetStartsOn: TDateTime;
     function GetUtcOffset: Int64;
+    function GetIsStandard: Boolean;
   private
     FPeriod: TCompiledPeriod;
     FRule: PRule;
@@ -614,6 +615,7 @@ type
       const AOffset: Int64; const ATimeMode: TTimeMode);
 
     property StartsOn: TDateTime read GetStartsOn;
+    property IsStandard: Boolean read GetIsStandard;
     property UtcOffset: Int64 read GetUtcOffset;
   end;
 
@@ -819,6 +821,28 @@ begin
   Result := FPeriod.FPeriod^.FOffset + FOffset;
 end;
 
+function TCompiledRule.GetIsStandard: Boolean;
+var 
+  F: TCompiledRule;
+  FMin: Int64;
+begin
+  { Find the first in list. }
+  FMin := UtcOffset;
+  F := Self;
+  while F.FPrev <> nil do F := F.FPrev;
+
+  { Scan for minimum }
+  while F <> nil do 
+  begin
+    if (FMin > F.UtcOffset) then FMin := F.UtcOffset;
+    F := F.FNext;
+  end;
+  
+  WriteLn(UtcOffset, ' --> ', FMin);
+  { Now decide if this is the DST or not }
+  Result := UtcOffset = FMin;
+end;
+
 { TYearSegment }
 
 function TYearSegment.GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
@@ -965,6 +989,7 @@ var
   LPrdStart, LEnd, LYStart: TDateTime;
   LCarryDelta, LDelta: Int64;
   LComp: TCompiledRuleArray;
+    LNeg: Boolean;
 begin
   Result := nil;
   LRules := nil;
@@ -1013,24 +1038,12 @@ begin
       LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
       LSegment.FBias := LRule.FOffset;
 
-      { The type of the segment depends on the next one and previous zone.
-        Compare the offsets between them and decide.
-      }
-      if (LNextRule <> nil) then
-      begin
-        if LNextRule.UtcOffset >= LRule.UtcOffset then
-          LSegment.FType := lttStandard
-        else
-          LSegment.FType := lttDaylight;
-      end else
-      begin
-        if (LCarryDelta <> 0) or (LRules.Count = 1) then
-          LSegment.FType := lttStandard
-        else
-          LSegment.FType := lttDaylight;
-      end;
-
-      LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType);
+      if LRule.IsStandard then
+        LSegment.FType := lttStandard
+      else
+        LSegment.FType := lttDaylight;
+      
+      LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType );
       LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
 
       { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
