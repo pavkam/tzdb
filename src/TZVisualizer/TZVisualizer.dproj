@@ -49,10 +49,10 @@
         <DCC_UnitSearchPath>..\..\bin\$(Config)\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.8.0.18;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
-        <VerInfo_Build>18</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>100</VerInfo_Build>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_MinorVer>8</VerInfo_MinorVer>
+        <VerInfo_MinorVer>0</VerInfo_MinorVer>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <UsePackages>true</UsePackages>
         <DCC_ImageBase>00400000</DCC_ImageBase>
@@ -69,7 +69,7 @@
         <VerInfo_Build>73</VerInfo_Build>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
@@ -85,7 +85,7 @@
         <DCC_MapFile>3</DCC_MapFile>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Build>73</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.9.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.9;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
@@ -98,7 +98,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Build>73</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.8.0.73;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZVisualizer;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
@@ -135,10 +135,10 @@
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">True</VersionInfo>
                     <VersionInfo Name="AutoIncBuild">True</VersionInfo>
-                    <VersionInfo Name="MajorVer">1</VersionInfo>
-                    <VersionInfo Name="MinorVer">7</VersionInfo>
+                    <VersionInfo Name="MajorVer">2</VersionInfo>
+                    <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">23</VersionInfo>
+                    <VersionInfo Name="Build">100</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -148,15 +148,15 @@
                     <VersionInfo Name="CodePage">1252</VersionInfo>
                 </VersionInfo>
                 <VersionInfoKeys>
-                    <VersionInfoKeys Name="CompanyName">Ciobanu Alexandru</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileDescription">Olson Time Zone Database for Delphi</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">1.7.0.23</VersionInfoKeys>
-                    <VersionInfoKeys Name="InternalName">Olson Time Zone Database for Delphi</VersionInfoKeys>
-                    <VersionInfoKeys Name="LegalCopyright">Ciobanu Alexandru</VersionInfoKeys>
+                    <VersionInfoKeys Name="CompanyName">Alexandru Ciobanu</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileDescription">IANA Time Zone Database for Delphi</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">2.0.0.100</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName">IANA Time Zone Database for Delphi</VersionInfoKeys>
+                    <VersionInfoKeys Name="LegalCopyright">Alexandru Ciobanu</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalTrademarks"/>
                     <VersionInfoKeys Name="OriginalFilename">TZVisualizer</VersionInfoKeys>
-                    <VersionInfoKeys Name="ProductName">Olson Time Zone Database for Delphi</VersionInfoKeys>
-                    <VersionInfoKeys Name="ProductVersion">1.7-110627</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductName">IANA Time Zone Database for Delphi</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductVersion">2.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Source>

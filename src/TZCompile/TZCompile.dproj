@@ -65,7 +65,7 @@
         <Manifest_File>None</Manifest_File>
         <DCC_UnitSearchPath>..\..\bin\$(Config)\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.8.0.17;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZUpdate;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.8;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_DcuOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcuOutput>
@@ -157,7 +157,7 @@
         <DCC_MapFile>3</DCC_MapFile>
         <Debugger_RunParams>..\..\..\tz_database_latest ..\..\..\src\TZDBPK\TZDB.inc</Debugger_RunParams>
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Ciobanu Alexandru;FileDescription=IANA Time Zone Database for Delphi;FileVersion=1.9.0.17;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Ciobanu Alexandru;LegalTrademarks=;OriginalFilename=TZUpdate;ProductName=IANA Time Zone Database for Delphi;ProductVersion=1.9;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -193,10 +193,10 @@
                 <VersionInfo>
                     <VersionInfo Name="IncludeVerInfo">False</VersionInfo>
                     <VersionInfo Name="AutoIncBuild">False</VersionInfo>
-                    <VersionInfo Name="MajorVer">1</VersionInfo>
+                    <VersionInfo Name="MajorVer">2</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">0</VersionInfo>
+                    <VersionInfo Name="Build">100</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -208,13 +208,13 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">2.0.0.100</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
                     <VersionInfoKeys Name="OriginalFilename"/>
                     <VersionInfoKeys Name="ProductName"/>
-                    <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+                    <VersionInfoKeys Name="ProductVersion">2.0.0.100</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Source>
