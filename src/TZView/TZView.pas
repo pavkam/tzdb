@@ -250,7 +250,7 @@ begin
           PadRight(FormatDateTime(COutDateTimeFormat, LTZ.ToUniversalTime(LDate)), 25),
           PadRight(LTZ.GetAbbreviation(LDate), 10),
           PadRight(LTZ.GetDisplayName(LDate), 10),
-          FormatOffset(LSegment.UtcOffset)
+          FormatOffset(LTZ.GetUtcOffset(LDate))
         );
       end;
     except

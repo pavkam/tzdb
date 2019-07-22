@@ -133,7 +133,7 @@ type
     function GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean;
       const AFailOnInvalid: Boolean): TYearSegment;
 {$IFNDEF DELPHI}
-    function GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
+    function GetSegmentUtc(const AYear: Word; const ADateTime: TDateTime): TYearSegment;
 {$ENDIF}
 
     function TryFindSegment(const AYear: Word; const AType: TLocalTimeType; const ARev: Boolean; out ASegment: TYearSegment): Boolean;
@@ -1369,7 +1369,7 @@ var
   LSegment: TYearSegment;
 begin
   { Get approximate }
-  LSegment := GetSegmentUtc(ADateTime);
+  LSegment := GetSegmentUtc(YearOf(ADateTime), ADateTime);
   Result := IncSecond(ADateTime, LSegment.FPeriodOffset + LSegment.FBias);
 end;
 
@@ -1389,7 +1389,8 @@ begin
   LSegments := GetYearBreakdown(YearOf(ADateTime));
   for I := Low(LSegments) to High(LSegments) do
   begin
-    if (LSegments[I].FStartsAt <= ADateTime) and (LSegments[I].FEndsAt >= ADateTime) then
+    if (CompareDateTime(LSegments[I].FStartsAt, ADateTime) <= 0) and
+       (CompareDateTime(LSegments[I].FEndsAt, ADateTime) >= 0) then
     begin
       { This segment matches our time }
       if AFailOnInvalid and (LSegments[I].FType = lttInvalid) then
@@ -1411,25 +1412,51 @@ begin
     end;
   end;
 
+    writeln('pizda');
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
 
 {$IFNDEF DELPHI}
-function TBundledTimeZone.GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
+function TBundledTimeZone.GetSegmentUtc(const AYear: Word; const ADateTime: TDateTime): TYearSegment;
 var
   LSegment: TYearSegment;
   LLocal: TDateTime;
 begin
-  for LSegment in GetYearBreakdown(YearOf(ADateTime)) do
+  for LSegment in GetYearBreakdown(AYear) do
   begin
-    LLocal := IncSecond(ADateTime, LSegment.FPeriodOffset + LSegment.FBias);
 
-    if (LSegment.FStartsAt <= LLocal) and (LSegment.FEndsAt >= LLocal) and
-      (LSegment.FType <> lttInvalid) and (LSegment.FType <> lttAmbiguous) then
-        Exit(LSegment);
+    if LSegment.FType <> lttInvalid then
+    begin
+      { Check for normal segments. }
+      LLocal := IncSecond(ADateTime, LSegment.FPeriodOffset + LSegment.FBias);
+      if YearOf(LLocal) > AYear then
+      begin
+        { Crossed the year threshold. Pass on to next year. }
+        Exit(GetSegmentUtc(YearOf(LLocal), ADateTime));
+      end;
+
+      if (CompareDateTime(LSegment.FStartsAt, LLocal) <= 0) and
+         (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
+         Exit(LSegment);
+    end;
   end;
 
+  if LSegment.FType = lttAmbiguous then
+  begin
+    { Check with both period offset only }
+    LLocal := IncSecond(ADateTime, LSegment.FPeriodOffset);
+
+    if YearOf(LLocal) > AYear then
+    begin
+      { Crossed the year threshold. Pass on to next year. }
+      Exit(GetSegmentUtc(YearOf(LLocal), ADateTime));
+    end;
+
+    if (CompareDateTime(LSegment.FStartsAt, LLocal) <= 0) and
+       (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
+       Exit(LSegment);
+  end;
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
@@ -1637,7 +1664,7 @@ end;
 
 initialization
 {$IFNDEF DELPHI}
-  FTimeZoneCacheLock := FTimeZoneCacheLock.Create;
+  FTimeZoneCacheLock := TCriticalSection.Create;
 {$ENDIF}
 
   FTimeZoneCache := {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<string, TBundledTimeZone>.Create;
