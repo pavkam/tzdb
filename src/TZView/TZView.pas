@@ -102,7 +102,7 @@ begin
 end;
 
 procedure PrintHeaderAndExit;
-var 
+var
   I: Integer;
 begin
   WriteLn('tzview - view and compare time zone data. (c) 2019 Alexandru Ciobanu (alex+git@ciobanu.org).');
@@ -129,7 +129,7 @@ end;
 var
   LYear: Integer;
   LDate: TDateTime;
-  LTimeZones: {$IFDEF SUPPORTS_TARRAY}TArray<string>{$ELSE}TStringDynArray{$ENDIF};
+  LTimeZones: TStringDynArray;
   LCommand: string;
   S: string;
   LTZ: TBundledTimeZone;
@@ -181,17 +181,17 @@ begin
 
       for LSegment in LTZ.GetYearBreakdown(LYear) do
       begin
-        case LSegment.LocalType of 
+        case LSegment.LocalType of
           lttStandard: S := 'Standard';
           lttDaylight: S := 'Daylight';
           lttAmbiguous: S := 'Ambiguous';
           lttInvalid: S := 'Invalid';
         end;
-        
+
         WriteLn(
-          PadRight(S, 10), 
-          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.StartsAt), 25), 
-          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.EndsAt), 25), 
+          PadRight(S, 10),
+          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.StartsAt), 25),
+          PadRight(FormatDateTime(COutDateTimeFormat, LSegment.EndsAt), 25),
           PadRight(LSegment.DisplayName, 10),
           FormatOffset(LSegment.UtcOffset)
         );
@@ -217,7 +217,7 @@ begin
       if SameText(LCommand, 'utc') then
         LDate := LTZ.ToLocalTime(LDate);
 
-      case LTZ.GetLocalTimeType(LDate) of 
+      case LTZ.GetLocalTimeType(LDate) of
         lttStandard: S := 'Standard';
         lttDaylight: S := 'Daylight';
         lttAmbiguous: S := 'Ambiguous';
@@ -238,14 +238,14 @@ begin
         WriteLn(
           PadRight(S, 10),
           PadRight(FormatDateTime(COutDateTimeFormat, LDate), 25),
-          PadRight('', 25), 
+          PadRight('', 25),
           PadRight('', 10),
           PadRight('', 10)
         );
       end else
       begin
         WriteLn(
-          PadRight(S, 10), 
+          PadRight(S, 10),
           PadRight(FormatDateTime(COutDateTimeFormat, LDate), 25),
           PadRight(FormatDateTime(COutDateTimeFormat, LTZ.ToUniversalTime(LDate)), 25),
           PadRight(LTZ.GetAbbreviation(LDate), 10),

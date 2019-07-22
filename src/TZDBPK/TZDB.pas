@@ -962,7 +962,7 @@ var
   LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
   LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
-  LFrom, LEnd, LYStart: TDateTime;
+  LPrdStart, LEnd, LYStart: TDateTime;
   LCarryDelta, LDelta: Int64;
   LComp: TCompiledRuleArray;
 begin
@@ -986,18 +986,19 @@ begin
         But there are a few zone with two periods; maybe three? }
       LComp := LPeriod.CompileRulesForYear(AYear);
 
-      { Copy the rules into the general list. }
-      if Length(LComp) = 0 then
-      begin
-        LFrom := LPeriod.FFrom;
-        if (LFrom < LYStart) then LFrom := LYStart;
+      { Calculate the actual start of the period. }
+      LPrdStart := LPeriod.FFrom;
+      if (LPrdStart < LYStart) then LPrdStart := LYStart;
 
-        LRules.Add(TCompiledRule.Create(LPeriod, nil, LFrom, 0, trStandard));
-      end else
+      { Copy the rules into the general list. }
+      if (Length(LComp) = 0) or (CompareDateTime(LPrdStart, LComp[0].StartsOn) < 0) then
       begin
-        for X := Low(LComp) to High(LComp) do
-          LRules.Add(LComp[X]);
+        { There is a gap between the start of the period and the first rule! Compensate. }
+        LRules.Add(TCompiledRule.Create(LPeriod, nil, LPrdStart, 0, trStandard));
       end;
+
+      for X := Low(LComp) to High(LComp) do
+        LRules.Add(LComp[X]);
     end;
 
     for X := 0 to LRules.Count - 1 do
