@@ -144,7 +144,7 @@ type
     function GetUniqueDays: Cardinal;
     function GetUniqueRules: Cardinal;
     function GetUniqueRuleFamilies: Cardinal;
-    
+
   public
     { Construction and related }
     constructor Create;
@@ -786,7 +786,7 @@ end;
 
 function CharToRel(const Ch: Char): string;
 begin
-  if CharInSet(Ch, ['s']) then
+  if CharInSet(Ch, ['s', 'S']) then
     Result := 'trStandard'
   else if CharInSet(Ch, ['u', 'g', 'z', 'U', 'G', 'Z']) then
     Result := 'trUniversal'
@@ -877,7 +877,7 @@ begin
   RegisterStandardAliases();
   GlobalCache.Finalize;
 
-  CLIMessage(Format(CPMStats, [LRules, LZones, GlobalCache.UniqueDays, 
+  CLIMessage(Format(CPMStats, [LRules, LZones, GlobalCache.UniqueDays,
     GlobalCache.UniqueRules, GlobalCache.UniqueRuleFamilies, GlobalCache.FResAliases.Count]));
 
   CLIMessage(Format(CPMStartDump, [AOutputFile]));
@@ -962,7 +962,7 @@ var
 
 begin
   LResult := {$IFDEF FPC}TFPGMap{$ELSE}TDictionary{$ENDIF}<string, TzZone>.Create;
-  
+
   for LAliasEntry in FAliases do
     AddAlias(LAliasEntry.FAlias, LAliasEntry.FTimeZone);
 
@@ -1097,7 +1097,7 @@ begin
     { ======= RULE FAMILIES ======== }
     WriteLn(LFile, 'var');
     WriteLn(LFile, '  { This array contains rule families. }');
-    
+
     X := FRuleFamilies.Count - LGhosts;
     WriteLn(LFile, '  CRuleFamilies: array[0 .. ' + IntToStr(X - 1) + '] of TRuleFamily = (');
 
@@ -1112,7 +1112,7 @@ begin
       Write(LFile, Format('    (FCount: %d; FFirstRule: @CFamily_%d_Arr)', [LFam.FRules.Count, LFam.FIndexInFile]));
 
       Dec(X);
-      if X > 0 then 
+      if X > 0 then
         Write(LFile, ',');
 
       WriteLn(LFile);
