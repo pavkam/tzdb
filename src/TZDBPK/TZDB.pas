@@ -84,23 +84,23 @@ type
     function GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
   public
     /// <summary>The date/time when the segment starts.</summary>
-    /// <returns>A date/time value representing the start of the segment.</returns> 
+    /// <returns>A date/time value representing the start of the segment.</returns>
     property StartsAt: TDateTime read FStartsAt;
 
     /// <summary>The date/time when the segment ends.</summary>
-    /// <returns>A date/time value representing the end of the segment.</returns> 
+    /// <returns>A date/time value representing the end of the segment.</returns>
     property EndsAt: TDateTime read FEndsAt;
 
     /// <summary>The type of the segment.</summary>
-    /// <returns>An enum value representing the type of the segment.</returns> 
+    /// <returns>An enum value representing the type of the segment.</returns>
     property LocalType: TLocalTimeType read FType;
 
     /// <summary>The time zone display name used to describe the segment.</summary>
-    /// <returns>The string value of the display name.</returns> 
+    /// <returns>The string value of the display name.</returns>
     property DisplayName: string read FName;
 
     /// <summary>The time zone abbreviation used to describe the segment.</summary>
-    /// <returns>The string value of the abbreviation.</returns> 
+    /// <returns>The string value of the abbreviation.</returns>
     property UtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF} read GetUtcOffset;
 
 {$IFDEF FPC}
@@ -130,7 +130,7 @@ type
     procedure CompilePeriods;
     function CompileYearBreakdown(const AYear: Word): TYearSegmentArray;
 
-    function GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean; 
+    function GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean;
       const AFailOnInvalid: Boolean): TYearSegment;
 {$IFNDEF DELPHI}
     function GetSegmentUtc(const ADateTime: TDateTime): TYearSegment;
@@ -598,7 +598,9 @@ type
   TCompiledRule = class
   strict private
     FStartsOn: TDateTime;
+
     function GetStartsOn: TDateTime;
+    function GetUtcOffset: Int64;
   private
     FPeriod: TCompiledPeriod;
     FRule: PRule;
@@ -612,6 +614,7 @@ type
       const AOffset: Int64; const ATimeMode: TTimeMode);
 
     property StartsOn: TDateTime read GetStartsOn;
+    property UtcOffset: Int64 read GetUtcOffset;
   end;
 
   TCompiledRuleArray = array of TCompiledRule;
@@ -621,7 +624,7 @@ type
   private
     FPeriod: PPeriod;
     FFrom, FUntil: TDateTime;
-    
+
     function GetLastRuleForYear(const AYear: Word): PRule;
   public
     { Basic stuffs }
@@ -698,7 +701,7 @@ begin
         LAbsolute := RelativeToDateTime(AYear,
             LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
             LCurrRule^.FRule^.FAt);
-       
+
         { Add the new compiled rule to the list }
         LRules.Add(TCompiledRule.Create(Self, LCurrRule^.FRule, LAbsolute,
             LCurrRule^.FRule^.FOffset, LCurrRule^.FRule^.FAtMode));
@@ -803,13 +806,17 @@ begin
           Result := IncSecond(Result, (-1*FPrev.FOffset))
         else if (FNext <> nil) and (FNext.FOffset <> 0) then
           Result := IncSecond(Result, (-1*FNext.FOffset))
-
       end;
     //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
     trStandard: Result := IncSecond(Result, FOffset);
     //This value is specified in universal time. Add both the standard deviation plus the local time
     trUniversal: Result := IncSecond(Result, FPeriod.FPeriod^.FOffset + FOffset);
   end;
+end;
+
+function TCompiledRule.GetUtcOffset: Int64;
+begin
+  Result := FPeriod.FPeriod^.FOffset + FOffset;
 end;
 
 { TYearSegment }
@@ -952,7 +959,7 @@ function TBundledTimeZone.CompileYearBreakdown(const AYear: Word): TYearSegmentA
 var
   I, X, LSegs: Integer;
   LPeriod: TCompiledPeriod;
-  LRules: TCompiledRuleArray;
+  LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
   LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
   LFrom, LEnd, LYStart: TDateTime;
@@ -964,108 +971,121 @@ begin
   LCarryDelta := 0;
 
   LYStart := EncodeDate(AYear, 1, 1);
+  LRules := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>.Create(true);
 
-  for I := 0 to FPeriods.Count - 1 do
-  begin
-    LPeriod := TCompiledPeriod(FPeriods[I]);
-
-    { Make sure we're skipping stuff we don't want. }
-    if YearOf(LPeriod.FUntil) < AYear then continue;
-    if YearOf(LPeriod.FFrom) > AYear then break;
-
-    { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
-      But there are a few zone with two periods; maybe three? }
-    LComp := LPeriod.CompileRulesForYear(AYear);
-
-    if Length(LComp) = 0 then
+  try
+    for I := 0 to FPeriods.Count - 1 do
     begin
-      LFrom := LPeriod.FFrom;
-      if (LFrom < LYStart) then LFrom := LYStart;
+      LPeriod := TCompiledPeriod(FPeriods[I]);
 
-      LRule := TCompiledRule.Create(LPeriod, nil, LFrom, 0, trStandard);
-      SetLength(LRules, Length(LRules) + 1);
+      { Make sure we're skipping stuff we don't want. }
+      if YearOf(LPeriod.FUntil) < AYear then continue;
+      if YearOf(LPeriod.FFrom) > AYear then break;
 
-      LRules[Length(LRules) - 1] := LRule;
-    end else
-    begin
-      { Copy the rules into the merged array. }
-      SetLength(LRules, Length(LRules) + Length(LComp));
-      for X := 0 to Length(LComp) - 1 do
-        LRules[Length(LRules) - Length(LComp) + X] := LComp[X];
+      { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
+        But there are a few zone with two periods; maybe three? }
+      LComp := LPeriod.CompileRulesForYear(AYear);
+
+      { Copy the rules into the general list. }
+      if Length(LComp) = 0 then
+      begin
+        LFrom := LPeriod.FFrom;
+        if (LFrom < LYStart) then LFrom := LYStart;
+
+        LRules.Add(TCompiledRule.Create(LPeriod, nil, LFrom, 0, trStandard));
+      end else
+      begin
+        for X := Low(LComp) to High(LComp) do
+          LRules.Add(LComp[X]);
+      end;
     end;
-  end;
 
-  for X := 0 to Length(LRules) - 1 do
-  begin
-    { Get current rule and next rule. Both are used to calculate things. }
-    LRule := LRules[X];
-    if X < Length(LRules) - 1 then
-      LNextRule := LRules[X + 1]
-    else
-      LNextRule := nil;
-      
-    LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
-    LSegment.FBias := LRule.FOffset;
-
-    if LRule.FOffset = 0 then
-      LSegment.FType := lttStandard
-    else
-      LSegment.FType := lttDaylight;
-
-    LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType);
-    LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
-
-    { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
-    if LNextRule <> nil then
+    for X := 0 to LRules.Count - 1 do
     begin
-      { Calculate the overall delta between two segments. }
-      LDelta := (LNextRule.FPeriod.FPeriod^.FOffset + LNextRule.FOffset) - (LRule.FPeriod.FPeriod^.FOffset + LRule.FOffset);
+      { Get current rule and next rule. Both are used to calculate things. }
+      LRule := LRules[X];
+      if X < LRules.Count - 1 then
+        LNextRule := LRules[X + 1]
+      else
+        LNextRule := nil;
 
-      { Add the core segment. }
-      if (LDelta < 0) then
+      LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
+      LSegment.FBias := LRule.FOffset;
+
+      { The type of the segment depends on the next one and previous zone.
+        Compare the offsets between them and decide.
+      }
+      if (LNextRule <> nil) then
       begin
-        LCarryDelta := -LDelta;
-        LEnd := LNextRule.StartsOn;
-      end else 
+        if LNextRule.UtcOffset >= LRule.UtcOffset then
+          LSegment.FType := lttStandard
+        else
+          LSegment.FType := lttDaylight;
+      end else
       begin
-        LCarryDelta := 0;
-        LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
+        if (LCarryDelta <> 0) or (LRules.Count = 1) then
+          LSegment.FType := lttStandard
+        else
+          LSegment.FType := lttDaylight;
       end;
 
-      LSegment.FEndsAt := IncMillisecond(LEnd, -1);
+      LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType);
+      LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
 
-      SetLength(Result, Length(Result) + 1);
-      Result[Length(Result) - 1] := LSegment;
+      { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
+      if LNextRule <> nil then
+      begin
+        { Calculate the overall delta between two segments. }
+        LDelta := LNextRule.UtcOffset - LRule.UtcOffset;
 
-      if LDelta > 0 then
-      begin
-        { This is a positive bias. This means we have an invalid region. }
-        LSegment.FType := lttInvalid;
-        LSegment.FBias := LDelta;
-        LSegment.FStartsAt := LEnd;
-        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
-        
-        SetLength(Result, Length(Result) + 1);
-        Result[Length(Result) - 1] := LSegment;
-      end 
-      else if LDelta < 0 then
-      begin
-        { This is a negative bias. This means we have an ambiguous region. }
-        LSegment.FType := lttAmbiguous;
-        LSegment.FStartsAt := LEnd;
-        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
+        { Add the core segment. }
+        if LDelta < 0 then
+        begin
+          LCarryDelta := -LDelta;
+          LEnd := LNextRule.StartsOn;
+        end else
+        begin
+          LCarryDelta := 0;
+          LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
+        end;
+
+        LSegment.FEndsAt := IncMillisecond(LEnd, -1);
 
         SetLength(Result, Length(Result) + 1);
         Result[Length(Result) - 1] := LSegment;
-      end;
-    end else 
-    begin
-      { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
-      LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
-      SetLength(Result, Length(Result) + 1);
-      Result[Length(Result) - 1] := LSegment; 
-    end;
 
+        if LDelta > 0 then
+        begin
+          { This is a positive bias. This means we have an invalid region. }
+          LSegment.FType := lttInvalid;
+          LSegment.FBias := LDelta;
+          LSegment.FStartsAt := LEnd;
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
+
+          SetLength(Result, Length(Result) + 1);
+          Result[Length(Result) - 1] := LSegment;
+        end
+        else if LDelta < 0 then
+        begin
+          { This is a negative bias. This means we have an ambiguous region. }
+          LSegment.FType := lttAmbiguous;
+          LSegment.FStartsAt := LEnd;
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
+
+          SetLength(Result, Length(Result) + 1);
+          Result[Length(Result) - 1] := LSegment;
+        end;
+      end else
+      begin
+        { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
+        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment;
+      end;
+
+    end;
+  finally
+    LRules.Free;
   end;
 
   { For the case there is simply no bundled data... }
@@ -1165,7 +1185,7 @@ procedure ForEachYearlySegment(AInfo, AItem, AData: Pointer; out AContinue: Bool
 begin
   if AData <> nil then
     SetLength(TYearSegmentArray(AData), 0);
-  
+
   AContinue := True;
 end;
 
@@ -1548,14 +1568,14 @@ begin
     Result := 0;
 end;
 
-function TBundledTimeZone.TryFindSegment(const AYear: Word; const AType: TLocalTimeType; 
+function TBundledTimeZone.TryFindSegment(const AYear: Word; const AType: TLocalTimeType;
    const ARev: Boolean; out ASegment: TYearSegment): Boolean;
 var
   LSegments: TYearSegmentArray;
   I: Integer;
 begin
   LSegments := GetYearBreakdown(AYear);
-  
+
   { Invalid case but we'll handle it. }
   if Length(LSegments) = 0 then
     Exit(false);
