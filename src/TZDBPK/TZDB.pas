@@ -117,7 +117,7 @@ type
 
   ///  <summary>A timezone class implementation that retreives its data from the bundled database.</summary>
   ///  <remarks>This class inherits the standard <c>TTimeZone</c> class in Delphi XE.</remarks>
-  TBundledTimeZone = class{$IFDEF DELPHI}(TTimeZone){$ENDIF}
+  TBundledTimeZone = class
   private
     FZone: Pointer; { PZone }
     FPeriods: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TObject>; { TCompiledPeriod }
@@ -132,45 +132,17 @@ type
 
     function GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean;
       const AFailOnInvalid: Boolean): TYearSegment;
-{$IFNDEF DELPHI}
     function GetSegmentUtc(const AYear: Word; const ADateTime: TDateTime): TYearSegment;
-{$ENDIF}
-
     function TryFindSegment(const AYear: Word; const AType: TLocalTimeType; const ARev: Boolean; out ASegment: TYearSegment): Boolean;
-
-{$IFNDEF DELPHI}
-    { Purely internal getters }
     function GetCurrentAbbreviation: string;
     function GetCurrentDisplayName: string;
     function GetCurrentUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
-
-    { Other good stuff }
     function GetUtcOffsetInternal(const ADateTime: TDateTime; const ForceDaylight: Boolean = false): Int64;
-{$ENDIF}
 
   protected
-{$IFDEF DELPHI}
-    ///  <summary>Retrieves the standard bias, DST bias and the type of the given local time.</summary>
-    ///  <param name="ADateTime">The local time for which to retrieve the data.</param>
-    ///  <param name="AOffset">The returned standard bias of the time zone for the given time.</param>
-    ///  <param name="ADstSave">The returned DST bias of the time zone for the given time.</param>
-    ///  <param name="AType">The returned type of the local time.</param>
-    ///  <remarks>The value of <paramref name="ADstSave"/> is only relevant if
-    ///  <paramref name="AType"/> is <c>lttAmbiguous</c> or <c>lttDaylight</c>.</remarks>
-    procedure DoGetOffsetsAndType(
-      const ADateTime: TDateTime; out AOffset, ADstSave: Int64; out AType: TLocalTimeType); override;
-
-    ///  <summary>Retrieves the display name for the time zone based on a given local time.</summary>
-    ///  <param name="ADateTime">The local time for which to retrieve the display name.</param>
-    ///  <param name="ForceDaylight">Forces the timezone class to select the DST display name if the local time
-    ///  is whithin the ambiguous period.</param>
-    ///  <returns>The display name used to accompany the given local time.</returns>
-    function DoGetDisplayName(const ADateTime: TDateTime; const ForceDaylight: Boolean): string; override;
-{$ENDIF}
-
     ///  <summary>Returns the ID of the timezone. An ID is a string that should uniquely identify the timezone.</summary>
     ///  <returns>The ID of the timezone.</returns>
-    function DoGetID: string; {$IFDEF DELPHI}override;{$ENDIF}
+    function DoGetID: string;
    public
     ///  <summary>Creates a new instance of this timezone class.</summary>
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
@@ -274,7 +246,6 @@ type
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function ToISO8601Format(const ADateTime: TDateTime): String;
 
-{$IFNDEF DELPHI}
     ///  <summary>Generates an abbreviation string for the given local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
@@ -362,7 +333,6 @@ type
     ///  <summary>Returns the current time zone's UTC offset.</summary>
     ///  <returns>The current UTC offset.</returns>
     property UtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF} read GetCurrentUtcOffset;
-{$ENDIF}
   end;
 
 implementation
@@ -991,7 +961,6 @@ var
     LNeg: Boolean;
 begin
   Result := nil;
-  LRules := nil;
   LCarryDelta := 0;
 
   LYStart := EncodeDate(AYear, 1, 1);
@@ -1235,34 +1204,12 @@ begin
   inherited;
 end;
 
-{$IFDEF DELPHI}
-function TBundledTimeZone.DoGetDisplayName(const ADateTime: TDateTime; const ForceDaylight: Boolean): string;
-begin
-  Result := GetSegment(ADateTime, ForceDaylight, false).FName;
-end;
-
-procedure TBundledTimeZone.DoGetOffsetsAndType(
-  const ADateTime: TDateTime;
-  out AOffset, ADstSave: Int64;
-  out AType: TLocalTimeType);
-var
-  LSegment: TYearSegment;
-begin
-  LSegment := GetSegment(ADateTime, true, false);
-
-  AOffset := LSegment.FPeriodOffset;
-  ADstSave := LSegment.FBias;
-  AType := LSegment.FType;
-end;
-{$ENDIF}
-
 function TBundledTimeZone.DoGetID: string;
 begin
   { Get the Id of the time zone from the stored var }
   Result := PZone(FZone)^.FName;
 end;
 
-{$IFNDEF DELPHI}
 function TBundledTimeZone.GetAbbreviation(const ADateTime: TDateTime; const AForceDaylight: Boolean): string;
 const
   CGMT = 'GMT';
@@ -1409,7 +1356,6 @@ begin
   Result := IncSecond(ADateTime,
     -GetUtcOffsetInternal(ADateTime, AForceDaylight));
 end;
-{$ENDIF}
 
 function TBundledTimeZone.GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean; const AFailOnInvalid: Boolean): TYearSegment;
 var
@@ -1446,7 +1392,6 @@ begin
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
 
-{$IFNDEF DELPHI}
 function TBundledTimeZone.GetSegmentUtc(const AYear: Word; const ADateTime: TDateTime): TYearSegment;
 var
   LSegment: TYearSegment;
@@ -1454,6 +1399,22 @@ var
 begin
   for LSegment in GetYearBreakdown(AYear) do
   begin
+
+    if LSegment.FType = lttAmbiguous then
+    begin
+      { Check with both period offset only }
+      LLocal := IncSecond(ADateTime, LSegment.FPeriodOffset);
+
+      if YearOf(LLocal) > AYear then
+      begin
+        { Crossed the year threshold. Pass on to next year. }
+        Exit(GetSegmentUtc(YearOf(LLocal), ADateTime));
+      end;
+
+      if (CompareDateTime(LSegment.FStartsAt, LLocal) <= 0) and
+         (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
+         Exit(LSegment);
+    end;
 
     if LSegment.FType <> lttInvalid then
     begin
@@ -1469,27 +1430,12 @@ begin
          (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
          Exit(LSegment);
     end;
+
   end;
 
-  if LSegment.FType = lttAmbiguous then
-  begin
-    { Check with both period offset only }
-    LLocal := IncSecond(ADateTime, LSegment.FPeriodOffset);
-
-    if YearOf(LLocal) > AYear then
-    begin
-      { Crossed the year threshold. Pass on to next year. }
-      Exit(GetSegmentUtc(YearOf(LLocal), ADateTime));
-    end;
-
-    if (CompareDateTime(LSegment.FStartsAt, LLocal) <= 0) and
-       (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
-       Exit(LSegment);
-  end;
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable, [DateTimeToStr(ADateTime), DoGetID()]);
 end;
-{$ENDIF}
 
 class function TBundledTimeZone.GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 var
@@ -1505,7 +1451,7 @@ begin
     { Check if we know this TZ }
     if not FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(ATimeZoneID), Result) then
     begin
-      Result := TBundledTimeZone.Create(ATimeZoneID);
+      Result := TBundledTimeZone.Create(UpperCase(ATimeZoneID));
 
       { Check if maybe we used an alias and need to change things }
       if FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(Result.ID), LOut) then

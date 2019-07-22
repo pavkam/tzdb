@@ -73,6 +73,7 @@ type
     procedure Test_TZ_GetLocalTimeType_Validation;
 
     procedure Test_TZ_ToLocal_Regression_1;
+    procedure Test_TZ_ToLocal_Regression_2;
     procedure Test_TZ_GetAbbreviation_Regression_1;
 
     procedure Test_Africa_Cairo_2010;
@@ -932,6 +933,17 @@ begin
   C := LTZ.ToLocalTime(EncodeDateTime(2018, 03, 25, 1, 0, 0, 0));
 
   CheckEquals('2018-03-25 02:00:00.000+01:00', LTZ.ToISO8601Format(C));
+end;
+
+procedure TTZDBTest.Test_TZ_ToLocal_Regression_2;
+var
+  LTZ: TBundledTimeZone;
+  C: TDateTime;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('Europe/Bucharest');
+  C := LTZ.ToLocalTime(EncodeDateTime(2010, 10, 31, 1, 0, 0, 0));
+
+  CheckEquals('2010-10-31 04:00:00.000+02:00', LTZ.ToISO8601Format(C));
 end;
 
 procedure TTZDBTest.Test_TZ_ISO8601_Conversion;
