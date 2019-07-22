@@ -99,8 +99,8 @@ type
     /// <returns>The string value of the display name.</returns>
     property DisplayName: string read FName;
 
-    /// <summary>The time zone abbreviation used to describe the segment.</summary>
-    /// <returns>The string value of the abbreviation.</returns>
+    /// <summary>The time zone UTC offset.</summary>
+    /// <returns>The UTC offset including the DST bias.</returns>
     property UtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF} read GetUtcOffset;
 
 {$IFDEF FPC}
