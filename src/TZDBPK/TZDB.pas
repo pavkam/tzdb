@@ -614,6 +614,8 @@ type
     property StartsOn: TDateTime read GetStartsOn;
   end;
 
+  TCompiledRuleArray = array of TCompiledRule;
+
   { Contains a compiled period (easier for lookup) }
   TCompiledPeriod = class
   private
@@ -625,7 +627,7 @@ type
     { Basic stuffs }
     constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TDateTime);
 
-    function CompileRulesForYear(const AYear: Word): {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
+    function CompileRulesForYear(const AYear: Word): TCompiledRuleArray;
   end;
 
 var
@@ -659,19 +661,19 @@ begin
   FFrom := AFrom;
 end;
 
-function TCompiledPeriod.CompileRulesForYear(const AYear: Word): 
-  {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
+function TCompiledPeriod.CompileRulesForYear(const AYear: Word): TCompiledRuleArray;
 var
   LCurrRule: PYearBoundRule;
   LLastYearRule: PRule;
   LAbsolute: TDateTime;
   I: Integer;
+  LRules: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TCompiledRule>;
 {$IFDEF DELPHI}
   LComparer: IComparer<TCompiledRule>;
 {$ENDIF}
 begin
   { Initialize the compiled list }
-  Result := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>.Create(true);
+  LRules := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TCompiledRule>.Create;
 
   { Check whether we actually have a fule family attached }
   if FPeriod^.FRuleFamily <> nil then
@@ -681,7 +683,7 @@ begin
 
     { Add the the last year rule since 1 jan 00:00 this year }
     if LLastYearRule <> nil then
-      Result.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
+      LRules.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
         LLastYearRule^.FOffset, trStandard));
 
     { Obtain the first rule in chain }
@@ -692,14 +694,13 @@ begin
       { Check we're in the required year }
       if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
       begin
-        
         { Obtain the absolute date when the rule activates in this year }
         LAbsolute := RelativeToDateTime(AYear,
             LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
             LCurrRule^.FRule^.FAt);
        
         { Add the new compiled rule to the list }
-        Result.Add(TCompiledRule.Create(Self, LCurrRule^.FRule, LAbsolute,
+        LRules.Add(TCompiledRule.Create(Self, LCurrRule^.FRule, LAbsolute,
             LCurrRule^.FRule^.FOffset, LCurrRule^.FRule^.FAtMode));
       end;
 
@@ -709,27 +710,32 @@ begin
 
     { Sort the list ascending by the activation date/time }
 {$IFDEF FPC}
-    Result.Sort(@CompiledRuleComparison);
+    LRules.Sort(@CompiledRuleComparison);
 {$ELSE}
     LComparer := TComparer<TCompiledRule>.Construct(function(const ALeft, ARight: TCompiledRule): Integer
     begin
         Result := CompareDateTime(ALeft.StartsOn, ARight.StartsOn);
     end);
 
-    Result.Sort(LComparer);
+    LRules.Sort(LComparer);
 {$ENDIF}
     { Create a linked list based on offsets and their nexts (will be used on type getting) }
-    for I := 0 to Result.Count - 1 do
+    SetLength(Result, LRules.Count);
+    for I := 0 to LRules.Count - 1 do
     begin
       { Set N[I].Next -> N[I + 1] }
-      if I < (Result.Count - 1) then
-        TCompiledRule(Result[I]).FNext := TCompiledRule(Result[I + 1]);
+      if I < (LRules.Count - 1) then
+        TCompiledRule(LRules[I]).FNext := TCompiledRule(LRules[I + 1]);
 
       { Set N[I].Prev -> N[I - 1] }
       if I > 0 then
-        TCompiledRule(Result[I]).FPrev := TCompiledRule(Result[I - 1]);
+        TCompiledRule(LRules[I]).FPrev := TCompiledRule(LRules[I - 1]);
+
+      Result[I] := LRules[I];
     end;
   end;
+
+  LRules.Free;
 end;
 
 function TCompiledPeriod.GetLastRuleForYear(const AYear: Word): PRule;
@@ -946,14 +952,18 @@ function TBundledTimeZone.CompileYearBreakdown(const AYear: Word): TYearSegmentA
 var
   I, X, LSegs: Integer;
   LPeriod: TCompiledPeriod;
-  LRuleList: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
+  LRules: TCompiledRuleArray;
   LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
-  LEnd: TDateTime;
+  LFrom, LEnd, LYStart: TDateTime;
   LCarryDelta, LDelta: Int64;
+  LComp: TCompiledRuleArray;
 begin
   Result := nil;
+  LRules := nil;
   LCarryDelta := 0;
+
+  LYStart := EncodeDate(AYear, 1, 1);
 
   for I := 0 to FPeriods.Count - 1 do
   begin
@@ -963,111 +973,99 @@ begin
     if YearOf(LPeriod.FUntil) < AYear then continue;
     if YearOf(LPeriod.FFrom) > AYear then break;
 
-    { We'll need it later to check if any segments were added from given period. }    
-    LSegs := Length(Result);
-
     { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
       But there are a few zone with two periods; maybe three? }
-    LRuleList := LPeriod.CompileRulesForYear(AYear);
-  
-    { Each rule is processed in order of appearance within the year, within the overlapping periods. }
-    for X := 0 to LRuleList.Count - 1 do
+    LComp := LPeriod.CompileRulesForYear(AYear);
+
+    if Length(LComp) = 0 then
     begin
-      { Get current rule and next rule. Both are used to calculate things. }
-      LRule := LRuleList[X];
-      if X < (LRuleList.Count - 1) then
-        LNextRule := LRuleList[X + 1]
-      else
-        LNextRule := nil;
-        
-      LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
-      LSegment.FBias := LRule.FOffset;
+      LFrom := LPeriod.FFrom;
+      if (LFrom < LYStart) then LFrom := LYStart;
 
-      if LRule.FOffset = 0 then
-        LSegment.FType := lttStandard
-      else
-        LSegment.FType := lttDaylight;
+      LRule := TCompiledRule.Create(LPeriod, nil, LFrom, 0, trStandard);
+      SetLength(LRules, Length(LRules) + 1);
 
-      LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, LRule.FRule, LSegment.FType);
-      LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
+      LRules[Length(LRules) - 1] := LRule;
+    end else
+    begin
+      { Copy the rules into the merged array. }
+      SetLength(LRules, Length(LRules) + Length(LComp));
+      for X := 0 to Length(LComp) - 1 do
+        LRules[Length(LRules) - Length(LComp) + X] := LComp[X];
+    end;
+  end;
 
-      { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
-      if LNextRule <> nil then
+  for X := 0 to Length(LRules) - 1 do
+  begin
+    { Get current rule and next rule. Both are used to calculate things. }
+    LRule := LRules[X];
+    if X < Length(LRules) - 1 then
+      LNextRule := LRules[X + 1]
+    else
+      LNextRule := nil;
+      
+    LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
+    LSegment.FBias := LRule.FOffset;
+
+    if LRule.FOffset = 0 then
+      LSegment.FType := lttStandard
+    else
+      LSegment.FType := lttDaylight;
+
+    LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, LSegment.FType);
+    LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
+
+    { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
+    if LNextRule <> nil then
+    begin
+      { Calculate the overall delta between two segments. }
+      LDelta := (LNextRule.FPeriod.FPeriod^.FOffset + LNextRule.FOffset) - (LRule.FPeriod.FPeriod^.FOffset + LRule.FOffset);
+
+      { Add the core segment. }
+      if (LDelta < 0) then
       begin
-        { Calculate the overall delta between two segments. }
-        LDelta := (LNextRule.FPeriod.FPeriod^.FOffset + LNextRule.FOffset) - (LRule.FPeriod.FPeriod^.FOffset + LRule.FOffset);
+        LCarryDelta := -LDelta;
+        LEnd := LNextRule.StartsOn;
+      end else 
+      begin
+        LCarryDelta := 0;
+        LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
+      end;
 
-        { Add the core segment. }
-        if (LDelta < 0) then
-        begin
-          LCarryDelta := -LDelta;
-          LEnd := LNextRule.StartsOn;
-        end else 
-        begin
-          LCarryDelta := 0;
-          LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
-        end;
+      LSegment.FEndsAt := IncMillisecond(LEnd, -1);
 
-        LSegment.FEndsAt := IncMillisecond(LEnd, -1);
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1] := LSegment;
+
+      if LDelta > 0 then
+      begin
+        { This is a positive bias. This means we have an invalid region. }
+        LSegment.FType := lttInvalid;
+        LSegment.FBias := LDelta;
+        LSegment.FStartsAt := LEnd;
+        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
+        
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment;
+      end 
+      else if LDelta < 0 then
+      begin
+        { This is a negative bias. This means we have an ambiguous region. }
+        LSegment.FType := lttAmbiguous;
+        LSegment.FStartsAt := LEnd;
+        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
 
         SetLength(Result, Length(Result) + 1);
         Result[Length(Result) - 1] := LSegment;
-
-        if LDelta > 0 then
-        begin
-          { This is a positive bias. This means we have an invalid region. }
-          LSegment.FType := lttInvalid;
-          LSegment.FBias := LDelta;
-          LSegment.FStartsAt := LEnd;
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
-          
-          SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment;
-        end 
-        else if LDelta < 0 then
-        begin
-          { This is a negative bias. This means we have an ambiguous region. }
-          LSegment.FType := lttAmbiguous;
-          LSegment.FStartsAt := LEnd;
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
-
-          SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment;
-        end;
-      end else 
-      begin
-        { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
-        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
-        SetLength(Result, Length(Result) + 1);
-        Result[Length(Result) - 1] := LSegment; 
       end;
-    end;
-
-    LRuleList.Free;
-
-    if LSegs = Length(Result) then
+    end else 
     begin
-      { This situation where there aren't any segments happens when there are no rules for a given year.
-        In this case we fall back to the synthetic "standard" segment. }
-  
-      LSegment.FPeriodOffset := LPeriod.FPeriod^.FOffset;
-      LSegment.FBias := 0;
-      LSegment.FType := lttStandard;
-      LSegment.FName := FormatAbbreviation(LPeriod.FPeriod, nil, LSegment.FType);
-
-      if YearOf(LPeriod.FFrom) < AYear then
-        LSegment.FStartsAt := EncodeDate(AYear, 1, 1) // start of year
-      else
-        LSegment.FStartsAt := LPeriod.FFrom;
-
-      if YearOf(LPeriod.FUntil) > AYear then
-        LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1) // end of year
-      else
-        LSegment.FEndsAt := LPeriod.FUntil;
-
+      { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
+      LSegment.FEndsAt := IncMillisecond(EncodeDate(AYear + 1, 1, 1), -1); // Year's end.
       SetLength(Result, Length(Result) + 1);
-      Result[Length(Result) - 1] := LSegment; // standard
+      Result[Length(Result) - 1] := LSegment; 
     end;
+
   end;
 
   { For the case there is simply no bundled data... }
