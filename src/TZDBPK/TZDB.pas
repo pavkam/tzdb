@@ -571,7 +571,6 @@ type
 
     function GetStartsOn: TDateTime;
     function GetUtcOffset: Int64;
-    function GetIsStandard: Boolean;
   private
     FPeriod: TCompiledPeriod;
     FRule: PRule;
@@ -585,7 +584,6 @@ type
       const AOffset: Int64; const ATimeMode: TTimeMode);
 
     property StartsOn: TDateTime read GetStartsOn;
-    property IsStandard: Boolean read GetIsStandard;
     property UtcOffset: Int64 read GetUtcOffset;
   end;
 
@@ -789,27 +787,6 @@ end;
 function TCompiledRule.GetUtcOffset: Int64;
 begin
   Result := FPeriod.FPeriod^.FOffset + FOffset;
-end;
-
-function TCompiledRule.GetIsStandard: Boolean;
-var 
-  F: TCompiledRule;
-  FMin: Int64;
-begin
-  { Find the first in list. }
-  FMin := UtcOffset;
-  F := Self;
-  while F.FPrev <> nil do F := F.FPrev;
-
-  { Scan for minimum }
-  while F <> nil do 
-  begin
-    if (FMin > F.UtcOffset) then FMin := F.UtcOffset;
-    F := F.FNext;
-  end;
-  
-  { Now decide if this is the DST or not }
-  Result := UtcOffset = FMin;
 end;
 
 { TYearSegment }
@@ -1155,15 +1132,13 @@ const
   CZFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3dZ';
   CFullFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3d%s%.2d:%.2d';
 var
-  LLocalTime: TDateTime;
+  LSegment: TYearSegment;
   LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis: Word;
-  LBias, LBiasHours, LBiasMinutes: Integer;
+  LBias, LBiasHours, LBiasMinutes: Int64;
   LBiasSign: Char;
 begin
-  { Convert to local time. and then do the delta. }
-  LLocalTime := ToLocalTime(ADateTime);
-
-  LBias := MinutesBetween(LLocalTime, ADateTime);
+  LSegment := GetSegmentUtc(YearOf(ADateTime), ADateTime);
+  LBias := (LSegment.FPeriodOffset + LSegment.FBias) div SecsPerMin;
 
   { Decode the local time (as we will include the bias into the repr.) }
   DecodeDateTime(ADateTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
@@ -1413,7 +1388,12 @@ begin
 
       if (CompareDateTime(LSegment.FStartsAt, LLocal) <= 0) and
          (CompareDateTime(LSegment.FEndsAt, LLocal) >= 0) then
-         Exit(LSegment);
+         begin
+           { Special case when non-biased Ambiguous found - erase it. }
+           Result := LSegment;
+           Result.FBias := 0;
+           Exit;
+         end;
     end;
 
     if LSegment.FType <> lttInvalid then
