@@ -792,14 +792,8 @@ end;
 { TYearSegment }
 
 function TYearSegment.GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
-var
-  LOffset: Int64;
 begin
-  LOffset := FPeriodOffset;
-  if (FType <> lttInvalid) then
-    Inc(LOffset, FBias);
-
-  Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(LOffset){$ELSE}LOffset{$ENDIF};
+  Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(FPeriodOffset + FBias){$ELSE}FPeriodOffset + FBias{$ENDIF};
 end;
 
 {$IFDEF FPC}
@@ -1032,7 +1026,7 @@ begin
         begin
           { This is a positive bias. This means we have an invalid region. }
           LSegment.FType := lttInvalid;
-          LSegment.FBias := LDelta;
+          LSegment.FBias := 0;
           LSegment.FStartsAt := LEnd;
           LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
 
