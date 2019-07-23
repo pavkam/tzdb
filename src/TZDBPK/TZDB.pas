@@ -137,7 +137,6 @@ type
     function GetCurrentAbbreviation: string;
     function GetCurrentDisplayName: string;
     function GetCurrentUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
-    function GetUtcOffsetInternal(const ADateTime: TDateTime; const ForceDaylight: Boolean = false): Int64;
 
   protected
     ///  <summary>Returns the ID of the timezone. An ID is a string that should uniquely identify the timezone.</summary>
@@ -921,7 +920,7 @@ end;
 
 function TBundledTimeZone.CompileYearBreakdown(const AYear: Word): TYearSegmentArray;
 var
-  I, X, LSegs: Integer;
+  I, X: Integer;
   LPeriod: TCompiledPeriod;
   LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
   LRule, LNextRule: TCompiledRule;
@@ -929,7 +928,6 @@ var
   LPrdStart, LEnd, LYStart, LYEnd: TDateTime;
   LCarryDelta, LDelta: Int64;
   LComp: TCompiledRuleArray;
-    LNeg: Boolean;
 begin
   Result := nil;
   LCarryDelta := 0;
@@ -1193,10 +1191,12 @@ const
   end;
 
 var
+  LSegment: TYearSegment;
   LOffset, LHours, LMinutes, LSeconds: Int64;
 begin
   { Get the UTC offset for the given time. }
-  LOffset := GetUtcOffsetInternal(ADateTime, AForceDaylight);
+  LSegment := GetSegment(ADateTime, AForceDaylight, false);
+  LOffset := LSegment.FPeriodOffset + LSegment.FBias;
 
   { Start with GMT }
   Result := CGMT;
@@ -1255,23 +1255,7 @@ end;
 function TBundledTimeZone.GetUtcOffset(const ADateTime: TDateTime; const AForceDaylight: Boolean):
   {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
 begin
-{$IFDEF DELPHI}
-  { Call the internal helper and generate a TTimeSpan out of it }
-  Result := TTimeSpan.FromSeconds(
-    GetUtcOffsetInternal(ADateTime, AForceDaylight)
-  );
-{$ELSE}
-  { Call internal method directly if no TTimeSpan is available }
-  Result := GetUtcOffsetInternal(ADateTime, AForceDaylight);
-{$ENDIF}
-end;
-
-function TBundledTimeZone.GetUtcOffsetInternal(const ADateTime: TDateTime; const ForceDaylight: Boolean): Int64;
-var
-  LSegment: TYearSegment;
-begin
-  LSegment := GetSegment(ADateTime, ForceDaylight, true);
-  Result := LSegment.FPeriodOffset + LSegment.FBias;
+  Result := GetSegment(ADateTime, AForceDaylight, true).UtcOffset;
 end;
 
 function TBundledTimeZone.IsAmbiguousTime(const ADateTime: TDateTime): Boolean;
@@ -1320,10 +1304,11 @@ begin
 end;
 
 function TBundledTimeZone.ToUniversalTime(const ADateTime: TDateTime; const AForceDaylight: Boolean): TDateTime;
+var
+  LSegment: TYearSegment;
 begin
-  { Very simple, get the UTC offset for the local time and decrement it to get to UTC }
-  Result := IncSecond(ADateTime,
-    -GetUtcOffsetInternal(ADateTime, AForceDaylight));
+  LSegment := GetSegment(ADateTime, AForceDaylight, true);
+  Result := IncSecond(ADateTime, -(LSegment.FPeriodOffset + LSegment.FBias));
 end;
 
 function TBundledTimeZone.GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean; const AFailOnInvalid: Boolean): TYearSegment;

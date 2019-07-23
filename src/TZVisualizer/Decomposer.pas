@@ -27,8 +27,12 @@
 
 unit Decomposer;
 interface
-uses SysUtils, DateUtils, TimeSpan,
-     Generics.Collections;
+uses
+  SysUtils,
+  DateUtils,
+  TimeSpan,
+  TZDB,
+  Generics.Collections;
 
 type
   TDecomposedPeriod = record
@@ -47,12 +51,13 @@ type
     property Bias: TTimeSpan read FBias;
   end;
 
-function Decompose(const ATimeZone: TTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
+function Decompose(const ADelphiTimeZone: TTimeZone; const AYear: Word): TList<TDecomposedPeriod>; overload;
+function Decompose(const ABundledTimeZone: TBundledTimeZone; const AYear: Word): TList<TDecomposedPeriod>; overload;
 
 implementation
 
 function ProcessPeriod(
-  const ATZ: TTimeZone;
+  const ADelphiTimeZone: TTimeZone;
   const AStart: TDateTime;
   out AEnd: TDateTime;
   out AType: TLocalTimeType;
@@ -66,20 +71,20 @@ begin
 
   { Get the type of the local time in the starting time. Continue with the whole
     period that has the same type. }
-  AType := ATZ.GetLocalTimeType(AStart);
+  AType := ADelphiTimeZone.GetLocalTimeType(AStart);
 
   if (AType = lttStandard) or (AType = lttDaylight) then
   begin
-    AAbbr := ATZ.GetAbbreviation(AStart);
-    ADisp := ATZ.GetDisplayName(AStart);
-    ABias := ATZ.GetUtcOffset(AStart);
+    AAbbr := ADelphiTimeZone.GetAbbreviation(AStart);
+    ADisp := ADelphiTimeZone.GetDisplayName(AStart);
+    ABias := ADelphiTimeZone.GetUtcOffset(AStart);
   end;
 
   { --------------- Progress by hours }
   AEnd := AStart;
-  while (ATZ.GetLocalTimeType(AEnd) = AType) and
-        ((AType in [lttInvalid, lttAmbiguous]) or ((ATZ.GetDisplayName(AEnd) = ADisp) and
-        (ATZ.GetUTCOffset(AEnd) = ABias))) do
+  while (ADelphiTimeZone.GetLocalTimeType(AEnd) = AType) and
+        ((AType in [lttInvalid, lttAmbiguous]) or ((ADelphiTimeZone.GetDisplayName(AEnd) = ADisp) and
+        (ADelphiTimeZone.GetUTCOffset(AEnd) = ABias))) do
   begin
     { Increase by an hour }
     AEnd := IncHour(AEnd, 1);
@@ -93,9 +98,9 @@ begin
   AEnd := IncHour(AEnd, -1);
 
   { ------------------- Progress by minutes }
-  while (ATZ.GetLocalTimeType(AEnd) = AType) and
-        ((AType in [lttInvalid, lttAmbiguous]) or ((ATZ.GetDisplayName(AEnd) = ADisp) and
-        (ATZ.GetUTCOffset(AEnd) = ABias))) do
+  while (ADelphiTimeZone.GetLocalTimeType(AEnd) = AType) and
+        ((AType in [lttInvalid, lttAmbiguous]) or ((ADelphiTimeZone.GetDisplayName(AEnd) = ADisp) and
+        (ADelphiTimeZone.GetUTCOffset(AEnd) = ABias))) do
   begin
     { Increase by an hour }
     AEnd := IncMinute(AEnd, 1);
@@ -109,9 +114,9 @@ begin
   AEnd := IncMinute(AEnd, -1);
 
   { ------------------- Progress by second }
-  while (ATZ.GetLocalTimeType(AEnd) = AType) and
-        ((AType in [lttInvalid, lttAmbiguous]) or ((ATZ.GetDisplayName(AEnd) = ADisp) and
-        (ATZ.GetUTCOffset(AEnd) = ABias))) do
+  while (ADelphiTimeZone.GetLocalTimeType(AEnd) = AType) and
+        ((AType in [lttInvalid, lttAmbiguous]) or ((ADelphiTimeZone.GetDisplayName(AEnd) = ADisp) and
+        (ADelphiTimeZone.GetUTCOffset(AEnd) = ABias))) do
   begin
     { Increase by an hour }
     AEnd := IncSecond(AEnd, 1);
@@ -128,7 +133,7 @@ begin
   AEnd := IncSecond(AEnd, -1);
 end;
 
-function Decompose(const ATimeZone: TTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
+function Decompose(const ADelphiTimeZone: TTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
 var
   LShoudStop: Boolean;
   LStart, LEnd: TDateTime;
@@ -145,7 +150,7 @@ begin
 
   while (not LShoudStop) do
   begin
-    LShoudStop := ProcessPeriod(ATimeZone, LStart, LEnd, LType, LAbbrv, LDispName, LBias);
+    LShoudStop := ProcessPeriod(ADelphiTimeZone, LStart, LEnd, LType, LAbbrv, LDispName, LBias);
 
     { Create a decomposed period }
     LRec.FStartsAt := LStart;
@@ -160,6 +165,27 @@ begin
 
     { Adjust the start to the new end }
     LStart := IncSecond(LEnd, 1);
+  end;
+end;
+
+
+function Decompose(const ABundledTimeZone: TBundledTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
+var
+  LRec: TDecomposedPeriod;
+  LSegment: TYearSegment;
+begin
+  Result := TList<TDecomposedPeriod>.Create();
+  for LSegment in ABundledTimeZone.GetYearBreakdown(AYear) do
+  begin
+    { Create a decomposed period }
+    LRec.FStartsAt := LSegment.StartsAt;
+    LRec.FEndsAt := LSegment.EndsAt;
+    LRec.FType := LSegment.LocalType;
+    LRec.FAbbrv := ABundledTimeZone.GetAbbreviation(LSegment.StartsAt);
+    LRec.FName := LSegment.DisplayName;
+    LRec.FBias := LSegment.UtcOffset;
+
+    Result.Add(LRec);
   end;
 end;
 
