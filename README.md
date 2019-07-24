@@ -18,18 +18,14 @@ To use TZDB you only require one file: [TZDB.pas](https://raw.githubusercontent.
 All the other files in the project are optional.
 After you download the files to your local project, simply include the TZDB unit in the `uses` clause.
 
-Typical use looks like:
+Simplest example looks like:
 
 ```pascal
 uses TZDB;
 
-var
-  LTimeZone: TBundledTimeZone;
 begin
-  LTimeZone := TBundledTimeZone.Create('Africa/Cairo');
+  LTimeZone := TBundledTimeZone.GetTimeZone('Africa/Cairo');
   WriteLn(LTimeZone.ToUniversalTime(Now));
-  
-  LTimeZone.Free;
 end.
 ```
 
