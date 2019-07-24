@@ -90,8 +90,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 rm $REPO/src/TZDBPK/TZDB.inc
-echo "{VERSION=$IANAV}" > $REPO/src/TZDBPK/TZDB.inc
-echo "{TIME=`date -Ihours`}" >> $REPO/src/TZDBPK/TZDB.inc
+echo "const CIANAVersion = '$IANAV';" > $REPO/src/TZDBPK/TZDB.inc
 cat $REPO/src/TZDBPK/TZDB.inc.temp >> $REPO/src/TZDBPK/TZDB.inc
 rm $REPO/src/TZDBPK/TZDB.inc.temp
 

@@ -191,6 +191,10 @@ type
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
+    ///  <summary>Returns the version of compiled TZDB database.</summary>
+    ///  <returns>A string representing the compiled version.</returns>
+    class function DbVersion: string; inline;
+
     ///  <summary>Breaks a given year into components segments.</summary>
     ///  <param name="AYear">The year to get data for.</param>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
@@ -453,8 +457,7 @@ type
     FAliasTo: PZone; { Pointer to aliased zone }
   end;
 
-{VERSION=2019b}
-{TIME=2019-07-24T14+01:00}
+const CIANAVersion = '2019b';
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 var
   { This array contains the definitions of relative days used later on in the rules. }
@@ -11933,6 +11936,12 @@ begin
     FSegmentsByYearLock.Leave;
 {$ENDIF}
   end;
+end;
+
+class function TBundledTimeZone.DbVersion: string;
+begin
+  { This value comes from 'TZDB.inc' }
+  Result := CIANAVersion;
 end;
 
 class function TBundledTimeZone.KnownAliases: TStringDynArray;

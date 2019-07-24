@@ -106,8 +106,8 @@ var
   I: Integer;
 begin
   WriteLn('tzview - view and compare time zone data. (c) 2019 Alexandru Ciobanu (alex+git@ciobanu.org).');
+  WriteLn('database v', TBundledTimeZone.DbVersion, ' provided by IANA (https://www.iana.org/time-zones).');
   WriteLn('usage: tzview command [options...]');
-  WriteLn('       --');
   WriteLn('       tzview list [all|aliases|tz]     --  lists all known time zones or aliases, or both.');
   WriteLn('       tzview dump <timezone> <year>    --  deconstructs a time zone for a given year.');
   WriteLn('       tzview local <timezone> <date>   --  displays info on a given local date/time.');
