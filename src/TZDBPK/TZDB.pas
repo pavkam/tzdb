@@ -434,7 +434,7 @@ type
     FAliasTo: PZone; { Pointer to aliased zone }
   end;
 
-{$I TZDB.inc}
+{$INCLUDE 'TZDB.inc'}
 
 function EncodeDateMonthLastDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TDateTime;
 var
