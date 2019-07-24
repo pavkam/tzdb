@@ -25,21 +25,18 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
-{$DEFINE UNSUPPORTED_VERSION}
-
-{$IFNDEF PASDOC}
 {$IFDEF FPC}
-  {$IFDEF VER3}
+  {$IFDEF VER3} // FPC 3.x
     {$MODE DELPHI}
     {$MODESWITCH UnicodeStrings}
     {$MODESWITCH ADVANCEDRECORDS}
     {$CODEPAGE UTF8}
-    {$UNDEF UNSUPPORTED_VERSION}
+    {$DEFINE TZDB_SUPPORTED_COMPILER}
   {$ENDIF}
 {$ELSE}
   {$IFDEF CONDITIONALEXPRESSIONS}
     {$IF DECLARED(CompilerVersion)}
-      {$IF CompilerVersion >= 22} //Delphi XE
+      {$IF CompilerVersion >= 22} // Delphi XE +
         {$UNDEF UNSUPPORTED_VERSION}
         {$DEFINE DELPHI}
       {$IFEND}
@@ -47,9 +44,8 @@
   {$ENDIF}
 {$ENDIF}
 
-{$IFDEF UNSUPPORTED_VERSION}
+{$IFNDEF TZDB_SUPPORTED_COMPILER}
   {$MESSAGE ERROR 'TZDB requires at least Delphi XE or FreePascal 3.0 to compile!'}
-{$ENDIF}
 {$ENDIF}
 
 unit TZDB;
@@ -457,6 +453,8 @@ type
     FAliasTo: PZone; { Pointer to aliased zone }
   end;
 
+{VERSION=2019b}
+{TIME=2019-07-24T14+01:00}
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 var
   { This array contains the definitions of relative days used later on in the rules. }

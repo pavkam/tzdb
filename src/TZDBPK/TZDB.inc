@@ -1,3 +1,5 @@
+{VERSION=2019b}
+{TIME=2019-07-24T14+01:00}
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 var
   { This array contains the definitions of relative days used later on in the rules. }

@@ -4,10 +4,10 @@
 #
 
 cleanup () {
-  rm -fr $REPO/xaa 2> /dev/null
-  rm -fr $REPO/xab 2> /dev/null
-  rm -fr $REPO/xac 2> /dev/null
-  rm -fr $REPO/xad 2> /dev/null
+  rm -fr $REPO/xx00 2> /dev/null
+  rm -fr $REPO/xx01 2> /dev/null
+  rm -fr $REPO/xx02 2> /dev/null
+  rm -fr $REPO/xx03 2> /dev/null
 }
 
 REPO=`dirname "$0"`
@@ -23,8 +23,8 @@ rm -fr $REPO/dist 2> /dev/null
 mkdir $REPO/dist
 
 # Split the file into pieces based in includes .
-split -p '\{\$INCLUDE.*\}' $REPO/src/TZDBPK/TZDB.pas
-if [ "$?" -ne 0 ] || [ ! -e "$REPO/xaa" ] || [ ! -e "$REPO/xab" ] || [ ! -e "$REPO/xac" ] || [ -e "$REPO/xad" ]; then
+csplit -s ./src/TZDBPK/TZDB.pas '/{\$INCLUDE.*}/' {*}
+if [ "$?" -ne 0 ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ -e "$REPO/xx03" ]; then
     cleanup
 
     echo "[ERR] Failed to split the TZDB unit file into chunks."
@@ -33,9 +33,9 @@ fi
 
 # We have three chunks in here. Assemble them into final file.
 cat $REPO/src/TZDBPK/Version.inc > $REPO/dist/TZDB.pas
-cat $REPO/xab | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
+cat $REPO/xx01 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
 cat $REPO/src/TZDBPK/TZDB.inc >> $REPO/dist/TZDB.pas
-cat $REPO/xac | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
+cat $REPO/xx02 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
 
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to build a packaged unit file."
