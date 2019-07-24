@@ -64,6 +64,7 @@ type
     procedure Test_TZ_GetTimeZone;
     procedure Test_TZ_KnownTimeZones;
     procedure Test_TZ_ISO8601_Conversion;
+    procedure Test_TZ_DbVersion;
     procedure Test_TZ_GetYearBreakdown_Cairo_1900;
     procedure Test_TZ_GetYearBreakdown_Cairo_2012;
     procedure Test_TZ_GetYearBreakdown_Bucharest_2014;
@@ -879,6 +880,18 @@ begin
   finally
     LTZ.Free;
   end;
+end;
+
+procedure TTZDBTest.Test_TZ_DbVersion;
+var
+  V: string;
+begin
+  V := TBundledTimeZone.DbVersion;
+
+  CheckEquals(5, Length(V));
+  CheckTrue(StrToInt(Copy(V, 1, 4)) >= 2019);
+
+  CheckTrue((Ord(V[5]) >= Ord('a')) and (Ord(V[5]) <= Ord('z')));
 end;
 
 procedure TTZDBTest.Test_TZ_GetTimeZone;

@@ -37,7 +37,7 @@
   {$IFDEF CONDITIONALEXPRESSIONS}
     {$IF DECLARED(CompilerVersion)}
       {$IF CompilerVersion >= 22} // Delphi XE +
-        {$UNDEF UNSUPPORTED_VERSION}
+        {$DEFINE TZDB_SUPPORTED_COMPILER}
         {$DEFINE DELPHI}
       {$IFEND}
     {$IFEND}

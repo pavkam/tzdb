@@ -174,7 +174,7 @@ type
 
     ///  <summary>Returns the version of compiled TZDB database.</summary>
     ///  <returns>A string representing the compiled version.</returns>
-    class function DbVersion: string; inline;
+    class function DbVersion: string;
 
     ///  <summary>Breaks a given year into components segments.</summary>
     ///  <param name="AYear">The year to get data for.</param>
