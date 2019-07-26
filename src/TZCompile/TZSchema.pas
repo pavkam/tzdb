@@ -171,9 +171,8 @@ type
 
     { Dumper! }
     procedure Finalize;
-    procedure DumpToFile(const AFile: string);
+    procedure DumpToFile(const AFile, AVersion: string);
   end;
-
 
 type
   EProcessParseError = class(Exception);
@@ -185,7 +184,7 @@ type
   EProcessZoneError = class(Exception);
   EProcessLinkError = class(Exception);
 
-procedure Process(const AInputDir, AOutputFile: string);
+procedure Process(const AInputDir, AOutputFile, AVersion: string);
 
 var
   GlobalCache: TzCache;
@@ -794,7 +793,7 @@ begin
     Result := 'trLocal';
 end;
 
-procedure Process(const AInputDir, AOutputFile: string);
+procedure Process(const AInputDir, AOutputFile, AVersion: string);
 var
   LFile, LLine: string;
   LLineIdx: Integer;
@@ -882,7 +881,7 @@ begin
 
   CLIMessage(Format(CPMStartDump, [AOutputFile]));
 
-  GlobalCache.DumpToFile(AOutputFile);
+  GlobalCache.DumpToFile(AOutputFile, AVersion);
 
   CLIMessage('Processing finished!');
 end;
@@ -969,7 +968,7 @@ begin
   FResAliases := LResult;
 end;
 
-procedure TzCache.DumpToFile(const AFile: string);
+procedure TzCache.DumpToFile(const AFile, AVersion: string);
 var
   LFile: TextFile;
   LDay: TzDay;
@@ -992,7 +991,9 @@ begin
   try
     { ========== HEADER =========== }
     WriteLn(LFile, '{ This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }');
-
+    WriteLn(LFile, 'const');
+    WriteLn(LFile, '  CIANAVersion = ''' + AVersion + ''';');
+    WriteLn(LFile);
     { ======= Days ======== }
     WriteLn(LFile, 'var');
     WriteLn(LFile, '  { This array contains the definitions of relative days used later on in the rules. }' );

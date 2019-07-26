@@ -41,12 +41,13 @@ uses
   TZStrs in 'TZStrs.pas';
 
 var
-  LInputDir, LOutputFile: string;
+  C: Char;
+  LInputDir, LOutputFile, LVersion: string;
 begin
   { Process parameters }
   WriteLn(CCLIHeader);
 
-  if ParamCount() < 2 then
+  if ParamCount() < 3 then
   begin
     WriteLn(CCLIUsage);
     Exit;
@@ -54,6 +55,14 @@ begin
 
   LInputDir := ParamStr(1);
   LOutputFile := ParamStr(2);
+  LVersion := ParamStr(3);
+
+  { Validate the version number. }
+  for C in LVersion do
+  begin
+    if not CharInSet(C, ['0' .. '9', 'a' .. 'z']) Then
+      CLIFatal(Format(CCLIBadVersion, [LVersion]));
+  end;
 
   { Verify input directory }
   if not DirectoryExists(LInputDir) then
@@ -65,7 +74,7 @@ begin
 
   { Start the process! }
   try
-    Process(LInputDir, LOutputFile);
+    Process(LInputDir, LOutputFile, LVersion);
   except
     on E: Exception do
     begin
@@ -73,4 +82,3 @@ begin
     end;
   end;
 end.
-

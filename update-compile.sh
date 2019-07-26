@@ -15,21 +15,30 @@ fi
 
 echo "Running in '$REPO' path."
 echo "Pulling the latest CLDR data from GitHub..."
-wget https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml -q -O ./cldr/windowsZones.xml
 
+CLDR_XML=$REPO/cldr/windowsZones.xml
+wget https://raw.githubusercontent.com/unicode-org/cldr/master/common/supplemental/windowsZones.xml -q -O $CLDR_XML.tmp
 if [ "$?" -ne 0 ]; then
     echo "[WARN] Failed pulling down updated CLDR Windows zone information from GitHub."
+    rm $CLDR_XML.tmp
+else
+    rm $CLDR_XML
+    mv $CLDR_XML.tmp $CLDR_XML
 fi
 
 echo "Converting the latest CLDR xml file to inc..."
-cat $REPO/cldr/windowsZones.xml | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/GlobalCache.AddAlias("\1", "\2");/p' | sed "s/\"/'/g" > $REPO/src/TZCompile/WindowsTZ.inc
+CLDR_INC=$REPO/src/TZCompile/WindowsTZ.inc
+cat $CLDR_XML | sed -n 's/<mapZone other="\(.*\)".*territory="001" type="\(.*\)"\/>/GlobalCache.AddAlias("\1", "\2");/p' | sed "s/\"/'/g" > $CLDR_INC.tmp
 
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to convert CLDR xml file to inc."
     exit 1
 fi
 
-ALIASES=`wc -l $REPO/src/TZCompile/WindowsTZ.inc | sed 's/\([0-9]\) .*/\1/g'`
+rm $CLDR_INC
+mv $CLDR_INC.tmp $CLDR_INC
+
+ALIASES=`wc -l $CLDR_INC | sed 's/\([0-9]\) .*/\1/g'`
 echo "Created $ALIASES aliases."
 
 FPC_MAJOR=`fpc -iV | sed 's/\([0-9]*\)\.[0-9]*\.[0-9]*/\1/g' || 0`
@@ -83,16 +92,15 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
-$REPO/bin/TZCompile $REPO/tz_database_latest $REPO/src/TZDBPK/TZDB.inc.temp
+TZDB_INC=$REPO/src/TZDBPK/TZDB.inc
+$REPO/bin/TZCompile $REPO/tz_database_latest $TZDB_INC.temp $IANAV
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to process latest TZDB data."
     exit 1
 fi
 
-rm $REPO/src/TZDBPK/TZDB.inc
-echo "const CIANAVersion = '$IANAV';" > $REPO/src/TZDBPK/TZDB.inc
-cat $REPO/src/TZDBPK/TZDB.inc.temp >> $REPO/src/TZDBPK/TZDB.inc
-rm $REPO/src/TZDBPK/TZDB.inc.temp
+rm $TZDB_INC
+mv $TZDB_INC.temp $TZDB_INC
 
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to finalize the process."
@@ -108,5 +116,38 @@ if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to update README.md with the newest DB version."
     exit 1
 fi
+
+echo "Merging the TZDB components into one source file..."
+
+rm -fr $REPO/dist 2> /dev/null
+mkdir $REPO/dist
+
+cleanup () {
+  rm -fr $REPO/xx00 2> /dev/null
+  rm -fr $REPO/xx01 2> /dev/null
+  rm -fr $REPO/xx02 2> /dev/null
+}
+
+# Split the file into pieces based in includes .
+csplit -s ./src/TZDBPK/TZDB.pas '/{\$INCLUDE.*}/' {1} 2> /dev/null
+if [ "$?" -ne 0 ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ]; then
+    cleanup
+
+    echo "[ERR] Failed to split the TZDB unit file into chunks."
+    exit 1
+fi
+
+# We have three chunks in here. Assemble them into final file.
+cat $REPO/src/TZDBPK/Version.inc > $REPO/dist/TZDB.pas
+cat $REPO/xx01 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
+cat $REPO/src/TZDBPK/TZDB.inc >> $REPO/dist/TZDB.pas
+cat $REPO/xx02 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
+
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to build a packaged unit file."
+    exit 1
+fi
+
+cleanup
 
 echo "The process has finished! Whoop Whoop!"

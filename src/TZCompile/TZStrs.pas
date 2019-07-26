@@ -53,9 +53,10 @@ const
 
 resourcestring
   CCLIHeader = 'TZ Compiler. (c) 2010-2019 Alexandru Ciobanu (alex+git@ciobanu.org). Part of TZDB project.';
-  CCLIUsage  = 'USAGE: <TZCompile> input-dir output-file' + sLineBreak +
-               '  input-dir  : The path to the directory containing tzinfo database files.' + sLineBreak +
-               '  output-file: The path to the INC file that will contain the converted data.';
+  CCLIUsage  = 'USAGE: <TZCompile> input-dir output-file iana_db_version' + sLineBreak +
+               '  input-dir      : The path to the directory containing tzinfo database files.' + sLineBreak +
+               '  output-file    : The path to the INC file that will contain the converted data.' + sLineBreak +
+               '  iana_db_version: The version of the IANA DB that is being compiled (e.g. 2019b).';
 
   CCLIError_Prefix    = 'ERROR:';
   CCLIFatal_Prefix    = 'FATAL:';
@@ -63,7 +64,8 @@ resourcestring
 
   { Main messages }
   CCLIBadInputDir     = 'Input directory "%s" does not exist or is inaccessible.';
-  CCLIBadOutputDir    = 'Ouput file''s directory "%s" does not exist or is inaccessible.';
+  CCLIBadOutputDir    = 'Output file''s directory "%s" does not exist or is inaccessible.';
+  CCLIBadVersion      = 'The supplied version string "%s" is invalid.';
   CCLIGlobalException = 'An unhandled exception was raised while processing files. Exception type is %s; and message is "%s".';
 
   { Processing messages }
@@ -104,7 +106,7 @@ resourcestring
   CPMAddedRuleFamily = 'Added new rule family "%s".';
   CPMAddedRule = 'Added new rule for month %d, day [%d/%d/%d/%d], at %d, char "%s", offset %d and letters "%s".';
   CPMBadFile = 'Unable to parse "%s" line in file (%s). Skipping!';
-  
+
   CPMStartedFile = 'Processing file "%s" ...';
   CPMStats = 'Processed %d rules; %d zones; %d day parts; %d unique rules; %d unique rule families; %d aliases.';
 CPMStartDump = 'Dumping parsed contents to "%s" ...';
