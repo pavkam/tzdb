@@ -98,7 +98,7 @@ rm tzdata-latest.tar.gz
 
 IANAV=`cat $REPO/iana_temp/version`
 echo "Current TZDB database version is v$IANAV."
-FILES=( africa antarctica asia australasia backward backzone etcetera europe northamerica pacificnew southamerica systemv )
+FILES=( africa antarctica asia australasia backward backzone etcetera europe factory northamerica pacificnew southamerica systemv )
 for fn in "${FILES[@]}"; do
     echo "Replacing file $fn ..."
     cp $REPO/iana_temp/$fn $REPO/tz_database_latest/$fn
@@ -127,12 +127,18 @@ if [ "$?" -ne 0 ]; then
 fi
 
 echo "Updating README with the new version..."
-cat $REPO/README.md | sed "s/\(.*\*\*\)[0-9]*[a-z]*\(\*\*.*\)/\1$IANAV\2/g" > $REPO/README.md.tmp
-rm $REPO/README.md
-mv $REPO/README.md.tmp $REPO/README.md
+README=$REPO/README.md
+cat $README | sed "s/\(.*\*\*\)[0-9]*[a-z]*\(\*\*.*\)/\1$IANAV\2/g" > $README.tmp
+if [ "$?" -ne 0 ]; then
+  echo "[ERR] Failed to update README.md file with the IANA DB version."
+  exit 1
+fi
+
+rm $README
+mv $README.tmp $README
 
 if [ "$?" -ne 0 ]; then
-    echo "[ERR] Failed to update README.md with the newest DB version."
+    echo "[ERR] Failed to finalize the update of README."
     exit 1
 fi
 
