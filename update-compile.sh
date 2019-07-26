@@ -6,6 +6,25 @@
 # Enjoy!
 #
 
+BUMP_VERSION=0
+
+if [ "$1" != "" ]; then
+  # Version bump requested.
+  IFS='.'; DOT_ARR=($1); unset IFS;
+  VER_0=${DOT_ARR[0]}
+  VER_1=${DOT_ARR[1]}
+  VER_2=${DOT_ARR[2]}
+  VER_3=${DOT_ARR[3]}
+  BUMP_VERSION=1
+
+  if [[ $VER_0 =~ ^[0-9]+$ ]] && [[ $VER_1 =~ ^[0-9]+$ ]] && [[ $VER_2 =~ ^[0-9]+$ ]] && [[ $VER_3 =~ ^[0-9]+$ ]]; then
+    echo "Will bump the version of the project to $VER_0.$VER_1.$VER_2.$VER_3."
+  else
+    echo "[ERR] Invalid version info provided: $1. Expected 'n.n.n.n' format."
+    exit 1
+  fi
+fi
+
 REPO=`dirname "$0"`
 
 if [ ! -d "$REPO/tz_database_latest" ] || [ ! -e "$REPO/cldr/windowsZones.xml" ] || [ ! -d "$REPO/src/TZDBPK" ] || [ ! -e "$REPO/src/TZCompile/TZCompile.dpr" ]; then
@@ -149,5 +168,49 @@ if [ "$?" -ne 0 ]; then
 fi
 
 cleanup
+
+if [ $BUMP_VERSION == 1 ]; then
+  replace_tokens () {
+    cat $1 | sed "s/$2/\1$3\2/g" > $1.tmp
+    if [ "$?" -ne 0 ]; then
+        exit 1
+    fi
+    rm $1
+    mv $1.tmp $1
+    if [ "$?" -ne 0 ]; then
+        exit 1
+    fi
+  }
+
+  DPROJ_FILES=`find $REPO -type f | grep .dproj`
+  for DPROJ in $DPROJ_FILES; do
+    echo "Bumping the version of file '$DPROJ'..."
+    cp $DPROJ $DPROJ.1
+
+    VER_MAJ="$VER_0.$VER_1"
+    VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
+    replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*FileVersion=\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_FULL
+    replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*ProductVersion=\)[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_MAJ
+    replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="FileVersion">\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_FULL
+    replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="ProductVersion">\)[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_MAJ
+    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MajorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_0
+    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MinorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_1
+    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Release">\)[0-9]*\(<\/VersionInfo>\)' $VER_2
+    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Build">\)[0-9]*\(<\/VersionInfo>\)' $VER_3
+
+    if [ "$?" -ne 0 ]; then
+        echo "[ERR] Failed to bump versions in file '$DPROJ'!"
+        exit 1
+    fi
+
+    rm $DPROJ
+    mv $DPROJ.1 $DPROJ
+
+    if [ "$?" -ne 0 ]; then
+        echo "[ERR] Failed to bump versions in file '$DPROJ'!"
+        exit 1
+    fi
+  done
+fi
 
 echo "The process has finished! Whoop Whoop!"

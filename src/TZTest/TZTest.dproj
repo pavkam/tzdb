@@ -51,7 +51,7 @@
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_MinorVer>8</VerInfo_MinorVer>
         <VerInfo_Build>14</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZTest;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.101;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZTest;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_UnitSearchPath>..\..\bin\$(Config)\$(Platform);$(BDS)\Source\DUnit\src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_Define>_CONSOLE_TESTRUNNER;$(DCC_Define)</DCC_Define>
@@ -91,7 +91,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_MinorVer>9</VerInfo_MinorVer>
-        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.100;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZTest;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.0.0.101;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZTest;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
     </PropertyGroup>
     <ItemGroup>
@@ -129,7 +129,7 @@
                     <VersionInfo Name="MajorVer">2</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">100</VersionInfo>
+                    <VersionInfo Name="Build">101</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -141,7 +141,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">Alexandru Ciobanu</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Olson Time Zone Database for Delphi</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">2.0.0.100</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">2.0.0.101</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName">IANA Time Zone Database for Delphi</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalCopyright">Alexandru Ciobanu</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalTrademarks"/>
