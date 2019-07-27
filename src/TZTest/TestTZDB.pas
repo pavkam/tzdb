@@ -65,6 +65,8 @@ type
     procedure Test_TZ_KnownTimeZones;
     procedure Test_TZ_ISO8601_Conversion;
     procedure Test_TZ_DbVersion;
+    procedure Test_TZ_Version;
+
     procedure Test_TZ_GetYearBreakdown_Cairo_1900;
     procedure Test_TZ_GetYearBreakdown_Cairo_2012;
     procedure Test_TZ_GetYearBreakdown_Bucharest_2014;
@@ -972,6 +974,11 @@ begin
   C := LTZ.ToLocalTime(EncodeDateTime(2010, 8, 10, 21, 0, 0, 0));
 
   CheckEquals('2010-08-10 23:00:00.000+02:00', LTZ.ToISO8601Format(C));
+end;
+
+procedure TTZDBTest.Test_TZ_Version;
+begin
+  CheckTrue(Length(TBundledTimeZone.Version) >= 7);
 end;
 
 procedure TTZDBTest.Test_TZ_ISO8601_Conversion;
