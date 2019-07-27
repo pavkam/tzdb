@@ -188,13 +188,14 @@ if [ $BUMP_VERSION == 1 ]; then
     fi
   }
 
+  VER_MAJ="$VER_0.$VER_1"
+  VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
+
   DPROJ_FILES=`find $REPO -type f | grep .dproj`
   for DPROJ in $DPROJ_FILES; do
     echo "Bumping the version of file '$DPROJ'..."
     cp $DPROJ $DPROJ.1
 
-    VER_MAJ="$VER_0.$VER_1"
-    VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
     replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*FileVersion=\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_FULL
     replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*ProductVersion=\)[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_MAJ
     replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="FileVersion">\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_FULL
@@ -217,6 +218,16 @@ if [ $BUMP_VERSION == 1 ]; then
         exit 1
     fi
   done
+
+  # update the version in the .pas module as well
+  TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
+  cat $TZDB_PAS | sed "s/\(.*CComponentVersion\s*=\s*'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
+  if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to update TZDB.pas file with the bumped version."
+    exit 1
+  fi
+  rm $TZDB_PAS
+  mv $TZDB_PAS.tmp $TZDB_PAS
 fi
 
 echo "The process has finished! Whoop Whoop!"

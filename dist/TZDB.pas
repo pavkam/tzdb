@@ -191,6 +191,10 @@ type
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
+    ///  <summary>Returns the version of the TZDB component.</summary>
+    ///  <returns>A string representing the version of the source.</returns>
+    class function Version: string;
+
     ///  <summary>Returns the version of compiled TZDB database.</summary>
     ///  <returns>A string representing the compiled version.</returns>
     class function DbVersion: string;
@@ -366,6 +370,9 @@ resourcestring
   SYearNotResolvable =
     'The year [%d] cannot is not in the bundled timezone "%s".';
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
+
+const
+  CComponentVersion = '2.0.0.101';
 
 type
   { Day type. Specifies the "relative" day in a month }
@@ -12069,6 +12076,11 @@ begin
 
   { Nothing found. }
   Exit(false);
+end;
+
+class function TBundledTimeZone.Version: string;
+begin
+  Result := CComponentVersion;
 end;
 
 procedure FinalizeDict(const ADict: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<string, TBundledTimeZone>);
