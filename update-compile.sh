@@ -142,8 +142,6 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
-echo "Merging the TZDB components into one source file..."
-
 rm -fr $REPO/dist 2> /dev/null
 mkdir $REPO/dist
 
@@ -153,28 +151,7 @@ cleanup () {
   rm -fr $REPO/xx02 2> /dev/null
 }
 
-# Split the file into pieces based in includes .
-csplit -s ./src/TZDBPK/TZDB.pas '/{\$INCLUDE.*}/' {1} 2> /dev/null
-if [ "$?" -ne 0 ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ]; then
-    cleanup
-
-    echo "[ERR] Failed to split the TZDB unit file into chunks."
-    exit 1
-fi
-
-# We have three chunks in here. Assemble them into final file.
-cat $REPO/src/TZDBPK/Version.inc > $REPO/dist/TZDB.pas
-cat $REPO/xx01 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
-cat $REPO/src/TZDBPK/TZDB.inc >> $REPO/dist/TZDB.pas
-cat $REPO/xx02 | sed "s/{\$INCLUDE.*}//g" >> $REPO/dist/TZDB.pas
-
-if [ "$?" -ne 0 ]; then
-    echo "[ERR] Failed to build a packaged unit file."
-    exit 1
-fi
-
-cleanup
-
+TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
 if [ $BUMP_VERSION == 1 ]; then
   replace_tokens () {
     cat $1 | sed "s/$2/\1$3\2/g" > $1.tmp
@@ -220,7 +197,6 @@ if [ $BUMP_VERSION == 1 ]; then
   done
 
   # update the version in the .pas module as well
-  TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
   cat $TZDB_PAS | sed "s/\(.*CComponentVersion\s*=\s*'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
   if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to update TZDB.pas file with the bumped version."
@@ -229,5 +205,30 @@ if [ $BUMP_VERSION == 1 ]; then
   rm $TZDB_PAS
   mv $TZDB_PAS.tmp $TZDB_PAS
 fi
+
+echo "Merging the TZDB components into one source file..."
+
+# Split the file into pieces based in includes .
+csplit -s $TZDB_PAS '/{\$INCLUDE.*}/' {1} 2> /dev/null
+if [ "$?" -ne 0 ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ]; then
+    cleanup
+
+    echo "[ERR] Failed to split the TZDB unit file into chunks."
+    exit 1
+fi
+
+TZDB_PAS_DIST=$REPO/dist/TZDB.pas
+# We have three chunks in here. Assemble them into final file.
+cat $REPO/src/TZDBPK/Version.inc > $TZDB_PAS_DIST
+cat $REPO/xx01 | sed "s/{\$INCLUDE.*}//g" >> $TZDB_PAS_DIST
+cat $REPO/src/TZDBPK/TZDB.inc >> $TZDB_PAS_DIST
+cat $REPO/xx02 | sed "s/{\$INCLUDE.*}//g" >> $TZDB_PAS_DIST
+
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to build a packaged unit file."
+    exit 1
+fi
+
+cleanup
 
 echo "The process has finished! Whoop Whoop!"
