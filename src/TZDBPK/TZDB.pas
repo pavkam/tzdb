@@ -72,24 +72,30 @@ type
   ///  bundled for the given time zone.</summary>
   EUnknownTimeZoneYear = class(Exception);
 
+  ///  Special type used to manipulate TDateTime in millisecond precision.
+  ///  This is an internal type.
+  TPreciseTime = type Int64;
+
   /// <summary>Represents a specific date/time segment of the year.</summary>
   /// <remarks>A calendar year in most time zones is divided into standard/ambiguous/daylight/invalid/standard segments.</remarks>
   TYearSegment = record
   private
-    FStartsAt, FEndsAt: TDateTime;
+    FStartsAt, FEndsAt: TPreciseTime;
     FType: TLocalTimeType;
     FName: string;
     FPeriodOffset, FBias: Int64;
 
-    function GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
+    function GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF}; inline;
+    function GetStartsAt: TDateTime; inline;
+    function GetEndsAt: TDateTime; inline;
   public
     /// <summary>The date/time when the segment starts.</summary>
     /// <returns>A date/time value representing the start of the segment.</returns>
-    property StartsAt: TDateTime read FStartsAt;
+    property StartsAt: TDateTime read GetStartsAt;
 
     /// <summary>The date/time when the segment ends.</summary>
     /// <returns>A date/time value representing the end of the segment.</returns>
-    property EndsAt: TDateTime read FEndsAt;
+    property EndsAt: TDateTime read GetEndsAt;
 
     /// <summary>The type of the segment.</summary>
     /// <returns>An enum value representing the type of the segment.</returns>
@@ -447,12 +453,72 @@ type
 
 {$INCLUDE 'TZDB.inc'}
 
-function EncodeDateMonthLastDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TDateTime;
+function DateTimeToPreciseTime(const ADateTime: TDateTime): TPreciseTime; inline;
+begin
+  Result := TimeStampToMSecs(DateTimeToTimeStamp(ADateTime));
+end;
+
+function PreciseTimeToDateTime(const APreciseTime: TPreciseTime): TDateTime; inline;
+begin
+  Result := TimeStampToDateTime(MSecstoTimestamp(APreciseTime));
+end;
+
+function IncMillisecond(const APreciseTime: TPreciseTime; const AMilliseconds: Int64): TPreciseTime; inline;
+begin
+  Result := APreciseTime + AMilliseconds;
+end;
+
+function IncSecond(const APreciseTime: TPreciseTime; const ASeconds: Int64): TPreciseTime; inline;
+begin
+  Result := IncMillisecond(APreciseTime, ASeconds * 1000);
+end;
+
+function IncMinute(const APreciseTime: TPreciseTime; const AMinutes: Int64): TPreciseTime; inline;
+begin
+  Result := IncSecond(APreciseTime, AMinutes * 60);
+end;
+
+function IncHour(const APreciseTime: TPreciseTime; const AHours: Int64): TPreciseTime; inline;
+begin
+  Result := IncMinute(APreciseTime, AHours * 60);
+end;
+
+function IncDay(const APreciseTime: TPreciseTime; const ADays: Int64): TPreciseTime; inline;
+begin
+  Result := IncHour(APreciseTime, ADays * 24);
+end;
+
+function IncWeek(const APreciseTime: TPreciseTime; const ADays: Int64): TPreciseTime; inline;
+begin
+  Result := IncDay(APreciseTime, ADays * 7);
+end;
+
+function EncodePreciseDate(const AYear, AMonth, ADay: Word): TPreciseTime; inline;
+begin
+  Result := DateTimeToPreciseTime(EncodeDate(AYear, AMonth, DaysInAMonth(AYear, AMonth)));
+end;
+
+function DayOfTheWeek(const APreciseTime: TPreciseTime): Word; inline;
+begin
+  Result := DayOfTheWeek(PreciseTimeToDateTime(APreciseTime));
+end;
+
+function DayOf(const APreciseTime: TPreciseTime): Word; inline;
+begin
+  Result := DayOf(PreciseTimeToDateTime(APreciseTime));
+end;
+
+function MonthOf(const APreciseTime: TPreciseTime): Word; inline;
+begin
+  Result := MonthOf(PreciseTimeToDateTime(APreciseTime));
+end;
+
+function EncodeDateMonthLastDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TPreciseTime;
 var
   LDoW: Word;
 begin
   { Generate a date that looks like: Year/Month/(Last Day of Month) }
-  Result := EncodeDate(AYear, AMonth, DaysInAMonth(AYear, AMonth));
+  Result := EncodePreciseDate(AYear, AMonth, DaysInAMonth(AYear, AMonth));
 
   { Get the day of week for this newly crafted date }
   LDoW := DayOfTheWeek(Result);
@@ -464,12 +530,12 @@ begin
     Result := IncDay(Result, -1 * (DaysPerWeek - ADayOfWeek + LDoW));
 end;
 
-function EncodeDateMonthFirstDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TDateTime;
+function EncodeDateMonthFirstDayOfWeek(const AYear, AMonth, ADayOfWeek: Word): TPreciseTime;
 var
   LDoW: Word;
 begin
   { Generate a date that looks like: Year/Month/1st }
-  Result := EncodeDate(AYear, AMonth, 1);
+  Result := EncodePreciseDate(AYear, AMonth, 1);
 
   { Get the day of week for this newly crafted date }
   LDoW := DayOfTheWeek(Result);
@@ -481,7 +547,7 @@ begin
     Result := IncDay(Result, ADayOfWeek - LDoW);
 end;
 
-function EncodeDateMonthFirstDayOfWeekAfter(const AYear, AMonth, ADayOfWeek, AAfter: Word): TDateTime;
+function EncodeDateMonthFirstDayOfWeekAfter(const AYear, AMonth, ADayOfWeek, AAfter: Word): TPreciseTime;
 begin
   { Generate a date with the given day of week as first in month }
   Result := EncodeDateMonthFirstDayOfWeek(AYear, AMonth, ADayOfWeek);
@@ -500,12 +566,12 @@ begin
   end;
 end;
 
-function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, ABefore: Word): TDateTime;
+function EncodeDateMonthFirstDayOfWeekBefore(const AYear, AMonth, ADayOfWeek, ABefore: Word): TPreciseTime;
 var
   LWeekDayDiff : Integer;
 begin
   { Generate a date with ABefore as the Day in AMonth and AYear }
-  Result := EncodeDate(AYear, AMonth, ABefore);
+  Result := EncodePreciseDate(AYear, AMonth, ABefore);
 
   { Adjust Date by difference in DayOfWeek of Date and ADayOfWeek.  If that difference is negative subtract a week. }
   LWeekDayDiff := DayOfTheWeek(Result) - ADayOfWeek;
@@ -515,15 +581,16 @@ begin
     Result := IncDay(Result, - (LWeekDayDiff + 7));
 end;
 
-function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay; const ATimeOfDay: Int64): TDateTime;
+function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay;
+  const ATimeOfDay: Int64): TPreciseTime;
 begin
   Result := 0;
 
   { Special case - if there is no day defined then there is no time also. Exit with only the date part. }
   if ARelativeDay = nil then
-    Result := EncodeDate(AYear, AMonth, 1)
+    Result := EncodePreciseDate(AYear, AMonth, 1)
   else if ARelativeDay^.FDayType = dtFixed then
-    Result := EncodeDate(AYear, AMonth, ARelativeDay^.FFixedDay)
+    Result := EncodePreciseDate(AYear, AMonth, ARelativeDay^.FFixedDay)
   else if ARelativeDay^.FDayType = dtLastOfMonth then
     Result := EncodeDateMonthLastDayOfWeek(AYear, AMonth, ARelativeDay^.FLastDayOfWeek)
   else if ARelativeDay^.FDayType = dtNthOfMonth then
@@ -535,7 +602,8 @@ begin
   Result := IncSecond(Result, ATimeOfDay);
 end;
 
-function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule; const ALocalTimeType: TLocalTimeType): string;
+function FormatAbbreviation(const APeriod: PPeriod; const ARule: PRule;
+  const ALocalTimeType: TLocalTimeType): string;
 var
   LDelimIndex: Integer;
 begin
@@ -577,9 +645,9 @@ type
   { Contains a compiled rule }
   TCompiledRule = class
   strict private
-    FStartsOn: TDateTime;
+    FStartsOn: TPreciseTime;
 
-    function GetStartsOn: TDateTime;
+    function GetStartsOn: TPreciseTime;
     function GetUtcOffset: Int64;
   private
     FPeriod: TCompiledPeriod;
@@ -590,10 +658,10 @@ type
     FNext, FPrev: TCompiledRule;
 
   public
-    constructor Create(const APeriod: TCompiledPeriod; const ARule: PRule; const AStartsOn: TDateTime;
+    constructor Create(const APeriod: TCompiledPeriod; const ARule: PRule; const AStartsOn: TPreciseTime;
       const AOffset: Int64; const ATimeMode: TTimeMode);
 
-    property StartsOn: TDateTime read GetStartsOn;
+    property StartsOn: TPreciseTime read GetStartsOn;
     property UtcOffset: Int64 read GetUtcOffset;
   end;
 
@@ -603,12 +671,12 @@ type
   TCompiledPeriod = class
   private
     FPeriod: PPeriod;
-    FFrom, FUntil: TDateTime;
+    FFrom, FUntil: TPreciseTime;
 
     function GetLastRuleForYear(const AYear: Word): PRule;
   public
     { Basic stuffs }
-    constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TDateTime);
+    constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TPreciseTime);
 
     function CompileRulesForYear(const AYear: Word): TCompiledRuleArray;
   end;
@@ -637,7 +705,7 @@ end;
 
 { TCompiledPeriod }
 
-constructor TCompiledPeriod.Create(const APeriod: PPeriod; const AFrom, AUntil: TDateTime);
+constructor TCompiledPeriod.Create(const APeriod: PPeriod; const AFrom, AUntil: TPreciseTime);
 begin
   FPeriod := APeriod;
   FUntil := AUntil;
@@ -648,7 +716,7 @@ function TCompiledPeriod.CompileRulesForYear(const AYear: Word): TCompiledRuleAr
 var
   LCurrRule: PYearBoundRule;
   LLastYearRule: PRule;
-  LAbsolute: TDateTime;
+  LAbsolute: TPreciseTime;
   I: Integer;
   LRules: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TCompiledRule>;
 {$IFDEF DELPHI}
@@ -666,8 +734,8 @@ begin
 
     { Add the the last year rule since 1 jan 00:00 this year }
     if LLastYearRule <> nil then
-      LRules.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodeDate(AYear, 1, 1), -1*(LLastYearRule^.FOffset)),
-        LLastYearRule^.FOffset, trStandard));
+      LRules.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodePreciseDate(AYear, 1, 1),
+        -1 * (LLastYearRule^.FOffset)), LLastYearRule^.FOffset, trStandard));
 
     { Obtain the first rule in chain }
     LCurrRule := FPeriod^.FRuleFamily^.FFirstRule;
@@ -724,7 +792,7 @@ end;
 function TCompiledPeriod.GetLastRuleForYear(const AYear: Word): PRule;
 var
   LCurrRule: PYearBoundRule;
-  LAbsolute, LBestChoice: TDateTime;
+  LAbsolute, LBestChoice: TPreciseTime;
   I: Integer;
 begin
   { Default to nothing obviously }
@@ -764,7 +832,7 @@ end;
 { TCompiledRule }
 
 constructor TCompiledRule.Create(const APeriod: TCompiledPeriod; const ARule: PRule;
-  const AStartsOn: TDateTime; const AOffset: Int64; const ATimeMode: TTimeMode);
+  const AStartsOn: TPreciseTime; const AOffset: Int64; const ATimeMode: TTimeMode);
 begin
   FPeriod := APeriod;
   FRule := ARule;
@@ -773,7 +841,7 @@ begin
   FTimeMode := ATimeMode;
 end;
 
-function TCompiledRule.GetStartsOn: TDateTime;
+function TCompiledRule.GetStartsOn: TPreciseTime;
 begin
   Result := FStartsOn;
   // Adjust the value based on the specified time mode.
@@ -801,6 +869,16 @@ end;
 
 { TYearSegment }
 
+function TYearSegment.GetEndsAt: TDateTime;
+begin
+  Result := PreciseTimeToDateTime(FEndsAt);
+end;
+
+function TYearSegment.GetStartsAt: TDateTime;
+begin
+  Result := PreciseTimeToDateTime(FStartsAt);
+end;
+
 function TYearSegment.GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
 begin
   Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(FPeriodOffset + FBias){$ELSE}FPeriodOffset + FBias{$ENDIF};
@@ -826,7 +904,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttAmbiguous, false, LSegment) then
-    Result := LSegment.FEndsAt
+    Result := LSegment.EndsAt
   else
     Result := 0;
 end;
@@ -836,7 +914,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttAmbiguous, true, LSegment) then
-    Result := LSegment.FStartsAt
+    Result := LSegment.StartsAt
   else
     Result := 0;
 end;
@@ -846,7 +924,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttInvalid, false, LSegment) then
-    Result := LSegment.FEndsAt
+    Result := LSegment.EndsAt
   else
     Result := 0;
 end;
@@ -856,7 +934,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttInvalid, true, LSegment) then
-    Result := LSegment.FStartsAt
+    Result := LSegment.StartsAt
   else
     Result := 0;
 end;
@@ -865,8 +943,8 @@ procedure TBundledTimeZone.CompilePeriods;
 var
   LCompiledPeriod: TCompiledPeriod;
   LCurrentPeriod: PPeriod;
-  LStart: TDateTime;
-  LAbsolute: TDateTime;
+  LStart: TPreciseTime;
+  LAbsolute: TPreciseTime;
   LRule: PRule;
   I: Integer;
 {$IFDEF DELPHI}
@@ -936,7 +1014,7 @@ var
   LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
   LRule, LNextRule: TCompiledRule;
   LSegment: TYearSegment;
-  LPrdStart, LEnd, LYStart, LYEnd: TDateTime;
+  LPrdStart, LEnd, LYStart, LYEnd: TPreciseTime;
   LCarryDelta, LDelta: Int64;
   LComp: TCompiledRuleArray;
 begin
@@ -1115,7 +1193,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttDaylight, true, LSegment) then
-    Result := LSegment.FEndsAt
+    Result := LSegment.EndsAt
   else
     Result := 0;
 end;
@@ -1125,7 +1203,7 @@ var
   LSegment: TYearSegment;
 begin
   if TryFindSegment(AYear, lttDaylight, false, LSegment) then
-    Result := LSegment.FStartsAt
+    Result := LSegment.StartsAt
   else
     Result := 0;
 end;
@@ -1218,7 +1296,8 @@ begin
 
   { Calculate the hh:mm:ss parts }
   LSeconds := Abs(LOffset);
-  LHours := LSeconds div (SecsPerMin * MinsPerHour); Dec(LSeconds, LHours * SecsPerMin * MinsPerHour);
+  LHours := LSeconds div (SecsPerMin * MinsPerHour);
+  Dec(LSeconds, LHours * SecsPerMin * MinsPerHour);
   LMinutes := LSeconds div SecsPerMin; Dec(LSeconds, LMinutes * SecsPerMin);
 
   { Add the sign }
@@ -1255,12 +1334,12 @@ end;
 
 function TBundledTimeZone.GetDisplayName(const ADateTime: TDateTime; const AForceDaylight: Boolean): string;
 begin
-  Result := GetSegment(ADateTime, AForceDaylight, true).FName;
+  Result := GetSegment(ADateTime, AForceDaylight, true).DisplayName;
 end;
 
 function TBundledTimeZone.GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType;
 begin
-  Result := GetSegment(ADateTime, true, false).FType;
+  Result := GetSegment(ADateTime, true, false).LocalType;
 end;
 
 function TBundledTimeZone.GetUtcOffset(const ADateTime: TDateTime; const AForceDaylight: Boolean):
@@ -1322,7 +1401,8 @@ begin
   Result := IncSecond(ADateTime, -(LSegment.FPeriodOffset + LSegment.FBias));
 end;
 
-function TBundledTimeZone.GetSegment(const ADateTime: TDateTime; const AForceDaylight: Boolean; const AFailOnInvalid: Boolean): TYearSegment;
+function TBundledTimeZone.GetSegment(const ADateTime: TDateTime; const AForceDaylight:
+  Boolean; const AFailOnInvalid: Boolean): TYearSegment;
 var
   LSegments: TYearSegmentArray;
   I: Integer;
