@@ -6,23 +6,29 @@
 # Enjoy!
 #
 
-BUMP_VERSION=0
+TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
 
 if [ "$1" != "" ]; then
-  # Version bump requested.
-  IFS='.'; DOT_ARR=($1); unset IFS;
-  VER_0=${DOT_ARR[0]}
-  VER_1=${DOT_ARR[1]}
-  VER_2=${DOT_ARR[2]}
-  VER_3=${DOT_ARR[3]}
-  BUMP_VERSION=1
+  INPUT_VER=$1
+else
+  INPUT_VER="`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\s*=\s*'\(.*\)';.*/\1/p"`"
+fi
 
-  if [[ $VER_0 =~ ^[0-9]+$ ]] && [[ $VER_1 =~ ^[0-9]+$ ]] && [[ $VER_2 =~ ^[0-9]+$ ]] && [[ $VER_3 =~ ^[0-9]+$ ]]; then
-    echo "Will bump the version of the project to $VER_0.$VER_1.$VER_2.$VER_3."
-  else
-    echo "[ERR] Invalid version info provided: $1. Expected 'n.n.n.n' format."
-    exit 1
+IFS='.'; DOT_ARR=($1); unset IFS;
+VER_0=${DOT_ARR[0]}
+VER_1=${DOT_ARR[1]}
+VER_2=${DOT_ARR[2]}
+VER_3=${DOT_ARR[3]}
+
+if [[ $VER_0 =~ ^[0-9]+$ ]] && [[ $VER_1 =~ ^[0-9]+$ ]] && [[ $VER_2 =~ ^[0-9]+$ ]] && [[ $VER_3 =~ ^[0-9]+$ ]]; then
+  if [ "$1" == "" ]; then
+    # increment the build number
+    ((VER_3++))
   fi
+  echo "Will bump the version of the project to $VER_0.$VER_1.$VER_2.$VER_3."
+else
+  echo "[ERR] Invalid version info provided: $1. Expected 'n.n.n.n' format."
+  exit 1
 fi
 
 REPO=`dirname "$0"`
@@ -111,6 +117,8 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
+# Compile the IANA DB
+
 TZDB_INC=$REPO/src/TZDBPK/TZDB.inc
 $REPO/bin/TZCompile $REPO/tz_database_latest $TZDB_INC.temp $IANAV
 if [ "$?" -ne 0 ]; then
@@ -125,6 +133,22 @@ if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to finalize the process."
     exit 1
 fi
+
+# Run tests
+
+fpc $REPO/src/TZTest/TZTest.dpr -Fu$REPO/src/TZDBPK -Fu$REPO/src/TZDBLIB -FEbin -FUbin
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Failed to compile the TZTest program."
+    exit 1
+fi
+
+$REPO/bin/TZTest --format=plain --all --progress --sparse
+if [ "$?" -ne 0 ]; then
+    echo "[ERR] Tests failed! Please correct the errors before continuing."
+    exit 1
+fi
+
+# Update the README
 
 echo "Updating README with the new version..."
 README=$REPO/README.md
@@ -142,6 +166,64 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
+# Bump the version 
+
+replace_tokens () {
+  cat $1 | sed "s/$2/\1$3\2/g" > $1.tmp
+  if [ "$?" -ne 0 ]; then
+      exit 1
+  fi
+  rm $1
+  mv $1.tmp $1
+  if [ "$?" -ne 0 ]; then
+      exit 1
+  fi
+}
+
+VER_MAJ="$VER_0.$VER_1"
+VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
+
+DPROJ_FILES=`find $REPO -type f | grep .dproj`
+for DPROJ in $DPROJ_FILES; do
+  echo "Bumping the version of file '$DPROJ'..."
+  cp $DPROJ $DPROJ.1
+
+  replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*FileVersion=\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_FULL
+  replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*ProductVersion=\)[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_MAJ
+  replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="FileVersion">\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_FULL
+  replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="ProductVersion">\)[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_MAJ
+  replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MajorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_0
+  replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MinorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_1
+  replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Release">\)[0-9]*\(<\/VersionInfo>\)' $VER_2
+  replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Build">\)[0-9]*\(<\/VersionInfo>\)' $VER_3
+
+  if [ "$?" -ne 0 ]; then
+      echo "[ERR] Failed to bump versions in file '$DPROJ'!"
+      exit 1
+  fi
+
+  rm $DPROJ
+  mv $DPROJ.1 $DPROJ
+
+  if [ "$?" -ne 0 ]; then
+      echo "[ERR] Failed to bump versions in file '$DPROJ'!"
+      exit 1
+  fi
+done
+
+# update the version in the .pas module as well
+cat $TZDB_PAS | sed "s/\(.*CComponentVersion\s*=\s*'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
+if [ "$?" -ne 0 ]; then
+  echo "[ERR] Failed to update TZDB.pas file with the bumped version."
+  exit 1
+fi
+rm $TZDB_PAS
+mv $TZDB_PAS.tmp $TZDB_PAS
+
+# Merge the files into one
+
+echo "Merging the TZDB components into one source file..."
+
 rm -fr $REPO/dist 2> /dev/null
 mkdir $REPO/dist
 
@@ -150,63 +232,6 @@ cleanup () {
   rm -fr $REPO/xx01 2> /dev/null
   rm -fr $REPO/xx02 2> /dev/null
 }
-
-TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
-if [ $BUMP_VERSION == 1 ]; then
-  replace_tokens () {
-    cat $1 | sed "s/$2/\1$3\2/g" > $1.tmp
-    if [ "$?" -ne 0 ]; then
-        exit 1
-    fi
-    rm $1
-    mv $1.tmp $1
-    if [ "$?" -ne 0 ]; then
-        exit 1
-    fi
-  }
-
-  VER_MAJ="$VER_0.$VER_1"
-  VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
-
-  DPROJ_FILES=`find $REPO -type f | grep .dproj`
-  for DPROJ in $DPROJ_FILES; do
-    echo "Bumping the version of file '$DPROJ'..."
-    cp $DPROJ $DPROJ.1
-
-    replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*FileVersion=\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_FULL
-    replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*ProductVersion=\)[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_MAJ
-    replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="FileVersion">\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_FULL
-    replace_tokens $DPROJ.1 '\(.*<VersionInfoKeys Name="ProductVersion">\)[0-9]*\.[0-9]*\(<\/VersionInfoKeys>\)' $VER_MAJ
-    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MajorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_0
-    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MinorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_1
-    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Release">\)[0-9]*\(<\/VersionInfo>\)' $VER_2
-    replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Build">\)[0-9]*\(<\/VersionInfo>\)' $VER_3
-
-    if [ "$?" -ne 0 ]; then
-        echo "[ERR] Failed to bump versions in file '$DPROJ'!"
-        exit 1
-    fi
-
-    rm $DPROJ
-    mv $DPROJ.1 $DPROJ
-
-    if [ "$?" -ne 0 ]; then
-        echo "[ERR] Failed to bump versions in file '$DPROJ'!"
-        exit 1
-    fi
-  done
-
-  # update the version in the .pas module as well
-  cat $TZDB_PAS | sed "s/\(.*CComponentVersion\s*=\s*'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
-  if [ "$?" -ne 0 ]; then
-    echo "[ERR] Failed to update TZDB.pas file with the bumped version."
-    exit 1
-  fi
-  rm $TZDB_PAS
-  mv $TZDB_PAS.tmp $TZDB_PAS
-fi
-
-echo "Merging the TZDB components into one source file..."
 
 # Split the file into pieces based in includes .
 csplit -s $TZDB_PAS '/{\$INCLUDE.*}/' {1} 2> /dev/null
