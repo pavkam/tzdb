@@ -59,6 +59,7 @@ type
 
     function Decompose(const ATimeZone: TBundledTimeZone; const AYear: Word): {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>;
     procedure CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
+
   published
     procedure Test_TZ_Contructor;
     procedure Test_TZ_GetTimeZone;
@@ -175,12 +176,12 @@ function SecondsBetween(const A1, A2: TDateTime): Int64; inline;
 begin
   Result := MillisecondsBetween(A1, A2) div 1000;
 end;
+{$ENDIF}
 
 function SecondsBetweenNoAbs(const A1, A2: TDateTime): Int64; inline;
 begin
   Result := SecondsBetween(A1, A2) * CompareDateTime(A2, A1);
 end;
-{$ENDIF}
 
 { TTZDBTest }
 
