@@ -165,6 +165,23 @@ implementation
 uses
   Math;
 
+{$IFDEF FPC}
+function MillisecondsBetween(const A1, A2: TDateTime): Int64; inline;
+begin
+  Result := Round(Abs(TimeStampToMSecs(DateTimeToTimeStamp(A1)) - TimeStampToMSecs(DateTimeToTimeStamp(A2))));
+end;
+
+function SecondsBetween(const A1, A2: TDateTime): Int64; inline;
+begin
+  Result := MillisecondsBetween(A1, A2) div 1000;
+end;
+
+function SecondsBetweenNoAbs(const A1, A2: TDateTime): Int64; inline;
+begin
+  Result := SecondsBetween(A1, A2) * CompareDateTime(A2, A1);
+end;
+{$ENDIF}
+
 { TTZDBTest }
 
 function TTZDBTest.ProcessPeriod(
@@ -174,12 +191,6 @@ function TTZDBTest.ProcessPeriod(
   out AType: TLocalTimeType;
   out AAbbr_DST, AAbbr_STD, ADisp_DST, ADisp_STD: string;
   out ABias_DST, ABias_STD: Int64): Boolean;
-
-  function SecondsBetweenNoAbs(const A1, A2: TDateTime): Int64;
-  begin
-    Result := SecondsBetween(A1, A2) * CompareDateTime(A2, A1);
-  end;
-
 var
   LYearOfStart: Word;
   LLocal, LUtc_AsDST, LUtc_AsSTD: TDateTime;
@@ -377,6 +388,23 @@ begin
 
   { Remove the hour to be on the change spot }
   AEnd := IncSecond(AEnd, -1);
+
+  { ------------------- Progress by millis }
+  while ATZ.GetLocalTimeType(AEnd) = AType do
+  begin
+    { Increase by an hour }
+    AEnd := IncMillisecond(AEnd, 1);
+
+    { We reached the year's end }
+    if YearOf(AEnd) <> LYearOfStart then
+    begin
+      Result := true;
+      break;
+    end;
+  end;
+
+  { Remove the hour to be on the change spot }
+  AEnd := IncMillisecond(AEnd, -1);
 end;
 
 procedure TTZDBTest.CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
