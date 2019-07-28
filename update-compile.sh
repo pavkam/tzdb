@@ -6,6 +6,9 @@
 # Enjoy!
 #
 
+REPO=`dirname "$0"`
+echo "Running in '$REPO' path."
+
 TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
 
 if [ "$1" != "" ]; then
@@ -14,7 +17,7 @@ else
   INPUT_VER="`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\s*=\s*'\(.*\)';.*/\1/p"`"
 fi
 
-IFS='.'; DOT_ARR=($1); unset IFS;
+IFS='.'; DOT_ARR=($INPUT_VER); unset IFS;
 VER_0=${DOT_ARR[0]}
 VER_1=${DOT_ARR[1]}
 VER_2=${DOT_ARR[2]}
@@ -31,14 +34,11 @@ else
   exit 1
 fi
 
-REPO=`dirname "$0"`
-
 if [ ! -d "$REPO/tz_database_latest" ] || [ ! -e "$REPO/cldr/windowsZones.xml" ] || [ ! -d "$REPO/src/TZDBPK" ] || [ ! -e "$REPO/src/TZCompile/TZCompile.dpr" ]; then
     echo "[ERR] Script located in '$REPO' but cannot find required sub-directories. Make sure you have full repo downloaded."
     exit 1
 fi
 
-echo "Running in '$REPO' path."
 echo "Pulling the latest CLDR data from GitHub..."
 
 CLDR_XML=$REPO/cldr/windowsZones.xml
