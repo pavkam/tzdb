@@ -594,7 +594,7 @@ begin
     Result := IncDay(Result, - (LWeekDayDiff + 7));
 end;
 
-function RelativeToDateTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay;
+function RelativeToPreciseTime(const AYear, AMonth: Word; const ARelativeDay: PRelativeDay;
   const ATimeOfDay: Int64): TPreciseTime;
 begin
   Result := 0;
@@ -652,6 +652,46 @@ begin
     Result := APeriod^.FFmtStr;
 end;
 
+function GetLastActiveRuleForYear(const APeriod: PPeriod; const AYear: Word): PRule;
+var
+  LCurrRule: PYearBoundRule;
+  LAbsolute, LBestChoice: TPreciseTime;
+  I: Integer;
+begin
+  { Default to nothing obviously }
+  Result := nil;
+
+  { Check whether we actually have a fule family attached }
+  if APeriod^.FRuleFamily = nil then
+    exit;
+
+  { Obtain the first rule in chain }
+  LCurrRule := APeriod^.FRuleFamily^.FFirstRule;
+  LBestChoice := 0;
+
+  for I := 0 to APeriod^.FRuleFamily^.FCount - 1 do
+  begin
+    { Check we're in the required year }
+    if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
+    begin
+
+      { Obtain the absolute date when the rule activates in this year }
+      LAbsolute := RelativeToPreciseTime(AYear, LCurrRule^.FRule^.FInMonth,
+        LCurrRule^.FRule^.FOnDay, LCurrRule^.FRule^.FAt);
+
+      { Select this rule if it's better suited }
+      if ComparePreciseTime(LAbsolute, LBestChoice) >= 0 then
+      begin
+        LBestChoice := LAbsolute;
+        Result := LCurrRule^.FRule;
+      end;
+    end;
+
+    { Go to next rule }
+    Inc(LCurrRule);
+  end;
+end;
+
 type
   TCompiledPeriod = class;
 
@@ -685,8 +725,6 @@ type
   private
     FPeriod: PPeriod;
     FFrom, FUntil: TPreciseTime;
-
-    function GetLastRuleForYear(const AYear: Word): PRule;
   public
     { Basic stuffs }
     constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TPreciseTime);
@@ -743,7 +781,7 @@ begin
   if FPeriod^.FRuleFamily <> nil then
   begin
     { Let's start with the last active rule from last year }
-    LLastYearRule := GetLastRuleForYear(AYear - 1);
+    LLastYearRule := GetLastActiveRuleForYear(FPeriod, AYear - 1);
 
     { Add the the last year rule since 1 jan 00:00 this year }
     if LLastYearRule <> nil then
@@ -759,7 +797,7 @@ begin
       if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
       begin
         { Obtain the absolute date when the rule activates in this year }
-        LAbsolute := RelativeToDateTime(AYear,
+        LAbsolute := RelativeToPreciseTime(AYear,
             LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
             LCurrRule^.FRule^.FAt);
 
@@ -800,46 +838,6 @@ begin
   end;
 
   LRules.Free;
-end;
-
-function TCompiledPeriod.GetLastRuleForYear(const AYear: Word): PRule;
-var
-  LCurrRule: PYearBoundRule;
-  LAbsolute, LBestChoice: TPreciseTime;
-  I: Integer;
-begin
-  { Default to nothing obviously }
-  Result := nil;
-
-  { Check whether we actually have a fule family attached }
-  if FPeriod^.FRuleFamily = nil then
-    exit;
-
-  { Obtain the first rule in chain }
-  LCurrRule := FPeriod^.FRuleFamily^.FFirstRule;
-  LBestChoice := 0;
-
-  for I := 0 to FPeriod^.FRuleFamily^.FCount - 1 do
-  begin
-    { Check we're in the required year }
-    if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
-    begin
-
-      { Obtain the absolute date when the rule activates in this year }
-      LAbsolute := RelativeToDateTime(AYear, LCurrRule^.FRule^.FInMonth,
-        LCurrRule^.FRule^.FOnDay, LCurrRule^.FRule^.FAt);
-
-      { Select this rule if it's better suited }
-      if ComparePreciseTime(LAbsolute, LBestChoice) >= 0 then
-      begin
-        LBestChoice := LAbsolute;
-        Result := LCurrRule^.FRule;
-      end;
-    end;
-
-    { Go to next rule }
-    Inc(LCurrRule);
-  end;
 end;
 
 { TCompiledRule }
@@ -970,7 +968,7 @@ begin
   for I := 0 to PZone(FZone)^.FCount - 1 do
   begin
     { Calculate the end date }
-    LAbsolute := RelativeToDateTime(LCurrentPeriod^.FUntilYear,
+    LAbsolute := RelativeToPreciseTime(LCurrentPeriod^.FUntilYear,
         LCurrentPeriod^.FUntilMonth, LCurrentPeriod^.FUntilDay,
         LCurrentPeriod^.FUntilTime);
 
@@ -980,7 +978,7 @@ begin
     { Get the last rule defined in the period }
     if LCurrentPeriod^.FUntilDay <> nil then
     begin
-      LRule := LCompiledPeriod.GetLastRuleForYear(LCurrentPeriod^.FUntilYear);
+      LRule := GetLastActiveRuleForYear(LCurrentPeriod, LCurrentPeriod^.FUntilYear);
 
       if LRule <> nil then
       begin
