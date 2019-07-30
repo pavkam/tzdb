@@ -126,15 +126,11 @@ type
   TBundledTimeZone = class
   private
     FZone: Pointer; { PZone }
-    FPeriods: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TObject>; { TCompiledPeriod }
 
 {$IFNDEF DELPHI}
     FSegmentsByYearLock: TCriticalSection;
 {$ENDIF}
     FSegmentsByYear: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<Word, TYearSegmentArray>;
-
-    procedure CompilePeriods;
-    function CompileYearBreakdown(const AYear: Word): TYearSegmentArray;
 
     function GetSegment(const AYear: Word; const APreciseTime: TPreciseTime;
       const AForceDaylight: Boolean; const AFailOnInvalid: Boolean): TYearSegment;
@@ -652,231 +648,362 @@ begin
     Result := APeriod^.FFmtStr;
 end;
 
-function GetLastActiveRuleForYear(const APeriod: PPeriod; const AYear: Word): PRule;
+
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+type
+  { Stored the data for an "observed rule" which is either a rule or a rule-less segment of a year. }
+  TObservedRule = record
+    FPeriod: PPeriod;
+    FRule: PRule;
+    FFrom, FUntil: TPreciseTime;
+    FYear: Word;
+
+    function Bias: Int64; inline;
+    function UtcOffset: Int64; inline;
+    function StartsOn: TPreciseTime; inline;
+  end;
+
+  function TObservedRule.Bias: Int64;
+  begin
+    if FRule <> nil then
+      Result := FRule^.FOffset
+    else
+      Result := 0;
+  end;
+
+  function TObservedRule.UtcOffset: Int64;
+  begin
+    Result := FPeriod^.FOffset + Bias;
+  end;
+
+  function TObservedRule.StartsOn: TPreciseTime;
+  begin
+    if FRule <> nil then
+    begin
+      Result := RelativeToPreciseTime(FYear, FRule^.FInMonth, FRule^.FOnDay, FRule^.FAt);
+
+      { Adjust the start lof tghe rule based on the time mode. }
+      if FRule^.FOnDay <> nil then
+      begin
+        case FRule^.FAtMode of
+          trStandard:
+            Result := IncSecond(Result, FRule^.FOffset);
+          trUniversal:
+            Result := IncSecond(Result, FPeriod^.FOffset + FRule^.FOffset);
+        end;
+      end;
+    end else
+      Result := FFrom;
+  end;
+
+type
+  TObservedRuleArray = array of TObservedRule;
+  TPRuleArray = array of PRule;
+  PPRuleAndYear = ^TPRuleAndYear;
+  TPRuleAndYear = record
+    FYear: Word;
+    FRule: PRule;
+{$IFDEF FPC}
+    class operator Equal(const ALeft, ARight: TPRuleAndYear): Boolean;
+{$ENDIF}
+  end;
+
+{$IFDEF FPC}
+  class operator TPRuleAndYear.Equal(const ALeft, ARight: TPRuleAndYear): Boolean;
+  begin
+    Result := (ALeft.FYear = ARight.FYear) and (ALeft.FRule = ARight.FRule);
+  end;
+{$ENDIF}
+
+function CompareRulesByStartTime(A, B: TPRuleAndYear): Integer; inline;
 var
-  LCurrRule: PYearBoundRule;
-  LAbsolute, LBestChoice: TPreciseTime;
-  I: Integer;
+  L, R: TPreciseTime;
 begin
-  { Default to nothing obviously }
+  L := RelativeToPreciseTime(A.FYear, A.FRule^.FInMonth, A.FRule^.FOnDay, A.FRule^.FAt);
+  R := RelativeToPreciseTime(B.FYear, B.FRule^.FInMonth, B.FRule^.FOnDay, B.FRule^.FAt);
+  Result := ComparePreciseTime(L, R);
+end;
+
+function GetPeriodRulesForYear(const APeriod: PPeriod; const AYear: Word): TPRuleArray;
+var
+  LRule: PYearBoundRule;
+  I: Integer;
+  LRules: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TPRuleAndYear>;
+{$IFDEF DELPHI}
+  LComparer: IComparer<TPRuleAndYear>;
+{$ENDIF}
+  LElem: TPRuleAndYear;
+begin
   Result := nil;
 
   { Check whether we actually have a fule family attached }
-  if APeriod^.FRuleFamily = nil then
-    exit;
-
-  { Obtain the first rule in chain }
-  LCurrRule := APeriod^.FRuleFamily^.FFirstRule;
-  LBestChoice := 0;
-
-  for I := 0 to APeriod^.FRuleFamily^.FCount - 1 do
+  if APeriod^.FRuleFamily <> nil then
   begin
-    { Check we're in the required year }
-    if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
+    LRules := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TPRuleAndYear>.Create;
+
+    { Iterate over all rules in the period. }
+    LRule := APeriod^.FRuleFamily^.FFirstRule;
+    for I := 0 to APeriod^.FRuleFamily^.FCount - 1 do
     begin
-
-      { Obtain the absolute date when the rule activates in this year }
-      LAbsolute := RelativeToPreciseTime(AYear, LCurrRule^.FRule^.FInMonth,
-        LCurrRule^.FRule^.FOnDay, LCurrRule^.FRule^.FAt);
-
-      { Select this rule if it's better suited }
-      if ComparePreciseTime(LAbsolute, LBestChoice) >= 0 then
+      if (AYear >= LRule^.FStart) and (AYear <= LRule^.FEnd) then
       begin
-        LBestChoice := LAbsolute;
-        Result := LCurrRule^.FRule;
+        LElem.FYear := AYear;
+        LElem.FRule := LRule^.FRule;
+
+        LRules.Add(LElem);
       end;
+
+      { Go to next rule }
+      Inc(LRule);
     end;
 
-    { Go to next rule }
-    Inc(LCurrRule);
+    { Sort the list ascending by the activation date/time }
+{$IFDEF FPC}
+    LRules.Sort(@CompareRulesByStartTime);
+{$ELSE}
+    LComparer := TComparer<PRule>.Construct(function(const A, B: TPRuleAndYear): Integer
+    begin
+      Result := CompareRulesByStartTime(A, B);
+    end);
+    LRules.Sort(LComparer);
+{$ENDIF}
+
+    SetLength(Result, LRules.Count);
+    for I := 0 to LRules.Count - 1 do
+      Result[I] := LRules[I].FRule;
+
+    LRules.Free;
   end;
 end;
 
-type
-  TCompiledPeriod = class;
+function GetObservedRulesForYear(const AZone: PZone; const AYear: Word): TObservedRuleArray;
+var
+  LPeriod: PPeriod;
+  LStart, LEnd: TPreciseTime;
+  LRules: TPRuleArray;
+  I, X, L: Integer;
+  LYMinus1, LYPlus1: TObservedRule;
+  LY1: array of TObservedRule;
+begin
+  { Mark all intermediary data as un-initialized. }
+  LStart := DateTimeToPreciseTime(0);
+  LYMinus1.FPeriod := nil;
+  LYPlus1.FPeriod := nil;
+  LY1 := nil;
 
-  { Contains a compiled rule }
-  TCompiledRule = class
-  strict private
-    FStartsOn: TPreciseTime;
+  { Iterate over all periods in the zone. }
+  LPeriod := AZone^.FFirstPeriod;
+  for I := 0 to AZone^.FCount - 1 do
+  begin
+    { Calculate the end date of the period }
+    LEnd := RelativeToPreciseTime(
+      LPeriod^.FUntilYear, LPeriod^.FUntilMonth, LPeriod^.FUntilDay, LPeriod^.FUntilTime);
 
-    function GetStartsOn: TPreciseTime;
-    function GetUtcOffset: Int64;
-  private
-    FPeriod: TCompiledPeriod;
-    FRule: PRule;
-    FTimeMode: TTimeMode;
+    { Get the rules of in this period for this year. }
+    LRules := GetPeriodRulesForYear(LPeriod, AYear);
+    if (LPeriod^.FUntilDay <> nil) and (Length(LRules) > 0) then
+    begin
+      { Adjust the end of the period according to the last rule in it. }
+      case LPeriod^.FUntilTimeMode of
+        trStandard:
+          LEnd := IncSecond(LEnd, LRules[Length(LRules) - 1]^.FOffset);
+        trUniversal:
+          LEnd := IncSecond(LEnd, LPeriod^.FOffset + LRules[Length(LRules) - 1]^.FOffset);
+      end;
+    end;
 
-    FOffset: Int64;
-    FNext, FPrev: TCompiledRule;
+    { Extract the last millisecond in the end to mark the end of the period. }
+    LEnd := IncMilliSecond(LEnd, -1);
 
-  public
-    constructor Create(const APeriod: TCompiledPeriod; const ARule: PRule; const AStartsOn: TPreciseTime;
-      const AOffset: Int64; const ATimeMode: TTimeMode);
+    { Collect last rule of the previous year. }
+    if (YearOf(LStart) <= (AYear - 1)) and (YearOf(LEnd) >= (AYear - 1)) then
+    begin
+      LYMinus1.FPeriod := LPeriod;
+      LYMinus1.FFrom := LStart;
+      LYMinus1.FUntil := LEnd;
+      LYMinus1.FYear := AYear - 1;
 
-    property StartsOn: TPreciseTime read GetStartsOn;
-    property UtcOffset: Int64 read GetUtcOffset;
+      if Length(LRules) > 0 then
+        LYMinus1.FRule := LRules[Length(LRules) - 1]
+      else
+        LYMinus1.FRule := nil;
+    end;
+
+    { Collect first rule of the next year. }
+    if (YearOf(LStart) <= (AYear + 1)) and (YearOf(LEnd) >= (AYear + 1)) then
+    begin
+      if (LYPlus1.FPeriod = nil) then
+      begin
+        LYPlus1.FPeriod := LPeriod;
+        LYPlus1.FFrom := LStart;
+        LYPlus1.FUntil := LEnd;
+        LYPlus1.FYear := AYear + 1;
+
+        if Length(LRules) > 0 then
+          LYPlus1.FRule := LRules[0]
+        else
+          LYPlus1.FRule := nil;
+      end;
+    end;
+
+    { Collect all the rules for the year we're looking for. }
+    if (YearOf(LStart) <= (AYear + 1)) and (YearOf(LEnd) >= (AYear + 1)) then
+    begin
+      L := Length(LY1);
+      SetLength(LY1, L + Length(LRules));
+      for X := 0 to Length(LRules) - 1 do
+      begin
+        LY1[L + X].FRule := LRules[X];
+        LY1[L + X].FPeriod := LPeriod;
+        LY1[L + X].FFrom := LStart;
+        LY1[L + X].FUntil := LEnd;
+        LY1[L + X].FYear := AYear;
+      end;
+    end;
+
+    { Update the start of the next period as the end of the current one and iterate next. }
+    LStart := IncMillisecond(LEnd, 1);
+    Inc(LPeriod);
   end;
 
-  TCompiledRuleArray = array of TCompiledRule;
-
-  { Contains a compiled period (easier for lookup) }
-  TCompiledPeriod = class
-  private
-    FPeriod: PPeriod;
-    FFrom, FUntil: TPreciseTime;
-  public
-    { Basic stuffs }
-    constructor Create(const APeriod: PPeriod; const AFrom, AUntil: TPreciseTime);
-
-    function CompileRulesForYear(const AYear: Word): TCompiledRuleArray;
+  { Combine into one array. }
+  Result := nil;
+  if (LYPlus1.FPeriod <> nil) and (LYMinus1.FPeriod <> nil) then
+  begin
+    SetLength(Result, Length(LY1) + 2);
+    Result[0] := LYMinus1;
+    for I := 0 to Length(LY1) - 1 do Result[I + 1] := LY1[I];
+    Result[Length(Result) - 1] := LYPlus1;
+  end
+  else if LYMinus1.FPeriod <> nil then
+  begin
+    SetLength(Result, Length(LY1) + 1);
+    Result[0] := LYMinus1;
+    for I := 0 to Length(LY1) - 1 do Result[I + 1] := LY1[I];
+  end
+  else if LYPlus1.FPeriod <> nil then
+  begin
+    SetLength(Result, Length(LY1) + 1);
+    for I := 0 to Length(LY1) - 1 do Result[I] := LY1[I];
+    Result[Length(Result) - 1] := LYPlus1;
   end;
+end;
+
+function BreakdownYearIntoSegments(const AZone: PZone; const AYear: Word): TYearSegmentArray;
+var
+  X: Integer;
+  LSegment: TYearSegment;
+  LObsRules: TObservedRuleArray;
+  LRule, LNextRule: TObservedRule;
+  LEnd: TPreciseTime;
+  LCarryDelta, LDelta: Int64;
+begin
+  Result := nil;
+  LCarryDelta := 0;
+
+  { Get all rules that intersect this year in some way (this means some rules from Year +- 1 will apply) }
+  LObsRules := GetObservedRulesForYear(AZone, AYear);
+  for X := 0 to Length(LObsRules) - 1 do
+  begin
+    { Get current rule and next rule. Both are used to calculate things. }
+    LRule := LObsRules[X];
+    if X < Length(LObsRules) - 1 then
+      LNextRule := LObsRules[X + 1]
+    else
+      LNextRule.FPeriod := nil;
+
+    { Fill in standard details. }
+    LSegment.FPeriodOffset := LRule.FPeriod^.FOffset;
+    LSegment.FBias := LRule.Bias;
+
+    if LSegment.FBias <= 0 then
+      LSegment.FType := lttStandard
+    else
+      LSegment.FType := lttDaylight;
+
+    WriteLn(LSegment.FBias);
+    LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, LSegment.FType);
+    LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
+
+    { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
+    if LNextRule.FPeriod <> nil then
+    begin
+      { Calculate the overall delta between two segments. }
+      LDelta := LNextRule.UtcOffset - LRule.UtcOffset;
+
+      { Add the core segment. }
+      if LDelta < 0 then
+      begin
+        LCarryDelta := -LDelta;
+        LEnd := LNextRule.StartsOn;
+      end else
+      begin
+        LCarryDelta := 0;
+        LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
+      end;
+
+      LSegment.FEndsAt := IncMillisecond(LEnd, -1);
+
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1] := LSegment;
+
+      if LDelta > 0 then
+      begin
+        { This is a positive bias. This means we have an invalid region. }
+        LSegment.FType := lttInvalid;
+        LSegment.FBias := 0;
+        LSegment.FStartsAt := LEnd;
+        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
+
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment;
+      end
+      else if LDelta < 0 then
+      begin
+        { This is a negative bias. This means we have an ambiguous region. }
+        LSegment.FType := lttAmbiguous;
+        LSegment.FStartsAt := LEnd;
+        LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
+
+        SetLength(Result, Length(Result) + 1);
+        Result[Length(Result) - 1] := LSegment;
+      end;
+    end else
+    begin
+      { Just a placeholder of "to the end of time". }
+      LSegment.FEndsAt := LRule.FUntil;
+
+      SetLength(Result, Length(Result) + 1);
+      Result[Length(Result) - 1] := LSegment;
+    end;
+  end;
+end;
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
 
 var
 {$IFNDEF DELPHI}
   FTimeZoneCacheLock: TCriticalSection;
 {$ENDIF}
   FTimeZoneCache: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<string, TBundledTimeZone>;
-
-{$IFDEF FPC}
-function CompiledPeriodComparison(ALeft, ARight: Pointer): Integer;
-begin
-  { Use standard DT comparison operation }
-  Result := ComparePreciseTime(TCompiledPeriod(ALeft).FUntil,
-    TCompiledPeriod(ARight).FUntil);
-end;
-
-function CompiledRuleComparison(ALeft, ARight: Pointer): Integer;
-begin
-  { Use standard DT comparison operation }
-  Result := ComparePreciseTime(TCompiledRule(ALeft).StartsOn,
-    TCompiledRule(ARight).StartsOn);
-end;
-{$ENDIF}
-
-{ TCompiledPeriod }
-
-constructor TCompiledPeriod.Create(const APeriod: PPeriod; const AFrom, AUntil: TPreciseTime);
-begin
-  FPeriod := APeriod;
-  FUntil := AUntil;
-  FFrom := AFrom;
-end;
-
-function TCompiledPeriod.CompileRulesForYear(const AYear: Word): TCompiledRuleArray;
-var
-  LCurrRule: PYearBoundRule;
-  LLastYearRule: PRule;
-  LAbsolute: TPreciseTime;
-  I: Integer;
-  LRules: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TCompiledRule>;
-{$IFDEF DELPHI}
-  LComparer: IComparer<TCompiledRule>;
-{$ENDIF}
-begin
-  { Initialize the compiled list }
-  LRules := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TCompiledRule>.Create;
-
-  { Check whether we actually have a fule family attached }
-  if FPeriod^.FRuleFamily <> nil then
-  begin
-    { Let's start with the last active rule from last year }
-    LLastYearRule := GetLastActiveRuleForYear(FPeriod, AYear - 1);
-
-    { Add the the last year rule since 1 jan 00:00 this year }
-    if LLastYearRule <> nil then
-      LRules.Add(TCompiledRule.Create(Self, LLastYearRule, IncSecond(EncodePreciseDate(AYear, 1, 1),
-        -1 * (LLastYearRule^.FOffset)), LLastYearRule^.FOffset, trStandard));
-
-    { Obtain the first rule in chain }
-    LCurrRule := FPeriod^.FRuleFamily^.FFirstRule;
-
-    for I := 0 to FPeriod^.FRuleFamily^.FCount - 1 do
-    begin
-      { Check we're in the required year }
-      if (AYear >= LCurrRule^.FStart) and (AYear <= LCurrRule^.FEnd) then
-      begin
-        { Obtain the absolute date when the rule activates in this year }
-        LAbsolute := RelativeToPreciseTime(AYear,
-            LCurrRule^.FRule^.FInMonth, LCurrRule^.FRule^.FOnDay,
-            LCurrRule^.FRule^.FAt);
-
-        { Add the new compiled rule to the list }
-        LRules.Add(TCompiledRule.Create(Self, LCurrRule^.FRule, LAbsolute,
-            LCurrRule^.FRule^.FOffset, LCurrRule^.FRule^.FAtMode));
-      end;
-
-      { Go to next rule }
-      Inc(LCurrRule);
-    end;
-
-    { Sort the list ascending by the activation date/time }
-{$IFDEF FPC}
-    LRules.Sort(@CompiledRuleComparison);
-{$ELSE}
-    LComparer := TComparer<TCompiledRule>.Construct(function(const ALeft, ARight: TCompiledRule): Integer
-    begin
-        Result := ComparePreciseTime(ALeft.StartsOn, ARight.StartsOn);
-    end);
-
-    LRules.Sort(LComparer);
-{$ENDIF}
-    { Create a linked list based on offsets and their nexts (will be used on type getting) }
-    SetLength(Result, LRules.Count);
-    for I := 0 to LRules.Count - 1 do
-    begin
-      { Set N[I].Next -> N[I + 1] }
-      if I < (LRules.Count - 1) then
-        TCompiledRule(LRules[I]).FNext := TCompiledRule(LRules[I + 1]);
-
-      { Set N[I].Prev -> N[I - 1] }
-      if I > 0 then
-        TCompiledRule(LRules[I]).FPrev := TCompiledRule(LRules[I - 1]);
-
-      Result[I] := LRules[I];
-    end;
-  end;
-
-  LRules.Free;
-end;
-
-{ TCompiledRule }
-
-constructor TCompiledRule.Create(const APeriod: TCompiledPeriod; const ARule: PRule;
-  const AStartsOn: TPreciseTime; const AOffset: Int64; const ATimeMode: TTimeMode);
-begin
-  FPeriod := APeriod;
-  FRule := ARule;
-  FStartsOn := AStartsOn;
-  FOffset := AOffset;
-  FTimeMode := ATimeMode;
-end;
-
-function TCompiledRule.GetStartsOn: TPreciseTime;
-begin
-  Result := FStartsOn;
-  // Adjust the value based on the specified time mode.
-  case FTimeMode of
-    trLocal:
-      begin
-        if (FOffset <> 0) then
-          Result := IncSecond(Result, FOffset)
-        else if (FPrev <> nil) and (FPrev.FOffset <> 0) then
-          Result := IncSecond(Result, (-1*FPrev.FOffset))
-        else if (FNext <> nil) and (FNext.FOffset <> 0) then
-          Result := IncSecond(Result, (-1*FNext.FOffset))
-      end;
-    //This value is specified in the currect period's statndard time. Add the rule offset to get to local time.
-    trStandard: Result := IncSecond(Result, FOffset);
-    //This value is specified in universal time. Add both the standard deviation plus the local time
-    trUniversal: Result := IncSecond(Result, FPeriod.FPeriod^.FOffset + FOffset);
-  end;
-end;
-
-function TCompiledRule.GetUtcOffset: Int64;
-begin
-  Result := FPeriod.FPeriod^.FOffset + FOffset;
-end;
 
 { TYearSegment }
 
@@ -950,218 +1077,6 @@ begin
     Result := 0;
 end;
 
-procedure TBundledTimeZone.CompilePeriods;
-var
-  LCompiledPeriod: TCompiledPeriod;
-  LCurrentPeriod: PPeriod;
-  LStart: TPreciseTime;
-  LAbsolute: TPreciseTime;
-  LRule: PRule;
-  I: Integer;
-{$IFDEF DELPHI}
-  LComparer: IComparer<TObject>;
-{$ENDIF}
-begin
-  LCurrentPeriod := PZone(FZone)^.FFirstPeriod;
-  LStart := DateTimeToPreciseTime(0);
-
-  for I := 0 to PZone(FZone)^.FCount - 1 do
-  begin
-    { Calculate the end date }
-    LAbsolute := RelativeToPreciseTime(LCurrentPeriod^.FUntilYear,
-        LCurrentPeriod^.FUntilMonth, LCurrentPeriod^.FUntilDay,
-        LCurrentPeriod^.FUntilTime);
-
-    { Set the approperiate values }
-    LCompiledPeriod := TCompiledPeriod.Create(LCurrentPeriod, LStart, IncMilliSecond(LAbsolute, -1));
-
-    { Get the last rule defined in the period }
-    if LCurrentPeriod^.FUntilDay <> nil then
-    begin
-      LRule := GetLastActiveRuleForYear(LCurrentPeriod, LCurrentPeriod^.FUntilYear);
-
-      if LRule <> nil then
-      begin
-        { Adjust the value based on the specified time mode (do nothing for local mode) }
-        case LCurrentPeriod^.FUntilTimeMode of
-          trStandard:
-            { The period uses its standard time. Adjust to it }
-            LCompiledPeriod.FUntil := IncSecond(LAbsolute, LRule^.FOffset);
-
-          trUniversal:
-            { This value is specified in universal time. Add both the standard deviation plus the local time }
-            LCompiledPeriod.FUntil := IncSecond(LAbsolute, LCurrentPeriod^.FOffset + LRule^.FOffset);
-        end;
-      end;
-    end;
-
-    { Put the compiled period to a list }
-    FPeriods.Add(LCompiledPeriod);
-
-    { Set the last "until" }
-    LStart := IncMillisecond(LCompiledPeriod.FUntil, 1);
-
-    { Move to the next period in the zone }
-    Inc(LCurrentPeriod);
-  end;
-
-  { Sort the list ascending }
-{$IFDEF FPC}
-    FPeriods.Sort(@CompiledPeriodComparison);
-{$ELSE}
-    LComparer := TComparer<TObject>.Construct(function(const ALeft, ARight: TObject): Integer
-    begin
-        Result := ComparePreciseTime(TCompiledPeriod(ALeft).FUntil, TCompiledPeriod(ARight).FUntil);
-    end);
-
-    FPeriods.Sort(LComparer);
-{$ENDIF}
-end;
-
-function TBundledTimeZone.CompileYearBreakdown(const AYear: Word): TYearSegmentArray;
-var
-  I, X: Integer;
-  LPeriod: TCompiledPeriod;
-  LRules: {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>;
-  LRule, LNextRule: TCompiledRule;
-  LSegment: TYearSegment;
-  LPrdStart, LEnd, LYStart, LYEnd: TPreciseTime;
-  LCarryDelta, LDelta: Int64;
-  LComp: TCompiledRuleArray;
-begin
-  Result := nil;
-  LCarryDelta := 0;
-
-  LYStart := EncodePreciseDate(AYear, 1, 1);
-  LYEnd := IncMillisecond(EncodePreciseDate(AYear + 1, 1, 1), -1);
-  LRules := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TCompiledRule>.Create(true);
-
-  try
-    for I := 0 to FPeriods.Count - 1 do
-    begin
-      LPeriod := TCompiledPeriod(FPeriods[I]);
-
-      { Make sure we're skipping stuff we don't want. }
-      if YearOf(LPeriod.FUntil) < AYear then continue;
-      if YearOf(LPeriod.FFrom) > AYear then break;
-
-      { This period is somehow containing the year we're looking for. Normally there would only be one period per year.
-        But there are a few zone with two periods; maybe three? }
-      LComp := LPeriod.CompileRulesForYear(AYear);
-
-      { Calculate the actual start of the period. }
-      LPrdStart := LPeriod.FFrom;
-      if (LPrdStart < LYStart) then LPrdStart := LYStart;
-
-      { Copy the rules into the general list. }
-      if (Length(LComp) = 0) or (ComparePreciseTime(LPrdStart, LComp[0].StartsOn) < 0) then
-      begin
-        { There is a gap between the start of the period and the first rule! Compensate. }
-        LRules.Add(TCompiledRule.Create(LPeriod, nil, LPrdStart, 0, trStandard));
-      end;
-
-      for X := Low(LComp) to High(LComp) do
-        LRules.Add(LComp[X]);
-    end;
-
-    for X := 0 to LRules.Count - 1 do
-    begin
-      { Get current rule and next rule. Both are used to calculate things. }
-      LRule := LRules[X];
-      if X < LRules.Count - 1 then
-        LNextRule := LRules[X + 1]
-      else
-        LNextRule := nil;
-
-      LSegment.FPeriodOffset := LRule.FPeriod.FPeriod^.FOffset;
-      LSegment.FBias := LRule.FOffset;
-
-      if (LNextRule <> nil) and (LNextRule.FPeriod = LRule.FPeriod) then
-      begin
-        if LNextRule.UtcOffset >= LRule.UtcOffset then
-          LSegment.FType := lttStandard
-        else
-          LSegment.FType := lttDaylight;
-      end else
-      begin
-        if (LCarryDelta <> 0) or ((LRule.FPrev = nil) and (LRule.FNext = nil)) then
-          LSegment.FType := lttStandard
-        else
-          LSegment.FType := lttDaylight;
-      end;
-
-      { This is ridiculous but IsStandard might not be the same as this and the rules are ... well, rules. }
-      if LRule.FOffset = 0 then
-        LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, lttStandard)
-      else
-        LSegment.FName := FormatAbbreviation(LRule.FPeriod.FPeriod, LRule.FRule, lttDaylight);
-
-      LSegment.FStartsAt := IncSecond(LRule.StartsOn, LCarryDelta);
-
-      { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
-      if LNextRule <> nil then
-      begin
-        { Calculate the overall delta between two segments. }
-        LDelta := LNextRule.UtcOffset - LRule.UtcOffset;
-
-        { Add the core segment. }
-        if LDelta < 0 then
-        begin
-          LCarryDelta := -LDelta;
-          LEnd := LNextRule.StartsOn;
-        end else
-        begin
-          LCarryDelta := 0;
-          LEnd := IncSecond(LNextRule.StartsOn, -LDelta);
-        end;
-
-        LSegment.FEndsAt := IncMillisecond(LEnd, -1);
-
-        SetLength(Result, Length(Result) + 1);
-        Result[Length(Result) - 1] := LSegment;
-
-        if LDelta > 0 then
-        begin
-          { This is a positive bias. This means we have an invalid region. }
-          LSegment.FType := lttInvalid;
-          LSegment.FBias := 0;
-          LSegment.FStartsAt := LEnd;
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, LDelta), -1);
-
-          SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment;
-        end
-        else if LDelta < 0 then
-        begin
-          { This is a negative bias. This means we have an ambiguous region. }
-          LSegment.FType := lttAmbiguous;
-          LSegment.FStartsAt := LEnd;
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
-
-          SetLength(Result, Length(Result) + 1);
-          Result[Length(Result) - 1] := LSegment;
-        end;
-      end else
-      begin
-        { Just the end of the year -- NOT CORRECT -- needs to take into account the first rule from next year. }
-        LSegment.FEndsAt := LYEnd;
-        if LSegment.FEndsAt > LRule.FPeriod.FUntil then
-          LSegment.FEndsAt := LRule.FPeriod.FUntil;
-
-        SetLength(Result, Length(Result) + 1);
-        Result[Length(Result) - 1] := LSegment;
-      end;
-
-    end;
-  finally
-    LRules.Free;
-  end;
-
-  { For the case there is simply no bundled data... }
-  if Length(Result) = 0 then
-    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
-end;
-
 constructor TBundledTimeZone.Create(const ATimeZoneID: string);
 var
   LIndex: Integer;
@@ -1192,11 +1107,6 @@ begin
   { Throw exception on error }
   if FZone = nil then
     raise ETimeZoneInvalid.CreateResFmt(@SNoBundledTZForName, [ATimeZoneID]);
-
-  { Initialize internals }
-  FPeriods := {$IFDEF DELPHI}TObjectList{$ELSE}TFPGObjectList{$ENDIF}<TObject>.Create(true);
-
-  CompilePeriods();
 end;
 
 function TBundledTimeZone.DaylightTimeEnd(const AYear: Word): TDateTime;
@@ -1258,9 +1168,6 @@ end;
 
 destructor TBundledTimeZone.Destroy;
 begin
-  if Assigned(FPeriods) then
-    FPeriods.Free;
-
   { Free each rule }
   if Assigned(FSegmentsByYear) then
     FSegmentsByYear.Free;
@@ -1564,7 +1471,10 @@ begin
     { Check if we have a cached list of matching rules for this date's year }
     if not FSegmentsByYear.{$IFDEF DELPHI}TryGetValue{$ELSE}TryGetData{$ENDIF}(AYear, Result) then
     begin
-      Result := CompileYearBreakdown(AYear);
+      Result := BreakdownYearIntoSegments(FZone, AYear);
+
+      if Length(Result) = 0 then
+        raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
 
       { Register the new array into the dictionary }
       FSegmentsByYear.Add(AYear, Result);
