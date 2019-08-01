@@ -74,6 +74,8 @@ type
     procedure Test_TZ_GetYearBreakdown_Dublin_2019;
     procedure Test_TZ_GetYearBreakdown_Sao_Paulo_2014;
     procedure Test_TZ_GetYearBreakdown_Cairo_2014;
+    procedure Test_TZ_GetYearBreakdown_Apia_2010;
+
     procedure Test_TZ_GetLocalTimeType_Validation;
 
     procedure Test_TZ_ToLocal_Regression_1;
@@ -640,24 +642,57 @@ begin
 
   { Segment 1 }
   CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 1, 1, 0, 0, 0, 0), LSegments[0].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 9, 30, 23, 59, 59, 999), LSegments[0].EndsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 9, 30, 23, 54, 50, 999), LSegments[0].EndsAt));
   CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType));
   CheckEquals('LMT', LSegments[0].DisplayName);
   CheckEquals(7509, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
   { Segment 2 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 10, 1, 0, 0, 0, 0), LSegments[1].StartsAt));
-  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 10, 1, 0, 5, 8, 999), LSegments[1].EndsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 9, 30, 23, 54, 51, 0), LSegments[1].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 9, 30, 23, 59, 59, 999), LSegments[1].EndsAt));
   CheckEquals(Ord(lttAmbiguous), Ord(LSegments[1].LocalType));
   CheckEquals('LMT', LSegments[1].DisplayName);
   CheckEquals(7509, LSegments[1].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 
   { Segment 3 }
-  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 10, 1, 0, 5, 9, 0), LSegments[2].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 10, 1, 0, 0, 0, 0), LSegments[2].StartsAt));
   CheckEquals(0, CompareDateTime(EncodeDateTime(1900, 12, 31, 23, 59, 59, 999), LSegments[2].EndsAt));
   CheckEquals(Ord(lttStandard), Ord(LSegments[2].LocalType));
   CheckEquals('EET', LSegments[2].DisplayName);
   CheckEquals(7200, LSegments[2].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+end;
+
+
+procedure TTZDBTest.Test_TZ_GetYearBreakdown_Apia_2010;
+var
+  LTZ: TBundledTimeZone;
+  LSegments: TYearSegmentArray;
+begin
+  LTZ := TBundledTimeZone.Create('Pacific/Apia');
+  LSegments := LTZ.GetYearBreakdown(2010);
+
+  CheckEquals(3, Length(LSegments));
+
+  { Segment 1 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 1, 1, 0, 0, 0, 0), LSegments[0].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 9, 25, 23, 59, 59, 999), LSegments[0].EndsAt));
+  CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType));
+  CheckEquals('-11', LSegments[0].DisplayName);
+  CheckEquals(-39600, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 2 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 9, 26, 0, 0, 0, 0), LSegments[1].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 9, 26, 0, 59, 59, 999), LSegments[1].EndsAt));
+  CheckEquals(Ord(lttInvalid), Ord(LSegments[1].LocalType));
+  CheckEquals('-11', LSegments[1].DisplayName);
+  CheckEquals(-39600, LSegments[1].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 3 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 9, 26, 1, 0, 0, 0), LSegments[2].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2010, 12, 31, 23, 59, 59, 999), LSegments[2].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[2].LocalType));
+  CheckEquals('-10', LSegments[2].DisplayName);
+  CheckEquals(-36000, LSegments[2].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 end;
 
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_2012;

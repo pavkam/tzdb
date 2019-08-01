@@ -460,6 +460,11 @@ begin
   Result := TimeStampToDateTime(MSecsToTimeStamp(APreciseTime));
 end;
 
+function PreciseTimeToStr(const APreciseTime: TPreciseTime): string; inline;
+begin
+  Result := FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', PreciseTimeToDateTime(APreciseTime));
+end;
+
 function IncMillisecond(const APreciseTime: TPreciseTime; const AMilliseconds: Int64): TPreciseTime; inline;
 begin
   Result := APreciseTime + AMilliseconds;
@@ -641,7 +646,6 @@ begin
       Result := Format(APeriod^.FFmtStr, [ARule^.FFmtPart])
     else
       Result := Format(APeriod^.FFmtStr, ['']);
-    writeln('==4');
     { In case no rule is defined, replace the placeholder with an empty string }
   end else
     Result := APeriod^.FFmtStr;
@@ -784,7 +788,7 @@ var
   LStart, LEnd: TPreciseTime;
   LRules: TPRuleArray;
   I, X, L: Integer;
-
+  Z: Int64;
   LY1: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>;
   LYMinus1, LYPlus1, LR: TObservedRule;
 begin
@@ -806,14 +810,17 @@ begin
 
       { Try to get the last rule for the period (needed to calculate boundary) }
       LRules := GetPeriodRulesForYear(LPeriod, LPeriod^.FUntilYear);
-      if (LPeriod^.FUntilDay <> nil) and (Length(LRules) > 0) then
+      if LPeriod^.FUntilDay <> nil then
       begin
         { Adjust the end of the period according to the last rule in it. }
+        if Length(LRules) > 0 then
+          Z := LRules[Length(LRules) - 1]^.FOffset;
+
         case LPeriod^.FUntilTimeMode of
           trStandard:
-            LEnd := IncSecond(LEnd, LRules[Length(LRules) - 1]^.FOffset);
+            LEnd := IncSecond(LEnd, Z);
           trUniversal:
-            LEnd := IncSecond(LEnd, LPeriod^.FOffset + LRules[Length(LRules) - 1]^.FOffset);
+            LEnd := IncSecond(LEnd, LPeriod^.FOffset + Z);
         end;
       end;
 
@@ -902,10 +909,30 @@ begin
         if LR.FRule^.FOnDay <> nil then
         begin
           case LR.FRule^.FAtMode of
+            trLocal: WriteLn('Local = ', PreciseTimeToStr(LR.FStartsOn));
             trStandard:
-              LR.FStartsOn := IncSecond(LR.FStartsOn, LR.FRule^.FOffset);
+            begin
+              WriteLn('Standard = ', PreciseTimeToStr(LR.FStartsOn));
+
+              if (I > 0) and (LY1[I - 1].FRule <> nil) then
+                LR.FStartsOn := IncSecond(LR.FStartsOn, LY1[I - 1].FRule^.FOffset);
+
+              WriteLn('Standard (after) = ', PreciseTimeToStr(LR.FStartsOn));
+            end;
             trUniversal:
-              LR.FStartsOn := IncSecond(LR.FStartsOn, LR.FPeriod^.FOffset + LR.FRule^.FOffset);
+            begin
+              WriteLn('UTC = ', PreciseTimeToStr(LR.FStartsOn));
+
+              if I > 0 then
+              begin
+                { Adjust to local time based on previous rule }
+                LR.FStartsOn := IncSecond(LR.FStartsOn, LY1[I - 1].FPeriod^.FOffset);
+                if LY1[I - 1].FRule <> nil then
+                  LR.FStartsOn := IncSecond(LR.FStartsOn, LY1[I - 1].FRule^.FOffset);
+              end;
+
+              WriteLn('UTC (after) = ', PreciseTimeToStr(LR.FStartsOn));
+            end;
           end;
         end;
       end else
@@ -966,16 +993,17 @@ begin
       begin
         { Calculate the overall delta between two segments. }
         LDelta := LNextRule.UtcOffset - LRule.UtcOffset;
+        WriteLn('D = ', LDelta);
 
         { Add the core segment. }
         if LDelta < 0 then
         begin
-          LCarryDelta := -LDelta;
-          LEnd := LNextRule.FStartsOn;
+          LCarryDelta := 0;
+          LEnd := IncSecond(LNextRule.FStartsOn, LDelta);
         end else
         begin
-          LCarryDelta := 0;
-          LEnd := IncSecond(LNextRule.FStartsOn, -LDelta);
+          LCarryDelta := LDelta;
+          LEnd := LNextRule.FStartsOn;
         end;
 
         LSegment.FEndsAt := IncMillisecond(LEnd, -1);
@@ -1393,7 +1421,7 @@ begin
     begin
       { This segment matches our time }
       if AFailOnInvalid and (LSegments[I].FType = lttInvalid) then
-        raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [DateTimeToStr(PreciseTimeToDateTime(APreciseTime))]);
+        raise ELocalTimeInvalid.CreateResFmt(@SInvalidLocalTime, [PreciseTimeToStr(APreciseTime)]);
 
       if not AForceDaylight and (LSegments[I].FType = lttAmbiguous) then
       begin
@@ -1413,7 +1441,7 @@ begin
 
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable,
-    [DateTimeToStr(PreciseTimeToDateTime(APreciseTime)), DoGetID()]);
+    [PreciseTimeToStr(APreciseTime), DoGetID()]);
 end;
 
 function TBundledTimeZone.GetSegmentUtc(const AYear: Word; const APreciseTime: TPreciseTime): TYearSegment;
@@ -1464,7 +1492,7 @@ begin
 
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable,
-    [DateTimeToStr(PreciseTimeToDateTime(APreciseTime)), DoGetID()]);
+    [PreciseTimeToStr(APreciseTime), DoGetID()]);
 end;
 
 class function TBundledTimeZone.GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
