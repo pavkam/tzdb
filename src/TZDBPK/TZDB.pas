@@ -898,9 +898,11 @@ begin
 
     { Re-calculate the start dates now and moveto result. }
     SetLength(Result, LY1.Count);
+    L := 0;
     for I := 0 to LY1.Count - 1 do
     begin
       LR := LY1[I];
+      LStart := LR.FStartsOn;
 
       if LR.FRule <> nil then
       begin
@@ -935,16 +937,24 @@ begin
             end;
           end;
         end;
-      end else
+      end
+      else
+      begin
         { This is not technically a rule - just naked segment. We'll need to infer data. }
         if YearOf(LR.FStartsOn) < LR.FYear then
           LR.FStartsOn := EncodePreciseDate(LR.FYear, 1, 1);
-      begin
-
       end;
 
-      Result[I] := LR;
+      WriteLn(PreciseTimeToStr(LR.FStartsOn), ' @@ ', PreciseTimeToStr(LStart));
+      if ComparePreciseTime(LStart, LR.FStartsOn) <= 0 then
+      begin
+        { Kill anything that starts before the period start - this means there's overlapping rules. }
+        Result[L] := LR;
+        Inc(L);
+      end;
     end;
+
+    SetLength(Result, L);
   finally
     LY1.Free;
   end;
