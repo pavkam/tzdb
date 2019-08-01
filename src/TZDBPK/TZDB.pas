@@ -626,7 +626,6 @@ begin
       time name and the second string is the abbreviation for the daylight saving time name.
     * A string containing \93%s,\94 in which case the \93%s\94 will be replaced by the text in the appropriate Rule\92s LETTER column.
 }
-
   LDelimIndex := Pos('/', APeriod^.FFmtStr);
   if LDelimIndex > 0 then
   begin
@@ -642,7 +641,7 @@ begin
       Result := Format(APeriod^.FFmtStr, [ARule^.FFmtPart])
     else
       Result := Format(APeriod^.FFmtStr, ['']);
-
+    writeln('==4');
     { In case no rule is defined, replace the placeholder with an empty string }
   end else
     Result := APeriod^.FFmtStr;
@@ -858,13 +857,23 @@ begin
       begin
         { Load the rules for this year. }
         LRules := GetPeriodRulesForYear(LPeriod, AYear);
-        for X := 0 to Length(LRules) - 1 do
-        begin
-          LR.FRule := LRules[X];
-          LR.FPeriod := LPeriod;
-          LR.FStartsOn := LStart;
-          LR.FYear := AYear;
 
+        LR.FPeriod := LPeriod;
+        LR.FStartsOn := LStart;
+        LR.FYear := AYear;
+
+        if Length(LRules) > 0 then
+        begin
+          { Pump all the rules in }
+          for X := 0 to Length(LRules) - 1 do
+          begin
+            LR.FRule := LRules[X];
+            LY1.Add(LR);
+          end;
+        end else
+        begin
+          { No rules available for this period/year. Still have to add something to indicate that. }
+          LR.FRule := nil;
           LY1.Add(LR);
         end;
       end;
@@ -944,7 +953,6 @@ begin
       { Fill in standard details. }
       LSegment.FPeriodOffset := LRule.FPeriod^.FOffset;
       LSegment.FBias := LRule.Bias;
-
       if LSegment.FBias <= 0 then
         LSegment.FType := lttStandard
       else
