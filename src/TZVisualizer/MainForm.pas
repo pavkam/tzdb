@@ -157,9 +157,9 @@ begin
         { Initial }
         WritePretty(CTimeType[LDec.LocalType], clGreen, [fsBold, fsUnderline]);
         WritePretty(' time from ', clGreen, []);
-        WritePretty(DateTimeToStr(LDec.StartsAt), clGreen, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.StartsAt), clGreen, [fsBold]);
         WritePretty(' to ', clGreen, []);
-        WritePretty(DateTimeToStr(LDec.EndsAt), clGreen, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.EndsAt), clGreen, [fsBold]);
         WritePretty(':' + sLineBreak, clGreen, []);
         WritePretty('In this period the local time (wall clock) is not adjusted and follows the standard rules.' + sLineBreak, clGreen, [fsItalic]);
 
@@ -180,9 +180,9 @@ begin
         { Initial }
         WritePretty(CTimeType[LDec.LocalType], clBlue, [fsBold, fsUnderline]);
         WritePretty(' time from ', clBlue, []);
-        WritePretty(DateTimeToStr(LDec.StartsAt), clBlue, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.StartsAt), clBlue, [fsBold]);
         WritePretty(' to ', clBlue, []);
-        WritePretty(DateTimeToStr(LDec.EndsAt), clBlue, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.EndsAt), clBlue, [fsBold]);
         WritePretty(':' + sLineBreak, clBlue, []);
         WritePretty('In this period the local time (wall clock) is adjusted by a specified amout of time (usually an hour). ' +
                     'It is considered "summer" time.' + sLineBreak, clBlue, [fsItalic]);
@@ -204,9 +204,9 @@ begin
         { Initial }
         WritePretty(CTimeType[LDec.LocalType], clGray, [fsBold, fsUnderline]);
         WritePretty(' time from ', clGray, []);
-        WritePretty(DateTimeToStr(LDec.StartsAt), clGray, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.StartsAt), clGray, [fsBold]);
         WritePretty(' to ', clGray, []);
-        WritePretty(DateTimeToStr(LDec.EndsAt), clGray, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.EndsAt), clGray, [fsBold]);
         WritePretty(':' + sLineBreak, clGray, []);
         WritePretty('In this period the local time (wall clock) can be treated either as being in DST or as begin in standard mode.' + sLineBreak, clGray, [fsItalic]);
 
@@ -227,9 +227,9 @@ begin
         { Initial }
         WritePretty(CTimeType[LDec.LocalType], clRed, [fsBold, fsUnderline]);
         WritePretty(' time from ', clRed, []);
-        WritePretty(DateTimeToStr(LDec.StartsAt), clRed, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.StartsAt), clRed, [fsBold]);
         WritePretty(' to ', clRed, []);
-        WritePretty(DateTimeToStr(LDec.EndsAt), clRed, [fsBold]);
+        WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.EndsAt), clRed, [fsBold]);
         WritePretty(':' + sLineBreak, clRed, []);
         WritePretty('In this period the local time (wall clock) is invalid. This hour does not "exist" in this time zone. ' +
                     'The clock should have been adjusted accordinly.' + sLineBreak, clRed, [fsItalic]);
