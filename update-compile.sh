@@ -14,7 +14,7 @@ TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
 if [ "$1" != "" ]; then
   INPUT_VER=$1
 else
-  INPUT_VER="`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\ *=\ *'\(.*\)';.*/\1/p"`"
+  INPUT_VER=`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\ *=\ *'\(.*\)';.*/\1/p"`
 fi
 
 IFS='.'; DOT_ARR=($INPUT_VER); unset IFS;
