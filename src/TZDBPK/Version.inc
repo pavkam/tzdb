@@ -32,6 +32,8 @@
     {$MODESWITCH ADVANCEDRECORDS}
     {$CODEPAGE UTF8}
     {$DEFINE TZDB_SUPPORTED_COMPILER}
+    {$WARN 04104 OFF} // Data is ASCII so these string warnings can be safely ignored.
+    {$WARN 04105 OFF} // Ditto
   {$ENDIF}
 {$ELSE}
   {$IFDEF CONDITIONALEXPRESSIONS}

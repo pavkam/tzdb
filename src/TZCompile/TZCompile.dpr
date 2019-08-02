@@ -27,8 +27,11 @@
 
 program TZCompile;
 
-{$I ../TZDBPK/Version.inc}
-{$APPTYPE CONSOLE}
+{$INCLUDE '../TZDBPK/Version.inc'}
+
+{$IFDEF DELPHI}
+  {$APPTYPE CONSOLE}
+{$ENDIF}
 
 uses
   SysUtils,

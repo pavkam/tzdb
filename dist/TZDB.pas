@@ -32,6 +32,8 @@
     {$MODESWITCH ADVANCEDRECORDS}
     {$CODEPAGE UTF8}
     {$DEFINE TZDB_SUPPORTED_COMPILER}
+    {$WARN 04104 OFF} // Data is ASCII so these string warnings can be safely ignored.
+    {$WARN 04105 OFF} // Ditto
   {$ENDIF}
 {$ELSE}
   {$IFDEF CONDITIONALEXPRESSIONS}
@@ -373,7 +375,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.0.109';
+  CComponentVersion = '2.1.0.112';
 
 type
   { Day type. Specifies the "relative" day in a month }

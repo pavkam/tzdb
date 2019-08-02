@@ -30,7 +30,7 @@ program TZTest;
 {$INCLUDE '..\TZDBPK\Version.inc'}
 
 {$IFDEF CONSOLE_TESTRUNNER}
-{$APPTYPE CONSOLE}
+  {$APPTYPE CONSOLE}
 {$ENDIF}
 
 uses

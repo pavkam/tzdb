@@ -25,7 +25,8 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
-{$I ../TZDBPK/Version.inc}
+{$INCLUDE '../TZDBPK/Version.inc'}
+
 unit TZSchema;
 
 interface
