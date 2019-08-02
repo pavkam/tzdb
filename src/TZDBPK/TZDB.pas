@@ -651,17 +651,6 @@ begin
     Result := APeriod^.FFmtStr;
 end;
 
-
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 type
   { Stored the data for an "observed rule" which is either a rule or a rule-less segment of a year. }
   TObservedRule = record
@@ -790,7 +779,7 @@ var
   I, X, L: Integer;
   Z: Int64;
   LY1: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>;
-  LYMinus1, LYPlus1, LR: TObservedRule;
+  LYMinus1, LYPlus1, LR, LSk: TObservedRule;
 begin
   { Mark all intermediary data as un-initialized. }
   LStart := DateTimeToPreciseTime(0);
@@ -800,8 +789,10 @@ begin
 
   LY1 := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>.Create;
   try
+
     { Iterate over all periods in the zone. }
     LPeriod := AZone^.FFirstPeriod;
+
     for I := 0 to AZone^.FCount - 1 do
     begin
       { Calculate the end date of the period }
@@ -814,7 +805,9 @@ begin
       begin
         { Adjust the end of the period according to the last rule in it. }
         if Length(LRules) > 0 then
-          Z := LRules[Length(LRules) - 1]^.FOffset;
+          Z := LRules[Length(LRules) - 1]^.FOffset
+        else
+          Z := 0;
 
         case LPeriod^.FUntilTimeMode of
           trStandard:
@@ -898,7 +891,10 @@ begin
 
     { Re-calculate the start dates now and moveto result. }
     SetLength(Result, LY1.Count);
+
     L := 0;
+    LSk.FPeriod := nil;
+
     for I := 0 to LY1.Count - 1 do
     begin
       LR := LY1[I];
@@ -911,20 +907,13 @@ begin
         if LR.FRule^.FOnDay <> nil then
         begin
           case LR.FRule^.FAtMode of
-            trLocal: WriteLn('Local = ', PreciseTimeToStr(LR.FStartsOn));
             trStandard:
             begin
-              WriteLn('Standard = ', PreciseTimeToStr(LR.FStartsOn));
-
               if (I > 0) and (LY1[I - 1].FRule <> nil) then
                 LR.FStartsOn := IncSecond(LR.FStartsOn, LY1[I - 1].FRule^.FOffset);
-
-              WriteLn('Standard (after) = ', PreciseTimeToStr(LR.FStartsOn));
             end;
             trUniversal:
             begin
-              WriteLn('UTC = ', PreciseTimeToStr(LR.FStartsOn));
-
               if I > 0 then
               begin
                 { Adjust to local time based on previous rule }
@@ -932,8 +921,6 @@ begin
                 if LY1[I - 1].FRule <> nil then
                   LR.FStartsOn := IncSecond(LR.FStartsOn, LY1[I - 1].FRule^.FOffset);
               end;
-
-              WriteLn('UTC (after) = ', PreciseTimeToStr(LR.FStartsOn));
             end;
           end;
         end;
@@ -945,13 +932,30 @@ begin
           LR.FStartsOn := EncodePreciseDate(LR.FYear, 1, 1);
       end;
 
-      WriteLn(PreciseTimeToStr(LR.FStartsOn), ' @@ ', PreciseTimeToStr(LStart));
+      { Very special case in here. Need suppress overlapping rules form different periods but same rule family.
+        Also important to preserve the last overlapping rule as the last active on in the new period. }
       if ComparePreciseTime(LStart, LR.FStartsOn) <= 0 then
       begin
-        { Kill anything that starts before the period start - this means there's overlapping rules. }
+        if (LSk.FPeriod <> nil) and
+          ((LSk.FPeriod <> LR.FPeriod) or (LSk.FYear <> LR.FYear)) then
+          begin
+            { The last skipped rule is the last one in the period/year. Assume that is still active }
+            Result[L] := LSk;
+            Inc(L);
+          end;
+
+        { Save the current rule as well. }
         Result[L] := LR;
         Inc(L);
+
+        LSk.FPeriod := nil;
+      end else
+      begin
+        { Save last skipped rule and reset its start to the start of its period. }
+        LSk := LR;
+        LSk.FStartsOn := LStart;
       end;
+
     end;
 
     SetLength(Result, L);
@@ -1003,7 +1007,6 @@ begin
       begin
         { Calculate the overall delta between two segments. }
         LDelta := LNextRule.UtcOffset - LRule.UtcOffset;
-        WriteLn('D = ', LDelta);
 
         { Add the core segment. }
         if LDelta < 0 then
@@ -1033,7 +1036,7 @@ begin
           { This is a negative bias. This means we have an ambiguous region. }
           LSegment.FType := lttAmbiguous;
           LSegment.FStartsAt := LEnd;
-          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, - LDelta), -1);
+          LSegment.FEndsAt := IncMillisecond(IncSecond(LSegment.FStartsAt, -LDelta), -1);
           LSegments.Add(LSegment);
         end;
       end else
@@ -1072,17 +1075,6 @@ begin
     LSegments.Free;
   end;
 end;
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
 
 var
 {$IFNDEF DELPHI}

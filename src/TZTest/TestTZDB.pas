@@ -75,6 +75,7 @@ type
     procedure Test_TZ_GetYearBreakdown_Sao_Paulo_2014;
     procedure Test_TZ_GetYearBreakdown_Cairo_2014;
     procedure Test_TZ_GetYearBreakdown_Apia_2010;
+    procedure Test_TZ_GetYearBreakdown_Apia_2011;
 
     procedure Test_TZ_GetLocalTimeType_Validation;
 
@@ -695,6 +696,66 @@ begin
   CheckEquals(-36000, LSegments[2].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 end;
 
+procedure TTZDBTest.Test_TZ_GetYearBreakdown_Apia_2011;
+var
+  LTZ: TBundledTimeZone;
+  LSegments: TYearSegmentArray;
+begin
+  LTZ := TBundledTimeZone.Create('Pacific/Apia');
+  LSegments := LTZ.GetYearBreakdown(2011);
+
+  CheckEquals(7, Length(LSegments));
+
+  { Segment 1 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 1, 1, 0, 0, 0, 0), LSegments[0].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 4, 2, 2, 59, 59, 999), LSegments[0].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[0].LocalType));
+  CheckEquals('-10', LSegments[0].DisplayName);
+  CheckEquals(-36000, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+   { Segment 2 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 4, 2, 3, 0, 0, 0), LSegments[1].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 4, 2, 3, 59, 59, 999), LSegments[1].EndsAt));
+  CheckEquals(Ord(lttAmbiguous), Ord(LSegments[1].LocalType));
+  CheckEquals('-10', LSegments[1].DisplayName);
+  CheckEquals(-36000, LSegments[1].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 3 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 4, 2, 4, 0, 0, 0), LSegments[2].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 9, 24, 2, 59, 59, 999), LSegments[2].EndsAt));
+  CheckEquals(Ord(lttStandard), Ord(LSegments[2].LocalType));
+  CheckEquals('-11', LSegments[2].DisplayName);
+  CheckEquals(-39600, LSegments[2].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 4 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 9, 24, 3, 0, 0, 0), LSegments[3].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 9, 24, 3, 59, 59, 999), LSegments[3].EndsAt));
+  CheckEquals(Ord(lttInvalid), Ord(LSegments[3].LocalType));
+  CheckEquals('-11', LSegments[3].DisplayName);
+  CheckEquals(-39600, LSegments[3].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 5 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 9, 24, 4, 0, 0, 0), LSegments[4].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 12, 29, 23, 59, 59, 999), LSegments[4].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[4].LocalType));
+  CheckEquals('-10', LSegments[4].DisplayName);
+  CheckEquals(-36000, LSegments[4].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 6 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 12, 30, 0, 0, 0, 0), LSegments[5].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 12, 30, 23, 59, 59, 999), LSegments[5].EndsAt));
+  CheckEquals(Ord(lttInvalid), Ord(LSegments[5].LocalType));
+  CheckEquals('-10', LSegments[5].DisplayName);
+  CheckEquals(-39600, LSegments[5].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+
+  { Segment 7 }
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 12, 31, 0, 0, 0, 0), LSegments[6].StartsAt));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2011, 12, 31, 23, 59, 59, 999), LSegments[6].EndsAt));
+  CheckEquals(Ord(lttDaylight), Ord(LSegments[6].LocalType));
+  CheckEquals('+14', LSegments[6].DisplayName);
+  CheckEquals(50400, LSegments[6].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
+end;
+
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Cairo_2012;
 var
   LTZ: TBundledTimeZone;
@@ -712,7 +773,6 @@ begin
   CheckEquals('EET', LSegments[0].DisplayName);
   CheckEquals(7200, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 end;
-
 
 procedure TTZDBTest.Test_TZ_GetAbbreviation_Regression_1;
 var
@@ -1052,7 +1112,6 @@ var
   LDateTimeStr: string;
   LDateTime: TDateTime;
 begin
-
   {
   When local daylight time is about to reach
   Sunday, 1 April 2018, 03:00:00 clocks are turned backward 1 hour to
