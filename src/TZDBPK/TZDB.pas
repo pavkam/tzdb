@@ -74,7 +74,7 @@ type
 
   ///  Special type used to manipulate TDateTime in millisecond precision.
   ///  This is an internal type.
-  TPreciseTime = type Comp;
+  TPreciseTime = type Int64;
 
   /// <summary>Represents a specific date/time segment of the year.</summary>
   /// <remarks>A calendar year in most time zones is divided into standard/ambiguous/daylight/invalid/standard segments.</remarks>
@@ -446,19 +446,31 @@ type
     FAliasTo: PZone; { Pointer to aliased zone }
   end;
 
-const
-   CNullDateTime = -693594;
-
 {$INCLUDE 'TZDB.inc'}
 
+const
+  CNullDateTime = -DateDelta;
+
 function DateTimeToPreciseTime(const ADateTime: TDateTime): TPreciseTime; inline;
+var
+  D, MS: Int64;
 begin
-  Result := TimeStampToMSecs(DateTimeToTimeStamp(ADateTime));
+  D := Round(ADateTime * MSecsPerDay);
+  MS := D div MSecsPerDay;
+  Result := ((DateDelta + MS) * MSecsPerDay) + (Abs(D) mod MSecsPerDay);
 end;
 
 function PreciseTimeToDateTime(const APreciseTime: TPreciseTime): TDateTime; inline;
+var
+  D, MS: Int64;
 begin
-  Result := TimeStampToDateTime(MSecsToTimeStamp(APreciseTime));
+  D := (Int64(PUInt64(@APreciseTime)^ div Cardinal(MSecsPerDay)) - DateDelta) * MSecsPerDay;
+  MS := Int64(PUInt64(@APreciseTime)^ mod Cardinal(MSecsPerDay));
+
+  if D < 0 then
+    MS := -MS;
+
+  Result := (D + MS) / MSecsPerDay;
 end;
 
 function PreciseTimeToStr(const APreciseTime: TPreciseTime): string; inline;
@@ -759,7 +771,7 @@ begin
 {$IFDEF FPC}
     LRules.Sort(@CompareRulesByStartTime);
 {$ELSE}
-    LComparer := TComparer<PRule>.Construct(function(const A, B: TPRuleAndYear): Integer
+    LComparer := TComparer<TPRuleAndYear>.Construct(function(const A, B: TPRuleAndYear): Integer
     begin
       Result := CompareRulesByStartTime(A, B);
     end);
@@ -790,7 +802,6 @@ begin
 
   LYMinus1.FPeriod := nil;
   LYPlus1.FPeriod := nil;
-  LY1 := nil;
 
   LY1 := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>.Create;
   try
