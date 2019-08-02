@@ -191,56 +191,56 @@ type
     ///  <summary>Get the starting date/time of daylight period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The start time of daylight saving period in the local time.</returns>
+    ///  <returns>The start time of daylight saving period in the local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function DaylightTimeStart(const AYear: Word): TDateTime; inline;
 
     ///  <summary>Get the starting date/time of standard period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The start date/time of standard period in local time.</returns>
+    ///  <returns>The start date/time of standard period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function StandardTimeStart(const AYear: Word): TDateTime; inline;
 
     ///  <summary>Get the starting date/time of invalid period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The start date/time of invalid period in local time.</returns>
+    ///  <returns>The start date/time of invalid period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function InvalidTimeStart(const AYear: word): TDateTime; inline;
 
     ///  <summary>Get the starting date/time of ambiguous period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The start date/time of ambiguous period in local time.</returns>
+    ///  <returns>The start date/time of ambiguous period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function AmbiguousTimeStart(const AYear: word): TDateTime; inline;
 
     ///  <summary>Get the ending date/time of daylight saving period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The end date/time of daylight saving period in local time.</returns>
+    ///  <returns>The end date/time of daylight saving period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function DaylightTimeEnd(const AYear: word): TDateTime; inline;
 
     ///  <summary>Get the ending date/time of standard period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The ending date/time of standard period in local time.</returns>
+    ///  <returns>The ending date/time of standard period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function StandardTimeEnd(const AYear: word): TDateTime; inline;
 
     ///  <summary>Get the ending date/time of invalid period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The end date/time of invalid period in local time.</returns>
+    ///  <returns>The end date/time of invalid period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function InvalidTimeEnd(const AYear: word): TDateTime; inline;
 
     ///  <summary>Get the ending date/time of ambiguous period.</summary>
     ///  <remarks>This function considers the first period of this type and will not work properly for complicated time zones.</remarks>
     ///  <param name="AYear">The year to get data for.</param>
-    ///  <returns>The end date/time of ambiguous period in local time.</returns>
+    ///  <returns>The end date/time of ambiguous period in local time; or '00/00/0000 00:00:00.000' is there is no such date/time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function AmbiguousTimeEnd(const AYear: word): TDateTime; inline;
 
@@ -447,6 +447,9 @@ type
     FName: string; { Name of the zone to alias }
     FAliasTo: PZone; { Pointer to aliased zone }
   end;
+
+const
+   CNullDateTime = -693594;
 
 {$INCLUDE 'TZDB.inc'}
 
@@ -658,6 +661,7 @@ type
     FRule: PRule;
     FStartsOn: TPreciseTime;
     FYear: Word;
+    FNegDst: Boolean;
 
     function Bias: Int64; inline;
     function UtcOffset: Int64; inline;
@@ -674,7 +678,8 @@ type
       (A.FPeriod = B.FPeriod) and
       (A.FRule = B.FRule) and
       (A.FStartsOn = B.FStartsOn) and
-      (A.FYear = B.FYear);
+      (A.FYear = B.FYear) and
+      (A.FNegDst = B.FNegDst);
   end;
 {$ENDIF}
 
@@ -778,21 +783,21 @@ var
   LRules: TPRuleArray;
   I, X, L: Integer;
   Z: Int64;
+  PR: PRule;
   LY1: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>;
   LYMinus1, LYPlus1, LR, LSk: TObservedRule;
 begin
-  { Mark all intermediary data as un-initialized. }
-  LStart := DateTimeToPreciseTime(0);
+  { Mark all intermediary data as un-initialized. <-- this is date ZERO which is the start point. }
+  LStart := DateTimeToPreciseTime(CNullDateTime);
+
   LYMinus1.FPeriod := nil;
   LYPlus1.FPeriod := nil;
   LY1 := nil;
 
   LY1 := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TObservedRule>.Create;
   try
-
     { Iterate over all periods in the zone. }
     LPeriod := AZone^.FFirstPeriod;
-
     for I := 0 to AZone^.FCount - 1 do
     begin
       { Calculate the end date of the period }
@@ -829,10 +834,16 @@ begin
         LYMinus1.FPeriod := LPeriod;
         LYMinus1.FStartsOn := LStart;
         LYMinus1.FYear := AYear - 1;
+        LYMinus1.FNegDst := false;
 
         if Length(LRules) > 0 then
-          LYMinus1.FRule := LRules[Length(LRules) - 1]
-        else
+        begin
+          LYMinus1.FRule := LRules[Length(LRules) - 1];
+
+          { Determine the DST sign in period. }
+          for PR in LRules do
+            if PR^.FOffset < 0 then begin LYMinus1.FNegDst := true; break; end;
+        end else
           LYMinus1.FRule := nil;
       end;
 
@@ -845,10 +856,16 @@ begin
         LYPlus1.FPeriod := LPeriod;
         LYPlus1.FStartsOn := LStart;
         LYPlus1.FYear := AYear + 1;
+        LYPlus1.FNegDst := false;
 
         if Length(LRules) > 0 then
-          LYPlus1.FRule := LRules[0]
-        else
+        begin
+          LYPlus1.FRule := LRules[0];
+
+          { Determine the DST sign in period. }
+          for PR in LRules do
+            if PR^.FOffset < 0 then begin LYPlus1.FNegDst := true; break; end;
+        end else
           LYPlus1.FRule := nil;
       end;
 
@@ -861,6 +878,11 @@ begin
         LR.FPeriod := LPeriod;
         LR.FStartsOn := LStart;
         LR.FYear := AYear;
+        LR.FNegDst := false;
+
+        { Determine the DST sign in period. }
+        for PR in LRules do
+          if PR^.FOffset < 0 then begin LR.FNegDst := true; break; end;
 
         if Length(LRules) > 0 then
         begin
@@ -982,6 +1004,7 @@ begin
   try
     { Get all rules that intersect this year in some way (this means some rules from Year +- 1 will apply) }
     LObsRules := GetObservedRulesForYear(AZone, AYear);
+
     for X := 0 to Length(LObsRules) - 1 do
     begin
       { Get current rule and next rule. Both are used to calculate things. }
@@ -994,12 +1017,30 @@ begin
       { Fill in standard details. }
       LSegment.FPeriodOffset := LRule.FPeriod^.FOffset;
       LSegment.FBias := LRule.Bias;
-      if LSegment.FBias <= 0 then
-        LSegment.FType := lttStandard
-      else
-        LSegment.FType := lttDaylight;
 
-      LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, LSegment.FType);
+      if not LRule.FNegDst then
+      begin
+        { 99.9% of zone have positive, normal DST offsets }
+        if LSegment.FBias > 0 then
+          LSegment.FType := lttDaylight
+        else
+          LSegment.FType := lttStandard;
+
+        LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, LSegment.FType);
+      end else
+      begin
+        { For the rest we have to invert the logic }
+        if LSegment.FBias < 0 then
+        begin
+          LSegment.FType := lttStandard;
+          LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, lttDaylight);
+        end else
+        begin
+          LSegment.FType := lttDaylight;
+          LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, lttStandard);
+        end;
+      end;
+
       LSegment.FStartsAt := IncSecond(LRule.FStartsOn, LCarryDelta);
 
       { If there is another rule following, calculate the boundary and introduce the invalid/ambiguous regions. }
@@ -1121,7 +1162,7 @@ begin
   if TryFindSegment(AYear, lttAmbiguous, false, LSegment) then
     Result := LSegment.EndsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.AmbiguousTimeStart(const AYear: word): TDateTime;
@@ -1131,7 +1172,7 @@ begin
   if TryFindSegment(AYear, lttAmbiguous, true, LSegment) then
     Result := LSegment.StartsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.InvalidTimeEnd(const AYear: word): TDateTime;
@@ -1141,7 +1182,7 @@ begin
   if TryFindSegment(AYear, lttInvalid, false, LSegment) then
     Result := LSegment.EndsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.InvalidTimeStart(const AYear: word): TDateTime;
@@ -1151,7 +1192,7 @@ begin
   if TryFindSegment(AYear, lttInvalid, true, LSegment) then
     Result := LSegment.StartsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 constructor TBundledTimeZone.Create(const ATimeZoneID: string);
@@ -1193,7 +1234,7 @@ begin
   if TryFindSegment(AYear, lttDaylight, true, LSegment) then
     Result := LSegment.EndsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.DaylightTimeStart(const AYear: word): TDateTime;
@@ -1203,7 +1244,7 @@ begin
   if TryFindSegment(AYear, lttDaylight, false, LSegment) then
     Result := LSegment.StartsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.ToISO8601Format(const ADateTime: TDateTime): string;
@@ -1537,6 +1578,10 @@ end;
 
 function TBundledTimeZone.GetYearBreakdown(const AYear: Word): TYearSegmentArray;
 begin
+  { Guard for upper and lower date/time limits }
+  if (AYear < 1) or (AYear > 9998) then
+    raise EUnknownTimeZoneYear.CreateResFmt(@SYearNotResolvable, [AYear, DoGetID()]);
+
   Result := nil;
 
 {$IFDEF DELPHI}
@@ -1627,7 +1672,7 @@ begin
   if TryFindSegment(AYear, lttStandard, true, LSegment) then
     Result := LSegment.EndsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.StandardTimeStart(const aYear: word): TDateTime;
@@ -1637,7 +1682,7 @@ begin
   if TryFindSegment(AYear, lttStandard, false, LSegment) then
     Result := LSegment.StartsAt
   else
-    Result := 0;
+    Result := CNullDateTime;
 end;
 
 function TBundledTimeZone.TryFindSegment(const AYear: Word; const AType: TLocalTimeType;
