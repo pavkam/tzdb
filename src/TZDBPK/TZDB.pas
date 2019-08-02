@@ -349,14 +349,12 @@ implementation
 
 resourcestring
   SNoBundledTZForName = 'Could not find any data for timezone "%s".';
-  SDateTimeNotResolvable =
-    'The date [%s] cannot be matched to a period in the bundled timezone "%s".';
-  SYearNotResolvable =
-    'The year [%d] cannot is not in the bundled timezone "%s".';
+  SDateTimeNotResolvable = 'The date [%s] does not match any known period of timezone "%s".';
+  SYearNotResolvable = 'The year [%d] does not match any known period of timezone "%s".';
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.0.1.105';
+  CComponentVersion = '2.1.0.108';
 
 type
   { Day type. Specifies the "relative" day in a month }

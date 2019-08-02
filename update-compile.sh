@@ -14,7 +14,7 @@ TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
 if [ "$1" != "" ]; then
   INPUT_VER=$1
 else
-  INPUT_VER="`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\s*=\s*'\(.*\)';.*/\1/p"`"
+  INPUT_VER="`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\ *=\ *'\(.*\)';.*/\1/p"`"
 fi
 
 IFS='.'; DOT_ARR=($INPUT_VER); unset IFS;
@@ -150,7 +150,7 @@ fi
 
 # Update the README
 
-echo "Updating README with the new version..."
+echo "Updating README with the new version '$IANAV'..."
 README=$REPO/README.md
 cat $README | sed "s/\(.*\*\*\)[0-9]*[a-z]*\(\*\*.*\)/\1$IANAV\2/g" > $README.tmp
 if [ "$?" -ne 0 ]; then
@@ -166,7 +166,7 @@ if [ "$?" -ne 0 ]; then
     exit 1
 fi
 
-# Bump the version 
+# Bump the version
 
 replace_tokens () {
   cat $1 | sed "s/$2/\1$3\2/g" > $1.tmp
@@ -185,7 +185,7 @@ VER_FULL="$VER_0.$VER_1.$VER_2.$VER_3"
 
 DPROJ_FILES=`find $REPO -type f | grep .dproj`
 for DPROJ in $DPROJ_FILES; do
-  echo "Bumping the version of file '$DPROJ'..."
+  echo "Bumping the version of file '$DPROJ' to '$VER_FULL'..."
   cp $DPROJ $DPROJ.1
 
   replace_tokens $DPROJ.1 '\(<VerInfo_Keys>.*FileVersion=\)[0-9]*\.[0-9]*\.[0-9]*\.[0-9]*\(.*<\/VerInfo_Keys>\)' $VER_FULL
@@ -212,7 +212,7 @@ for DPROJ in $DPROJ_FILES; do
 done
 
 # update the version in the .pas module as well
-cat $TZDB_PAS | sed "s/\(.*CComponentVersion\s*=\s*'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
+cat $TZDB_PAS | sed "s/\(.*CComponentVersion\ *=\ *'\).*\(';.*\)/\1$VER_FULL\2/g" > $TZDB_PAS.tmp
 if [ "$?" -ne 0 ]; then
   echo "[ERR] Failed to update TZDB.pas file with the bumped version."
   exit 1
