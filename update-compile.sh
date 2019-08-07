@@ -224,8 +224,8 @@ mv $TZDB_PAS.tmp $TZDB_PAS
 
 echo "Merging the TZDB components into one source file..."
 
-rm -fr $REPO/dist 2> /dev/null
-mkdir $REPO/dist
+TZDB_PAS_DIST=$REPO/dist/TZDB.pas
+rm -fr $TZDB_DIST 2> /dev/null
 
 cleanup () {
   rm -fr $REPO/xx00 2> /dev/null
@@ -242,7 +242,6 @@ if [ "$?" -ne 0 ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$REPO/xx00" ] || [ ! -e "$
     exit 1
 fi
 
-TZDB_PAS_DIST=$REPO/dist/TZDB.pas
 # We have three chunks in here. Assemble them into final file.
 cat $REPO/src/TZDBPK/Version.inc > $TZDB_PAS_DIST
 cat $REPO/xx01 | sed "s/{\$INCLUDE.*}//g" >> $TZDB_PAS_DIST
