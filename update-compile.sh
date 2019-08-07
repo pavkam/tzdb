@@ -196,6 +196,10 @@ for DPROJ in $DPROJ_FILES; do
   replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="MinorVer">\)[0-9]*\(<\/VersionInfo>\)' $VER_1
   replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Release">\)[0-9]*\(<\/VersionInfo>\)' $VER_2
   replace_tokens $DPROJ.1 '\(.*<VersionInfo Name="Build">\)[0-9]*\(<\/VersionInfo>\)' $VER_3
+  replace_tokens $DPROJ.1 '\(.*<VerInfo_MajorVer>\)[0-9]*\(<\/VerInfo_MajorVer>\)' $VER_0
+  replace_tokens $DPROJ.1 '\(.*<VerInfo_MinorVer>\)[0-9]*\(<\/VerInfo_MinorVer>\)' $VER_1
+  replace_tokens $DPROJ.1 '\(.*<VerInfo_Release>\)[0-9]*\(<\/VerInfo_Release>\)' $VER_2
+  replace_tokens $DPROJ.1 '\(.*<VerInfo_Build>\)[0-9]*\(<\/VerInfo_Build>\)' $VER_3
 
   if [ "$?" -ne 0 ]; then
       echo "[ERR] Failed to bump versions in file '$DPROJ'!"
