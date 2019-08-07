@@ -267,4 +267,11 @@ fi
 
 cleanup
 
+echo "Downloading the API documentation..."
+wget https://raw.githubusercontent.com/wiki/pavkam/tzdb/API-Documentation.md -q -O $DIST/API.md
+
+if [ "$?" -ne 0 ]; then
+    echo "[WARN] Failed to download the API documentation."
+fi
+
 echo "DONE!"

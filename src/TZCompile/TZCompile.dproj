@@ -39,13 +39,13 @@
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <VerInfo_Build>119</VerInfo_Build>
+        <VerInfo_Build>121</VerInfo_Build>
         <DCC_BplOutput>..\..\bin\$(Config)\$(Platform)</DCC_BplOutput>
         <DCC_DcpOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcpOutput>
         <Manifest_File>None</Manifest_File>
         <DCC_UnitSearchPath>..\..\bin\$(Config)\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.119;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.121;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=</VerInfo_Keys>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_DcuOutput>..\..\bin\$(Config)\$(Platform)</DCC_DcuOutput>
@@ -73,7 +73,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_MapFile>3</DCC_MapFile>
         <Debugger_RunParams>..\..\..\tz_database_latest ..\..\..\src\TZDBPK\TZDB.inc</Debugger_RunParams>
-        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.119;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.121;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZCompile;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=</VerInfo_Keys>
         <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <VerInfo_Release>0</VerInfo_Release>
         <Icon_MainIcon>..\..\media\logo-64x64.ico</Icon_MainIcon>
@@ -115,7 +115,7 @@
                     <VersionInfo Name="MajorVer">2</VersionInfo>
                     <VersionInfo Name="MinorVer">1</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">119</VersionInfo>
+                    <VersionInfo Name="Build">121</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -127,7 +127,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName"/>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">2.1.0.119</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">2.1.0.121</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>
