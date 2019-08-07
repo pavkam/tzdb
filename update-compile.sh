@@ -225,11 +225,19 @@ rm $TZDB_PAS
 mv $TZDB_PAS.tmp $TZDB_PAS
 
 # Merge the files into one
+DIST=$REPO/dist
+if [ ! -d "$DIST" ]; then
+    echo "[WARN] Unable to locate the distribution dorectory. Skipping the last step."
+    echo "DONE!"
+    exit 0
+fi
 
 echo "Merging the TZDB components into one source file..."
 
-TZDB_PAS_DIST=$REPO/dist/TZDB.pas
-rm -fr $TZDB_DIST 2> /dev/null
+TZDB_PAS_DIST=$DIST/TZDB.pas
+rm $TZDB_PAS_DIST 2> /dev/null
+cp $REPO/media/logo-64x64.ico $DIST/TZDB.ico
+cat $REPO/src/TZDBPK/TZDBPK.dpk | sed 's/TZDBPK/TZDB/g' > $DIST/TZDB.dpk 
 
 cleanup () {
   rm -fr $REPO/xx00 2> /dev/null
@@ -259,4 +267,4 @@ fi
 
 cleanup
 
-echo "The process has finished! Whoop Whoop!"
+echo "DONE!"
