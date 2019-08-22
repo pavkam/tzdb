@@ -42,8 +42,6 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_BplOutput>bin\$(Config)\$(Platform)</DCC_BplOutput>
-        <DCC_DcpOutput>bin\$(Config)\$(Platform)</DCC_DcpOutput>
         <DCC_UnitSearchPath>bin\$(Config)\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Build>121</VerInfo_Build>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -63,6 +61,7 @@
         <DCC_N>false</DCC_N>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
+        <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <SanitizedProjectName>TZDB</SanitizedProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -71,7 +70,6 @@
         <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.121;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZDB;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <VerInfo_MajorVer>2</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <VerInfo_Debug>true</VerInfo_Debug>
@@ -83,7 +81,6 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_MapFile>3</DCC_MapFile>
         <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileVersion=2.1.0.121;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZDB;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName)</VerInfo_Keys>
-        <VerInfo_MajorVer>2</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -93,7 +90,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Keys>CompanyName=Alexandru Ciobanu;FileDescription=IANA Time Zone Database for Delphi;FileVersion=2.1.0.121;InternalName=IANA Time Zone Database for Delphi;LegalCopyright=Alexandru Ciobanu;LegalTrademarks=;OriginalFilename=TZDB;ProductName=IANA Time Zone Database for Delphi;ProductVersion=2.1;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
-        <VerInfo_MajorVer>2</VerInfo_MajorVer>
         <DCC_Description>IANA Time Zone Database for Delphi Package</DCC_Description>
     </PropertyGroup>
     <ItemGroup>
@@ -158,6 +154,13 @@
             </Delphi.Personality>
             <Platforms>
                 <Platform value="Win32">True</Platform>
+                <Platform value="Win64">True</Platform>
+                <Platform value="Linux64">True</Platform>
+                <Platform value="OSX32">True</Platform>
+                <Platform value="OSX64">True</Platform>
+                <Platform value="iOSSimulator">True</Platform>
+                <Platform value="iOSDevice32">True</Platform>
+                <Platform value="iOSDevice64">True</Platform>
             </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
