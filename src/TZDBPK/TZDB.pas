@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
+* Copyright (c) 2010-2020, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -1509,7 +1509,7 @@ begin
       { Check with both period offset only }
       LLocal := IncSecond(APreciseTime, LSegment.FPeriodOffset);
 
-      if YearOf(LLocal) > AYear then
+      if YearOf(LLocal) <> AYear then
       begin
         { Crossed the year threshold. Pass on to next year. }
         Exit(GetSegmentUtc(YearOf(LLocal), APreciseTime));
@@ -1529,7 +1529,7 @@ begin
     begin
       { Check for normal segments. }
       LLocal := IncSecond(APreciseTime, LSegment.FPeriodOffset + LSegment.FBias);
-      if YearOf(LLocal) > AYear then
+      if YearOf(LLocal) <> AYear then
       begin
         { Crossed the year threshold. Pass on to next year. }
         Exit(GetSegmentUtc(YearOf(LLocal), APreciseTime));

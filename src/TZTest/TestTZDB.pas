@@ -1,5 +1,5 @@
 (*
-* Copyright (c) 2010-2019, Alexandru Ciobanu (alex+git@ciobanu.org)
+* Copyright (c) 2010-2020, Alexandru Ciobanu (alex+git@ciobanu.org)
 * All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
@@ -89,6 +89,9 @@ type
     procedure Test_TZ_ToLocal_Regression_2;
     procedure Test_TZ_ToLocal_Regression_3;
     procedure Test_TZ_GetAbbreviation_Regression_1;
+
+	procedure Test_TZ_ToLocal_AtYearBoundary_WithPositiveOffset;
+	procedure Test_TZ_ToLocal_AtYearBoundary_WithNegativeOffset;
 
     procedure Test_Africa_Cairo_2010;
     procedure Test_Africa_Cairo_2009;
@@ -874,6 +877,28 @@ begin
   C := LTZ.GetAbbreviation(EncodeDateTime(2018, 10, 28, 1, 0, 0, 0), true);
 
   CheckEquals('GMT+01', C);
+end;
+
+procedure TTZDBTest.Test_TZ_ToLocal_AtYearBoundary_WithPositiveOffset;
+var
+  LTZ: TBundledTimeZone;
+  LLocal: TDateTime;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('Pacific/Auckland');
+  LLocal := LTZ.ToLocalTime(EncodeDateTime(2019, 12, 31, 23, 0, 0, 0));
+  
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2020, 1, 1, 12, 0, 0, 0), LLocal), DateTimeToStr(LLocal));
+end;
+
+procedure TTZDBTest.Test_TZ_ToLocal_AtYearBoundary_WithNegativeOffset;
+var
+  LTZ: TBundledTimeZone;
+  LLocal: TDateTime;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('America/Los_Angeles');
+  LLocal := LTZ.ToLocalTime(EncodeDateTime(2020, 1, 1, 1, 0, 0, 0));
+  
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2019, 12, 31, 17, 0, 0, 0), LLocal), DateTimeToStr(LLocal));
 end;
 
 procedure TTZDBTest.Test_TZ_GetLocalTimeType_Validation;
