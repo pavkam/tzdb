@@ -11,6 +11,12 @@ The current version of TZDB is compiled with **2020a** version of IANA TZDB and 
 
 [API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) and [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples). 
 
+## Manually updating to latest TZDB from IANA
+
+This project follows the IANA releases quite closely, usually with 1-2 weeks delay. If you are inclined to update the library manually use the shell script located in the repository: [update-compile.sh](https://raw.githubusercontent.com/pavkam/tzdb/master/update-compile.sh).
+
+The shell script runs under MacOS, Linux or Windows WSL. You will need Free Pascal compiler installed though.
+
 ## Using the Library
 
 To use TZDB you only require one file: [TZDB.pas](https://raw.githubusercontent.com/pavkam/tzdb/master/dist/TZDB.pas). Download it and simply add it to your `uses` clause. This unit contains the whole pre-compiled TZ database and all the code required to interpret it.
