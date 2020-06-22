@@ -41,8 +41,8 @@
       {$IF CompilerVersion >= 22} // Delphi XE +
         {$DEFINE TZDB_SUPPORTED_COMPILER}
         {$DEFINE DELPHI}
-      {$IFEND}
-    {$IFEND}
+			{$ENDIF}
+		{$ENDIF}
   {$ENDIF}
 {$ENDIF}
 
@@ -54,18 +54,18 @@ unit TZDB;
 
 interface
 uses
-  SysUtils,
-  DateUtils,
-  Types,
+	System.SysUtils,
+	System.DateUtils,
+	System.Types,
 {$IFDEF DELPHI}
-  TimeSpan,
-  Generics.Collections,
-  Generics.Defaults,
+	System.TimeSpan,
+	System.Generics.Collections,
+	System.Generics.Defaults,
 {$ELSE}
-  FGL,
-  SyncObjs,
+	FGL,
+	SyncObjs,
 {$ENDIF}
-  Classes;
+	System.Classes;
 
 type
 {$IFNDEF DELPHI}
@@ -10999,22 +10999,22 @@ end;
 
 function DayOfTheWeek(const APreciseTime: TPreciseTime): Word; inline;
 begin
-  Result := DateUtils.DayOfTheWeek(PreciseTimeToDateTime(APreciseTime));
+	Result := System.DateUtils.DayOfTheWeek(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function DayOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
-  Result := DateUtils.DayOf(PreciseTimeToDateTime(APreciseTime));
+	Result := System.DateUtils.DayOf(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function MonthOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
-  Result := DateUtils.MonthOf(PreciseTimeToDateTime(APreciseTime));
+	Result := System.DateUtils.MonthOf(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function YearOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
-  Result := DateUtils.YearOf(PreciseTimeToDateTime(APreciseTime));
+  Result := System.DateUtils.YearOf(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function ComparePreciseTime(const A, B: TPreciseTime): Integer; inline;
@@ -11750,7 +11750,7 @@ var
   LBias, LBiasHours, LBiasMinutes: Int64;
   LBiasSign: Char;
 begin
-  LSegment := GetSegmentUtc(DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime));
+  LSegment := GetSegmentUtc(System.DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime));
   LBias := (LSegment.FPeriodOffset + LSegment.FBias) div SecsPerMin;
 
   { Decode the local time (as we will include the bias into the repr.) }
@@ -11813,7 +11813,7 @@ var
   LOffset, LHours, LMinutes, LSeconds: Int64;
 begin
   { Get the UTC offset for the given time. }
-  LSegment := GetSegment(DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime),
+  LSegment := GetSegment(System.DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime),
     AForceDaylight, false);
   LOffset := LSegment.FPeriodOffset + LSegment.FBias;
 
@@ -11865,20 +11865,20 @@ end;
 function TBundledTimeZone.GetDisplayName(const ADateTime: TDateTime;
   const AForceDaylight: Boolean): string;
 begin
-  Result := GetSegment(DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime),
+	Result := GetSegment(System.DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime),
     AForceDaylight, true).DisplayName;
 end;
 
 function TBundledTimeZone.GetLocalTimeType(const ADateTime: TDateTime): TLocalTimeType;
 begin
-  Result := GetSegment(DateUtils.YearOf(ADateTime),
+	Result := GetSegment(System.DateUtils.YearOf(ADateTime),
     DateTimeToPreciseTime(ADateTime), true, false).LocalType;
 end;
 
 function TBundledTimeZone.GetUtcOffset(const ADateTime: TDateTime; const AForceDaylight: Boolean):
   {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
 begin
-  Result := GetSegment(DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime), AForceDaylight, true).UtcOffset;
+  Result := GetSegment(System.DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime), AForceDaylight, true).UtcOffset;
 end;
 
 function TBundledTimeZone.IsAmbiguousTime(const ADateTime: TDateTime): Boolean;
@@ -11923,7 +11923,7 @@ var
   LSegment: TYearSegment;
 begin
   LPreciseTime := DateTimeToPreciseTime(ADateTime);
-  LSegment := GetSegmentUtc(DateUtils.YearOf(ADateTime), LPreciseTime);
+  LSegment := GetSegmentUtc(System.DateUtils.YearOf(ADateTime), LPreciseTime);
 
   LPreciseTime := IncSecond(LPreciseTime, LSegment.FPeriodOffset + LSegment.FBias);
   Result := PreciseTimeToDateTime(LPreciseTime);
@@ -11936,7 +11936,7 @@ var
   LSegment: TYearSegment;
 begin
   LPreciseTime := DateTimeToPreciseTime(ADateTime);
-  LSegment := GetSegment(DateUtils.YearOf(ADateTime), LPreciseTime, AForceDaylight, true);
+  LSegment := GetSegment(System.DateUtils.YearOf(ADateTime), LPreciseTime, AForceDaylight, true);
 
   LPreciseTime := IncSecond(LPreciseTime, -(LSegment.FPeriodOffset + LSegment.FBias));
   Result := PreciseTimeToDateTime(LPreciseTime);
