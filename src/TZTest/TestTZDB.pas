@@ -90,8 +90,8 @@ type
     procedure Test_TZ_ToLocal_Regression_3;
     procedure Test_TZ_GetAbbreviation_Regression_1;
 
-	procedure Test_TZ_ToLocal_AtYearBoundary_WithPositiveOffset;
-	procedure Test_TZ_ToLocal_AtYearBoundary_WithNegativeOffset;
+	  procedure Test_TZ_ToLocal_AtYearBoundary_WithPositiveOffset;
+	  procedure Test_TZ_ToLocal_AtYearBoundary_WithNegativeOffset;
 
     procedure Test_Africa_Cairo_2010;
     procedure Test_Africa_Cairo_2009;
@@ -104,6 +104,8 @@ type
     procedure Test_America_St_Johns_2018;
     procedure Test_Asia_Jerusalem_2005;
     procedure Test_Asia_Jerusalem_2006;
+
+    procedure Test_Stockholm_End_Of_2018_Regression;
   end;
 
 
@@ -592,6 +594,17 @@ end;
 procedure TTZDBTest.Test_Europe_London_2018;
 begin
   CompareKnown(CEurope_London_2018, 'Europe/London', 2018);
+end;
+
+procedure TTZDBTest.Test_Stockholm_End_Of_2018_Regression;
+var
+  LTZ: TBundledTimeZone;
+  LResult: TDateTime;
+begin
+  LTZ := TBundledTimeZone.Create('Europe/Stockholm');
+  LResult := LTZ.ToLocalTime(EncodeDateTime(2018, 12, 31, 22, 18, 01, 000));
+
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2018, 12, 31, 23, 18, 01, 000), LResult));
 end;
 
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Bucharest_2014;

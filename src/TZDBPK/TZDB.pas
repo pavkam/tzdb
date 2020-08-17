@@ -33,18 +33,22 @@ unit TZDB;
 
 interface
 uses
-  {$IFDEF DELPHI}System.{$ENDIF}SysUtils,
-  {$IFDEF DELPHI}System.{$ENDIF}DateUtils,
-  {$IFDEF DELPHI}System.{$ENDIF}Types,
 {$IFDEF DELPHI}
+  System.SysUtils,
+  System.DateUtils,
+  System.Types,
   System.TimeSpan,
   Generics.Collections,
   Generics.Defaults,
+  System.Classes;
 {$ELSE}
+  SysUtils,
+  DateUtils,
+  Types,
   FGL,
   SyncObjs,
+  Classes;
 {$ENDIF}
-  {$IFDEF DELPHI}System.{$ENDIF}Classes;
 
 type
 {$IFNDEF DELPHI}
@@ -88,6 +92,8 @@ type
     function GetUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF}; inline;
     function GetStartsAt: TDateTime;
     function GetEndsAt: TDateTime;
+
+    function UtcTimeInSegment(const AUtcTime: TPreciseTime; out ANoBias: Boolean): Boolean;
   public
     /// <summary>The date/time when the segment starts.</summary>
     /// <returns>A date/time value representing the start of the segment.</returns>
@@ -132,6 +138,7 @@ type
 {$ENDIF}
     FSegmentsByYear: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<Word, TYearSegmentArray>;
 
+    function GetSpillOverYearBreakdown(const AYear: Word): TYearSegmentArray;
     function GetSegment(const AYear: Word; const APreciseTime: TPreciseTime;
       const AForceDaylight: Boolean; const AFailOnInvalid: Boolean): TYearSegment;
     function GetSegmentUtc(const AYear: Word; const APreciseTime: TPreciseTime): TYearSegment;
@@ -1149,6 +1156,63 @@ begin
   Result := {$IFDEF DELPHI}TTimeSpan.FromSeconds(FPeriodOffset + FBias){$ELSE}FPeriodOffset + FBias{$ENDIF};
 end;
 
+function TYearSegment.UtcTimeInSegment(const AUtcTime: TPreciseTime; out ANoBias: Boolean): Boolean;
+var
+  FStartsAtUtc, FEndAtUtc: TPreciseTime;
+begin
+  if FType = lttAmbiguous then
+  begin
+    { Check for pre-switch }
+    FStartsAtUtc := IncSecond(FStartsAt, -FPeriodOffset);
+    FEndAtUtc := IncSecond(FEndsAt, -FPeriodOffset);
+
+    if (ComparePreciseTime(AUtcTime, FStartsAtUtc) >= 0) and
+       (ComparePreciseTime(AUtcTime, FEndAtUtc) <= 0) then
+    begin
+      ANoBias := true;
+      Exit(true);
+    end;
+
+    { Check for post-switch }
+    FStartsAtUtc := IncSecond(FStartsAt, -(FPeriodOffset + FBias));
+    FEndAtUtc := IncSecond(FEndsAt, -(FPeriodOffset + FBias));
+
+    if (ComparePreciseTime(AUtcTime, FStartsAtUtc) >= 0) and
+       (ComparePreciseTime(AUtcTime, FEndAtUtc) <= 0) then
+    begin
+      ANoBias := false;
+      Exit(true);
+    end;
+
+  end else if FType = lttStandard then
+  begin
+    FStartsAtUtc := IncSecond(FStartsAt, -FPeriodOffset);
+    FEndAtUtc := IncSecond(FEndsAt, -FPeriodOffset);
+
+    if (ComparePreciseTime(AUtcTime, FStartsAtUtc) >= 0) and
+       (ComparePreciseTime(AUtcTime, FEndAtUtc) <= 0) then
+    begin
+      ANoBias := true;
+      Exit(true);
+    end;
+
+  end else if FType = lttDaylight then
+  begin
+    FStartsAtUtc := IncSecond(FStartsAt, -(FPeriodOffset + FBias));
+    FEndAtUtc := IncSecond(FEndsAt, -(FPeriodOffset + FBias));
+
+    if (ComparePreciseTime(AUtcTime, FStartsAtUtc) >= 0) and
+       (ComparePreciseTime(AUtcTime, FEndAtUtc) <= 0) then
+    begin
+      ANoBias := true;
+      Exit(true);
+    end;
+  end;
+
+  ANoBias := false;
+  Result := false;
+end;
+
 {$IFDEF FPC}
 class operator TYearSegment.Equal(const ALeft, ARight: TYearSegment): Boolean;
 begin
@@ -1498,53 +1562,61 @@ end;
 
 function TBundledTimeZone.GetSegmentUtc(const AYear: Word; const APreciseTime: TPreciseTime): TYearSegment;
 var
+  LSegments: TYearSegmentArray;
   LSegment: TYearSegment;
-  LLocal: TPreciseTime;
+  LNoBias: Boolean;
 begin
-  for LSegment in GetYearBreakdown(AYear) do
+  LSegments := GetSpillOverYearBreakdown(AYear);
+  for LSegment in LSegments do
   begin
-
-    if LSegment.FType = lttAmbiguous then
+    if LSegment.UtcTimeInSegment(APreciseTime, LNoBias) then
     begin
-      { Check with both period offset only }
-      LLocal := IncSecond(APreciseTime, LSegment.FPeriodOffset);
+      Result := LSegment;
 
-      if YearOf(LLocal) <> AYear then
-      begin
-        { Crossed the year threshold. Pass on to next year. }
-        Exit(GetSegmentUtc(YearOf(LLocal), APreciseTime));
-      end;
+      { Special case when non-biased Ambiguous found - erase it. }
+      if (LSegment.FType = lttAmbiguous) and LNoBias then
+        Result.FBias := 0;
 
-      if (ComparePreciseTime(LSegment.FStartsAt, LLocal) <= 0) and
-         (ComparePreciseTime(LSegment.FEndsAt, LLocal) >= 0) then
-         begin
-           { Special case when non-biased Ambiguous found - erase it. }
-           Result := LSegment;
-           Result.FBias := 0;
-           Exit;
-         end;
+      Exit;
     end;
-
-    if LSegment.FType <> lttInvalid then
-    begin
-      { Check for normal segments. }
-      LLocal := IncSecond(APreciseTime, LSegment.FPeriodOffset + LSegment.FBias);
-      if YearOf(LLocal) <> AYear then
-      begin
-        { Crossed the year threshold. Pass on to next year. }
-        Exit(GetSegmentUtc(YearOf(LLocal), APreciseTime));
-      end;
-
-      if (ComparePreciseTime(LSegment.FStartsAt, LLocal) <= 0) and
-         (ComparePreciseTime(LSegment.FEndsAt, LLocal) >= 0) then
-         Exit(LSegment);
-    end;
-
   end;
 
   { Catch all issue. }
   raise EUnknownTimeZoneYear.CreateResFmt(@SDateTimeNotResolvable,
     [PreciseTimeToStr(APreciseTime), DoGetID()]);
+end;
+
+function TBundledTimeZone.GetSpillOverYearBreakdown(const AYear: Word): TYearSegmentArray;
+var
+  LPrev, LCurr, LNext: TYearSegmentArray;
+  I, T: Integer;
+begin
+  { Pull previous year but allow for error to be eaten. }
+  try
+    LPrev := GetYearBreakdown(AYear - 1);
+  except on EUnknownTimeZoneYear do;
+  end;
+
+  LCurr := GetYearBreakdown(AYear);
+
+  { Pull next year but allow for error to be eaten. }
+  try
+    LNext := GetYearBreakdown(AYear + 1);
+  except on EUnknownTimeZoneYear do;
+  end;
+
+  { Merge all arrays }
+  SetLength(Result, Length(LPrev) + Length(LCurr) + Length(LNext));
+  for I := 0 to Length(LPrev) - 1 do
+    Result[I] := LPrev[I];
+
+  T := Length(LPrev);
+  for I := 0 to Length(LCurr) - 1 do
+    Result[I + T] := LCurr[I];
+
+  T := T + Length(LCurr);
+  for I := 0 to Length(LNext) - 1 do
+    Result[I + T] := LNext[I];
 end;
 
 class function TBundledTimeZone.GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
