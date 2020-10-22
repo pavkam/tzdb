@@ -382,7 +382,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.0.128';
+  CComponentVersion = '2.1.0.129';
 
 type
   { Day type. Specifies the "relative" day in a month }
@@ -476,11 +476,11 @@ type
 
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 const
-  CIANAVersion = '2020c';
+  CIANAVersion = '2020d';
 
 var
   { This array contains the definitions of relative days used later on in the rules. }
-  CRelativeDays: array[0 .. 79] of TRelativeDay = (
+  CRelativeDays: array[0 .. 77] of TRelativeDay = (
     (FDayType: dtFixed; FFixedDay: 21),
     (FDayType: dtFixed; FFixedDay: 1),
     (FDayType: dtFixed; FFixedDay: 8),
@@ -552,8 +552,6 @@ var
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 5; FNthDayIndex: 15),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 7),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 6; FNthDayIndex: 7),
-    (FDayType: dtNthOfMonth; FNthDayOfWeek: 4; FNthDayIndex: 8),
-    (FDayType: dtNthOfMonth; FNthDayOfWeek: 5; FNthDayIndex: 21),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 1; FNthDayIndex: 9),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 1; FNthDayIndex: 24),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 25),
@@ -2329,29 +2327,29 @@ var
    {CRules[880]}
     (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[881]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[71]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[882]}
     (FInMonth: 3; FOnDay: @CRelativeDays[57]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[882]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[883]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[49]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[884]}
     (FInMonth: 8; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[885]}
+   {CRules[884]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[886]}
+   {CRules[885]}
     (FInMonth: 8; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[887]}
+   {CRules[886]}
     (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[887]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[40]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[888]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[72]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[889]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[72]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[890]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[57]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[891]}
     (FInMonth: 3; FOnDay: @CRelativeDays[51]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[889]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[51]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[890]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[891]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[51]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[892]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[62]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[51]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[893]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[894]}
@@ -2459,7 +2457,7 @@ var
    {CRules[945]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[946]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[73]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[71]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[947]}
     (FInMonth: 10; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[948]}
@@ -2489,7 +2487,7 @@ var
    {CRules[960]}
     (FInMonth: 9; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[961]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[74]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[72]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[962]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[963]}
@@ -2527,9 +2525,9 @@ var
    {CRules[979]}
     (FInMonth: 9; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[980]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[75]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[73]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[981]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[75]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[73]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[982]}
     (FInMonth: 11; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[983]}
@@ -2605,7 +2603,7 @@ var
    {CRules[1018]}
     (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1019]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[76]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[74]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1020]}
     (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1021]}
@@ -2631,7 +2629,7 @@ var
    {CRules[1031]}
     (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1032]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[77]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[75]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1033]}
     (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1034]}
@@ -2679,7 +2677,7 @@ var
    {CRules[1055]}
     (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1056]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[78]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[76]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1057]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1058]}
@@ -2867,7 +2865,7 @@ var
    {CRules[1149]}
     (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1150]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[79]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[77]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1151]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1152]}
@@ -4771,31 +4769,35 @@ var
   );
 
   { Date-bound rules for Palestine family }
-  CFamily_88_Arr: array[0 .. 23] of TYearBoundRule = (
+  CFamily_88_Arr: array[0 .. 27] of TYearBoundRule = (
     (FStart: 1999; FEnd: 2005; FRule: @CRules[878]),
     (FStart: 1999; FEnd: 2003; FRule: @CRules[879]),
     (FStart: 2004; FEnd: 2004; FRule: @CRules[52]),
     (FStart: 2005; FEnd: 2005; FRule: @CRules[61]),
     (FStart: 2006; FEnd: 2007; FRule: @CRules[85]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[880]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[881]),
-    (FStart: 2008; FEnd: 2009; FRule: @CRules[882]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[104]),
+    (FStart: 2008; FEnd: 2009; FRule: @CRules[881]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[203]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[883]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[882]),
     (FStart: 2010; FEnd: 2010; FRule: @CRules[346]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[884]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[885]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[883]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[884]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[339]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[886]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[885]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[97]),
     (FStart: 2012; FEnd: 2014; FRule: @CRules[852]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[887]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[888]),
-    (FStart: 2014; FEnd: 2015; FRule: @CRules[889]),
-    (FStart: 2015; FEnd: 2015; FRule: @CRules[890]),
-    (FStart: 2016; FEnd: 2018; FRule: @CRules[891]),
-    (FStart: 2016; FEnd: 9999; FRule: @CRules[892]),
-    (FStart: 2019; FEnd: 9999; FRule: @CRules[882])
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[886]),
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[101]),
+    (FStart: 2014; FEnd: 2014; FRule: @CRules[853]),
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[343]),
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[887]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[888]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[889]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[890]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[891]),
+    (FStart: 2020; FEnd: 9999; FRule: @CRules[892]),
+    (FStart: 2020; FEnd: 9999; FRule: @CRules[889])
   );
 
   { Date-bound rules for Phil family }
@@ -4843,13 +4845,13 @@ var
     (FStart: 1997; FEnd: 1998; FRule: @CRules[906]),
     (FStart: 1999; FEnd: 2006; FRule: @CRules[85]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[880]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[882]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[881]),
     (FStart: 2007; FEnd: 2007; FRule: @CRules[907]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[845]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[295]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[882]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[881]),
     (FStart: 2010; FEnd: 2011; FRule: @CRules[845]),
-    (FStart: 2012; FEnd: 9999; FRule: @CRules[882]),
+    (FStart: 2012; FEnd: 9999; FRule: @CRules[881]),
     (FStart: 2009; FEnd: 9999; FRule: @CRules[854])
   );
 
@@ -5767,7 +5769,7 @@ var
     (FCount: 9; FFirstRule: @CFamily_85_Arr),
     (FCount: 5; FFirstRule: @CFamily_86_Arr),
     (FCount: 6; FFirstRule: @CFamily_87_Arr),
-    (FCount: 24; FFirstRule: @CFamily_88_Arr),
+    (FCount: 28; FFirstRule: @CFamily_88_Arr),
     (FCount: 6; FFirstRule: @CFamily_89_Arr),
     (FCount: 41; FFirstRule: @CFamily_90_Arr),
     (FCount: 4; FFirstRule: @CFamily_91_Arr),
