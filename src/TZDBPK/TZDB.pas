@@ -471,6 +471,8 @@ function PreciseTimeToDateTime(const APreciseTime: TPreciseTime): TDateTime; inl
 var
   D, MS: Int64;
 begin
+  Assert(APreciseTime > 0);
+
   D := (Int64(PUInt64(@APreciseTime)^ div Cardinal(MSecsPerDay)) - DateDelta) * MSecsPerDay;
   MS := Int64(PUInt64(@APreciseTime)^ mod Cardinal(MSecsPerDay));
 
@@ -482,6 +484,7 @@ end;
 
 function PreciseTimeToStr(const APreciseTime: TPreciseTime): string; inline;
 begin
+  Assert(APreciseTime > 0);
   Result := FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', PreciseTimeToDateTime(APreciseTime));
 end;
 
@@ -522,22 +525,34 @@ end;
 
 function DayOfTheWeek(const APreciseTime: TPreciseTime): Word; inline;
 begin
+  Assert(APreciseTime > 0);
   Result := {$IFDEF DELPHI}System.{$ENDIF}DateUtils.DayOfTheWeek(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function DayOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
+  Assert(APreciseTime > 0);
   Result := {$IFDEF DELPHI}System.{$ENDIF}DateUtils.DayOf(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function MonthOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
+  Assert(APreciseTime > 0);
   Result := {$IFDEF DELPHI}System.{$ENDIF}DateUtils.MonthOf(PreciseTimeToDateTime(APreciseTime));
 end;
 
 function YearOf(const APreciseTime: TPreciseTime): Word; inline;
 begin
+  Assert(APreciseTime > 0);
   Result := {$IFDEF DELPHI}System.{$ENDIF}DateUtils.YearOf(PreciseTimeToDateTime(APreciseTime));
+end;
+
+function NullYearOf(const APreciseTime: TPreciseTime): Word; inline;
+begin
+  if APreciseTime = 0 then
+    Result := 0
+  else
+    Result := YearOf(APreciseTime);
 end;
 
 function ComparePreciseTime(const A, B: TPreciseTime): Integer; inline;
@@ -805,7 +820,7 @@ var
   LYMinus1, LYPlus1, LR, LSk: TObservedRule;
 begin
   { Mark all intermediary data as un-initialized. <-- this is date ZERO which is the start point. }
-  LStart := DateTimeToPreciseTime(CNullDateTime);
+  LStart := 0;
 
   LYMinus1.FPeriod := nil;
   LYPlus1.FPeriod := nil;
@@ -842,7 +857,7 @@ begin
       LEnd := IncMilliSecond(LEnd, -1);
 
       { Collect last rule of the previous year. }
-      if (YearOf(LStart) <= AYear - 1) and (YearOf(LEnd) >= AYear - 1) then
+      if (NullYearOf(LStart) <= AYear - 1) and (YearOf(LEnd) >= AYear - 1) then
       begin
         { Load the rules for previous year. }
         LRules := GetPeriodRulesForYear(LPeriod, AYear - 1);
@@ -864,7 +879,7 @@ begin
       end;
 
       { Collect first rule of the next year. }
-      if (YearOf(LStart) <= AYear + 1) and (YearOf(LEnd) >= AYear + 1) and (LYPlus1.FPeriod = nil) then
+      if (NullYearOf(LStart) <= AYear + 1) and (YearOf(LEnd) >= AYear + 1) and (LYPlus1.FPeriod = nil) then
       begin
         { Load the rules for following year. }
         LRules := GetPeriodRulesForYear(LPeriod, AYear + 1);
@@ -886,7 +901,7 @@ begin
       end;
 
       { Collect all the rules for the year we're looking for. }
-      if (YearOf(LStart) <= AYear) and (YearOf(LEnd) >= AYear) then
+      if (NullYearOf(LStart) <= AYear) and (YearOf(LEnd) >= AYear) then
       begin
         { Load the rules for this year. }
         LRules := GetPeriodRulesForYear(LPeriod, AYear);
@@ -966,7 +981,7 @@ begin
       else
       begin
         { This is not technically a rule - just naked segment. We'll need to infer data. }
-        if YearOf(LR.FStartsOn) < LR.FYear then
+        if NullYearOf(LR.FStartsOn) < LR.FYear then
           LR.FStartsOn := EncodePreciseDate(LR.FYear, 1, 1);
       end;
 
