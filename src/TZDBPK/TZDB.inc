@@ -1,10 +1,10 @@
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 const
-  CIANAVersion = '2020d';
+  CIANAVersion = '2021a';
 
 var
   { This array contains the definitions of relative days used later on in the rules. }
-  CRelativeDays: array[0 .. 77] of TRelativeDay = (
+  CRelativeDays: array[0 .. 79] of TRelativeDay = (
     (FDayType: dtFixed; FFixedDay: 21),
     (FDayType: dtFixed; FFixedDay: 1),
     (FDayType: dtFixed; FFixedDay: 8),
@@ -65,9 +65,11 @@ var
     (FDayType: dtLastOfMonth; FLastDayOfWeek: 5),
     (FDayType: dtLastOfMonth; FLastDayOfWeek: 4),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 4; FNthDayIndex: 1),
+    (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 29),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 18),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 12),
     (FDayType: dtLastOfMonth; FLastDayOfWeek: 6),
+    (FDayType: dtNthOfMonth; FNthDayOfWeek: 6; FNthDayIndex: 22),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 11),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 7; FNthDayIndex: 28),
     (FDayType: dtNthOfMonth; FNthDayOfWeek: 6; FNthDayIndex: 17),
@@ -87,7 +89,7 @@ var
 
 var
   { This array contains the definitions of DST rules. Used by rule families. }
-  CRules: array[0 .. 1189] of TRule = (
+  CRules: array[0 .. 1213] of TRule = (
    {CRules[0]}
     (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'BST'),
    {CRules[1]}
@@ -887,409 +889,409 @@ var
    {CRules[398]}
     (FInMonth: 7; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[399]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1200; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1200; FFmtPart: '+0020'),
    {CRules[400]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'GMT'),
    {CRules[401]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 1200; FFmtPart: '+0020'),
    {CRules[402]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 1200; FFmtPart: '+0020'),
    {CRules[403]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: '+0030'),
    {CRules[404]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[405]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[406]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[57]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[407]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[57]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[408]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[409]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[57]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[410]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[57]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[411]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[412]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[413]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[414]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[415]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[416]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[417]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[418]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[9]; FAt: 43200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[419]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[420]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[421]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[9]; FAt: 43200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[422]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[423]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[424]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[425]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[426]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[427]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[428]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[429]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[430]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[431]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[432]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[433]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[434]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[435]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[436]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[437]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[438]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[439]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[440]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[441]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[442]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[443]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[444]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[445]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[446]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[447]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[448]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[449]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[450]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[451]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[452]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[453]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[454]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[455]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[456]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[457]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[44]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[458]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[459]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[460]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[44]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[461]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[462]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[463]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[464]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[465]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[466]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[467]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[468]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[469]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[18]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[470]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[471]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[472]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[473]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[474]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[475]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[476]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[477]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[478]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[479]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[480]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[481]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[482]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[483]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[484]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[485]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[26]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[486]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[487]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[488]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[26]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[489]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[490]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[491]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[492]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[493]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[494]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[495]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[38]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[496]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[497]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[498]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[38]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[499]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[500]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[501]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[502]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[40]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[503]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[504]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[505]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[44]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[506]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[507]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[508]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[44]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[509]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[510]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[511]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[512]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[513]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[514]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[515]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[516]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[517]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[518]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[7]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[519]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[520]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[37]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[521]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[522]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[523]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[524]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[525]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[526]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[527]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[528]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[529]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[2]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[530]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[531]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[21]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[532]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[2]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[533]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[534]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[21]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[535]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[536]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[537]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[538]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[36]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[539]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[540]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[541]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[542]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[543]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[544]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[545]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[546]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[547]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[548]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[549]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[550]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[551]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[552]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[34]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[553]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[554]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[555]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[556]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[28]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[557]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[558]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[10]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[559]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[560]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[26]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[561]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[10]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[562]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[563]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[26]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[564]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[565]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[18]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[566]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[567]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[8]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[568]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[569]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[570]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[571]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[572]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[573]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[574]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[575]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[576]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[577]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[578]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[579]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[46]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[580]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[581]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[582]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: -3600; FFmtPart: 'WAT'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[583]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CAT'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: -3600; FFmtPart: ''),
    {CRules[584]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: -3600; FFmtPart: 'WAT'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[585]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: -3600; FFmtPart: 'WAT'),
    {CRules[586]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CAT'),
    {CRules[587]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: -3600; FFmtPart: 'WAT'),
    {CRules[588]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[589]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[590]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[591]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[592]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[593]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
    {CRules[594]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[595]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[596]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[597]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[598]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[599]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[600]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[601]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[602]}
@@ -1321,1152 +1323,1200 @@ var
    {CRules[615]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[616]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[617]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[618]}
     (FInMonth: 10; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[617]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[60]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[618]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[619]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[620]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[621]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[622]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[623]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[624]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[625]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[626]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[627]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[628]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[629]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[630]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[631]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[632]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[60]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[633]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[60]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[634]}
     (FInMonth: 1; FOnDay: @CRelativeDays[61]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[634]}
+    (FInMonth: 1; FOnDay: @CRelativeDays[61]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[635]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[62]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[636]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[637]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[638]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[639]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[640]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[10]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[641]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[10]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[642]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[643]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[644]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[645]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[646]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[647]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[648]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[46]; FAt: 7260; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[649]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[46]; FAt: 7260; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[650]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[651]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[652]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[653]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[654]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[655]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[656]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+    (FInMonth: 11; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[657]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
    {CRules[658]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
    {CRules[659]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
    {CRules[660]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'M'),
    {CRules[661]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 1800; FFmtPart: 'S'),
    {CRules[662]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[663]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[664]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[665]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[666]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[667]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[668]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[669]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[670]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[671]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[672]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[673]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 9900; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[674]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 9900; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[675]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[676]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[677]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[678]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[39]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[679]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[62]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[39]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[680]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[63]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[681]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 14400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[682]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 10800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[683]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[36]; FAt: 7200; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
    {CRules[684]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[41]; FAt: 7200; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
    {CRules[685]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[43]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[686]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[43]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[687]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[46]; FAt: 43200; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[688]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 43200; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[689]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[64]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[690]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[64]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[691]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[14]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[64]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[692]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[64]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[693]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[694]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[695]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[696]}
+   {CRules[694]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[697]}
+   {CRules[695]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 14400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[698]}
+   {CRules[696]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 18000; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[699]}
+   {CRules[697]}
     (FInMonth: 6; FOnDay: @CRelativeDays[41]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[700]}
+   {CRules[698]}
     (FInMonth: 12; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[701]}
+   {CRules[699]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[702]}
+   {CRules[700]}
     (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[703]}
+   {CRules[701]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[704]}
+   {CRules[702]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[705]}
+   {CRules[703]}
     (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[706]}
+   {CRules[704]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[707]}
+   {CRules[705]}
     (FInMonth: 1; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[708]}
+   {CRules[706]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[709]}
+   {CRules[707]}
     (FInMonth: 5; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[710]}
+   {CRules[708]}
     (FInMonth: 4; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[711]}
+   {CRules[709]}
     (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[712]}
+   {CRules[710]}
     (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[713]}
+   {CRules[711]}
     (FInMonth: 5; FOnDay: @CRelativeDays[32]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[712]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[65]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[713]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[65]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[714]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[715]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[716]}
     (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 12600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[717]}
+   {CRules[715]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 12600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[718]}
+   {CRules[716]}
     (FInMonth: 11; FOnDay: @CRelativeDays[5]; FAt: 12600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[719]}
+   {CRules[717]}
     (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 12600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[720]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[64]; FAt: 12600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[721]}
+   {CRules[718]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[66]; FAt: 12600; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
+   {CRules[719]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[722]}
+   {CRules[720]}
     (FInMonth: 10; FOnDay: @CRelativeDays[56]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[723]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[60]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[724]}
+   {CRules[721]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[61]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
+   {CRules[722]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[725]}
+   {CRules[723]}
     (FInMonth: 10; FOnDay: @CRelativeDays[11]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[726]}
+   {CRules[724]}
     (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[727]}
+   {CRules[725]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[728]}
+   {CRules[726]}
     (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[729]}
+   {CRules[727]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[730]}
+   {CRules[728]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[731]}
+   {CRules[729]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[732]}
+   {CRules[730]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[733]}
+   {CRules[731]}
     (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[734]}
+   {CRules[732]}
     (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[735]}
+   {CRules[733]}
     (FInMonth: 11; FOnDay: @CRelativeDays[3]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[736]}
+   {CRules[734]}
     (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[737]}
+   {CRules[735]}
     (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[738]}
+   {CRules[736]}
     (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[739]}
+   {CRules[737]}
     (FInMonth: 11; FOnDay: @CRelativeDays[5]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[740]}
+   {CRules[738]}
     (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[741]}
+   {CRules[739]}
     (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[742]}
+   {CRules[740]}
     (FInMonth: 4; FOnDay: @CRelativeDays[39]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[743]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[62]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[744]}
+   {CRules[741]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[63]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+   {CRules[742]}
     (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[745]}
+   {CRules[743]}
     (FInMonth: 10; FOnDay: @CRelativeDays[7]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[746]}
+   {CRules[744]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[747]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[65]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[748]}
+   {CRules[745]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[67]; FAt: 82800; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[746]}
     (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 82800; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
-   {CRules[749]}
+   {CRules[747]}
     (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[750]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[60]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[751]}
+   {CRules[748]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[61]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[749]}
     (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[752]}
+   {CRules[750]}
     (FInMonth: 10; FOnDay: @CRelativeDays[11]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[753]}
+   {CRules[751]}
     (FInMonth: 10; FOnDay: @CRelativeDays[11]; FAt: 12600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[754]}
+   {CRules[752]}
     (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[755]}
+   {CRules[753]}
     (FInMonth: 5; FOnDay: @CRelativeDays[17]; FAt: 12600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[756]}
+   {CRules[754]}
     (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[757]}
+   {CRules[755]}
     (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[758]}
+   {CRules[756]}
     (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[759]}
+   {CRules[757]}
     (FInMonth: 3; FOnDay: @CRelativeDays[34]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[760]}
+   {CRules[758]}
     (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[761]}
+   {CRules[759]}
     (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[762]}
+   {CRules[760]}
     (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[763]}
+   {CRules[761]}
     (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[764]}
+   {CRules[762]}
     (FInMonth: 9; FOnDay: @CRelativeDays[34]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[765]}
+   {CRules[763]}
     (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[766]}
+   {CRules[764]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
-   {CRules[767]}
+   {CRules[765]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 10800; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+   {CRules[766]}
+    (FInMonth: 5; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[767]}
+    (FInMonth: 11; FOnDay: @CRelativeDays[16]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[768]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[769]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[44]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[770]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[46]; FAt: 86400; FAtMode: trUniversal; FOffset: 7200; FFmtPart: 'DD'),
    {CRules[771]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[772]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[773]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[774]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 11; FOnDay: @CRelativeDays[18]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[775]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[42]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[41]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[776]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[34]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[26]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[777]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[42]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[778]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[779]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[37]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[780]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[781]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[782]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[18]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[783]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[784]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[785]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 86400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[786]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 86400; FAtMode: trUniversal; FOffset: 0; FFmtPart: 'S'),
    {CRules[787]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 7; FOnDay: @CRelativeDays[29]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[788]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[5]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[789]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 86400; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[790]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 86400; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[791]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 86400; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[792]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[8]; FAt: 86400; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[793]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[794]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[795]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[8]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[796]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[797]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[798]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[38]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[799]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[9]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[800]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[801]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[19]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[802]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[803]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[804]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[7]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[805]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[35]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[806]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[807]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[808]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[809]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[810]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[811]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[812]}
+   {CRules[807]}
     (FInMonth: 9; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[813]}
+   {CRules[808]}
     (FInMonth: 8; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[814]}
+   {CRules[809]}
     (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[815]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[816]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[817]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[818]}
+   {CRules[810]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[811]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[812]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[813]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[34]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[814]}
     (FInMonth: 3; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[819]}
+   {CRules[815]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[816]}
     (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[820]}
+   {CRules[817]}
     (FInMonth: 9; FOnDay: @CRelativeDays[9]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[821]}
+   {CRules[818]}
     (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[822]}
+   {CRules[819]}
     (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[823]}
+   {CRules[820]}
     (FInMonth: 4; FOnDay: @CRelativeDays[38]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[824]}
+   {CRules[821]}
     (FInMonth: 9; FOnDay: @CRelativeDays[4]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[825]}
+   {CRules[822]}
     (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[826]}
+   {CRules[823]}
     (FInMonth: 10; FOnDay: @CRelativeDays[36]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[827]}
+   {CRules[824]}
     (FInMonth: 3; FOnDay: @CRelativeDays[7]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[828]}
+   {CRules[825]}
     (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[829]}
+   {CRules[826]}
     (FInMonth: 4; FOnDay: @CRelativeDays[36]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[830]}
+   {CRules[827]}
     (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[831]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[66]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[832]}
+   {CRules[828]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[68]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[829]}
     (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[833]}
+   {CRules[830]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[834]}
+   {CRules[831]}
     (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[835]}
+   {CRules[832]}
     (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[836]}
+   {CRules[833]}
     (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[837]}
+   {CRules[834]}
     (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[838]}
+   {CRules[835]}
     (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[839]}
+   {CRules[836]}
     (FInMonth: 9; FOnDay: @CRelativeDays[40]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[840]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[67]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[841]}
+   {CRules[837]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[69]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[838]}
     (FInMonth: 5; FOnDay: @CRelativeDays[39]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[842]}
+   {CRules[839]}
     (FInMonth: 9; FOnDay: @CRelativeDays[50]; FAt: 90000; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[843]}
+   {CRules[840]}
     (FInMonth: 4; FOnDay: @CRelativeDays[39]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[844]}
+   {CRules[841]}
     (FInMonth: 6; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[845]}
+   {CRules[842]}
     (FInMonth: 4; FOnDay: @CRelativeDays[49]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[846]}
+   {CRules[843]}
     (FInMonth: 10; FOnDay: @CRelativeDays[49]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[847]}
+   {CRules[844]}
     (FInMonth: 4; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[848]}
+   {CRules[845]}
     (FInMonth: 4; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[849]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[68]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[850]}
+   {CRules[846]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[70]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[847]}
     (FInMonth: 9; FOnDay: @CRelativeDays[57]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[851]}
+   {CRules[848]}
     (FInMonth: 3; FOnDay: @CRelativeDays[58]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[852]}
+   {CRules[849]}
     (FInMonth: 3; FOnDay: @CRelativeDays[58]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[853]}
+   {CRules[850]}
     (FInMonth: 10; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[854]}
+   {CRules[851]}
     (FInMonth: 10; FOnDay: @CRelativeDays[57]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: ''),
-   {CRules[855]}
+   {CRules[852]}
     (FInMonth: 12; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[856]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[69]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
-   {CRules[857]}
+   {CRules[853]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[71]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: ''),
+   {CRules[854]}
     (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 9000; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[858]}
+   {CRules[855]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[859]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[37]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[860]}
+   {CRules[856]}
     (FInMonth: 4; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[861]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[70]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[862]}
+   {CRules[857]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[72]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[858]}
     (FInMonth: 5; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[863]}
+   {CRules[859]}
+    (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[860]}
     (FInMonth: 9; FOnDay: @CRelativeDays[2]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[864]}
+   {CRules[861]}
     (FInMonth: 5; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[865]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[866]}
+   {CRules[862]}
     (FInMonth: 5; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[867]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[65]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[868]}
+   {CRules[863]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[67]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[864]}
     (FInMonth: 5; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[869]}
+   {CRules[865]}
     (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 10800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[870]}
+   {CRules[866]}
     (FInMonth: 6; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[871]}
+   {CRules[867]}
     (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[872]}
+   {CRules[868]}
     (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 1200; FFmtPart: ''),
-   {CRules[873]}
+   {CRules[869]}
     (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[870]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[871]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[872]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[63]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[873]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[63]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[874]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[62]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[70]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
    {CRules[875]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[62]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[70]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[876]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[62]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
-   {CRules[877]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[62]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[878]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[68]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[879]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[68]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[880]}
     (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[881]}
+   {CRules[877]}
     (FInMonth: 3; FOnDay: @CRelativeDays[57]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[882]}
+   {CRules[878]}
     (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[883]}
+   {CRules[879]}
     (FInMonth: 8; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[884]}
+   {CRules[880]}
     (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[885]}
+   {CRules[881]}
     (FInMonth: 8; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[886]}
+   {CRules[882]}
     (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[887]}
+   {CRules[883]}
     (FInMonth: 10; FOnDay: @CRelativeDays[40]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[888]}
+   {CRules[884]}
     (FInMonth: 3; FOnDay: @CRelativeDays[51]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[889]}
+   {CRules[885]}
     (FInMonth: 10; FOnDay: @CRelativeDays[51]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[890]}
+   {CRules[886]}
     (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[891]}
+   {CRules[887]}
     (FInMonth: 10; FOnDay: @CRelativeDays[51]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[892]}
+   {CRules[888]}
     (FInMonth: 3; FOnDay: @CRelativeDays[51]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[893]}
+   {CRules[889]}
     (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[894]}
+   {CRules[890]}
     (FInMonth: 2; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[895]}
+   {CRules[891]}
     (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[896]}
+   {CRules[892]}
     (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[897]}
+   {CRules[893]}
     (FInMonth: 3; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[898]}
+   {CRules[894]}
     (FInMonth: 9; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[899]}
+   {CRules[895]}
     (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[900]}
+   {CRules[896]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[901]}
+   {CRules[897]}
     (FInMonth: 2; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[902]}
+   {CRules[898]}
     (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[903]}
+   {CRules[899]}
     (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[904]}
+   {CRules[900]}
     (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[905]}
+   {CRules[901]}
     (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[906]}
+   {CRules[902]}
     (FInMonth: 3; FOnDay: @CRelativeDays[48]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'S'),
-   {CRules[907]}
+   {CRules[903]}
     (FInMonth: 11; FOnDay: @CRelativeDays[49]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
-   {CRules[908]}
+   {CRules[904]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 2400; FFmtPart: '-0020'),
-   {CRules[909]}
+   {CRules[905]}
     (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: '-01'),
-   {CRules[910]}
+   {CRules[906]}
     (FInMonth: 6; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: '+01'),
-   {CRules[911]}
+   {CRules[907]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'GMT'),
-   {CRules[912]}
+   {CRules[908]}
     (FInMonth: 3; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[913]}
+   {CRules[909]}
     (FInMonth: 4; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[914]}
+   {CRules[910]}
     (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 9000; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[915]}
+   {CRules[911]}
     (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[916]}
+   {CRules[912]}
     (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 9000; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[917]}
+   {CRules[913]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[918]}
+   {CRules[914]}
     (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[919]}
+   {CRules[915]}
     (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[920]}
+   {CRules[916]}
     (FInMonth: 5; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[921]}
+   {CRules[917]}
     (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 9000; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[922]}
+   {CRules[918]}
     (FInMonth: 5; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[923]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[62]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[924]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[62]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[925]}
+   {CRules[919]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[63]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[920]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[63]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[921]}
     (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[926]}
+   {CRules[922]}
     (FInMonth: 9; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[927]}
+   {CRules[923]}
     (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
-   {CRules[928]}
+   {CRules[924]}
     (FInMonth: 8; FOnDay: @CRelativeDays[20]; FAt: 82800; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'P'),
-   {CRules[929]}
+   {CRules[925]}
     (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[930]}
+   {CRules[926]}
+    (FInMonth: 1; FOnDay: @CRelativeDays[29]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[927]}
     (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[931]}
+   {CRules[928]}
     (FInMonth: 6; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[932]}
+   {CRules[929]}
     (FInMonth: 5; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[933]}
+   {CRules[930]}
     (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 7260; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[934]}
+   {CRules[931]}
     (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[935]}
+   {CRules[932]}
     (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[936]}
+   {CRules[933]}
     (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[937]}
+   {CRules[934]}
     (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[938]}
+   {CRules[935]}
     (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[939]}
+   {CRules[936]}
     (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[940]}
+   {CRules[937]}
     (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[941]}
+   {CRules[938]}
     (FInMonth: 9; FOnDay: @CRelativeDays[3]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[942]}
+   {CRules[939]}
     (FInMonth: 5; FOnDay: @CRelativeDays[35]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[943]}
+   {CRules[940]}
     (FInMonth: 8; FOnDay: @CRelativeDays[37]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[944]}
+   {CRules[941]}
     (FInMonth: 5; FOnDay: @CRelativeDays[30]; FAt: 82800; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[945]}
+   {CRules[942]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 82800; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[946]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[71]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[947]}
+   {CRules[943]}
+    (FInMonth: 5; FOnDay: @CRelativeDays[73]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[944]}
     (FInMonth: 10; FOnDay: @CRelativeDays[15]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[948]}
+   {CRules[945]}
     (FInMonth: 10; FOnDay: @CRelativeDays[13]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[949]}
+   {CRules[946]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[950]}
+   {CRules[947]}
     (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[951]}
+   {CRules[948]}
     (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 60; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
-   {CRules[952]}
+   {CRules[949]}
     (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 60; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[953]}
+   {CRules[950]}
     (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 60; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
-   {CRules[954]}
+   {CRules[951]}
     (FInMonth: 5; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
-   {CRules[955]}
+   {CRules[952]}
     (FInMonth: 8; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[953]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+   {CRules[954]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+   {CRules[955]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[956]}
     (FInMonth: 9; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[957]}
     (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[958]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[959]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[960]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[961]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[72]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[962]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[74]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[963]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[964]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[965]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[966]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[45]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[967]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[968]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[969]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[45]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[970]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[971]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[53]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[972]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[41]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[973]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[974]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 84600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[53]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[975]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[41]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[976]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[32]; FAt: 3600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[977]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 84600; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[978]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[979]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[19]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[980]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[73]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[981]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[73]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[44]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[982]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[983]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[75]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[984]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[75]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[985]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 11; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[986]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 11; FOnDay: @CRelativeDays[24]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[987]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[988]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[989]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[16]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[990]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[991]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[992]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[17]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[993]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[994]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[995]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[996]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[997]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[998]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[999]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1000]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[6]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1001]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1002]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 7200; FFmtPart: 'DD'),
    {CRules[1003]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1004]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1005]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1006]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1007]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
    {CRules[1008]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1009]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1010]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 7; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1011]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[13]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0530'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
    {CRules[1012]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[21]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1013]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'W'),
    {CRules[1014]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[3]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1015]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[37]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1016]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1017]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1018]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[8]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1019]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[74]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[39]; FAt: 86400; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0530'),
    {CRules[1020]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[50]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
    {CRules[1021]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[28]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CWT'),
    {CRules[1022]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 8; FOnDay: @CRelativeDays[20]; FAt: 82800; FAtMode: trUniversal; FOffset: 3600; FFmtPart: 'CPT'),
    {CRules[1023]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[44]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
    {CRules[1024]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
    {CRules[1025]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
    {CRules[1026]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 12; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'CDT'),
    {CRules[1027]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'CST'),
    {CRules[1028]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[35]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1029]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[17]; FAt: 86400; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1030]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[42]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1031]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[26]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1032]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[75]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[0]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1033]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[21]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1034]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1035]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1036]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[27]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1037]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1038]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1039]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 1; FOnDay: @CRelativeDays[76]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1040]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1041]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'EDT'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1042]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1043]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0430'),
+    (FInMonth: 6; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1044]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1045]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1046]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1047]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 9; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1048]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1049]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1050]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1051]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1052]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1053]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 5; FOnDay: @CRelativeDays[77]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1054]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[22]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1055]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1056]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[76]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[1057]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
+    (FInMonth: 10; FOnDay: @CRelativeDays[37]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[1058]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trUniversal; FOffset: 7200; FFmtPart: '+02'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1059]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: '+00'),
+    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1060]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[1061]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[1062]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'EDT'),
    {CRules[1063]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
    {CRules[1064]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: '-0430'),
    {CRules[1065]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
    {CRules[1066]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
    {CRules[1067]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'EST'),
    {CRules[1068]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1069]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1070]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1071]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1072]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1073]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1074]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[2]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1075]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trStandard; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1076]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trStandard; FOffset: 0; FFmtPart: 'S'),
    {CRules[1077]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[33]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1078]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1079]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[78]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1080]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 39600; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: 'D'),
    {CRules[1081]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: 'S'),
    {CRules[1082]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[16]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trUniversal; FOffset: 7200; FFmtPart: '+02'),
    {CRules[1083]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[24]; FAt: 3600; FAtMode: trUniversal; FOffset: 0; FFmtPart: '+00'),
    {CRules[1084]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1085]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1086]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1087]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1088]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1089]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 7; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1090]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 6; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1091]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1092]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1093]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1094]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1095]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1096]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1097]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1098]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1099]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[63]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1100]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1101]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1102]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1103]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1104]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 39600; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1105]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1106]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[16]; FAt: 3600; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1107]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1108]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1109]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1110]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[19]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1111]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1112]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[9]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1113]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1114]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[40]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[36]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1115]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1116]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1117]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1118]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[12]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1119]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1120]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[34]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1121]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[38]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1122]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[21]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1123]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[65]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1124]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[43]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1125]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[13]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1126]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[11]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1127]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1128]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[0]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1129]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[12]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1130]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[12]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1131]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[13]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1132]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1133]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1134]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1135]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1136]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[25]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[9]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1137]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1138]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[40]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1139]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[6]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1140]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1141]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[12]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1142]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[12]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1143]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[5]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1144]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[37]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1145]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1146]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[28]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1147]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1148]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[30]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1149]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[13]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1150]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[77]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[11]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1151]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[14]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1152]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[62]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[13]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1153]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[12]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1154]}
-    (FInMonth: 8; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[12]; FAt: 14400; FAtMode: trUniversal; FOffset: 3600; FFmtPart: ''),
    {CRules[1155]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[13]; FAt: 10800; FAtMode: trUniversal; FOffset: 0; FFmtPart: ''),
    {CRules[1156]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[9]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1157]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1158]}
-    (FInMonth: 11; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1159]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1160]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[25]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1161]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1162]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1163]}
-    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[12]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1164]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[11]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1165]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[43]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1166]}
-    (FInMonth: 6; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1167]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1168]}
-    (FInMonth: 7; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1169]}
-    (FInMonth: 1; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 5400; FFmtPart: ''),
+    (FInMonth: 2; FOnDay: @CRelativeDays[24]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1170]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[30]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1171]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[45]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1172]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[27]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1173]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1174]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[79]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1175]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1176]}
-    (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[63]; FAt: 86400; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1177]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 10; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1178]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 8; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1179]}
-    (FInMonth: 2; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1180]}
-    (FInMonth: 12; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1181]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[4]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1182]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 11; FOnDay: @CRelativeDays[44]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1183]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 1; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1184]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 3; FOnDay: @CRelativeDays[29]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1185]}
-    (FInMonth: 9; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 4; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
    {CRules[1186]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 9; FOnDay: @CRelativeDays[10]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1187]}
-    (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+    (FInMonth: 5; FOnDay: @CRelativeDays[28]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
    {CRules[1188]}
-    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+    (FInMonth: 12; FOnDay: @CRelativeDays[1]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
    {CRules[1189]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[8]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1190]}
+    (FInMonth: 6; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1191]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[40]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1192]}
+    (FInMonth: 7; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1193]}
+    (FInMonth: 1; FOnDay: @CRelativeDays[17]; FAt: 0; FAtMode: trLocal; FOffset: 5400; FFmtPart: ''),
+   {CRules[1194]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[18]; FAt: 0; FAtMode: trLocal; FOffset: 1800; FFmtPart: ''),
+   {CRules[1195]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[46]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1196]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[5]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1197]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1198]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[32]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1199]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[3]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1200]}
+    (FInMonth: 4; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1201]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[16]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1202]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[20]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1203]}
+    (FInMonth: 2; FOnDay: @CRelativeDays[7]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1204]}
+    (FInMonth: 12; FOnDay: @CRelativeDays[42]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1205]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[35]; FAt: 0; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1206]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[6]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1207]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[23]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1208]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[26]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1209]}
+    (FInMonth: 9; FOnDay: @CRelativeDays[41]; FAt: 0; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1210]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[28]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1211]}
+    (FInMonth: 10; FOnDay: @CRelativeDays[38]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: ''),
+   {CRules[1212]}
+    (FInMonth: 3; FOnDay: @CRelativeDays[45]; FAt: 7200; FAtMode: trLocal; FOffset: 0; FFmtPart: ''),
+   {CRules[1213]}
     (FInMonth: 10; FOnDay: @CRelativeDays[30]; FAt: 7200; FAtMode: trLocal; FOffset: 3600; FFmtPart: '')
   );
 
@@ -3271,265 +3321,269 @@ var
   );
 
   { Date-bound rules for Ghana family }
-  CFamily_37_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1920; FEnd: 1942; FRule: @CRules[399]),
-    (FStart: 1920; FEnd: 1942; FRule: @CRules[400])
+  CFamily_37_Arr: array[0 .. 5] of TYearBoundRule = (
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[399]),
+    (FStart: 1920; FEnd: 1942; FRule: @CRules[400]),
+    (FStart: 1920; FEnd: 1939; FRule: @CRules[401]),
+    (FStart: 1940; FEnd: 1941; FRule: @CRules[402]),
+    (FStart: 1950; FEnd: 1955; FRule: @CRules[403]),
+    (FStart: 1951; FEnd: 1956; FRule: @CRules[400])
   );
 
   { Date-bound rules for Libya family }
   CFamily_38_Arr: array[0 .. 16] of TYearBoundRule = (
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[401]),
-    (FStart: 1952; FEnd: 1952; FRule: @CRules[402]),
-    (FStart: 1953; FEnd: 1953; FRule: @CRules[403]),
-    (FStart: 1954; FEnd: 1954; FRule: @CRules[402]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[404]),
-    (FStart: 1956; FEnd: 1956; FRule: @CRules[402]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[404]),
+    (FStart: 1952; FEnd: 1952; FRule: @CRules[405]),
+    (FStart: 1953; FEnd: 1953; FRule: @CRules[406]),
+    (FStart: 1954; FEnd: 1954; FRule: @CRules[405]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[407]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[405]),
     (FStart: 1982; FEnd: 1984; FRule: @CRules[85]),
     (FStart: 1982; FEnd: 1985; FRule: @CRules[72]),
     (FStart: 1985; FEnd: 1985; FRule: @CRules[110]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[405]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[408]),
     (FStart: 1986; FEnd: 1986; FRule: @CRules[93]),
     (FStart: 1987; FEnd: 1989; FRule: @CRules[85]),
     (FStart: 1987; FEnd: 1989; FRule: @CRules[72]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[405]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[408]),
     (FStart: 1997; FEnd: 1997; FRule: @CRules[99]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[406]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[407])
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[409]),
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[410])
   );
 
   { Date-bound rules for Mauritius family }
   CFamily_39_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1982; FEnd: 1982; FRule: @CRules[408]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[409]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[410]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[411])
+    (FStart: 1982; FEnd: 1982; FRule: @CRules[411]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[412]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[413]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[414])
   );
 
   { Date-bound rules for Morocco family }
   CFamily_40_Arr: array[0 .. 182] of TYearBoundRule = (
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[412]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[413]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[414]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[415]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[416]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[417]),
-    (FStart: 1967; FEnd: 1967; FRule: @CRules[418]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[415]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[416]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[417]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[418]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[419]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[420]),
+    (FStart: 1967; FEnd: 1967; FRule: @CRules[421]),
     (FStart: 1967; FEnd: 1967; FRule: @CRules[72]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[419]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[422]),
     (FStart: 1974; FEnd: 1974; FRule: @CRules[203]),
-    (FStart: 1976; FEnd: 1977; FRule: @CRules[420]),
+    (FStart: 1976; FEnd: 1977; FRule: @CRules[423]),
     (FStart: 1976; FEnd: 1976; FRule: @CRules[339]),
     (FStart: 1977; FEnd: 1977; FRule: @CRules[111]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[421]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[424]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[340]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[421]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[424]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[203]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[421]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[422]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[423]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[424]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[425]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[426]),
-    (FStart: 2012; FEnd: 2013; FRule: @CRules[427]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[428]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[429]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[424]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[425]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[426]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[427]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[428]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[429]),
+    (FStart: 2012; FEnd: 2013; FRule: @CRules[430]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[431]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[432]),
     (FStart: 2012; FEnd: 2012; FRule: @CRules[383]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[430]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[431]),
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[433]),
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[434]),
     (FStart: 2013; FEnd: 2018; FRule: @CRules[278]),
-    (FStart: 2014; FEnd: 2018; FRule: @CRules[432]),
-    (FStart: 2014; FEnd: 2014; FRule: @CRules[433]),
-    (FStart: 2014; FEnd: 2014; FRule: @CRules[434]),
-    (FStart: 2015; FEnd: 2015; FRule: @CRules[435]),
-    (FStart: 2015; FEnd: 2015; FRule: @CRules[436]),
-    (FStart: 2016; FEnd: 2016; FRule: @CRules[437]),
-    (FStart: 2016; FEnd: 2016; FRule: @CRules[438]),
-    (FStart: 2017; FEnd: 2017; FRule: @CRules[439]),
-    (FStart: 2017; FEnd: 2017; FRule: @CRules[440]),
-    (FStart: 2018; FEnd: 2018; FRule: @CRules[441]),
-    (FStart: 2018; FEnd: 2018; FRule: @CRules[442]),
-    (FStart: 2019; FEnd: 2019; FRule: @CRules[443]),
-    (FStart: 2019; FEnd: 2019; FRule: @CRules[444]),
-    (FStart: 2020; FEnd: 2020; FRule: @CRules[445]),
-    (FStart: 2020; FEnd: 2020; FRule: @CRules[446]),
-    (FStart: 2021; FEnd: 2021; FRule: @CRules[447]),
-    (FStart: 2021; FEnd: 2021; FRule: @CRules[448]),
-    (FStart: 2022; FEnd: 2022; FRule: @CRules[449]),
-    (FStart: 2022; FEnd: 2022; FRule: @CRules[450]),
-    (FStart: 2023; FEnd: 2023; FRule: @CRules[451]),
-    (FStart: 2023; FEnd: 2023; FRule: @CRules[452]),
-    (FStart: 2024; FEnd: 2024; FRule: @CRules[453]),
-    (FStart: 2024; FEnd: 2024; FRule: @CRules[454]),
-    (FStart: 2025; FEnd: 2025; FRule: @CRules[455]),
-    (FStart: 2025; FEnd: 2025; FRule: @CRules[456]),
-    (FStart: 2026; FEnd: 2026; FRule: @CRules[457]),
-    (FStart: 2026; FEnd: 2026; FRule: @CRules[458]),
-    (FStart: 2027; FEnd: 2027; FRule: @CRules[459]),
-    (FStart: 2027; FEnd: 2027; FRule: @CRules[460]),
-    (FStart: 2028; FEnd: 2028; FRule: @CRules[461]),
-    (FStart: 2028; FEnd: 2028; FRule: @CRules[462]),
-    (FStart: 2029; FEnd: 2029; FRule: @CRules[463]),
-    (FStart: 2029; FEnd: 2029; FRule: @CRules[464]),
-    (FStart: 2029; FEnd: 2029; FRule: @CRules[465]),
-    (FStart: 2030; FEnd: 2030; FRule: @CRules[466]),
-    (FStart: 2030; FEnd: 2030; FRule: @CRules[467]),
-    (FStart: 2031; FEnd: 2031; FRule: @CRules[468]),
-    (FStart: 2031; FEnd: 2031; FRule: @CRules[469]),
-    (FStart: 2032; FEnd: 2032; FRule: @CRules[470]),
-    (FStart: 2032; FEnd: 2032; FRule: @CRules[471]),
-    (FStart: 2033; FEnd: 2033; FRule: @CRules[472]),
-    (FStart: 2033; FEnd: 2033; FRule: @CRules[473]),
-    (FStart: 2033; FEnd: 2033; FRule: @CRules[474]),
-    (FStart: 2034; FEnd: 2034; FRule: @CRules[475]),
-    (FStart: 2034; FEnd: 2034; FRule: @CRules[476]),
-    (FStart: 2035; FEnd: 2035; FRule: @CRules[477]),
-    (FStart: 2035; FEnd: 2035; FRule: @CRules[478]),
-    (FStart: 2036; FEnd: 2036; FRule: @CRules[479]),
-    (FStart: 2036; FEnd: 2036; FRule: @CRules[480]),
-    (FStart: 2037; FEnd: 2037; FRule: @CRules[481]),
-    (FStart: 2037; FEnd: 2037; FRule: @CRules[482]),
-    (FStart: 2038; FEnd: 2038; FRule: @CRules[483]),
-    (FStart: 2038; FEnd: 2038; FRule: @CRules[484]),
-    (FStart: 2039; FEnd: 2039; FRule: @CRules[485]),
-    (FStart: 2039; FEnd: 2039; FRule: @CRules[486]),
-    (FStart: 2040; FEnd: 2040; FRule: @CRules[487]),
-    (FStart: 2040; FEnd: 2040; FRule: @CRules[488]),
-    (FStart: 2041; FEnd: 2041; FRule: @CRules[489]),
+    (FStart: 2014; FEnd: 2018; FRule: @CRules[435]),
+    (FStart: 2014; FEnd: 2014; FRule: @CRules[436]),
+    (FStart: 2014; FEnd: 2014; FRule: @CRules[437]),
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[438]),
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[439]),
+    (FStart: 2016; FEnd: 2016; FRule: @CRules[440]),
+    (FStart: 2016; FEnd: 2016; FRule: @CRules[441]),
+    (FStart: 2017; FEnd: 2017; FRule: @CRules[442]),
+    (FStart: 2017; FEnd: 2017; FRule: @CRules[443]),
+    (FStart: 2018; FEnd: 2018; FRule: @CRules[444]),
+    (FStart: 2018; FEnd: 2018; FRule: @CRules[445]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[446]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[447]),
+    (FStart: 2020; FEnd: 2020; FRule: @CRules[448]),
+    (FStart: 2020; FEnd: 2020; FRule: @CRules[449]),
+    (FStart: 2021; FEnd: 2021; FRule: @CRules[450]),
+    (FStart: 2021; FEnd: 2021; FRule: @CRules[451]),
+    (FStart: 2022; FEnd: 2022; FRule: @CRules[452]),
+    (FStart: 2022; FEnd: 2022; FRule: @CRules[453]),
+    (FStart: 2023; FEnd: 2023; FRule: @CRules[454]),
+    (FStart: 2023; FEnd: 2023; FRule: @CRules[455]),
+    (FStart: 2024; FEnd: 2024; FRule: @CRules[456]),
+    (FStart: 2024; FEnd: 2024; FRule: @CRules[457]),
+    (FStart: 2025; FEnd: 2025; FRule: @CRules[458]),
+    (FStart: 2025; FEnd: 2025; FRule: @CRules[459]),
+    (FStart: 2026; FEnd: 2026; FRule: @CRules[460]),
+    (FStart: 2026; FEnd: 2026; FRule: @CRules[461]),
+    (FStart: 2027; FEnd: 2027; FRule: @CRules[462]),
+    (FStart: 2027; FEnd: 2027; FRule: @CRules[463]),
+    (FStart: 2028; FEnd: 2028; FRule: @CRules[464]),
+    (FStart: 2028; FEnd: 2028; FRule: @CRules[465]),
+    (FStart: 2029; FEnd: 2029; FRule: @CRules[466]),
+    (FStart: 2029; FEnd: 2029; FRule: @CRules[467]),
+    (FStart: 2029; FEnd: 2029; FRule: @CRules[468]),
+    (FStart: 2030; FEnd: 2030; FRule: @CRules[469]),
+    (FStart: 2030; FEnd: 2030; FRule: @CRules[470]),
+    (FStart: 2031; FEnd: 2031; FRule: @CRules[471]),
+    (FStart: 2031; FEnd: 2031; FRule: @CRules[472]),
+    (FStart: 2032; FEnd: 2032; FRule: @CRules[473]),
+    (FStart: 2032; FEnd: 2032; FRule: @CRules[474]),
+    (FStart: 2033; FEnd: 2033; FRule: @CRules[475]),
+    (FStart: 2033; FEnd: 2033; FRule: @CRules[476]),
+    (FStart: 2033; FEnd: 2033; FRule: @CRules[477]),
+    (FStart: 2034; FEnd: 2034; FRule: @CRules[478]),
+    (FStart: 2034; FEnd: 2034; FRule: @CRules[479]),
+    (FStart: 2035; FEnd: 2035; FRule: @CRules[480]),
+    (FStart: 2035; FEnd: 2035; FRule: @CRules[481]),
+    (FStart: 2036; FEnd: 2036; FRule: @CRules[482]),
+    (FStart: 2036; FEnd: 2036; FRule: @CRules[483]),
+    (FStart: 2037; FEnd: 2037; FRule: @CRules[484]),
+    (FStart: 2037; FEnd: 2037; FRule: @CRules[485]),
+    (FStart: 2038; FEnd: 2038; FRule: @CRules[486]),
+    (FStart: 2038; FEnd: 2038; FRule: @CRules[487]),
+    (FStart: 2039; FEnd: 2039; FRule: @CRules[488]),
+    (FStart: 2039; FEnd: 2039; FRule: @CRules[489]),
+    (FStart: 2040; FEnd: 2040; FRule: @CRules[490]),
+    (FStart: 2040; FEnd: 2040; FRule: @CRules[491]),
+    (FStart: 2041; FEnd: 2041; FRule: @CRules[492]),
     (FStart: 2041; FEnd: 2041; FRule: @CRules[215]),
-    (FStart: 2042; FEnd: 2042; FRule: @CRules[490]),
-    (FStart: 2042; FEnd: 2042; FRule: @CRules[491]),
-    (FStart: 2043; FEnd: 2043; FRule: @CRules[492]),
+    (FStart: 2042; FEnd: 2042; FRule: @CRules[493]),
+    (FStart: 2042; FEnd: 2042; FRule: @CRules[494]),
+    (FStart: 2043; FEnd: 2043; FRule: @CRules[495]),
     (FStart: 2043; FEnd: 2043; FRule: @CRules[104]),
-    (FStart: 2044; FEnd: 2044; FRule: @CRules[493]),
-    (FStart: 2044; FEnd: 2044; FRule: @CRules[494]),
-    (FStart: 2045; FEnd: 2045; FRule: @CRules[495]),
-    (FStart: 2045; FEnd: 2045; FRule: @CRules[496]),
-    (FStart: 2046; FEnd: 2046; FRule: @CRules[497]),
-    (FStart: 2046; FEnd: 2046; FRule: @CRules[498]),
-    (FStart: 2047; FEnd: 2047; FRule: @CRules[499]),
-    (FStart: 2047; FEnd: 2047; FRule: @CRules[500]),
-    (FStart: 2048; FEnd: 2048; FRule: @CRules[501]),
-    (FStart: 2048; FEnd: 2048; FRule: @CRules[502]),
-    (FStart: 2049; FEnd: 2049; FRule: @CRules[503]),
-    (FStart: 2049; FEnd: 2049; FRule: @CRules[504]),
-    (FStart: 2050; FEnd: 2050; FRule: @CRules[505]),
-    (FStart: 2050; FEnd: 2050; FRule: @CRules[506]),
-    (FStart: 2051; FEnd: 2051; FRule: @CRules[507]),
-    (FStart: 2051; FEnd: 2051; FRule: @CRules[508]),
-    (FStart: 2052; FEnd: 2052; FRule: @CRules[509]),
-    (FStart: 2052; FEnd: 2052; FRule: @CRules[510]),
-    (FStart: 2053; FEnd: 2053; FRule: @CRules[511]),
-    (FStart: 2053; FEnd: 2053; FRule: @CRules[512]),
-    (FStart: 2054; FEnd: 2054; FRule: @CRules[513]),
-    (FStart: 2054; FEnd: 2054; FRule: @CRules[514]),
-    (FStart: 2055; FEnd: 2055; FRule: @CRules[515]),
-    (FStart: 2055; FEnd: 2055; FRule: @CRules[516]),
-    (FStart: 2056; FEnd: 2056; FRule: @CRules[517]),
-    (FStart: 2056; FEnd: 2056; FRule: @CRules[518]),
-    (FStart: 2057; FEnd: 2057; FRule: @CRules[519]),
-    (FStart: 2057; FEnd: 2057; FRule: @CRules[520]),
-    (FStart: 2058; FEnd: 2058; FRule: @CRules[521]),
-    (FStart: 2058; FEnd: 2058; FRule: @CRules[522]),
-    (FStart: 2059; FEnd: 2059; FRule: @CRules[523]),
-    (FStart: 2059; FEnd: 2059; FRule: @CRules[524]),
-    (FStart: 2060; FEnd: 2060; FRule: @CRules[525]),
-    (FStart: 2060; FEnd: 2060; FRule: @CRules[526]),
-    (FStart: 2061; FEnd: 2061; FRule: @CRules[527]),
-    (FStart: 2061; FEnd: 2061; FRule: @CRules[528]),
-    (FStart: 2062; FEnd: 2062; FRule: @CRules[529]),
-    (FStart: 2062; FEnd: 2062; FRule: @CRules[530]),
-    (FStart: 2062; FEnd: 2062; FRule: @CRules[531]),
-    (FStart: 2063; FEnd: 2063; FRule: @CRules[532]),
-    (FStart: 2063; FEnd: 2063; FRule: @CRules[533]),
-    (FStart: 2064; FEnd: 2064; FRule: @CRules[534]),
-    (FStart: 2064; FEnd: 2064; FRule: @CRules[535]),
-    (FStart: 2065; FEnd: 2065; FRule: @CRules[536]),
-    (FStart: 2065; FEnd: 2065; FRule: @CRules[537]),
-    (FStart: 2066; FEnd: 2066; FRule: @CRules[538]),
-    (FStart: 2066; FEnd: 2066; FRule: @CRules[539]),
-    (FStart: 2066; FEnd: 2066; FRule: @CRules[540]),
-    (FStart: 2067; FEnd: 2067; FRule: @CRules[541]),
-    (FStart: 2067; FEnd: 2067; FRule: @CRules[542]),
-    (FStart: 2068; FEnd: 2068; FRule: @CRules[543]),
-    (FStart: 2068; FEnd: 2068; FRule: @CRules[544]),
-    (FStart: 2069; FEnd: 2069; FRule: @CRules[545]),
-    (FStart: 2069; FEnd: 2069; FRule: @CRules[546]),
-    (FStart: 2070; FEnd: 2070; FRule: @CRules[547]),
-    (FStart: 2070; FEnd: 2070; FRule: @CRules[548]),
-    (FStart: 2071; FEnd: 2071; FRule: @CRules[549]),
-    (FStart: 2071; FEnd: 2071; FRule: @CRules[550]),
-    (FStart: 2072; FEnd: 2072; FRule: @CRules[551]),
-    (FStart: 2072; FEnd: 2072; FRule: @CRules[552]),
-    (FStart: 2073; FEnd: 2073; FRule: @CRules[553]),
+    (FStart: 2044; FEnd: 2044; FRule: @CRules[496]),
+    (FStart: 2044; FEnd: 2044; FRule: @CRules[497]),
+    (FStart: 2045; FEnd: 2045; FRule: @CRules[498]),
+    (FStart: 2045; FEnd: 2045; FRule: @CRules[499]),
+    (FStart: 2046; FEnd: 2046; FRule: @CRules[500]),
+    (FStart: 2046; FEnd: 2046; FRule: @CRules[501]),
+    (FStart: 2047; FEnd: 2047; FRule: @CRules[502]),
+    (FStart: 2047; FEnd: 2047; FRule: @CRules[503]),
+    (FStart: 2048; FEnd: 2048; FRule: @CRules[504]),
+    (FStart: 2048; FEnd: 2048; FRule: @CRules[505]),
+    (FStart: 2049; FEnd: 2049; FRule: @CRules[506]),
+    (FStart: 2049; FEnd: 2049; FRule: @CRules[507]),
+    (FStart: 2050; FEnd: 2050; FRule: @CRules[508]),
+    (FStart: 2050; FEnd: 2050; FRule: @CRules[509]),
+    (FStart: 2051; FEnd: 2051; FRule: @CRules[510]),
+    (FStart: 2051; FEnd: 2051; FRule: @CRules[511]),
+    (FStart: 2052; FEnd: 2052; FRule: @CRules[512]),
+    (FStart: 2052; FEnd: 2052; FRule: @CRules[513]),
+    (FStart: 2053; FEnd: 2053; FRule: @CRules[514]),
+    (FStart: 2053; FEnd: 2053; FRule: @CRules[515]),
+    (FStart: 2054; FEnd: 2054; FRule: @CRules[516]),
+    (FStart: 2054; FEnd: 2054; FRule: @CRules[517]),
+    (FStart: 2055; FEnd: 2055; FRule: @CRules[518]),
+    (FStart: 2055; FEnd: 2055; FRule: @CRules[519]),
+    (FStart: 2056; FEnd: 2056; FRule: @CRules[520]),
+    (FStart: 2056; FEnd: 2056; FRule: @CRules[521]),
+    (FStart: 2057; FEnd: 2057; FRule: @CRules[522]),
+    (FStart: 2057; FEnd: 2057; FRule: @CRules[523]),
+    (FStart: 2058; FEnd: 2058; FRule: @CRules[524]),
+    (FStart: 2058; FEnd: 2058; FRule: @CRules[525]),
+    (FStart: 2059; FEnd: 2059; FRule: @CRules[526]),
+    (FStart: 2059; FEnd: 2059; FRule: @CRules[527]),
+    (FStart: 2060; FEnd: 2060; FRule: @CRules[528]),
+    (FStart: 2060; FEnd: 2060; FRule: @CRules[529]),
+    (FStart: 2061; FEnd: 2061; FRule: @CRules[530]),
+    (FStart: 2061; FEnd: 2061; FRule: @CRules[531]),
+    (FStart: 2062; FEnd: 2062; FRule: @CRules[532]),
+    (FStart: 2062; FEnd: 2062; FRule: @CRules[533]),
+    (FStart: 2062; FEnd: 2062; FRule: @CRules[534]),
+    (FStart: 2063; FEnd: 2063; FRule: @CRules[535]),
+    (FStart: 2063; FEnd: 2063; FRule: @CRules[536]),
+    (FStart: 2064; FEnd: 2064; FRule: @CRules[537]),
+    (FStart: 2064; FEnd: 2064; FRule: @CRules[538]),
+    (FStart: 2065; FEnd: 2065; FRule: @CRules[539]),
+    (FStart: 2065; FEnd: 2065; FRule: @CRules[540]),
+    (FStart: 2066; FEnd: 2066; FRule: @CRules[541]),
+    (FStart: 2066; FEnd: 2066; FRule: @CRules[542]),
+    (FStart: 2066; FEnd: 2066; FRule: @CRules[543]),
+    (FStart: 2067; FEnd: 2067; FRule: @CRules[544]),
+    (FStart: 2067; FEnd: 2067; FRule: @CRules[545]),
+    (FStart: 2068; FEnd: 2068; FRule: @CRules[546]),
+    (FStart: 2068; FEnd: 2068; FRule: @CRules[547]),
+    (FStart: 2069; FEnd: 2069; FRule: @CRules[548]),
+    (FStart: 2069; FEnd: 2069; FRule: @CRules[549]),
+    (FStart: 2070; FEnd: 2070; FRule: @CRules[550]),
+    (FStart: 2070; FEnd: 2070; FRule: @CRules[551]),
+    (FStart: 2071; FEnd: 2071; FRule: @CRules[552]),
+    (FStart: 2071; FEnd: 2071; FRule: @CRules[553]),
+    (FStart: 2072; FEnd: 2072; FRule: @CRules[554]),
+    (FStart: 2072; FEnd: 2072; FRule: @CRules[555]),
+    (FStart: 2073; FEnd: 2073; FRule: @CRules[556]),
     (FStart: 2073; FEnd: 2073; FRule: @CRules[371]),
-    (FStart: 2074; FEnd: 2074; FRule: @CRules[554]),
-    (FStart: 2074; FEnd: 2074; FRule: @CRules[555]),
-    (FStart: 2075; FEnd: 2075; FRule: @CRules[556]),
-    (FStart: 2075; FEnd: 2075; FRule: @CRules[557]),
-    (FStart: 2076; FEnd: 2076; FRule: @CRules[558]),
-    (FStart: 2076; FEnd: 2076; FRule: @CRules[559]),
-    (FStart: 2077; FEnd: 2077; FRule: @CRules[560]),
-    (FStart: 2077; FEnd: 2077; FRule: @CRules[561]),
-    (FStart: 2078; FEnd: 2078; FRule: @CRules[562]),
-    (FStart: 2078; FEnd: 2078; FRule: @CRules[563]),
-    (FStart: 2079; FEnd: 2079; FRule: @CRules[564]),
-    (FStart: 2079; FEnd: 2079; FRule: @CRules[565]),
-    (FStart: 2080; FEnd: 2080; FRule: @CRules[566]),
-    (FStart: 2080; FEnd: 2080; FRule: @CRules[567]),
-    (FStart: 2081; FEnd: 2081; FRule: @CRules[568]),
-    (FStart: 2081; FEnd: 2081; FRule: @CRules[569]),
-    (FStart: 2082; FEnd: 2082; FRule: @CRules[570]),
-    (FStart: 2082; FEnd: 2082; FRule: @CRules[571]),
-    (FStart: 2083; FEnd: 2083; FRule: @CRules[572]),
-    (FStart: 2083; FEnd: 2083; FRule: @CRules[573]),
-    (FStart: 2084; FEnd: 2084; FRule: @CRules[574]),
-    (FStart: 2084; FEnd: 2084; FRule: @CRules[575]),
-    (FStart: 2085; FEnd: 2085; FRule: @CRules[576]),
-    (FStart: 2085; FEnd: 2085; FRule: @CRules[577]),
-    (FStart: 2086; FEnd: 2086; FRule: @CRules[578]),
-    (FStart: 2086; FEnd: 2086; FRule: @CRules[579]),
-    (FStart: 2087; FEnd: 2087; FRule: @CRules[580]),
-    (FStart: 2087; FEnd: 2087; FRule: @CRules[581])
+    (FStart: 2074; FEnd: 2074; FRule: @CRules[557]),
+    (FStart: 2074; FEnd: 2074; FRule: @CRules[558]),
+    (FStart: 2075; FEnd: 2075; FRule: @CRules[559]),
+    (FStart: 2075; FEnd: 2075; FRule: @CRules[560]),
+    (FStart: 2076; FEnd: 2076; FRule: @CRules[561]),
+    (FStart: 2076; FEnd: 2076; FRule: @CRules[562]),
+    (FStart: 2077; FEnd: 2077; FRule: @CRules[563]),
+    (FStart: 2077; FEnd: 2077; FRule: @CRules[564]),
+    (FStart: 2078; FEnd: 2078; FRule: @CRules[565]),
+    (FStart: 2078; FEnd: 2078; FRule: @CRules[566]),
+    (FStart: 2079; FEnd: 2079; FRule: @CRules[567]),
+    (FStart: 2079; FEnd: 2079; FRule: @CRules[568]),
+    (FStart: 2080; FEnd: 2080; FRule: @CRules[569]),
+    (FStart: 2080; FEnd: 2080; FRule: @CRules[570]),
+    (FStart: 2081; FEnd: 2081; FRule: @CRules[571]),
+    (FStart: 2081; FEnd: 2081; FRule: @CRules[572]),
+    (FStart: 2082; FEnd: 2082; FRule: @CRules[573]),
+    (FStart: 2082; FEnd: 2082; FRule: @CRules[574]),
+    (FStart: 2083; FEnd: 2083; FRule: @CRules[575]),
+    (FStart: 2083; FEnd: 2083; FRule: @CRules[576]),
+    (FStart: 2084; FEnd: 2084; FRule: @CRules[577]),
+    (FStart: 2084; FEnd: 2084; FRule: @CRules[578]),
+    (FStart: 2085; FEnd: 2085; FRule: @CRules[579]),
+    (FStart: 2085; FEnd: 2085; FRule: @CRules[580]),
+    (FStart: 2086; FEnd: 2086; FRule: @CRules[581]),
+    (FStart: 2086; FEnd: 2086; FRule: @CRules[582]),
+    (FStart: 2087; FEnd: 2087; FRule: @CRules[583]),
+    (FStart: 2087; FEnd: 2087; FRule: @CRules[584])
   );
 
   { Date-bound rules for Namibia family }
   CFamily_41_Arr: array[0 .. 2] of TYearBoundRule = (
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[582]),
-    (FStart: 1994; FEnd: 2017; FRule: @CRules[583]),
-    (FStart: 1995; FEnd: 2017; FRule: @CRules[584])
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[585]),
+    (FStart: 1994; FEnd: 2017; FRule: @CRules[586]),
+    (FStart: 1995; FEnd: 2017; FRule: @CRules[587])
   );
 
   { Date-bound rules for SA family }
   CFamily_42_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1942; FEnd: 1943; FRule: @CRules[585]),
-    (FStart: 1943; FEnd: 1944; FRule: @CRules[586])
+    (FStart: 1942; FEnd: 1943; FRule: @CRules[588]),
+    (FStart: 1943; FEnd: 1944; FRule: @CRules[589])
   );
 
   { Date-bound rules for Sudan family }
   CFamily_43_Arr: array[0 .. 3] of TYearBoundRule = (
     (FStart: 1970; FEnd: 1970; FRule: @CRules[91]),
-    (FStart: 1970; FEnd: 1985; FRule: @CRules[587]),
-    (FStart: 1971; FEnd: 1971; FRule: @CRules[588]),
-    (FStart: 1972; FEnd: 1985; FRule: @CRules[589])
+    (FStart: 1970; FEnd: 1985; FRule: @CRules[590]),
+    (FStart: 1971; FEnd: 1971; FRule: @CRules[591]),
+    (FStart: 1972; FEnd: 1985; FRule: @CRules[592])
   );
 
   { Date-bound rules for Tunisia family }
   CFamily_44_Arr: array[0 .. 24] of TYearBoundRule = (
     (FStart: 1939; FEnd: 1939; FRule: @CRules[181]),
     (FStart: 1939; FEnd: 1939; FRule: @CRules[182]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[590]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[593]),
     (FStart: 1941; FEnd: 1941; FRule: @CRules[349]),
     (FStart: 1942; FEnd: 1942; FRule: @CRules[112]),
     (FStart: 1942; FEnd: 1942; FRule: @CRules[87]),
     (FStart: 1943; FEnd: 1943; FRule: @CRules[60]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[591]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[594]),
     (FStart: 1943; FEnd: 1943; FRule: @CRules[293]),
     (FStart: 1943; FEnd: 1943; FRule: @CRules[61]),
     (FStart: 1944; FEnd: 1945; FRule: @CRules[62]),
     (FStart: 1944; FEnd: 1944; FRule: @CRules[347]),
     (FStart: 1945; FEnd: 1945; FRule: @CRules[276]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[588]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[592]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[591]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[595]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[91]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[72]),
     (FStart: 1988; FEnd: 1988; FRule: @CRules[261]),
@@ -3537,19 +3591,19 @@ var
     (FStart: 1989; FEnd: 1989; FRule: @CRules[346]),
     (FStart: 1990; FEnd: 1990; FRule: @CRules[91]),
     (FStart: 2005; FEnd: 2005; FRule: @CRules[91]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[593]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[596]),
     (FStart: 2006; FEnd: 2008; FRule: @CRules[68]),
     (FStart: 2006; FEnd: 2008; FRule: @CRules[69])
   );
 
   { Date-bound rules for Aus family }
   CFamily_45_Arr: array[0 .. 6] of TYearBoundRule = (
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[594]),
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[595]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[596]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[597]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[598]),
     (FStart: 1942; FEnd: 1942; FRule: @CRules[597]),
     (FStart: 1942; FEnd: 1942; FRule: @CRules[598]),
-    (FStart: 1943; FEnd: 1944; FRule: @CRules[599]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[599]),
+    (FStart: 1943; FEnd: 1944; FRule: @CRules[598]),
     (FStart: 1943; FEnd: 1943; FRule: @CRules[600])
   );
 
@@ -3562,7 +3616,7 @@ var
     (FStart: 1991; FEnd: 1991; FRule: @CRules[603]),
     (FStart: 1992; FEnd: 1992; FRule: @CRules[602]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[604]),
-    (FStart: 2007; FEnd: 2009; FRule: @CRules[599]),
+    (FStart: 2007; FEnd: 2009; FRule: @CRules[598]),
     (FStart: 2007; FEnd: 2008; FRule: @CRules[601])
   );
 
@@ -3592,33 +3646,37 @@ var
     (FStart: 1992; FEnd: 1992; FRule: @CRules[610]),
     (FStart: 1993; FEnd: 1993; FRule: @CRules[611]),
     (FStart: 1994; FEnd: 1994; FRule: @CRules[612]),
-    (FStart: 1995; FEnd: 2005; FRule: @CRules[599]),
+    (FStart: 1995; FEnd: 2005; FRule: @CRules[598]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[613]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[599]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[598]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[614]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[615])
   );
 
   { Date-bound rules for AT family }
-  CFamily_50_Arr: array[0 .. 18] of TYearBoundRule = (
+  CFamily_50_Arr: array[0 .. 22] of TYearBoundRule = (
+    (FStart: 1916; FEnd: 1916; FRule: @CRules[615]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[598]),
+    (FStart: 1917; FEnd: 1918; FRule: @CRules[616]),
+    (FStart: 1918; FEnd: 1919; FRule: @CRules[602]),
     (FStart: 1967; FEnd: 1967; FRule: @CRules[615]),
-    (FStart: 1968; FEnd: 1968; FRule: @CRules[599]),
+    (FStart: 1968; FEnd: 1968; FRule: @CRules[617]),
     (FStart: 1968; FEnd: 1985; FRule: @CRules[601]),
-    (FStart: 1969; FEnd: 1971; FRule: @CRules[616]),
+    (FStart: 1969; FEnd: 1971; FRule: @CRules[618]),
     (FStart: 1972; FEnd: 1972; FRule: @CRules[605]),
     (FStart: 1973; FEnd: 1981; FRule: @CRules[602]),
-    (FStart: 1982; FEnd: 1983; FRule: @CRules[599]),
+    (FStart: 1982; FEnd: 1983; FRule: @CRules[598]),
     (FStart: 1984; FEnd: 1986; FRule: @CRules[602]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[617]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[619]),
     (FStart: 1987; FEnd: 1990; FRule: @CRules[608]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[618]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[616]),
     (FStart: 1988; FEnd: 1990; FRule: @CRules[601]),
     (FStart: 1991; FEnd: 1999; FRule: @CRules[615]),
-    (FStart: 1991; FEnd: 2005; FRule: @CRules[599]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[619]),
+    (FStart: 1991; FEnd: 2005; FRule: @CRules[598]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[620]),
     (FStart: 2001; FEnd: 9999; FRule: @CRules[615]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[614]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[599]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[598]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[614])
   );
 
@@ -3628,14 +3686,14 @@ var
     (FStart: 1972; FEnd: 1972; FRule: @CRules[605]),
     (FStart: 1973; FEnd: 1985; FRule: @CRules[602]),
     (FStart: 1986; FEnd: 1990; FRule: @CRules[608]),
-    (FStart: 1986; FEnd: 1987; FRule: @CRules[617]),
+    (FStart: 1986; FEnd: 1987; FRule: @CRules[619]),
     (FStart: 1988; FEnd: 1999; FRule: @CRules[601]),
     (FStart: 1991; FEnd: 1994; FRule: @CRules[602]),
-    (FStart: 1995; FEnd: 2005; FRule: @CRules[599]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[619]),
+    (FStart: 1995; FEnd: 2005; FRule: @CRules[598]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[620]),
     (FStart: 2001; FEnd: 2007; FRule: @CRules[601]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[614]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[599]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[598]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[614]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[615])
   );
@@ -3651,297 +3709,285 @@ var
     (FStart: 1986; FEnd: 1986; FRule: @CRules[606]),
     (FStart: 1987; FEnd: 1999; FRule: @CRules[601]),
     (FStart: 1990; FEnd: 1995; FRule: @CRules[602]),
-    (FStart: 1996; FEnd: 2005; FRule: @CRules[599]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[619]),
+    (FStart: 1996; FEnd: 2005; FRule: @CRules[598]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[620]),
     (FStart: 2001; FEnd: 2007; FRule: @CRules[601]),
     (FStart: 2006; FEnd: 2006; FRule: @CRules[614]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[599]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[598]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[614]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[615])
   );
 
   { Date-bound rules for LH family }
   CFamily_53_Arr: array[0 .. 13] of TYearBoundRule = (
-    (FStart: 1981; FEnd: 1984; FRule: @CRules[410]),
-    (FStart: 1982; FEnd: 1985; FRule: @CRules[620]),
-    (FStart: 1985; FEnd: 1985; FRule: @CRules[621]),
-    (FStart: 1986; FEnd: 1989; FRule: @CRules[586]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[622]),
-    (FStart: 1987; FEnd: 1999; FRule: @CRules[621]),
-    (FStart: 1990; FEnd: 1995; FRule: @CRules[620]),
-    (FStart: 1996; FEnd: 2005; FRule: @CRules[411]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[623]),
-    (FStart: 2001; FEnd: 2007; FRule: @CRules[621]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[624]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[411]),
-    (FStart: 2008; FEnd: 9999; FRule: @CRules[624]),
-    (FStart: 2008; FEnd: 9999; FRule: @CRules[625])
+    (FStart: 1981; FEnd: 1984; FRule: @CRules[413]),
+    (FStart: 1982; FEnd: 1985; FRule: @CRules[621]),
+    (FStart: 1985; FEnd: 1985; FRule: @CRules[622]),
+    (FStart: 1986; FEnd: 1989; FRule: @CRules[589]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[623]),
+    (FStart: 1987; FEnd: 1999; FRule: @CRules[622]),
+    (FStart: 1990; FEnd: 1995; FRule: @CRules[621]),
+    (FStart: 1996; FEnd: 2005; FRule: @CRules[414]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[624]),
+    (FStart: 2001; FEnd: 2007; FRule: @CRules[622]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[625]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[414]),
+    (FStart: 2008; FEnd: 9999; FRule: @CRules[625]),
+    (FStart: 2008; FEnd: 9999; FRule: @CRules[626])
   );
 
   { Date-bound rules for Fiji family }
   CFamily_54_Arr: array[0 .. 12] of TYearBoundRule = (
-    (FStart: 1998; FEnd: 1999; FRule: @CRules[626]),
-    (FStart: 1999; FEnd: 2000; FRule: @CRules[627]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[628]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[629]),
-    (FStart: 2010; FEnd: 2013; FRule: @CRules[630]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[631]),
-    (FStart: 2012; FEnd: 2013; FRule: @CRules[632]),
-    (FStart: 2014; FEnd: 2014; FRule: @CRules[633]),
-    (FStart: 2014; FEnd: 2018; FRule: @CRules[626]),
-    (FStart: 2015; FEnd: 9999; FRule: @CRules[634]),
-    (FStart: 2019; FEnd: 2019; FRule: @CRules[635]),
-    (FStart: 2020; FEnd: 2020; FRule: @CRules[636]),
-    (FStart: 2021; FEnd: 9999; FRule: @CRules[635])
+    (FStart: 1998; FEnd: 1999; FRule: @CRules[627]),
+    (FStart: 1999; FEnd: 2000; FRule: @CRules[628]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[629]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[630]),
+    (FStart: 2010; FEnd: 2013; FRule: @CRules[631]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[632]),
+    (FStart: 2012; FEnd: 2013; FRule: @CRules[633]),
+    (FStart: 2014; FEnd: 2014; FRule: @CRules[634]),
+    (FStart: 2014; FEnd: 2018; FRule: @CRules[627]),
+    (FStart: 2015; FEnd: 9999; FRule: @CRules[635]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[636]),
+    (FStart: 2020; FEnd: 2020; FRule: @CRules[637]),
+    (FStart: 2021; FEnd: 9999; FRule: @CRules[636])
   );
 
   { Date-bound rules for Guam family }
   CFamily_55_Arr: array[0 .. 13] of TYearBoundRule = (
-    (FStart: 1959; FEnd: 1959; FRule: @CRules[637]),
-    (FStart: 1961; FEnd: 1961; FRule: @CRules[638]),
-    (FStart: 1967; FEnd: 1967; FRule: @CRules[639]),
-    (FStart: 1969; FEnd: 1969; FRule: @CRules[640]),
+    (FStart: 1959; FEnd: 1959; FRule: @CRules[638]),
+    (FStart: 1961; FEnd: 1961; FRule: @CRules[639]),
+    (FStart: 1967; FEnd: 1967; FRule: @CRules[640]),
     (FStart: 1969; FEnd: 1969; FRule: @CRules[641]),
     (FStart: 1969; FEnd: 1969; FRule: @CRules[642]),
-    (FStart: 1970; FEnd: 1971; FRule: @CRules[643]),
+    (FStart: 1969; FEnd: 1969; FRule: @CRules[643]),
     (FStart: 1970; FEnd: 1971; FRule: @CRules[644]),
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[645]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[646]),
-    (FStart: 1976; FEnd: 1976; FRule: @CRules[647]),
+    (FStart: 1970; FEnd: 1971; FRule: @CRules[645]),
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[646]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[647]),
     (FStart: 1976; FEnd: 1976; FRule: @CRules[648]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[649]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[650])
+    (FStart: 1976; FEnd: 1976; FRule: @CRules[649]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[650]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[651])
   );
 
   { Date-bound rules for NC family }
   CFamily_56_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1977; FEnd: 1978; FRule: @CRules[651]),
-    (FStart: 1978; FEnd: 1979; FRule: @CRules[652]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[653]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[654])
+    (FStart: 1977; FEnd: 1978; FRule: @CRules[652]),
+    (FStart: 1978; FEnd: 1979; FRule: @CRules[653]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[654]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[655])
   );
 
   { Date-bound rules for NZ family }
   CFamily_57_Arr: array[0 .. 15] of TYearBoundRule = (
-    (FStart: 1927; FEnd: 1927; FRule: @CRules[655]),
-    (FStart: 1928; FEnd: 1928; FRule: @CRules[656]),
-    (FStart: 1928; FEnd: 1933; FRule: @CRules[657]),
-    (FStart: 1929; FEnd: 1933; FRule: @CRules[658]),
-    (FStart: 1934; FEnd: 1940; FRule: @CRules[659]),
+    (FStart: 1927; FEnd: 1927; FRule: @CRules[656]),
+    (FStart: 1928; FEnd: 1928; FRule: @CRules[657]),
+    (FStart: 1928; FEnd: 1933; FRule: @CRules[658]),
+    (FStart: 1929; FEnd: 1933; FRule: @CRules[659]),
     (FStart: 1934; FEnd: 1940; FRule: @CRules[660]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[661]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[662]),
+    (FStart: 1934; FEnd: 1940; FRule: @CRules[661]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[662]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[663]),
     (FStart: 1975; FEnd: 1975; FRule: @CRules[605]),
     (FStart: 1975; FEnd: 1988; FRule: @CRules[601]),
     (FStart: 1976; FEnd: 1989; FRule: @CRules[602]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[667]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[668]),
     (FStart: 1990; FEnd: 2006; FRule: @CRules[615]),
     (FStart: 1990; FEnd: 2007; FRule: @CRules[608]),
-    (FStart: 2007; FEnd: 9999; FRule: @CRules[671]),
+    (FStart: 2007; FEnd: 9999; FRule: @CRules[672]),
     (FStart: 2008; FEnd: 9999; FRule: @CRules[614])
   );
 
   { Date-bound rules for Chatham family }
   CFamily_58_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[663]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[664]),
-    (FStart: 1975; FEnd: 1988; FRule: @CRules[665]),
-    (FStart: 1976; FEnd: 1989; FRule: @CRules[666]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[668]),
-    (FStart: 1990; FEnd: 2006; FRule: @CRules[669]),
-    (FStart: 1990; FEnd: 2007; FRule: @CRules[670]),
-    (FStart: 2007; FEnd: 9999; FRule: @CRules[672]),
-    (FStart: 2008; FEnd: 9999; FRule: @CRules[673])
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[664]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[665]),
+    (FStart: 1975; FEnd: 1988; FRule: @CRules[666]),
+    (FStart: 1976; FEnd: 1989; FRule: @CRules[667]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[669]),
+    (FStart: 1990; FEnd: 2006; FRule: @CRules[670]),
+    (FStart: 1990; FEnd: 2007; FRule: @CRules[671]),
+    (FStart: 2007; FEnd: 9999; FRule: @CRules[673]),
+    (FStart: 2008; FEnd: 9999; FRule: @CRules[674])
   );
 
   { Date-bound rules for Cook family }
   CFamily_59_Arr: array[0 .. 2] of TYearBoundRule = (
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[674]),
-    (FStart: 1979; FEnd: 1991; FRule: @CRules[675]),
-    (FStart: 1979; FEnd: 1990; FRule: @CRules[676])
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[675]),
+    (FStart: 1979; FEnd: 1991; FRule: @CRules[676]),
+    (FStart: 1979; FEnd: 1990; FRule: @CRules[677])
   );
 
   { Date-bound rules for WS family }
   CFamily_60_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[677]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[678]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[678]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[679]),
-    (FStart: 2012; FEnd: 9999; FRule: @CRules[680]),
-    (FStart: 2012; FEnd: 9999; FRule: @CRules[681])
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[680]),
+    (FStart: 2012; FEnd: 9999; FRule: @CRules[681]),
+    (FStart: 2012; FEnd: 9999; FRule: @CRules[682])
   );
 
   { Date-bound rules for Tonga family }
   CFamily_61_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[682]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[683]),
-    (FStart: 2000; FEnd: 2001; FRule: @CRules[626]),
-    (FStart: 2001; FEnd: 2002; FRule: @CRules[684]),
-    (FStart: 2016; FEnd: 2016; FRule: @CRules[626]),
-    (FStart: 2017; FEnd: 2017; FRule: @CRules[685])
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[683]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[684]),
+    (FStart: 2000; FEnd: 2001; FRule: @CRules[627]),
+    (FStart: 2001; FEnd: 2002; FRule: @CRules[685]),
+    (FStart: 2016; FEnd: 2016; FRule: @CRules[627]),
+    (FStart: 2017; FEnd: 2017; FRule: @CRules[686])
   );
 
   { Date-bound rules for Vanuatu family }
   CFamily_62_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[686]),
-    (FStart: 1984; FEnd: 1991; FRule: @CRules[687]),
-    (FStart: 1984; FEnd: 1984; FRule: @CRules[688]),
-    (FStart: 1985; FEnd: 1991; FRule: @CRules[689]),
-    (FStart: 1992; FEnd: 1993; FRule: @CRules[690]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[691])
-  );
-
-  { Date-bound rules for SystemV family }
-  CFamily_63_Arr: array[0 .. 7] of TYearBoundRule = (
-    (FStart: 1; FEnd: 1973; FRule: @CRules[643]),
-    (FStart: 1; FEnd: 1973; FRule: @CRules[162]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[692]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[693]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[694]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[162]),
-    (FStart: 1976; FEnd: 9999; FRule: @CRules[643]),
-    (FStart: 1976; FEnd: 9999; FRule: @CRules[162])
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[687]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[688]),
+    (FStart: 1983; FEnd: 1991; FRule: @CRules[689]),
+    (FStart: 1984; FEnd: 1991; FRule: @CRules[690]),
+    (FStart: 1992; FEnd: 1993; FRule: @CRules[691]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[692])
   );
 
   { Date-bound rules for EUAsia family }
-  CFamily_64_Arr: array[0 .. 2] of TYearBoundRule = (
+  CFamily_63_Arr: array[0 .. 2] of TYearBoundRule = (
     (FStart: 1981; FEnd: 9999; FRule: @CRules[53]),
     (FStart: 1979; FEnd: 1995; FRule: @CRules[51]),
     (FStart: 1996; FEnd: 9999; FRule: @CRules[54])
   );
 
   { Date-bound rules for E-EurAsia family }
-  CFamily_65_Arr: array[0 .. 2] of TYearBoundRule = (
-    (FStart: 1981; FEnd: 9999; FRule: @CRules[695]),
+  CFamily_64_Arr: array[0 .. 2] of TYearBoundRule = (
+    (FStart: 1981; FEnd: 9999; FRule: @CRules[693]),
     (FStart: 1979; FEnd: 1995; FRule: @CRules[71]),
     (FStart: 1996; FEnd: 9999; FRule: @CRules[74])
   );
 
   { Date-bound rules for RussiaAsia family }
-  CFamily_66_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1981; FEnd: 1984; FRule: @CRules[696]),
+  CFamily_65_Arr: array[0 .. 4] of TYearBoundRule = (
+    (FStart: 1981; FEnd: 1984; FRule: @CRules[694]),
     (FStart: 1981; FEnd: 1983; FRule: @CRules[72]),
     (FStart: 1984; FEnd: 1995; FRule: @CRules[66]),
-    (FStart: 1985; FEnd: 2010; FRule: @CRules[432]),
+    (FStart: 1985; FEnd: 2010; FRule: @CRules[435]),
     (FStart: 1996; FEnd: 2010; FRule: @CRules[69])
   );
 
   { Date-bound rules for Armenia family }
-  CFamily_67_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[432]),
+  CFamily_66_Arr: array[0 .. 1] of TYearBoundRule = (
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[435]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[69])
   );
 
   { Date-bound rules for Azer family }
-  CFamily_68_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1997; FEnd: 2015; FRule: @CRules[697]),
-    (FStart: 1997; FEnd: 2015; FRule: @CRules[698])
+  CFamily_67_Arr: array[0 .. 1] of TYearBoundRule = (
+    (FStart: 1997; FEnd: 2015; FRule: @CRules[695]),
+    (FStart: 1997; FEnd: 2015; FRule: @CRules[696])
   );
 
   { Date-bound rules for Dhaka family }
-  CFamily_69_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[699]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[700])
+  CFamily_68_Arr: array[0 .. 1] of TYearBoundRule = (
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[697]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[698])
   );
 
   { Date-bound rules for Shang family }
-  CFamily_70_Arr: array[0 .. 13] of TYearBoundRule = (
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[701]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[702]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[703]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[704]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[705]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[706]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[707]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[708]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[709]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[702]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[710]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[711]),
-    (FStart: 1948; FEnd: 1949; FRule: @CRules[712]),
-    (FStart: 1948; FEnd: 1949; FRule: @CRules[702])
+  CFamily_69_Arr: array[0 .. 13] of TYearBoundRule = (
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[699]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[700]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[701]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[702]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[703]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[704]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[705]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[706]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[707]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[700]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[708]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[709]),
+    (FStart: 1948; FEnd: 1949; FRule: @CRules[710]),
+    (FStart: 1948; FEnd: 1949; FRule: @CRules[700])
   );
 
   { Date-bound rules for PRC family }
-  CFamily_71_Arr: array[0 .. 2] of TYearBoundRule = (
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[713]),
-    (FStart: 1986; FEnd: 1991; FRule: @CRules[714]),
-    (FStart: 1987; FEnd: 1991; FRule: @CRules[715])
+  CFamily_70_Arr: array[0 .. 2] of TYearBoundRule = (
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[711]),
+    (FStart: 1986; FEnd: 1991; FRule: @CRules[712]),
+    (FStart: 1987; FEnd: 1991; FRule: @CRules[713])
   );
 
   { Date-bound rules for HK family }
-  CFamily_72_Arr: array[0 .. 13] of TYearBoundRule = (
+  CFamily_71_Arr: array[0 .. 13] of TYearBoundRule = (
     (FStart: 1946; FEnd: 1946; FRule: @CRules[275]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[716]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[717]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[718]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[719]),
-    (FStart: 1948; FEnd: 1952; FRule: @CRules[720]),
-    (FStart: 1949; FEnd: 1953; FRule: @CRules[721]),
-    (FStart: 1953; FEnd: 1964; FRule: @CRules[722]),
-    (FStart: 1954; FEnd: 1964; FRule: @CRules[723]),
-    (FStart: 1965; FEnd: 1976; FRule: @CRules[724]),
-    (FStart: 1965; FEnd: 1976; FRule: @CRules[725]),
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[726]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[727]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[728])
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[714]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[715]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[716]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[717]),
+    (FStart: 1948; FEnd: 1952; FRule: @CRules[718]),
+    (FStart: 1949; FEnd: 1953; FRule: @CRules[719]),
+    (FStart: 1953; FEnd: 1964; FRule: @CRules[720]),
+    (FStart: 1954; FEnd: 1964; FRule: @CRules[721]),
+    (FStart: 1965; FEnd: 1976; FRule: @CRules[722]),
+    (FStart: 1965; FEnd: 1976; FRule: @CRules[723]),
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[724]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[725]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[726])
   );
 
   { Date-bound rules for Taiwan family }
-  CFamily_73_Arr: array[0 .. 14] of TYearBoundRule = (
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[709]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[729]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[710]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[730]),
-    (FStart: 1948; FEnd: 1951; FRule: @CRules[712]),
-    (FStart: 1948; FEnd: 1951; FRule: @CRules[729]),
-    (FStart: 1952; FEnd: 1952; FRule: @CRules[731]),
-    (FStart: 1952; FEnd: 1954; FRule: @CRules[730]),
-    (FStart: 1953; FEnd: 1959; FRule: @CRules[732]),
-    (FStart: 1955; FEnd: 1961; FRule: @CRules[729]),
-    (FStart: 1960; FEnd: 1961; FRule: @CRules[703]),
-    (FStart: 1974; FEnd: 1975; FRule: @CRules[732]),
-    (FStart: 1974; FEnd: 1975; FRule: @CRules[729]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[733]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[729])
+  CFamily_72_Arr: array[0 .. 14] of TYearBoundRule = (
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[707]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[727]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[708]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[728]),
+    (FStart: 1948; FEnd: 1951; FRule: @CRules[710]),
+    (FStart: 1948; FEnd: 1951; FRule: @CRules[727]),
+    (FStart: 1952; FEnd: 1952; FRule: @CRules[729]),
+    (FStart: 1952; FEnd: 1954; FRule: @CRules[728]),
+    (FStart: 1953; FEnd: 1959; FRule: @CRules[730]),
+    (FStart: 1955; FEnd: 1961; FRule: @CRules[727]),
+    (FStart: 1960; FEnd: 1961; FRule: @CRules[701]),
+    (FStart: 1974; FEnd: 1975; FRule: @CRules[730]),
+    (FStart: 1974; FEnd: 1975; FRule: @CRules[727]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[731]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[727])
   );
 
   { Date-bound rules for Macau family }
-  CFamily_74_Arr: array[0 .. 26] of TYearBoundRule = (
-    (FStart: 1942; FEnd: 1943; FRule: @CRules[734]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[735]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[736]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[737]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[736]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[738]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[739]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[740]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[741]),
-    (FStart: 1949; FEnd: 1950; FRule: @CRules[742]),
-    (FStart: 1949; FEnd: 1950; FRule: @CRules[743]),
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[744]),
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[745]),
-    (FStart: 1952; FEnd: 1953; FRule: @CRules[742]),
-    (FStart: 1952; FEnd: 1952; FRule: @CRules[746]),
-    (FStart: 1953; FEnd: 1954; FRule: @CRules[743]),
-    (FStart: 1954; FEnd: 1956; FRule: @CRules[747]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[748]),
-    (FStart: 1956; FEnd: 1964; FRule: @CRules[749]),
-    (FStart: 1957; FEnd: 1964; FRule: @CRules[750]),
-    (FStart: 1965; FEnd: 1973; FRule: @CRules[751]),
-    (FStart: 1965; FEnd: 1966; FRule: @CRules[752]),
-    (FStart: 1967; FEnd: 1976; FRule: @CRules[753]),
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[754]),
-    (FStart: 1975; FEnd: 1976; FRule: @CRules[751]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[755]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[753])
+  CFamily_73_Arr: array[0 .. 26] of TYearBoundRule = (
+    (FStart: 1942; FEnd: 1943; FRule: @CRules[732]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[733]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[734]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[735]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[734]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[736]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[737]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[738]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[739]),
+    (FStart: 1949; FEnd: 1950; FRule: @CRules[740]),
+    (FStart: 1949; FEnd: 1950; FRule: @CRules[741]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[742]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[743]),
+    (FStart: 1952; FEnd: 1953; FRule: @CRules[740]),
+    (FStart: 1952; FEnd: 1952; FRule: @CRules[744]),
+    (FStart: 1953; FEnd: 1954; FRule: @CRules[741]),
+    (FStart: 1954; FEnd: 1956; FRule: @CRules[745]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[746]),
+    (FStart: 1956; FEnd: 1964; FRule: @CRules[747]),
+    (FStart: 1957; FEnd: 1964; FRule: @CRules[748]),
+    (FStart: 1965; FEnd: 1973; FRule: @CRules[749]),
+    (FStart: 1965; FEnd: 1966; FRule: @CRules[750]),
+    (FStart: 1967; FEnd: 1976; FRule: @CRules[751]),
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[752]),
+    (FStart: 1975; FEnd: 1976; FRule: @CRules[749]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[753]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[751])
   );
 
   { Date-bound rules for Cyprus family }
-  CFamily_75_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[756]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[757]),
+  CFamily_74_Arr: array[0 .. 8] of TYearBoundRule = (
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[754]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[755]),
     (FStart: 1976; FEnd: 1976; FRule: @CRules[151]),
-    (FStart: 1976; FEnd: 1976; FRule: @CRules[758]),
+    (FStart: 1976; FEnd: 1976; FRule: @CRules[756]),
     (FStart: 1977; FEnd: 1980; FRule: @CRules[70]),
     (FStart: 1977; FEnd: 1977; FRule: @CRules[318]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[90]),
@@ -3950,284 +3996,282 @@ var
   );
 
   { Date-bound rules for Iran family }
-  CFamily_76_Arr: array[0 .. 100] of TYearBoundRule = (
-    (FStart: 1978; FEnd: 1980; FRule: @CRules[759]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[760]),
+  CFamily_75_Arr: array[0 .. 100] of TYearBoundRule = (
+    (FStart: 1978; FEnd: 1980; FRule: @CRules[757]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[758]),
     (FStart: 1979; FEnd: 1979; FRule: @CRules[249]),
-    (FStart: 1980; FEnd: 1980; FRule: @CRules[761]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[762]),
-    (FStart: 1992; FEnd: 1995; FRule: @CRules[763]),
+    (FStart: 1980; FEnd: 1980; FRule: @CRules[759]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[760]),
+    (FStart: 1992; FEnd: 1995; FRule: @CRules[761]),
     (FStart: 1991; FEnd: 1995; FRule: @CRules[390]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[759]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[764]),
-    (FStart: 1997; FEnd: 1999; FRule: @CRules[763]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[757]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[762]),
+    (FStart: 1997; FEnd: 1999; FRule: @CRules[761]),
     (FStart: 1997; FEnd: 1999; FRule: @CRules[390]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[759]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[764]),
-    (FStart: 2001; FEnd: 2003; FRule: @CRules[763]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[757]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[762]),
+    (FStart: 2001; FEnd: 2003; FRule: @CRules[761]),
     (FStart: 2001; FEnd: 2003; FRule: @CRules[390]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[759]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[764]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[763]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[757]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[762]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[761]),
     (FStart: 2005; FEnd: 2005; FRule: @CRules[390]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[759]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[764]),
-    (FStart: 2009; FEnd: 2011; FRule: @CRules[763]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[757]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[762]),
+    (FStart: 2009; FEnd: 2011; FRule: @CRules[761]),
     (FStart: 2009; FEnd: 2011; FRule: @CRules[390]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[759]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[764]),
-    (FStart: 2013; FEnd: 2015; FRule: @CRules[763]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[757]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[762]),
+    (FStart: 2013; FEnd: 2015; FRule: @CRules[761]),
     (FStart: 2013; FEnd: 2015; FRule: @CRules[390]),
-    (FStart: 2016; FEnd: 2016; FRule: @CRules[759]),
-    (FStart: 2016; FEnd: 2016; FRule: @CRules[764]),
-    (FStart: 2017; FEnd: 2019; FRule: @CRules[763]),
+    (FStart: 2016; FEnd: 2016; FRule: @CRules[757]),
+    (FStart: 2016; FEnd: 2016; FRule: @CRules[762]),
+    (FStart: 2017; FEnd: 2019; FRule: @CRules[761]),
     (FStart: 2017; FEnd: 2019; FRule: @CRules[390]),
-    (FStart: 2020; FEnd: 2020; FRule: @CRules[759]),
-    (FStart: 2020; FEnd: 2020; FRule: @CRules[764]),
-    (FStart: 2021; FEnd: 2023; FRule: @CRules[763]),
+    (FStart: 2020; FEnd: 2020; FRule: @CRules[757]),
+    (FStart: 2020; FEnd: 2020; FRule: @CRules[762]),
+    (FStart: 2021; FEnd: 2023; FRule: @CRules[761]),
     (FStart: 2021; FEnd: 2023; FRule: @CRules[390]),
-    (FStart: 2024; FEnd: 2024; FRule: @CRules[759]),
-    (FStart: 2024; FEnd: 2024; FRule: @CRules[764]),
-    (FStart: 2025; FEnd: 2027; FRule: @CRules[763]),
+    (FStart: 2024; FEnd: 2024; FRule: @CRules[757]),
+    (FStart: 2024; FEnd: 2024; FRule: @CRules[762]),
+    (FStart: 2025; FEnd: 2027; FRule: @CRules[761]),
     (FStart: 2025; FEnd: 2027; FRule: @CRules[390]),
-    (FStart: 2028; FEnd: 2029; FRule: @CRules[759]),
-    (FStart: 2028; FEnd: 2029; FRule: @CRules[764]),
-    (FStart: 2030; FEnd: 2031; FRule: @CRules[763]),
+    (FStart: 2028; FEnd: 2029; FRule: @CRules[757]),
+    (FStart: 2028; FEnd: 2029; FRule: @CRules[762]),
+    (FStart: 2030; FEnd: 2031; FRule: @CRules[761]),
     (FStart: 2030; FEnd: 2031; FRule: @CRules[390]),
-    (FStart: 2032; FEnd: 2033; FRule: @CRules[759]),
-    (FStart: 2032; FEnd: 2033; FRule: @CRules[764]),
-    (FStart: 2034; FEnd: 2035; FRule: @CRules[763]),
+    (FStart: 2032; FEnd: 2033; FRule: @CRules[757]),
+    (FStart: 2032; FEnd: 2033; FRule: @CRules[762]),
+    (FStart: 2034; FEnd: 2035; FRule: @CRules[761]),
     (FStart: 2034; FEnd: 2035; FRule: @CRules[390]),
-    (FStart: 2036; FEnd: 2037; FRule: @CRules[759]),
-    (FStart: 2036; FEnd: 2037; FRule: @CRules[764]),
-    (FStart: 2038; FEnd: 2039; FRule: @CRules[763]),
+    (FStart: 2036; FEnd: 2037; FRule: @CRules[757]),
+    (FStart: 2036; FEnd: 2037; FRule: @CRules[762]),
+    (FStart: 2038; FEnd: 2039; FRule: @CRules[761]),
     (FStart: 2038; FEnd: 2039; FRule: @CRules[390]),
-    (FStart: 2040; FEnd: 2041; FRule: @CRules[759]),
-    (FStart: 2040; FEnd: 2041; FRule: @CRules[764]),
-    (FStart: 2042; FEnd: 2043; FRule: @CRules[763]),
+    (FStart: 2040; FEnd: 2041; FRule: @CRules[757]),
+    (FStart: 2040; FEnd: 2041; FRule: @CRules[762]),
+    (FStart: 2042; FEnd: 2043; FRule: @CRules[761]),
     (FStart: 2042; FEnd: 2043; FRule: @CRules[390]),
-    (FStart: 2044; FEnd: 2045; FRule: @CRules[759]),
-    (FStart: 2044; FEnd: 2045; FRule: @CRules[764]),
-    (FStart: 2046; FEnd: 2047; FRule: @CRules[763]),
+    (FStart: 2044; FEnd: 2045; FRule: @CRules[757]),
+    (FStart: 2044; FEnd: 2045; FRule: @CRules[762]),
+    (FStart: 2046; FEnd: 2047; FRule: @CRules[761]),
     (FStart: 2046; FEnd: 2047; FRule: @CRules[390]),
-    (FStart: 2048; FEnd: 2049; FRule: @CRules[759]),
-    (FStart: 2048; FEnd: 2049; FRule: @CRules[764]),
-    (FStart: 2050; FEnd: 2051; FRule: @CRules[763]),
+    (FStart: 2048; FEnd: 2049; FRule: @CRules[757]),
+    (FStart: 2048; FEnd: 2049; FRule: @CRules[762]),
+    (FStart: 2050; FEnd: 2051; FRule: @CRules[761]),
     (FStart: 2050; FEnd: 2051; FRule: @CRules[390]),
-    (FStart: 2052; FEnd: 2053; FRule: @CRules[759]),
-    (FStart: 2052; FEnd: 2053; FRule: @CRules[764]),
-    (FStart: 2054; FEnd: 2055; FRule: @CRules[763]),
+    (FStart: 2052; FEnd: 2053; FRule: @CRules[757]),
+    (FStart: 2052; FEnd: 2053; FRule: @CRules[762]),
+    (FStart: 2054; FEnd: 2055; FRule: @CRules[761]),
     (FStart: 2054; FEnd: 2055; FRule: @CRules[390]),
-    (FStart: 2056; FEnd: 2057; FRule: @CRules[759]),
-    (FStart: 2056; FEnd: 2057; FRule: @CRules[764]),
-    (FStart: 2058; FEnd: 2059; FRule: @CRules[763]),
+    (FStart: 2056; FEnd: 2057; FRule: @CRules[757]),
+    (FStart: 2056; FEnd: 2057; FRule: @CRules[762]),
+    (FStart: 2058; FEnd: 2059; FRule: @CRules[761]),
     (FStart: 2058; FEnd: 2059; FRule: @CRules[390]),
-    (FStart: 2060; FEnd: 2062; FRule: @CRules[759]),
-    (FStart: 2060; FEnd: 2062; FRule: @CRules[764]),
-    (FStart: 2063; FEnd: 2063; FRule: @CRules[763]),
+    (FStart: 2060; FEnd: 2062; FRule: @CRules[757]),
+    (FStart: 2060; FEnd: 2062; FRule: @CRules[762]),
+    (FStart: 2063; FEnd: 2063; FRule: @CRules[761]),
     (FStart: 2063; FEnd: 2063; FRule: @CRules[390]),
-    (FStart: 2064; FEnd: 2066; FRule: @CRules[759]),
-    (FStart: 2064; FEnd: 2066; FRule: @CRules[764]),
-    (FStart: 2067; FEnd: 2067; FRule: @CRules[763]),
+    (FStart: 2064; FEnd: 2066; FRule: @CRules[757]),
+    (FStart: 2064; FEnd: 2066; FRule: @CRules[762]),
+    (FStart: 2067; FEnd: 2067; FRule: @CRules[761]),
     (FStart: 2067; FEnd: 2067; FRule: @CRules[390]),
-    (FStart: 2068; FEnd: 2070; FRule: @CRules[759]),
-    (FStart: 2068; FEnd: 2070; FRule: @CRules[764]),
-    (FStart: 2071; FEnd: 2071; FRule: @CRules[763]),
+    (FStart: 2068; FEnd: 2070; FRule: @CRules[757]),
+    (FStart: 2068; FEnd: 2070; FRule: @CRules[762]),
+    (FStart: 2071; FEnd: 2071; FRule: @CRules[761]),
     (FStart: 2071; FEnd: 2071; FRule: @CRules[390]),
-    (FStart: 2072; FEnd: 2074; FRule: @CRules[759]),
-    (FStart: 2072; FEnd: 2074; FRule: @CRules[764]),
-    (FStart: 2075; FEnd: 2075; FRule: @CRules[763]),
+    (FStart: 2072; FEnd: 2074; FRule: @CRules[757]),
+    (FStart: 2072; FEnd: 2074; FRule: @CRules[762]),
+    (FStart: 2075; FEnd: 2075; FRule: @CRules[761]),
     (FStart: 2075; FEnd: 2075; FRule: @CRules[390]),
-    (FStart: 2076; FEnd: 2078; FRule: @CRules[759]),
-    (FStart: 2076; FEnd: 2078; FRule: @CRules[764]),
-    (FStart: 2079; FEnd: 2079; FRule: @CRules[763]),
+    (FStart: 2076; FEnd: 2078; FRule: @CRules[757]),
+    (FStart: 2076; FEnd: 2078; FRule: @CRules[762]),
+    (FStart: 2079; FEnd: 2079; FRule: @CRules[761]),
     (FStart: 2079; FEnd: 2079; FRule: @CRules[390]),
-    (FStart: 2080; FEnd: 2082; FRule: @CRules[759]),
-    (FStart: 2080; FEnd: 2082; FRule: @CRules[764]),
-    (FStart: 2083; FEnd: 2083; FRule: @CRules[763]),
+    (FStart: 2080; FEnd: 2082; FRule: @CRules[757]),
+    (FStart: 2080; FEnd: 2082; FRule: @CRules[762]),
+    (FStart: 2083; FEnd: 2083; FRule: @CRules[761]),
     (FStart: 2083; FEnd: 2083; FRule: @CRules[390]),
-    (FStart: 2084; FEnd: 2086; FRule: @CRules[759]),
-    (FStart: 2084; FEnd: 2086; FRule: @CRules[764]),
-    (FStart: 2087; FEnd: 2087; FRule: @CRules[763]),
+    (FStart: 2084; FEnd: 2086; FRule: @CRules[757]),
+    (FStart: 2084; FEnd: 2086; FRule: @CRules[762]),
+    (FStart: 2087; FEnd: 2087; FRule: @CRules[761]),
     (FStart: 2087; FEnd: 2087; FRule: @CRules[390]),
-    (FStart: 2088; FEnd: 9999; FRule: @CRules[759]),
-    (FStart: 2088; FEnd: 9999; FRule: @CRules[764])
+    (FStart: 2088; FEnd: 9999; FRule: @CRules[757]),
+    (FStart: 2088; FEnd: 9999; FRule: @CRules[762])
   );
 
   { Date-bound rules for Iraq family }
-  CFamily_77_Arr: array[0 .. 7] of TYearBoundRule = (
-    (FStart: 1982; FEnd: 1982; FRule: @CRules[420]),
+  CFamily_76_Arr: array[0 .. 7] of TYearBoundRule = (
+    (FStart: 1982; FEnd: 1982; FRule: @CRules[423]),
     (FStart: 1982; FEnd: 1984; FRule: @CRules[72]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[765]),
-    (FStart: 1984; FEnd: 1985; FRule: @CRules[696]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[763]),
+    (FStart: 1984; FEnd: 1985; FRule: @CRules[694]),
     (FStart: 1985; FEnd: 1990; FRule: @CRules[51]),
-    (FStart: 1986; FEnd: 1990; FRule: @CRules[766]),
-    (FStart: 1991; FEnd: 2007; FRule: @CRules[767]),
+    (FStart: 1986; FEnd: 1990; FRule: @CRules[764]),
+    (FStart: 1991; FEnd: 2007; FRule: @CRules[765]),
     (FStart: 1991; FEnd: 2007; FRule: @CRules[384])
   );
 
   { Date-bound rules for Zion family }
-  CFamily_78_Arr: array[0 .. 86] of TYearBoundRule = (
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[703]),
-    (FStart: 1942; FEnd: 1944; FRule: @CRules[730]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[768]),
-    (FStart: 1944; FEnd: 1944; FRule: @CRules[732]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[769]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[770]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[771]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[730]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[772]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[773]),
-    (FStart: 1948; FEnd: 1949; FRule: @CRules[770]),
-    (FStart: 1949; FEnd: 1949; FRule: @CRules[712]),
+  CFamily_77_Arr: array[0 .. 84] of TYearBoundRule = (
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[766]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[700]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[767]),
+    (FStart: 1942; FEnd: 1946; FRule: @CRules[709]),
+    (FStart: 1943; FEnd: 1944; FRule: @CRules[768]),
+    (FStart: 1945; FEnd: 1946; FRule: @CRules[769]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[770]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[771]),
+    (FStart: 1948; FEnd: 1949; FRule: @CRules[709]),
+    (FStart: 1949; FEnd: 1949; FRule: @CRules[772]),
     (FStart: 1950; FEnd: 1950; FRule: @CRules[769]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[774]),
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[732]),
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[775]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[773]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[768]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[774]),
+    (FStart: 1952; FEnd: 1952; FRule: @CRules[775]),
     (FStart: 1952; FEnd: 1952; FRule: @CRules[776]),
-    (FStart: 1952; FEnd: 1952; FRule: @CRules[777]),
+    (FStart: 1953; FEnd: 1953; FRule: @CRules[777]),
     (FStart: 1953; FEnd: 1953; FRule: @CRules[778]),
-    (FStart: 1953; FEnd: 1953; FRule: @CRules[779]),
+    (FStart: 1954; FEnd: 1954; FRule: @CRules[779]),
     (FStart: 1954; FEnd: 1954; FRule: @CRules[780]),
-    (FStart: 1954; FEnd: 1954; FRule: @CRules[781]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[781]),
     (FStart: 1955; FEnd: 1955; FRule: @CRules[782]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[783]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[783]),
     (FStart: 1956; FEnd: 1956; FRule: @CRules[784]),
-    (FStart: 1956; FEnd: 1956; FRule: @CRules[785]),
+    (FStart: 1957; FEnd: 1957; FRule: @CRules[785]),
     (FStart: 1957; FEnd: 1957; FRule: @CRules[786]),
-    (FStart: 1957; FEnd: 1957; FRule: @CRules[787]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[788]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[789]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[790]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[791]),
-    (FStart: 1980; FEnd: 1980; FRule: @CRules[792]),
-    (FStart: 1980; FEnd: 1980; FRule: @CRules[793]),
-    (FStart: 1984; FEnd: 1984; FRule: @CRules[794]),
-    (FStart: 1984; FEnd: 1984; FRule: @CRules[795]),
-    (FStart: 1985; FEnd: 1985; FRule: @CRules[796]),
-    (FStart: 1985; FEnd: 1985; FRule: @CRules[797]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[798]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[799]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[710]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[800]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[801]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[802]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[803]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[804]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[805]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[806]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[807]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[808]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[809]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[810]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[811]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[812]),
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[732]),
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[813]),
-    (FStart: 1995; FEnd: 1995; FRule: @CRules[814]),
-    (FStart: 1995; FEnd: 1995; FRule: @CRules[804]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[705]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[815]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[816]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[817]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[818]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[810]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[819]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[820]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[821]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[822]),
-    (FStart: 2001; FEnd: 2001; FRule: @CRules[823]),
-    (FStart: 2001; FEnd: 2001; FRule: @CRules[824]),
-    (FStart: 2002; FEnd: 2002; FRule: @CRules[825]),
-    (FStart: 2002; FEnd: 2002; FRule: @CRules[826]),
-    (FStart: 2003; FEnd: 2003; FRule: @CRules[827]),
-    (FStart: 2003; FEnd: 2003; FRule: @CRules[828]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[829]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[830]),
-    (FStart: 2005; FEnd: 2012; FRule: @CRules[831]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[832]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[833]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[834]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[835]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[836]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[837]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[838]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[839]),
-    (FStart: 2013; FEnd: 9999; FRule: @CRules[840]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[787]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[702]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[775]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[788]),
+    (FStart: 1980; FEnd: 1980; FRule: @CRules[789]),
+    (FStart: 1980; FEnd: 1980; FRule: @CRules[790]),
+    (FStart: 1984; FEnd: 1984; FRule: @CRules[791]),
+    (FStart: 1984; FEnd: 1984; FRule: @CRules[792]),
+    (FStart: 1985; FEnd: 1985; FRule: @CRules[793]),
+    (FStart: 1985; FEnd: 1985; FRule: @CRules[794]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[795]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[796]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[797]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[778]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[798]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[799]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[800]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[801]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[802]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[792]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[803]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[794]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[804]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[805]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[806]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[807]),
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[730]),
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[808]),
+    (FStart: 1995; FEnd: 1995; FRule: @CRules[809]),
+    (FStart: 1995; FEnd: 1995; FRule: @CRules[810]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[811]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[812]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[813]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[790]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[814]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[815]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[816]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[817]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[818]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[819]),
+    (FStart: 2001; FEnd: 2001; FRule: @CRules[820]),
+    (FStart: 2001; FEnd: 2001; FRule: @CRules[821]),
+    (FStart: 2002; FEnd: 2002; FRule: @CRules[822]),
+    (FStart: 2002; FEnd: 2002; FRule: @CRules[823]),
+    (FStart: 2003; FEnd: 2003; FRule: @CRules[824]),
+    (FStart: 2003; FEnd: 2003; FRule: @CRules[825]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[826]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[827]),
+    (FStart: 2005; FEnd: 2012; FRule: @CRules[828]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[829]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[830]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[831]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[832]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[833]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[834]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[835]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[836]),
+    (FStart: 2013; FEnd: 9999; FRule: @CRules[837]),
     (FStart: 2013; FEnd: 9999; FRule: @CRules[162])
   );
 
   { Date-bound rules for Japan family }
-  CFamily_79_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[841]),
-    (FStart: 1948; FEnd: 1951; FRule: @CRules[842]),
-    (FStart: 1949; FEnd: 1949; FRule: @CRules[843]),
-    (FStart: 1950; FEnd: 1951; FRule: @CRules[841])
+  CFamily_78_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[838]),
+    (FStart: 1948; FEnd: 1951; FRule: @CRules[839]),
+    (FStart: 1949; FEnd: 1949; FRule: @CRules[840]),
+    (FStart: 1950; FEnd: 1951; FRule: @CRules[838])
   );
 
   { Date-bound rules for Jordan family }
-  CFamily_80_Arr: array[0 .. 30] of TYearBoundRule = (
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[844]),
+  CFamily_79_Arr: array[0 .. 30] of TYearBoundRule = (
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[841]),
     (FStart: 1973; FEnd: 1975; FRule: @CRules[72]),
     (FStart: 1974; FEnd: 1977; FRule: @CRules[91]),
     (FStart: 1976; FEnd: 1976; FRule: @CRules[295]),
     (FStart: 1977; FEnd: 1977; FRule: @CRules[72]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[588]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[591]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[97]),
     (FStart: 1985; FEnd: 1985; FRule: @CRules[85]),
     (FStart: 1985; FEnd: 1985; FRule: @CRules[72]),
-    (FStart: 1986; FEnd: 1988; FRule: @CRules[845]),
-    (FStart: 1986; FEnd: 1990; FRule: @CRules[846]),
+    (FStart: 1986; FEnd: 1988; FRule: @CRules[842]),
+    (FStart: 1986; FEnd: 1990; FRule: @CRules[843]),
     (FStart: 1989; FEnd: 1989; FRule: @CRules[94]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[847]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[848]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[844]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[845]),
     (FStart: 1991; FEnd: 1991; FRule: @CRules[101]),
     (FStart: 1992; FEnd: 1992; FRule: @CRules[354]),
-    (FStart: 1992; FEnd: 1993; FRule: @CRules[846]),
-    (FStart: 1993; FEnd: 1998; FRule: @CRules[845]),
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[849]),
-    (FStart: 1995; FEnd: 1998; FRule: @CRules[849]),
+    (FStart: 1992; FEnd: 1993; FRule: @CRules[843]),
+    (FStart: 1993; FEnd: 1998; FRule: @CRules[842]),
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[846]),
+    (FStart: 1995; FEnd: 1998; FRule: @CRules[846]),
     (FStart: 1999; FEnd: 1999; FRule: @CRules[206]),
-    (FStart: 1999; FEnd: 2002; FRule: @CRules[850]),
-    (FStart: 2000; FEnd: 2001; FRule: @CRules[851]),
-    (FStart: 2002; FEnd: 2012; FRule: @CRules[852]),
-    (FStart: 2003; FEnd: 2003; FRule: @CRules[853]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[587]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[850]),
-    (FStart: 2006; FEnd: 2011; FRule: @CRules[854]),
-    (FStart: 2013; FEnd: 2013; FRule: @CRules[855]),
-    (FStart: 2014; FEnd: 9999; FRule: @CRules[852]),
-    (FStart: 2014; FEnd: 9999; FRule: @CRules[854])
+    (FStart: 1999; FEnd: 2002; FRule: @CRules[847]),
+    (FStart: 2000; FEnd: 2001; FRule: @CRules[848]),
+    (FStart: 2002; FEnd: 2012; FRule: @CRules[849]),
+    (FStart: 2003; FEnd: 2003; FRule: @CRules[850]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[590]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[847]),
+    (FStart: 2006; FEnd: 2011; FRule: @CRules[851]),
+    (FStart: 2013; FEnd: 2013; FRule: @CRules[852]),
+    (FStart: 2014; FEnd: 9999; FRule: @CRules[849]),
+    (FStart: 2014; FEnd: 9999; FRule: @CRules[851])
   );
 
   { Date-bound rules for Kyrgyz family }
-  CFamily_81_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1992; FEnd: 1996; FRule: @CRules[856]),
+  CFamily_80_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1992; FEnd: 1996; FRule: @CRules[853]),
     (FStart: 1992; FEnd: 1996; FRule: @CRules[71]),
-    (FStart: 1997; FEnd: 2005; FRule: @CRules[857]),
-    (FStart: 1997; FEnd: 2004; FRule: @CRules[858])
+    (FStart: 1997; FEnd: 2005; FRule: @CRules[854]),
+    (FStart: 1997; FEnd: 2004; FRule: @CRules[855])
   );
 
   { Date-bound rules for ROK family }
-  CFamily_82_Arr: array[0 .. 13] of TYearBoundRule = (
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[703]),
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[859]),
-    (FStart: 1949; FEnd: 1949; FRule: @CRules[860]),
-    (FStart: 1949; FEnd: 1951; FRule: @CRules[861]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[732]),
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[862]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[794]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[863]),
-    (FStart: 1956; FEnd: 1956; FRule: @CRules[864]),
-    (FStart: 1956; FEnd: 1956; FRule: @CRules[865]),
-    (FStart: 1957; FEnd: 1960; FRule: @CRules[866]),
-    (FStart: 1957; FEnd: 1960; FRule: @CRules[867]),
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[868]),
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[869])
+  CFamily_81_Arr: array[0 .. 13] of TYearBoundRule = (
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[701]),
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[778]),
+    (FStart: 1949; FEnd: 1949; FRule: @CRules[856]),
+    (FStart: 1949; FEnd: 1951; FRule: @CRules[857]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[730]),
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[858]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[859]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[860]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[861]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[784]),
+    (FStart: 1957; FEnd: 1960; FRule: @CRules[862]),
+    (FStart: 1957; FEnd: 1960; FRule: @CRules[863]),
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[864]),
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[865])
   );
 
   { Date-bound rules for Lebanon family }
-  CFamily_83_Arr: array[0 .. 23] of TYearBoundRule = (
+  CFamily_82_Arr: array[0 .. 23] of TYearBoundRule = (
     (FStart: 1920; FEnd: 1920; FRule: @CRules[343]),
     (FStart: 1920; FEnd: 1920; FRule: @CRules[344]),
     (FStart: 1921; FEnd: 1921; FRule: @CRules[345]),
@@ -4238,13 +4282,13 @@ var
     (FStart: 1923; FEnd: 1923; FRule: @CRules[276]),
     (FStart: 1957; FEnd: 1961; FRule: @CRules[91]),
     (FStart: 1957; FEnd: 1961; FRule: @CRules[72]),
-    (FStart: 1972; FEnd: 1972; FRule: @CRules[870]),
+    (FStart: 1972; FEnd: 1972; FRule: @CRules[866]),
     (FStart: 1972; FEnd: 1977; FRule: @CRules[72]),
     (FStart: 1973; FEnd: 1977; FRule: @CRules[91]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[588]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[591]),
     (FStart: 1978; FEnd: 1978; FRule: @CRules[97]),
     (FStart: 1984; FEnd: 1987; FRule: @CRules[91]),
-    (FStart: 1984; FEnd: 1991; FRule: @CRules[871]),
+    (FStart: 1984; FEnd: 1991; FRule: @CRules[867]),
     (FStart: 1988; FEnd: 1988; FRule: @CRules[261]),
     (FStart: 1989; FEnd: 1989; FRule: @CRules[381]),
     (FStart: 1990; FEnd: 1992; FRule: @CRules[91]),
@@ -4255,26 +4299,26 @@ var
   );
 
   { Date-bound rules for NBorneo family }
-  CFamily_84_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1935; FEnd: 1941; FRule: @CRules[872]),
-    (FStart: 1935; FEnd: 1941; FRule: @CRules[873])
+  CFamily_83_Arr: array[0 .. 1] of TYearBoundRule = (
+    (FStart: 1935; FEnd: 1941; FRule: @CRules[868]),
+    (FStart: 1935; FEnd: 1941; FRule: @CRules[869])
   );
 
   { Date-bound rules for Mongol family }
-  CFamily_85_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1983; FEnd: 1984; FRule: @CRules[696]),
+  CFamily_84_Arr: array[0 .. 8] of TYearBoundRule = (
+    (FStart: 1983; FEnd: 1984; FRule: @CRules[694]),
     (FStart: 1983; FEnd: 1983; FRule: @CRules[72]),
-    (FStart: 1985; FEnd: 1998; FRule: @CRules[695]),
+    (FStart: 1985; FEnd: 1998; FRule: @CRules[693]),
     (FStart: 1984; FEnd: 1998; FRule: @CRules[71]),
-    (FStart: 2001; FEnd: 2001; FRule: @CRules[874]),
-    (FStart: 2001; FEnd: 2006; FRule: @CRules[875]),
-    (FStart: 2002; FEnd: 2006; FRule: @CRules[876]),
-    (FStart: 2015; FEnd: 2016; FRule: @CRules[876]),
-    (FStart: 2015; FEnd: 2016; FRule: @CRules[877])
+    (FStart: 2001; FEnd: 2001; FRule: @CRules[870]),
+    (FStart: 2001; FEnd: 2006; FRule: @CRules[871]),
+    (FStart: 2002; FEnd: 2006; FRule: @CRules[872]),
+    (FStart: 2015; FEnd: 2016; FRule: @CRules[872]),
+    (FStart: 2015; FEnd: 2016; FRule: @CRules[873])
   );
 
   { Date-bound rules for Pakistan family }
-  CFamily_86_Arr: array[0 .. 4] of TYearBoundRule = (
+  CFamily_85_Arr: array[0 .. 4] of TYearBoundRule = (
     (FStart: 2002; FEnd: 2002; FRule: @CRules[321]),
     (FStart: 2002; FEnd: 2002; FRule: @CRules[353]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[261]),
@@ -4283,7 +4327,7 @@ var
   );
 
   { Date-bound rules for EgyptAsia family }
-  CFamily_87_Arr: array[0 .. 5] of TYearBoundRule = (
+  CFamily_86_Arr: array[0 .. 5] of TYearBoundRule = (
     (FStart: 1957; FEnd: 1957; FRule: @CRules[381]),
     (FStart: 1957; FEnd: 1958; FRule: @CRules[72]),
     (FStart: 1958; FEnd: 1958; FRule: @CRules[91]),
@@ -4293,185 +4337,185 @@ var
   );
 
   { Date-bound rules for Palestine family }
-  CFamily_88_Arr: array[0 .. 27] of TYearBoundRule = (
-    (FStart: 1999; FEnd: 2005; FRule: @CRules[878]),
-    (FStart: 1999; FEnd: 2003; FRule: @CRules[879]),
+  CFamily_87_Arr: array[0 .. 27] of TYearBoundRule = (
+    (FStart: 1999; FEnd: 2005; FRule: @CRules[874]),
+    (FStart: 1999; FEnd: 2003; FRule: @CRules[875]),
     (FStart: 2004; FEnd: 2004; FRule: @CRules[52]),
     (FStart: 2005; FEnd: 2005; FRule: @CRules[61]),
     (FStart: 2006; FEnd: 2007; FRule: @CRules[85]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[880]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[876]),
     (FStart: 2007; FEnd: 2007; FRule: @CRules[104]),
-    (FStart: 2008; FEnd: 2009; FRule: @CRules[881]),
+    (FStart: 2008; FEnd: 2009; FRule: @CRules[877]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[203]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[882]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[878]),
     (FStart: 2010; FEnd: 2010; FRule: @CRules[346]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[883]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[884]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[879]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[880]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[339]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[885]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[881]),
     (FStart: 2011; FEnd: 2011; FRule: @CRules[97]),
-    (FStart: 2012; FEnd: 2014; FRule: @CRules[852]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[886]),
+    (FStart: 2012; FEnd: 2014; FRule: @CRules[849]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[882]),
     (FStart: 2013; FEnd: 2013; FRule: @CRules[101]),
-    (FStart: 2014; FEnd: 2014; FRule: @CRules[853]),
+    (FStart: 2014; FEnd: 2014; FRule: @CRules[850]),
     (FStart: 2015; FEnd: 2015; FRule: @CRules[343]),
-    (FStart: 2015; FEnd: 2015; FRule: @CRules[887]),
-    (FStart: 2016; FEnd: 2018; FRule: @CRules[888]),
-    (FStart: 2016; FEnd: 2018; FRule: @CRules[889]),
-    (FStart: 2019; FEnd: 2019; FRule: @CRules[890]),
-    (FStart: 2019; FEnd: 2019; FRule: @CRules[891]),
-    (FStart: 2020; FEnd: 9999; FRule: @CRules[892]),
-    (FStart: 2020; FEnd: 9999; FRule: @CRules[889])
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[883]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[884]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[885]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[886]),
+    (FStart: 2019; FEnd: 2019; FRule: @CRules[887]),
+    (FStart: 2020; FEnd: 9999; FRule: @CRules[888]),
+    (FStart: 2020; FEnd: 9999; FRule: @CRules[885])
   );
 
   { Date-bound rules for Phil family }
-  CFamily_89_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1936; FEnd: 1936; FRule: @CRules[893]),
-    (FStart: 1937; FEnd: 1937; FRule: @CRules[894]),
-    (FStart: 1954; FEnd: 1954; FRule: @CRules[895]),
-    (FStart: 1954; FEnd: 1954; FRule: @CRules[896]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[897]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[898])
+  CFamily_88_Arr: array[0 .. 5] of TYearBoundRule = (
+    (FStart: 1936; FEnd: 1936; FRule: @CRules[889]),
+    (FStart: 1937; FEnd: 1937; FRule: @CRules[890]),
+    (FStart: 1954; FEnd: 1954; FRule: @CRules[891]),
+    (FStart: 1954; FEnd: 1954; FRule: @CRules[892]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[893]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[894])
   );
 
   { Date-bound rules for Syria family }
-  CFamily_90_Arr: array[0 .. 40] of TYearBoundRule = (
+  CFamily_89_Arr: array[0 .. 40] of TYearBoundRule = (
     (FStart: 1920; FEnd: 1923; FRule: @CRules[147]),
     (FStart: 1920; FEnd: 1923; FRule: @CRules[107]),
-    (FStart: 1962; FEnd: 1962; FRule: @CRules[899]),
+    (FStart: 1962; FEnd: 1962; FRule: @CRules[895]),
     (FStart: 1962; FEnd: 1962; FRule: @CRules[67]),
     (FStart: 1963; FEnd: 1965; FRule: @CRules[153]),
-    (FStart: 1963; FEnd: 1963; FRule: @CRules[555]),
+    (FStart: 1963; FEnd: 1963; FRule: @CRules[558]),
     (FStart: 1964; FEnd: 1964; FRule: @CRules[67]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[555]),
-    (FStart: 1966; FEnd: 1966; FRule: @CRules[900]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[558]),
+    (FStart: 1966; FEnd: 1966; FRule: @CRules[896]),
     (FStart: 1966; FEnd: 1976; FRule: @CRules[67]),
     (FStart: 1967; FEnd: 1978; FRule: @CRules[153]),
     (FStart: 1977; FEnd: 1978; FRule: @CRules[154]),
     (FStart: 1983; FEnd: 1984; FRule: @CRules[148]),
     (FStart: 1983; FEnd: 1984; FRule: @CRules[67]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[901]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[902]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[903]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[897]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[898]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[899]),
     (FStart: 1987; FEnd: 1988; FRule: @CRules[379]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[904]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[900]),
     (FStart: 1989; FEnd: 1989; FRule: @CRules[133]),
     (FStart: 1989; FEnd: 1989; FRule: @CRules[67]),
     (FStart: 1990; FEnd: 1990; FRule: @CRules[58]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[555]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[558]),
     (FStart: 1991; FEnd: 1991; FRule: @CRules[85]),
     (FStart: 1991; FEnd: 1992; FRule: @CRules[72]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[905]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[901]),
     (FStart: 1993; FEnd: 1993; FRule: @CRules[346]),
     (FStart: 1993; FEnd: 1993; FRule: @CRules[318]),
     (FStart: 1994; FEnd: 1996; FRule: @CRules[85]),
     (FStart: 1994; FEnd: 2005; FRule: @CRules[72]),
-    (FStart: 1997; FEnd: 1998; FRule: @CRules[906]),
+    (FStart: 1997; FEnd: 1998; FRule: @CRules[902]),
     (FStart: 1999; FEnd: 2006; FRule: @CRules[85]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[880]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[881]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[907]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[845]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[876]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[877]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[903]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[842]),
     (FStart: 2008; FEnd: 2008; FRule: @CRules[295]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[881]),
-    (FStart: 2010; FEnd: 2011; FRule: @CRules[845]),
-    (FStart: 2012; FEnd: 9999; FRule: @CRules[881]),
-    (FStart: 2009; FEnd: 9999; FRule: @CRules[854])
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[877]),
+    (FStart: 2010; FEnd: 2011; FRule: @CRules[842]),
+    (FStart: 2012; FEnd: 9999; FRule: @CRules[877]),
+    (FStart: 2009; FEnd: 9999; FRule: @CRules[851])
   );
 
   { Date-bound rules for SL family }
-  CFamily_91_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1935; FEnd: 1942; FRule: @CRules[908]),
-    (FStart: 1935; FEnd: 1942; FRule: @CRules[909]),
-    (FStart: 1957; FEnd: 1962; FRule: @CRules[910]),
-    (FStart: 1957; FEnd: 1962; FRule: @CRules[911])
+  CFamily_90_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1935; FEnd: 1942; FRule: @CRules[904]),
+    (FStart: 1935; FEnd: 1942; FRule: @CRules[905]),
+    (FStart: 1957; FEnd: 1962; FRule: @CRules[906]),
+    (FStart: 1957; FEnd: 1962; FRule: @CRules[907])
   );
 
   { Date-bound rules for Arg family }
-  CFamily_92_Arr: array[0 .. 28] of TYearBoundRule = (
-    (FStart: 1930; FEnd: 1930; FRule: @CRules[1060]),
-    (FStart: 1931; FEnd: 1931; FRule: @CRules[1061]),
-    (FStart: 1931; FEnd: 1931; FRule: @CRules[1062]),
-    (FStart: 1932; FEnd: 1940; FRule: @CRules[1063]),
-    (FStart: 1932; FEnd: 1939; FRule: @CRules[1064]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[1065]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[1066]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[1062]),
+  CFamily_91_Arr: array[0 .. 28] of TYearBoundRule = (
+    (FStart: 1930; FEnd: 1930; FRule: @CRules[1084]),
+    (FStart: 1931; FEnd: 1931; FRule: @CRules[1085]),
+    (FStart: 1931; FEnd: 1931; FRule: @CRules[1086]),
+    (FStart: 1932; FEnd: 1940; FRule: @CRules[1087]),
+    (FStart: 1932; FEnd: 1939; FRule: @CRules[1088]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[1089]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[1090]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[1086]),
     (FStart: 1943; FEnd: 1943; FRule: @CRules[339]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[1062]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[1063]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[1067]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[1086]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[1087]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[1091]),
     (FStart: 1963; FEnd: 1963; FRule: @CRules[72]),
-    (FStart: 1963; FEnd: 1963; FRule: @CRules[1068]),
-    (FStart: 1964; FEnd: 1966; FRule: @CRules[1063]),
-    (FStart: 1964; FEnd: 1966; FRule: @CRules[1062]),
-    (FStart: 1967; FEnd: 1967; FRule: @CRules[1069]),
-    (FStart: 1967; FEnd: 1968; FRule: @CRules[1070]),
-    (FStart: 1968; FEnd: 1969; FRule: @CRules[1071]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1072]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1073]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[1060]),
-    (FStart: 1989; FEnd: 1993; FRule: @CRules[675]),
-    (FStart: 1989; FEnd: 1992; FRule: @CRules[1074]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[1070]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[1075]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[1076]),
-    (FStart: 2008; FEnd: 2009; FRule: @CRules[1077]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[1074])
+    (FStart: 1963; FEnd: 1963; FRule: @CRules[1092]),
+    (FStart: 1964; FEnd: 1966; FRule: @CRules[1087]),
+    (FStart: 1964; FEnd: 1966; FRule: @CRules[1086]),
+    (FStart: 1967; FEnd: 1967; FRule: @CRules[1093]),
+    (FStart: 1967; FEnd: 1968; FRule: @CRules[1094]),
+    (FStart: 1968; FEnd: 1969; FRule: @CRules[1095]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1096]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1097]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[1084]),
+    (FStart: 1989; FEnd: 1993; FRule: @CRules[676]),
+    (FStart: 1989; FEnd: 1992; FRule: @CRules[1098]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[1094]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[1099]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[1100]),
+    (FStart: 2008; FEnd: 2009; FRule: @CRules[1101]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[1098])
   );
 
   { Date-bound rules for NT_YK family }
-  CFamily_93_Arr: array[0 .. 11] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[821]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[997]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[730]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[929]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[998]),
+  CFamily_92_Arr: array[0 .. 11] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[818]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[1001]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[728]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[925]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[1002]),
     (FStart: 1965; FEnd: 1965; FRule: @CRules[162]),
-    (FStart: 1980; FEnd: 1986; FRule: @CRules[643]),
+    (FStart: 1980; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1980; FEnd: 2006; FRule: @CRules[162]),
     (FStart: 1987; FEnd: 2006; FRule: @CRules[161])
   );
 
   { Date-bound rules for Mexico family }
-  CFamily_94_Arr: array[0 .. 13] of TYearBoundRule = (
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[999]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[1000]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[1001]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[1002]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[1003]),
-    (FStart: 1944; FEnd: 1944; FRule: @CRules[1004]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[1005]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[1006]),
+  CFamily_93_Arr: array[0 .. 13] of TYearBoundRule = (
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[1003]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[1004]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[1005]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[1006]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[1007]),
+    (FStart: 1944; FEnd: 1944; FRule: @CRules[1008]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[1009]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[1010]),
     (FStart: 1996; FEnd: 2000; FRule: @CRules[161]),
     (FStart: 1996; FEnd: 2000; FRule: @CRules[162]),
-    (FStart: 2001; FEnd: 2001; FRule: @CRules[922]),
+    (FStart: 2001; FEnd: 2001; FRule: @CRules[918]),
     (FStart: 2001; FEnd: 2001; FRule: @CRules[160]),
     (FStart: 2002; FEnd: 9999; FRule: @CRules[161]),
     (FStart: 2002; FEnd: 9999; FRule: @CRules[162])
   );
 
   { Date-bound rules for Mont family }
-  CFamily_95_Arr: array[0 .. 19] of TYearBoundRule = (
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[912]),
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[913]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[914]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[915]),
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[916]),
-    (FStart: 1920; FEnd: 1922; FRule: @CRules[917]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[918]),
-    (FStart: 1922; FEnd: 1922; FRule: @CRules[919]),
-    (FStart: 1924; FEnd: 1924; FRule: @CRules[920]),
-    (FStart: 1924; FEnd: 1926; FRule: @CRules[921]),
-    (FStart: 1925; FEnd: 1926; FRule: @CRules[922]),
-    (FStart: 1927; FEnd: 1937; FRule: @CRules[923]),
-    (FStart: 1927; FEnd: 1937; FRule: @CRules[924]),
-    (FStart: 1938; FEnd: 1940; FRule: @CRules[925]),
-    (FStart: 1938; FEnd: 1939; FRule: @CRules[926]),
-    (FStart: 1946; FEnd: 1973; FRule: @CRules[643]),
+  CFamily_94_Arr: array[0 .. 19] of TYearBoundRule = (
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[908]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[909]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[910]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[911]),
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[912]),
+    (FStart: 1920; FEnd: 1922; FRule: @CRules[913]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[914]),
+    (FStart: 1922; FEnd: 1922; FRule: @CRules[915]),
+    (FStart: 1924; FEnd: 1924; FRule: @CRules[916]),
+    (FStart: 1924; FEnd: 1926; FRule: @CRules[917]),
+    (FStart: 1925; FEnd: 1926; FRule: @CRules[918]),
+    (FStart: 1927; FEnd: 1937; FRule: @CRules[919]),
+    (FStart: 1927; FEnd: 1937; FRule: @CRules[920]),
+    (FStart: 1938; FEnd: 1940; FRule: @CRules[921]),
+    (FStart: 1938; FEnd: 1939; FRule: @CRules[922]),
+    (FStart: 1946; FEnd: 1973; FRule: @CRules[644]),
     (FStart: 1945; FEnd: 1948; FRule: @CRules[160]),
     (FStart: 1949; FEnd: 1950; FRule: @CRules[162]),
     (FStart: 1951; FEnd: 1956; FRule: @CRules[160]),
@@ -4479,13 +4523,13 @@ var
   );
 
   { Date-bound rules for Canada family }
-  CFamily_96_Arr: array[0 .. 9] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[821]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[929]),
-    (FStart: 1974; FEnd: 1986; FRule: @CRules[643]),
+  CFamily_95_Arr: array[0 .. 9] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[818]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[925]),
+    (FStart: 1974; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1974; FEnd: 2006; FRule: @CRules[162]),
     (FStart: 1987; FEnd: 2006; FRule: @CRules[161]),
     (FStart: 2007; FEnd: 9999; FRule: @CRules[163]),
@@ -4493,106 +4537,106 @@ var
   );
 
   { Date-bound rules for US family }
-  CFamily_97_Arr: array[0 .. 12] of TYearBoundRule = (
+  CFamily_96_Arr: array[0 .. 12] of TYearBoundRule = (
     (FStart: 1918; FEnd: 1919; FRule: @CRules[159]),
     (FStart: 1918; FEnd: 1919; FRule: @CRules[162]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[929]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[925]),
     (FStart: 1967; FEnd: 2006; FRule: @CRules[162]),
-    (FStart: 1967; FEnd: 1973; FRule: @CRules[643]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[692]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[930]),
-    (FStart: 1976; FEnd: 1986; FRule: @CRules[643]),
+    (FStart: 1967; FEnd: 1973; FRule: @CRules[644]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[926]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[927]),
+    (FStart: 1976; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1987; FEnd: 2006; FRule: @CRules[161]),
     (FStart: 2007; FEnd: 9999; FRule: @CRules[163]),
     (FStart: 2007; FEnd: 9999; FRule: @CRules[164])
   );
 
   { Date-bound rules for NYC family }
-  CFamily_98_Arr: array[0 .. 4] of TYearBoundRule = (
+  CFamily_97_Arr: array[0 .. 4] of TYearBoundRule = (
     (FStart: 1920; FEnd: 1920; FRule: @CRules[159]),
     (FStart: 1920; FEnd: 1920; FRule: @CRules[162]),
-    (FStart: 1921; FEnd: 1966; FRule: @CRules[643]),
+    (FStart: 1921; FEnd: 1966; FRule: @CRules[644]),
     (FStart: 1921; FEnd: 1954; FRule: @CRules[160]),
     (FStart: 1955; FEnd: 1966; FRule: @CRules[162])
   );
 
   { Date-bound rules for Chicago family }
-  CFamily_99_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[931]),
+  CFamily_98_Arr: array[0 .. 5] of TYearBoundRule = (
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[928]),
     (FStart: 1920; FEnd: 1921; FRule: @CRules[162]),
     (FStart: 1921; FEnd: 1921; FRule: @CRules[159]),
-    (FStart: 1922; FEnd: 1966; FRule: @CRules[643]),
+    (FStart: 1922; FEnd: 1966; FRule: @CRules[644]),
     (FStart: 1922; FEnd: 1954; FRule: @CRules[160]),
     (FStart: 1955; FEnd: 1966; FRule: @CRules[162])
   );
 
   { Date-bound rules for Denver family }
-  CFamily_100_Arr: array[0 .. 4] of TYearBoundRule = (
+  CFamily_99_Arr: array[0 .. 4] of TYearBoundRule = (
     (FStart: 1920; FEnd: 1921; FRule: @CRules[159]),
     (FStart: 1920; FEnd: 1920; FRule: @CRules[162]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[932]),
-    (FStart: 1965; FEnd: 1966; FRule: @CRules[643]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[929]),
+    (FStart: 1965; FEnd: 1966; FRule: @CRules[644]),
     (FStart: 1965; FEnd: 1966; FRule: @CRules[162])
   );
 
   { Date-bound rules for CA family }
-  CFamily_101_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[933]),
-    (FStart: 1949; FEnd: 1949; FRule: @CRules[934]),
-    (FStart: 1950; FEnd: 1966; FRule: @CRules[935]),
+  CFamily_100_Arr: array[0 .. 4] of TYearBoundRule = (
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[930]),
+    (FStart: 1949; FEnd: 1949; FRule: @CRules[931]),
+    (FStart: 1950; FEnd: 1966; FRule: @CRules[932]),
     (FStart: 1950; FEnd: 1961; FRule: @CRules[160]),
     (FStart: 1962; FEnd: 1966; FRule: @CRules[162])
   );
 
   { Date-bound rules for Indianapolis family }
-  CFamily_102_Arr: array[0 .. 2] of TYearBoundRule = (
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[641]),
+  CFamily_101_Arr: array[0 .. 2] of TYearBoundRule = (
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[642]),
     (FStart: 1941; FEnd: 1954; FRule: @CRules[160]),
-    (FStart: 1946; FEnd: 1954; FRule: @CRules[643])
+    (FStart: 1946; FEnd: 1954; FRule: @CRules[644])
   );
 
   { Date-bound rules for Marengo family }
-  CFamily_103_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1951; FEnd: 1951; FRule: @CRules[643]),
+  CFamily_102_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1951; FEnd: 1951; FRule: @CRules[644]),
     (FStart: 1951; FEnd: 1951; FRule: @CRules[160]),
-    (FStart: 1954; FEnd: 1960; FRule: @CRules[643]),
+    (FStart: 1954; FEnd: 1960; FRule: @CRules[644]),
     (FStart: 1954; FEnd: 1960; FRule: @CRules[160])
   );
 
   { Date-bound rules for Vincennes family }
-  CFamily_104_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[643]),
+  CFamily_103_Arr: array[0 .. 8] of TYearBoundRule = (
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[644]),
     (FStart: 1946; FEnd: 1946; FRule: @CRules[160]),
-    (FStart: 1953; FEnd: 1954; FRule: @CRules[643]),
+    (FStart: 1953; FEnd: 1954; FRule: @CRules[644]),
     (FStart: 1953; FEnd: 1959; FRule: @CRules[160]),
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[712]),
-    (FStart: 1956; FEnd: 1963; FRule: @CRules[643]),
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[710]),
+    (FStart: 1956; FEnd: 1963; FRule: @CRules[644]),
     (FStart: 1960; FEnd: 1960; FRule: @CRules[162]),
     (FStart: 1961; FEnd: 1961; FRule: @CRules[160]),
     (FStart: 1962; FEnd: 1963; FRule: @CRules[162])
   );
 
   { Date-bound rules for Perry family }
-  CFamily_105_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[712]),
+  CFamily_104_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[710]),
     (FStart: 1955; FEnd: 1960; FRule: @CRules[160]),
-    (FStart: 1956; FEnd: 1963; FRule: @CRules[643]),
+    (FStart: 1956; FEnd: 1963; FRule: @CRules[644]),
     (FStart: 1961; FEnd: 1963; FRule: @CRules[162])
   );
 
   { Date-bound rules for Pike family }
-  CFamily_106_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1955; FEnd: 1955; FRule: @CRules[712]),
+  CFamily_105_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1955; FEnd: 1955; FRule: @CRules[710]),
     (FStart: 1955; FEnd: 1960; FRule: @CRules[160]),
-    (FStart: 1956; FEnd: 1964; FRule: @CRules[643]),
+    (FStart: 1956; FEnd: 1964; FRule: @CRules[644]),
     (FStart: 1961; FEnd: 1964; FRule: @CRules[162])
   );
 
   { Date-bound rules for Starke family }
-  CFamily_107_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1947; FEnd: 1961; FRule: @CRules[643]),
+  CFamily_106_Arr: array[0 .. 4] of TYearBoundRule = (
+    (FStart: 1947; FEnd: 1961; FRule: @CRules[644]),
     (FStart: 1947; FEnd: 1954; FRule: @CRules[160]),
     (FStart: 1955; FEnd: 1956; FRule: @CRules[162]),
     (FStart: 1957; FEnd: 1958; FRule: @CRules[160]),
@@ -4600,353 +4644,383 @@ var
   );
 
   { Date-bound rules for Pulaski family }
-  CFamily_108_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1946; FEnd: 1960; FRule: @CRules[643]),
+  CFamily_107_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1946; FEnd: 1960; FRule: @CRules[644]),
     (FStart: 1946; FEnd: 1954; FRule: @CRules[160]),
     (FStart: 1955; FEnd: 1956; FRule: @CRules[162]),
     (FStart: 1957; FEnd: 1960; FRule: @CRules[160])
   );
 
   { Date-bound rules for Louisville family }
-  CFamily_109_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[918]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[936]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[643]),
+  CFamily_108_Arr: array[0 .. 8] of TYearBoundRule = (
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[914]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[933]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[644]),
     (FStart: 1941; FEnd: 1941; FRule: @CRules[160]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[937]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[938]),
-    (FStart: 1950; FEnd: 1961; FRule: @CRules[643]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[934]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[935]),
+    (FStart: 1950; FEnd: 1961; FRule: @CRules[644]),
     (FStart: 1950; FEnd: 1955; FRule: @CRules[160]),
     (FStart: 1956; FEnd: 1961; FRule: @CRules[162])
   );
 
   { Date-bound rules for Detroit family }
-  CFamily_110_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1948; FEnd: 1948; FRule: @CRules[643]),
+  CFamily_109_Arr: array[0 .. 1] of TYearBoundRule = (
+    (FStart: 1948; FEnd: 1948; FRule: @CRules[644]),
     (FStart: 1948; FEnd: 1948; FRule: @CRules[160])
   );
 
   { Date-bound rules for Menominee family }
-  CFamily_111_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[643]),
+  CFamily_110_Arr: array[0 .. 3] of TYearBoundRule = (
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[644]),
     (FStart: 1946; FEnd: 1946; FRule: @CRules[160]),
-    (FStart: 1966; FEnd: 1966; FRule: @CRules[643]),
+    (FStart: 1966; FEnd: 1966; FRule: @CRules[644]),
     (FStart: 1966; FEnd: 1966; FRule: @CRules[162])
   );
 
   { Date-bound rules for StJohns family }
-  CFamily_112_Arr: array[0 .. 18] of TYearBoundRule = (
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[940]),
-    (FStart: 1917; FEnd: 1917; FRule: @CRules[941]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[942]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[943]),
-    (FStart: 1920; FEnd: 1935; FRule: @CRules[944]),
-    (FStart: 1920; FEnd: 1935; FRule: @CRules[945]),
-    (FStart: 1936; FEnd: 1941; FRule: @CRules[946]),
-    (FStart: 1936; FEnd: 1941; FRule: @CRules[947]),
-    (FStart: 1946; FEnd: 1950; FRule: @CRules[868]),
-    (FStart: 1946; FEnd: 1950; FRule: @CRules[948]),
-    (FStart: 1951; FEnd: 1986; FRule: @CRules[643]),
+  CFamily_111_Arr: array[0 .. 18] of TYearBoundRule = (
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[937]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[938]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[939]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[940]),
+    (FStart: 1920; FEnd: 1935; FRule: @CRules[941]),
+    (FStart: 1920; FEnd: 1935; FRule: @CRules[942]),
+    (FStart: 1936; FEnd: 1941; FRule: @CRules[943]),
+    (FStart: 1936; FEnd: 1941; FRule: @CRules[944]),
+    (FStart: 1946; FEnd: 1950; FRule: @CRules[864]),
+    (FStart: 1946; FEnd: 1950; FRule: @CRules[945]),
+    (FStart: 1951; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1951; FEnd: 1959; FRule: @CRules[160]),
     (FStart: 1960; FEnd: 1986; FRule: @CRules[162]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[949]),
-    (FStart: 1987; FEnd: 2006; FRule: @CRules[950]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[951]),
-    (FStart: 1989; FEnd: 2006; FRule: @CRules[949]),
-    (FStart: 2007; FEnd: 2011; FRule: @CRules[952]),
-    (FStart: 2007; FEnd: 2010; FRule: @CRules[953])
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[946]),
+    (FStart: 1987; FEnd: 2006; FRule: @CRules[947]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[948]),
+    (FStart: 1989; FEnd: 2006; FRule: @CRules[946]),
+    (FStart: 2007; FEnd: 2011; FRule: @CRules[949]),
+    (FStart: 2007; FEnd: 2010; FRule: @CRules[950])
   );
 
   { Date-bound rules for Halifax family }
-  CFamily_113_Arr: array[0 .. 40] of TYearBoundRule = (
-    (FStart: 1916; FEnd: 1916; FRule: @CRules[732]),
-    (FStart: 1916; FEnd: 1916; FRule: @CRules[729]),
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[954]),
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[955]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[862]),
-    (FStart: 1921; FEnd: 1922; FRule: @CRules[812]),
-    (FStart: 1922; FEnd: 1922; FRule: @CRules[803]),
-    (FStart: 1923; FEnd: 1925; FRule: @CRules[866]),
-    (FStart: 1923; FEnd: 1923; FRule: @CRules[802]),
-    (FStart: 1924; FEnd: 1924; FRule: @CRules[797]),
+  CFamily_112_Arr: array[0 .. 40] of TYearBoundRule = (
+    (FStart: 1916; FEnd: 1916; FRule: @CRules[730]),
+    (FStart: 1916; FEnd: 1916; FRule: @CRules[727]),
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[951]),
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[952]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[858]),
+    (FStart: 1921; FEnd: 1922; FRule: @CRules[807]),
+    (FStart: 1922; FEnd: 1922; FRule: @CRules[953]),
+    (FStart: 1923; FEnd: 1925; FRule: @CRules[862]),
+    (FStart: 1923; FEnd: 1923; FRule: @CRules[954]),
+    (FStart: 1924; FEnd: 1924; FRule: @CRules[955]),
     (FStart: 1925; FEnd: 1925; FRule: @CRules[956]),
     (FStart: 1926; FEnd: 1926; FRule: @CRules[957]),
-    (FStart: 1926; FEnd: 1926; FRule: @CRules[800]),
-    (FStart: 1927; FEnd: 1927; FRule: @CRules[712]),
-    (FStart: 1927; FEnd: 1927; FRule: @CRules[958]),
-    (FStart: 1928; FEnd: 1931; FRule: @CRules[959]),
-    (FStart: 1928; FEnd: 1928; FRule: @CRules[960]),
-    (FStart: 1929; FEnd: 1929; FRule: @CRules[804]),
-    (FStart: 1930; FEnd: 1930; FRule: @CRules[797]),
-    (FStart: 1931; FEnd: 1932; FRule: @CRules[961]),
-    (FStart: 1932; FEnd: 1932; FRule: @CRules[712]),
-    (FStart: 1933; FEnd: 1933; FRule: @CRules[803]),
-    (FStart: 1933; FEnd: 1933; FRule: @CRules[962]),
-    (FStart: 1934; FEnd: 1934; FRule: @CRules[864]),
-    (FStart: 1934; FEnd: 1934; FRule: @CRules[815]),
-    (FStart: 1935; FEnd: 1935; FRule: @CRules[963]),
-    (FStart: 1935; FEnd: 1935; FRule: @CRules[964]),
-    (FStart: 1936; FEnd: 1936; FRule: @CRules[703]),
-    (FStart: 1936; FEnd: 1936; FRule: @CRules[817]),
-    (FStart: 1937; FEnd: 1938; FRule: @CRules[866]),
-    (FStart: 1937; FEnd: 1941; FRule: @CRules[961]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[965]),
-    (FStart: 1940; FEnd: 1941; FRule: @CRules[866]),
-    (FStart: 1946; FEnd: 1949; FRule: @CRules[643]),
+    (FStart: 1926; FEnd: 1926; FRule: @CRules[958]),
+    (FStart: 1927; FEnd: 1927; FRule: @CRules[710]),
+    (FStart: 1927; FEnd: 1927; FRule: @CRules[959]),
+    (FStart: 1928; FEnd: 1931; FRule: @CRules[960]),
+    (FStart: 1928; FEnd: 1928; FRule: @CRules[961]),
+    (FStart: 1929; FEnd: 1929; FRule: @CRules[810]),
+    (FStart: 1930; FEnd: 1930; FRule: @CRules[955]),
+    (FStart: 1931; FEnd: 1932; FRule: @CRules[962]),
+    (FStart: 1932; FEnd: 1932; FRule: @CRules[710]),
+    (FStart: 1933; FEnd: 1933; FRule: @CRules[953]),
+    (FStart: 1933; FEnd: 1933; FRule: @CRules[963]),
+    (FStart: 1934; FEnd: 1934; FRule: @CRules[861]),
+    (FStart: 1934; FEnd: 1934; FRule: @CRules[964]),
+    (FStart: 1935; FEnd: 1935; FRule: @CRules[965]),
+    (FStart: 1935; FEnd: 1935; FRule: @CRules[966]),
+    (FStart: 1936; FEnd: 1936; FRule: @CRules[701]),
+    (FStart: 1936; FEnd: 1936; FRule: @CRules[967]),
+    (FStart: 1937; FEnd: 1938; FRule: @CRules[862]),
+    (FStart: 1937; FEnd: 1941; FRule: @CRules[962]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[968]),
+    (FStart: 1940; FEnd: 1941; FRule: @CRules[862]),
+    (FStart: 1946; FEnd: 1949; FRule: @CRules[644]),
     (FStart: 1946; FEnd: 1949; FRule: @CRules[160]),
-    (FStart: 1951; FEnd: 1954; FRule: @CRules[643]),
+    (FStart: 1951; FEnd: 1954; FRule: @CRules[644]),
     (FStart: 1951; FEnd: 1954; FRule: @CRules[160]),
-    (FStart: 1956; FEnd: 1959; FRule: @CRules[643]),
+    (FStart: 1956; FEnd: 1959; FRule: @CRules[644]),
     (FStart: 1956; FEnd: 1959; FRule: @CRules[160]),
-    (FStart: 1962; FEnd: 1973; FRule: @CRules[643]),
+    (FStart: 1962; FEnd: 1973; FRule: @CRules[644]),
     (FStart: 1962; FEnd: 1973; FRule: @CRules[162])
   );
 
   { Date-bound rules for Moncton family }
-  CFamily_114_Arr: array[0 .. 12] of TYearBoundRule = (
-    (FStart: 1933; FEnd: 1935; FRule: @CRules[966]),
-    (FStart: 1933; FEnd: 1935; FRule: @CRules[967]),
-    (FStart: 1936; FEnd: 1938; FRule: @CRules[968]),
-    (FStart: 1936; FEnd: 1938; FRule: @CRules[969]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[970]),
-    (FStart: 1939; FEnd: 1941; FRule: @CRules[971]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[972]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[973]),
-    (FStart: 1946; FEnd: 1972; FRule: @CRules[643]),
+  CFamily_113_Arr: array[0 .. 12] of TYearBoundRule = (
+    (FStart: 1933; FEnd: 1935; FRule: @CRules[969]),
+    (FStart: 1933; FEnd: 1935; FRule: @CRules[970]),
+    (FStart: 1936; FEnd: 1938; FRule: @CRules[971]),
+    (FStart: 1936; FEnd: 1938; FRule: @CRules[972]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[973]),
+    (FStart: 1939; FEnd: 1941; FRule: @CRules[974]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[975]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[976]),
+    (FStart: 1946; FEnd: 1972; FRule: @CRules[644]),
     (FStart: 1946; FEnd: 1956; FRule: @CRules[160]),
     (FStart: 1957; FEnd: 1972; FRule: @CRules[162]),
-    (FStart: 1993; FEnd: 2006; FRule: @CRules[949]),
-    (FStart: 1993; FEnd: 2006; FRule: @CRules[950])
+    (FStart: 1993; FEnd: 2006; FRule: @CRules[946]),
+    (FStart: 1993; FEnd: 2006; FRule: @CRules[947])
   );
 
   { Date-bound rules for Toronto family }
-  CFamily_115_Arr: array[0 .. 21] of TYearBoundRule = (
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[974]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[975]),
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[976]),
-    (FStart: 1920; FEnd: 1920; FRule: @CRules[958]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[977]),
-    (FStart: 1921; FEnd: 1921; FRule: @CRules[978]),
-    (FStart: 1922; FEnd: 1923; FRule: @CRules[868]),
-    (FStart: 1922; FEnd: 1926; FRule: @CRules[979]),
-    (FStart: 1924; FEnd: 1927; FRule: @CRules[922]),
-    (FStart: 1927; FEnd: 1937; FRule: @CRules[980]),
-    (FStart: 1928; FEnd: 1937; FRule: @CRules[981]),
-    (FStart: 1938; FEnd: 1940; FRule: @CRules[643]),
+  CFamily_114_Arr: array[0 .. 21] of TYearBoundRule = (
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[977]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[978]),
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[979]),
+    (FStart: 1920; FEnd: 1920; FRule: @CRules[959]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[980]),
+    (FStart: 1921; FEnd: 1921; FRule: @CRules[981]),
+    (FStart: 1922; FEnd: 1923; FRule: @CRules[864]),
+    (FStart: 1922; FEnd: 1926; FRule: @CRules[982]),
+    (FStart: 1924; FEnd: 1927; FRule: @CRules[918]),
+    (FStart: 1927; FEnd: 1937; FRule: @CRules[983]),
+    (FStart: 1928; FEnd: 1937; FRule: @CRules[984]),
+    (FStart: 1938; FEnd: 1940; FRule: @CRules[644]),
     (FStart: 1938; FEnd: 1939; FRule: @CRules[160]),
     (FStart: 1945; FEnd: 1946; FRule: @CRules[160]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[643]),
-    (FStart: 1947; FEnd: 1949; FRule: @CRules[925]),
-    (FStart: 1947; FEnd: 1948; FRule: @CRules[926]),
-    (FStart: 1949; FEnd: 1949; FRule: @CRules[982]),
-    (FStart: 1950; FEnd: 1973; FRule: @CRules[643]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[693]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[644]),
+    (FStart: 1947; FEnd: 1949; FRule: @CRules[921]),
+    (FStart: 1947; FEnd: 1948; FRule: @CRules[922]),
+    (FStart: 1949; FEnd: 1949; FRule: @CRules[985]),
+    (FStart: 1950; FEnd: 1973; FRule: @CRules[644]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[986]),
     (FStart: 1951; FEnd: 1956; FRule: @CRules[160]),
     (FStart: 1957; FEnd: 1973; FRule: @CRules[162])
   );
 
   { Date-bound rules for Winn family }
-  CFamily_116_Arr: array[0 .. 23] of TYearBoundRule = (
-    (FStart: 1916; FEnd: 1916; FRule: @CRules[983]),
-    (FStart: 1916; FEnd: 1916; FRule: @CRules[984]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[821]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1937; FEnd: 1937; FRule: @CRules[985]),
-    (FStart: 1937; FEnd: 1937; FRule: @CRules[986]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
+  CFamily_115_Arr: array[0 .. 23] of TYearBoundRule = (
+    (FStart: 1916; FEnd: 1916; FRule: @CRules[987]),
+    (FStart: 1916; FEnd: 1916; FRule: @CRules[988]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[818]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1937; FEnd: 1937; FRule: @CRules[989]),
+    (FStart: 1937; FEnd: 1937; FRule: @CRules[990]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
     (FStart: 1945; FEnd: 1945; FRule: @CRules[160]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[987]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[988]),
-    (FStart: 1947; FEnd: 1949; FRule: @CRules[643]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[991]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[992]),
+    (FStart: 1947; FEnd: 1949; FRule: @CRules[644]),
     (FStart: 1947; FEnd: 1949; FRule: @CRules[160]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[918]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[929]),
-    (FStart: 1951; FEnd: 1960; FRule: @CRules[643]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[914]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[925]),
+    (FStart: 1951; FEnd: 1960; FRule: @CRules[644]),
     (FStart: 1951; FEnd: 1958; FRule: @CRules[160]),
     (FStart: 1959; FEnd: 1959; FRule: @CRules[162]),
     (FStart: 1960; FEnd: 1960; FRule: @CRules[160]),
-    (FStart: 1963; FEnd: 1963; FRule: @CRules[643]),
-    (FStart: 1963; FEnd: 1963; FRule: @CRules[989]),
-    (FStart: 1966; FEnd: 1986; FRule: @CRules[643]),
+    (FStart: 1963; FEnd: 1963; FRule: @CRules[644]),
+    (FStart: 1963; FEnd: 1963; FRule: @CRules[993]),
+    (FStart: 1966; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1966; FEnd: 2005; FRule: @CRules[162]),
     (FStart: 1987; FEnd: 2005; FRule: @CRules[161])
   );
 
   { Date-bound rules for Regina family }
-  CFamily_117_Arr: array[0 .. 16] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[821]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1930; FEnd: 1934; FRule: @CRules[866]),
-    (FStart: 1930; FEnd: 1934; FRule: @CRules[990]),
-    (FStart: 1937; FEnd: 1941; FRule: @CRules[991]),
-    (FStart: 1937; FEnd: 1937; FRule: @CRules[992]),
-    (FStart: 1938; FEnd: 1938; FRule: @CRules[990]),
-    (FStart: 1939; FEnd: 1941; FRule: @CRules[992]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
+  CFamily_116_Arr: array[0 .. 16] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[818]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1930; FEnd: 1934; FRule: @CRules[862]),
+    (FStart: 1930; FEnd: 1934; FRule: @CRules[994]),
+    (FStart: 1937; FEnd: 1941; FRule: @CRules[995]),
+    (FStart: 1937; FEnd: 1937; FRule: @CRules[996]),
+    (FStart: 1938; FEnd: 1938; FRule: @CRules[994]),
+    (FStart: 1939; FEnd: 1941; FRule: @CRules[996]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
     (FStart: 1945; FEnd: 1945; FRule: @CRules[160]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[993]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[994]),
-    (FStart: 1947; FEnd: 1957; FRule: @CRules[643]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[997]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[998]),
+    (FStart: 1947; FEnd: 1957; FRule: @CRules[644]),
     (FStart: 1947; FEnd: 1957; FRule: @CRules[160]),
-    (FStart: 1959; FEnd: 1959; FRule: @CRules[643]),
+    (FStart: 1959; FEnd: 1959; FRule: @CRules[644]),
     (FStart: 1959; FEnd: 1959; FRule: @CRules[162])
   );
 
   { Date-bound rules for Swift family }
-  CFamily_118_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1957; FEnd: 1957; FRule: @CRules[643]),
+  CFamily_117_Arr: array[0 .. 4] of TYearBoundRule = (
+    (FStart: 1957; FEnd: 1957; FRule: @CRules[644]),
     (FStart: 1957; FEnd: 1957; FRule: @CRules[162]),
-    (FStart: 1959; FEnd: 1961; FRule: @CRules[643]),
+    (FStart: 1959; FEnd: 1961; FRule: @CRules[644]),
     (FStart: 1959; FEnd: 1959; FRule: @CRules[162]),
     (FStart: 1960; FEnd: 1961; FRule: @CRules[160])
   );
 
   { Date-bound rules for Edm family }
-  CFamily_119_Arr: array[0 .. 12] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1919; FRule: @CRules[993]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1919; FEnd: 1919; FRule: @CRules[995]),
-    (FStart: 1920; FEnd: 1923; FRule: @CRules[643]),
+  CFamily_118_Arr: array[0 .. 12] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1919; FRule: @CRules[997]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1919; FEnd: 1919; FRule: @CRules[999]),
+    (FStart: 1920; FEnd: 1923; FRule: @CRules[644]),
     (FStart: 1920; FEnd: 1920; FRule: @CRules[162]),
     (FStart: 1921; FEnd: 1923; FRule: @CRules[160]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
     (FStart: 1945; FEnd: 1945; FRule: @CRules[160]),
-    (FStart: 1947; FEnd: 1947; FRule: @CRules[643]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[644]),
     (FStart: 1947; FEnd: 1947; FRule: @CRules[160]),
-    (FStart: 1972; FEnd: 1986; FRule: @CRules[643]),
+    (FStart: 1972; FEnd: 1986; FRule: @CRules[644]),
     (FStart: 1972; FEnd: 2006; FRule: @CRules[162])
   );
 
   { Date-bound rules for Vanc family }
-  CFamily_120_Arr: array[0 .. 8] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[821]),
-    (FStart: 1918; FEnd: 1918; FRule: @CRules[939]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[927]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[928]),
-    (FStart: 1945; FEnd: 1945; FRule: @CRules[929]),
-    (FStart: 1946; FEnd: 1986; FRule: @CRules[643]),
-    (FStart: 1946; FEnd: 1946; FRule: @CRules[996]),
+  CFamily_119_Arr: array[0 .. 8] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[818]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[936]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[923]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[925]),
+    (FStart: 1946; FEnd: 1986; FRule: @CRules[644]),
+    (FStart: 1946; FEnd: 1946; FRule: @CRules[1000]),
     (FStart: 1947; FEnd: 1961; FRule: @CRules[160]),
     (FStart: 1962; FEnd: 2006; FRule: @CRules[162])
   );
 
   { Date-bound rules for Bahamas family }
-  CFamily_121_Arr: array[0 .. 1] of TYearBoundRule = (
+  CFamily_120_Arr: array[0 .. 6] of TYearBoundRule = (
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[1011]),
+    (FStart: 1944; FEnd: 1944; FRule: @CRules[1012]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[1013]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[924]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[1014]),
     (FStart: 1964; FEnd: 1975; FRule: @CRules[162]),
-    (FStart: 1964; FEnd: 1975; FRule: @CRules[643])
+    (FStart: 1964; FEnd: 1975; FRule: @CRules[644])
   );
 
   { Date-bound rules for Barb family }
-  CFamily_122_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[1007]),
-    (FStart: 1977; FEnd: 1978; FRule: @CRules[1008]),
-    (FStart: 1978; FEnd: 1980; FRule: @CRules[1009]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[929]),
-    (FStart: 1980; FEnd: 1980; FRule: @CRules[1010])
+  CFamily_121_Arr: array[0 .. 4] of TYearBoundRule = (
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[1015]),
+    (FStart: 1977; FEnd: 1978; FRule: @CRules[1016]),
+    (FStart: 1978; FEnd: 1980; FRule: @CRules[1017]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[925]),
+    (FStart: 1980; FEnd: 1980; FRule: @CRules[1018])
   );
 
   { Date-bound rules for Belize family }
-  CFamily_123_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1918; FEnd: 1942; FRule: @CRules[1011]),
-    (FStart: 1919; FEnd: 1943; FRule: @CRules[1012]),
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[1013]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1014]),
-    (FStart: 1982; FEnd: 1982; FRule: @CRules[1015]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[1016])
+  CFamily_122_Arr: array[0 .. 10] of TYearBoundRule = (
+    (FStart: 1918; FEnd: 1941; FRule: @CRules[1019]),
+    (FStart: 1919; FEnd: 1942; FRule: @CRules[1020]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[1021]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[1022]),
+    (FStart: 1945; FEnd: 1945; FRule: @CRules[1023]),
+    (FStart: 1947; FEnd: 1967; FRule: @CRules[1019]),
+    (FStart: 1948; FEnd: 1968; FRule: @CRules[1020]),
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[1024]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1025]),
+    (FStart: 1982; FEnd: 1982; FRule: @CRules[1026]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[1027])
+  );
+
+  { Date-bound rules for Bermuda family }
+  CFamily_123_Arr: array[0 .. 15] of TYearBoundRule = (
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[1028]),
+    (FStart: 1917; FEnd: 1917; FRule: @CRules[242]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[1029]),
+    (FStart: 1918; FEnd: 1918; FRule: @CRules[812]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[1030]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[1031]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[1032]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[1033]),
+    (FStart: 1944; FEnd: 1945; FRule: @CRules[163]),
+    (FStart: 1944; FEnd: 1945; FRule: @CRules[164]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[1034]),
+    (FStart: 1947; FEnd: 1947; FRule: @CRules[1035]),
+    (FStart: 1948; FEnd: 1952; FRule: @CRules[1036]),
+    (FStart: 1948; FEnd: 1952; FRule: @CRules[645]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[1036]),
+    (FStart: 1956; FEnd: 1956; FRule: @CRules[162])
   );
 
   { Date-bound rules for CR family }
   CFamily_124_Arr: array[0 .. 4] of TYearBoundRule = (
-    (FStart: 1979; FEnd: 1980; FRule: @CRules[1017]),
-    (FStart: 1979; FEnd: 1980; FRule: @CRules[1018]),
-    (FStart: 1991; FEnd: 1992; FRule: @CRules[1019]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[896]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1020])
+    (FStart: 1979; FEnd: 1980; FRule: @CRules[1037]),
+    (FStart: 1979; FEnd: 1980; FRule: @CRules[1038]),
+    (FStart: 1991; FEnd: 1992; FRule: @CRules[1039]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[892]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1040])
   );
 
   { Date-bound rules for Cuba family }
   CFamily_125_Arr: array[0 .. 38] of TYearBoundRule = (
-    (FStart: 1928; FEnd: 1928; FRule: @CRules[1021]),
-    (FStart: 1928; FEnd: 1928; FRule: @CRules[1022]),
-    (FStart: 1940; FEnd: 1942; FRule: @CRules[1023]),
-    (FStart: 1940; FEnd: 1942; FRule: @CRules[1024]),
-    (FStart: 1945; FEnd: 1946; FRule: @CRules[1023]),
-    (FStart: 1945; FEnd: 1946; FRule: @CRules[1024]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[703]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[964]),
-    (FStart: 1966; FEnd: 1966; FRule: @CRules[1025]),
-    (FStart: 1966; FEnd: 1966; FRule: @CRules[962]),
-    (FStart: 1967; FEnd: 1967; FRule: @CRules[1026]),
-    (FStart: 1967; FEnd: 1968; FRule: @CRules[1027]),
-    (FStart: 1968; FEnd: 1968; FRule: @CRules[796]),
-    (FStart: 1969; FEnd: 1977; FRule: @CRules[925]),
-    (FStart: 1969; FEnd: 1971; FRule: @CRules[1028]),
-    (FStart: 1972; FEnd: 1974; FRule: @CRules[1029]),
-    (FStart: 1975; FEnd: 1977; FRule: @CRules[1028]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[1030]),
-    (FStart: 1978; FEnd: 1990; FRule: @CRules[992]),
-    (FStart: 1979; FEnd: 1980; FRule: @CRules[1031]),
-    (FStart: 1981; FEnd: 1985; FRule: @CRules[1032]),
-    (FStart: 1986; FEnd: 1989; FRule: @CRules[1033]),
-    (FStart: 1990; FEnd: 1997; FRule: @CRules[1034]),
-    (FStart: 1991; FEnd: 1995; FRule: @CRules[992]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[1035]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[1036]),
-    (FStart: 1998; FEnd: 1999; FRule: @CRules[1037]),
-    (FStart: 1998; FEnd: 2003; FRule: @CRules[1028]),
-    (FStart: 2000; FEnd: 2003; FRule: @CRules[1034]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[1037]),
-    (FStart: 2006; FEnd: 2010; FRule: @CRules[1028]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[1038]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[1031]),
-    (FStart: 2009; FEnd: 2010; FRule: @CRules[1038]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[1031]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[1039]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[732]),
-    (FStart: 2012; FEnd: 9999; FRule: @CRules[1040]),
-    (FStart: 2013; FEnd: 9999; FRule: @CRules[1038])
+    (FStart: 1928; FEnd: 1928; FRule: @CRules[1041]),
+    (FStart: 1928; FEnd: 1928; FRule: @CRules[1042]),
+    (FStart: 1940; FEnd: 1942; FRule: @CRules[1043]),
+    (FStart: 1940; FEnd: 1942; FRule: @CRules[1044]),
+    (FStart: 1945; FEnd: 1946; FRule: @CRules[1043]),
+    (FStart: 1945; FEnd: 1946; FRule: @CRules[1044]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[701]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[966]),
+    (FStart: 1966; FEnd: 1966; FRule: @CRules[1045]),
+    (FStart: 1966; FEnd: 1966; FRule: @CRules[963]),
+    (FStart: 1967; FEnd: 1967; FRule: @CRules[1046]),
+    (FStart: 1967; FEnd: 1968; FRule: @CRules[1047]),
+    (FStart: 1968; FEnd: 1968; FRule: @CRules[1048]),
+    (FStart: 1969; FEnd: 1977; FRule: @CRules[921]),
+    (FStart: 1969; FEnd: 1971; FRule: @CRules[1049]),
+    (FStart: 1972; FEnd: 1974; FRule: @CRules[1050]),
+    (FStart: 1975; FEnd: 1977; FRule: @CRules[1049]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[1051]),
+    (FStart: 1978; FEnd: 1990; FRule: @CRules[996]),
+    (FStart: 1979; FEnd: 1980; FRule: @CRules[1052]),
+    (FStart: 1981; FEnd: 1985; FRule: @CRules[1053]),
+    (FStart: 1986; FEnd: 1989; FRule: @CRules[1054]),
+    (FStart: 1990; FEnd: 1997; FRule: @CRules[1055]),
+    (FStart: 1991; FEnd: 1995; FRule: @CRules[996]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[1056]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[1057]),
+    (FStart: 1998; FEnd: 1999; FRule: @CRules[1058]),
+    (FStart: 1998; FEnd: 2003; FRule: @CRules[1049]),
+    (FStart: 2000; FEnd: 2003; FRule: @CRules[1055]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[1058]),
+    (FStart: 2006; FEnd: 2010; FRule: @CRules[1049]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[1059]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[1052]),
+    (FStart: 2009; FEnd: 2010; FRule: @CRules[1059]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[1052]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[1060]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[730]),
+    (FStart: 2012; FEnd: 9999; FRule: @CRules[1061]),
+    (FStart: 2013; FEnd: 9999; FRule: @CRules[1059])
   );
 
   { Date-bound rules for DR family }
   CFamily_126_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1966; FEnd: 1966; FRule: @CRules[1041]),
-    (FStart: 1967; FEnd: 1967; FRule: @CRules[1042]),
-    (FStart: 1969; FEnd: 1973; FRule: @CRules[1043]),
-    (FStart: 1970; FEnd: 1970; FRule: @CRules[1044]),
-    (FStart: 1971; FEnd: 1971; FRule: @CRules[1045]),
-    (FStart: 1972; FEnd: 1974; FRule: @CRules[1046])
+    (FStart: 1966; FEnd: 1966; FRule: @CRules[1062]),
+    (FStart: 1967; FEnd: 1967; FRule: @CRules[1063]),
+    (FStart: 1969; FEnd: 1973; FRule: @CRules[1064]),
+    (FStart: 1970; FEnd: 1970; FRule: @CRules[1065]),
+    (FStart: 1971; FEnd: 1971; FRule: @CRules[1066]),
+    (FStart: 1972; FEnd: 1974; FRule: @CRules[1067])
   );
 
   { Date-bound rules for Salv family }
   CFamily_127_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[866]),
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[926])
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[862]),
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[922])
   );
 
   { Date-bound rules for Guat family }
   CFamily_128_Arr: array[0 .. 7] of TYearBoundRule = (
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[1047]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1048]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[1049]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[787]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[1050]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[799]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[803]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[729])
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[1068]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1069]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[1070]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[1071]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[1072]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[1073]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[953]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[727])
   );
 
   { Date-bound rules for Haiti family }
   CFamily_129_Arr: array[0 .. 10] of TYearBoundRule = (
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[1051]),
-    (FStart: 1984; FEnd: 1987; FRule: @CRules[925]),
-    (FStart: 1983; FEnd: 1987; FRule: @CRules[1028]),
-    (FStart: 1988; FEnd: 1997; FRule: @CRules[1052]),
-    (FStart: 1988; FEnd: 1997; FRule: @CRules[1053]),
-    (FStart: 2005; FEnd: 2006; FRule: @CRules[1034]),
-    (FStart: 2005; FEnd: 2006; FRule: @CRules[1028]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[1074]),
+    (FStart: 1984; FEnd: 1987; FRule: @CRules[921]),
+    (FStart: 1983; FEnd: 1987; FRule: @CRules[1049]),
+    (FStart: 1988; FEnd: 1997; FRule: @CRules[1075]),
+    (FStart: 1988; FEnd: 1997; FRule: @CRules[1076]),
+    (FStart: 2005; FEnd: 2006; FRule: @CRules[1055]),
+    (FStart: 2005; FEnd: 2006; FRule: @CRules[1049]),
     (FStart: 2012; FEnd: 2015; FRule: @CRules[163]),
     (FStart: 2012; FEnd: 2015; FRule: @CRules[164]),
     (FStart: 2017; FEnd: 9999; FRule: @CRules[163]),
@@ -4955,251 +5029,251 @@ var
 
   { Date-bound rules for Hond family }
   CFamily_130_Arr: array[0 .. 3] of TYearBoundRule = (
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[866]),
-    (FStart: 1987; FEnd: 1988; FRule: @CRules[926]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[866]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[1054])
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[862]),
+    (FStart: 1987; FEnd: 1988; FRule: @CRules[922]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[862]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[1077])
   );
 
   { Date-bound rules for Nic family }
   CFamily_131_Arr: array[0 .. 5] of TYearBoundRule = (
-    (FStart: 1979; FEnd: 1980; FRule: @CRules[1055]),
-    (FStart: 1979; FEnd: 1980; FRule: @CRules[1056]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[801]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[990]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[919]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[1057])
+    (FStart: 1979; FEnd: 1980; FRule: @CRules[1078]),
+    (FStart: 1979; FEnd: 1980; FRule: @CRules[1079]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[1080]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[994]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[915]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[1081])
   );
 
   { Date-bound rules for Troll family }
   CFamily_132_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 2005; FEnd: 9999; FRule: @CRules[1058]),
-    (FStart: 2004; FEnd: 9999; FRule: @CRules[1059])
+    (FStart: 2005; FEnd: 9999; FRule: @CRules[1082]),
+    (FStart: 2004; FEnd: 9999; FRule: @CRules[1083])
   );
 
   { Date-bound rules for SanLuis family }
   CFamily_133_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 2008; FEnd: 2009; FRule: @CRules[1078]),
-    (FStart: 2007; FEnd: 2008; FRule: @CRules[1079])
+    (FStart: 2008; FEnd: 2009; FRule: @CRules[1102]),
+    (FStart: 2007; FEnd: 2008; FRule: @CRules[1103])
   );
 
   { Date-bound rules for Brazil family }
   CFamily_134_Arr: array[0 .. 56] of TYearBoundRule = (
-    (FStart: 1931; FEnd: 1931; FRule: @CRules[1080]),
-    (FStart: 1932; FEnd: 1933; FRule: @CRules[1061]),
-    (FStart: 1932; FEnd: 1932; FRule: @CRules[1081]),
-    (FStart: 1949; FEnd: 1952; FRule: @CRules[1060]),
-    (FStart: 1950; FEnd: 1950; FRule: @CRules[1082]),
-    (FStart: 1951; FEnd: 1952; FRule: @CRules[1061]),
-    (FStart: 1953; FEnd: 1953; FRule: @CRules[1063]),
-    (FStart: 1963; FEnd: 1963; FRule: @CRules[1083]),
-    (FStart: 1964; FEnd: 1964; FRule: @CRules[1063]),
+    (FStart: 1931; FEnd: 1931; FRule: @CRules[1104]),
+    (FStart: 1932; FEnd: 1933; FRule: @CRules[1085]),
+    (FStart: 1932; FEnd: 1932; FRule: @CRules[1105]),
+    (FStart: 1949; FEnd: 1952; FRule: @CRules[1084]),
+    (FStart: 1950; FEnd: 1950; FRule: @CRules[1106]),
+    (FStart: 1951; FEnd: 1952; FRule: @CRules[1085]),
+    (FStart: 1953; FEnd: 1953; FRule: @CRules[1087]),
+    (FStart: 1963; FEnd: 1963; FRule: @CRules[1107]),
+    (FStart: 1964; FEnd: 1964; FRule: @CRules[1087]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[1108]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[1109]),
     (FStart: 1965; FEnd: 1965; FRule: @CRules[1084]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[1085]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[1060]),
-    (FStart: 1966; FEnd: 1968; FRule: @CRules[1063]),
-    (FStart: 1966; FEnd: 1967; FRule: @CRules[1064]),
-    (FStart: 1985; FEnd: 1985; FRule: @CRules[1086]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[1087]),
-    (FStart: 1986; FEnd: 1986; FRule: @CRules[1088]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[1089]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[1088]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[1090]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[1091]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[1092]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[1062]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1093]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1094]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[1095]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[1096]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1097]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1088]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[1098]),
-    (FStart: 1993; FEnd: 1995; FRule: @CRules[1099]),
-    (FStart: 1994; FEnd: 1995; FRule: @CRules[1100]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[1093]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[1101]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[1102]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[1101]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[1063]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[1103]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[1104]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[1081]),
-    (FStart: 2000; FEnd: 2000; FRule: @CRules[652]),
-    (FStart: 2000; FEnd: 2001; FRule: @CRules[1079]),
-    (FStart: 2001; FEnd: 2006; FRule: @CRules[1100]),
-    (FStart: 2002; FEnd: 2002; FRule: @CRules[1105]),
-    (FStart: 2003; FEnd: 2003; FRule: @CRules[1106]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[1086]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[1091]),
-    (FStart: 2006; FEnd: 2006; FRule: @CRules[1107]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[1108]),
-    (FStart: 2007; FEnd: 2007; FRule: @CRules[1079]),
-    (FStart: 2008; FEnd: 2017; FRule: @CRules[1074]),
-    (FStart: 2008; FEnd: 2011; FRule: @CRules[1100]),
-    (FStart: 2012; FEnd: 2012; FRule: @CRules[1109]),
-    (FStart: 2013; FEnd: 2014; FRule: @CRules[1100]),
-    (FStart: 2015; FEnd: 2015; FRule: @CRules[1109]),
-    (FStart: 2016; FEnd: 2019; FRule: @CRules[1100]),
-    (FStart: 2018; FEnd: 2018; FRule: @CRules[1110])
+    (FStart: 1966; FEnd: 1968; FRule: @CRules[1087]),
+    (FStart: 1966; FEnd: 1967; FRule: @CRules[1088]),
+    (FStart: 1985; FEnd: 1985; FRule: @CRules[1110]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[1111]),
+    (FStart: 1986; FEnd: 1986; FRule: @CRules[1112]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[1113]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[1112]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[1114]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[1115]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[1116]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[1086]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1117]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1118]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[1119]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[1120]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1121]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1112]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[1122]),
+    (FStart: 1993; FEnd: 1995; FRule: @CRules[1123]),
+    (FStart: 1994; FEnd: 1995; FRule: @CRules[1124]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[1117]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[1125]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[1126]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[1125]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[1087]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[1127]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[1128]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[1105]),
+    (FStart: 2000; FEnd: 2000; FRule: @CRules[653]),
+    (FStart: 2000; FEnd: 2001; FRule: @CRules[1103]),
+    (FStart: 2001; FEnd: 2006; FRule: @CRules[1124]),
+    (FStart: 2002; FEnd: 2002; FRule: @CRules[1129]),
+    (FStart: 2003; FEnd: 2003; FRule: @CRules[1130]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[1110]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[1115]),
+    (FStart: 2006; FEnd: 2006; FRule: @CRules[1131]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[1132]),
+    (FStart: 2007; FEnd: 2007; FRule: @CRules[1103]),
+    (FStart: 2008; FEnd: 2017; FRule: @CRules[1098]),
+    (FStart: 2008; FEnd: 2011; FRule: @CRules[1124]),
+    (FStart: 2012; FEnd: 2012; FRule: @CRules[1133]),
+    (FStart: 2013; FEnd: 2014; FRule: @CRules[1124]),
+    (FStart: 2015; FEnd: 2015; FRule: @CRules[1133]),
+    (FStart: 2016; FEnd: 2019; FRule: @CRules[1124]),
+    (FStart: 2018; FEnd: 2018; FRule: @CRules[1134])
   );
 
   { Date-bound rules for Chile family }
   CFamily_135_Arr: array[0 .. 33] of TYearBoundRule = (
-    (FStart: 1927; FEnd: 1931; FRule: @CRules[1111]),
-    (FStart: 1928; FEnd: 1932; FRule: @CRules[1061]),
-    (FStart: 1968; FEnd: 1968; FRule: @CRules[1112]),
-    (FStart: 1969; FEnd: 1969; FRule: @CRules[1113]),
-    (FStart: 1969; FEnd: 1969; FRule: @CRules[1114]),
-    (FStart: 1970; FEnd: 1970; FRule: @CRules[1115]),
-    (FStart: 1971; FEnd: 1971; FRule: @CRules[1116]),
-    (FStart: 1970; FEnd: 1972; FRule: @CRules[1117]),
-    (FStart: 1972; FEnd: 1986; FRule: @CRules[1118]),
-    (FStart: 1973; FEnd: 1973; FRule: @CRules[1119]),
-    (FStart: 1974; FEnd: 1987; FRule: @CRules[1117]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[1120]),
-    (FStart: 1988; FEnd: 1990; FRule: @CRules[1118]),
-    (FStart: 1988; FEnd: 1989; FRule: @CRules[1117]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1121]),
-    (FStart: 1991; FEnd: 1996; FRule: @CRules[1118]),
-    (FStart: 1991; FEnd: 1997; FRule: @CRules[1117]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[1113]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[1118]),
-    (FStart: 1998; FEnd: 1998; FRule: @CRules[1122]),
-    (FStart: 1999; FEnd: 1999; FRule: @CRules[1123]),
-    (FStart: 1999; FEnd: 2010; FRule: @CRules[1117]),
-    (FStart: 2000; FEnd: 2007; FRule: @CRules[1118]),
-    (FStart: 2008; FEnd: 2008; FRule: @CRules[1113]),
-    (FStart: 2009; FEnd: 2009; FRule: @CRules[1118]),
-    (FStart: 2010; FEnd: 2010; FRule: @CRules[1124]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[1125]),
-    (FStart: 2011; FEnd: 2011; FRule: @CRules[1126]),
-    (FStart: 2012; FEnd: 2014; FRule: @CRules[1127]),
-    (FStart: 2012; FEnd: 2014; FRule: @CRules[1128]),
-    (FStart: 2016; FEnd: 2018; FRule: @CRules[1129]),
-    (FStart: 2016; FEnd: 2018; FRule: @CRules[1130]),
-    (FStart: 2019; FEnd: 9999; FRule: @CRules[1131]),
-    (FStart: 2019; FEnd: 9999; FRule: @CRules[1128])
+    (FStart: 1927; FEnd: 1931; FRule: @CRules[1135]),
+    (FStart: 1928; FEnd: 1932; FRule: @CRules[1085]),
+    (FStart: 1968; FEnd: 1968; FRule: @CRules[1136]),
+    (FStart: 1969; FEnd: 1969; FRule: @CRules[1137]),
+    (FStart: 1969; FEnd: 1969; FRule: @CRules[1138]),
+    (FStart: 1970; FEnd: 1970; FRule: @CRules[1139]),
+    (FStart: 1971; FEnd: 1971; FRule: @CRules[1140]),
+    (FStart: 1970; FEnd: 1972; FRule: @CRules[1141]),
+    (FStart: 1972; FEnd: 1986; FRule: @CRules[1142]),
+    (FStart: 1973; FEnd: 1973; FRule: @CRules[1143]),
+    (FStart: 1974; FEnd: 1987; FRule: @CRules[1141]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[1144]),
+    (FStart: 1988; FEnd: 1990; FRule: @CRules[1142]),
+    (FStart: 1988; FEnd: 1989; FRule: @CRules[1141]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1145]),
+    (FStart: 1991; FEnd: 1996; FRule: @CRules[1142]),
+    (FStart: 1991; FEnd: 1997; FRule: @CRules[1141]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[1137]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[1142]),
+    (FStart: 1998; FEnd: 1998; FRule: @CRules[1146]),
+    (FStart: 1999; FEnd: 1999; FRule: @CRules[1147]),
+    (FStart: 1999; FEnd: 2010; FRule: @CRules[1141]),
+    (FStart: 2000; FEnd: 2007; FRule: @CRules[1142]),
+    (FStart: 2008; FEnd: 2008; FRule: @CRules[1137]),
+    (FStart: 2009; FEnd: 2009; FRule: @CRules[1142]),
+    (FStart: 2010; FEnd: 2010; FRule: @CRules[1148]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[1149]),
+    (FStart: 2011; FEnd: 2011; FRule: @CRules[1150]),
+    (FStart: 2012; FEnd: 2014; FRule: @CRules[1151]),
+    (FStart: 2012; FEnd: 2014; FRule: @CRules[1152]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[1153]),
+    (FStart: 2016; FEnd: 2018; FRule: @CRules[1154]),
+    (FStart: 2019; FEnd: 9999; FRule: @CRules[1155]),
+    (FStart: 2019; FEnd: 9999; FRule: @CRules[1152])
   );
 
   { Date-bound rules for CO family }
   CFamily_136_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1132]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[1133])
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1156]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[1157])
   );
 
   { Date-bound rules for Ecuador family }
   CFamily_137_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1134]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[1135])
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1158]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[1159])
   );
 
   { Date-bound rules for Falk family }
   CFamily_138_Arr: array[0 .. 11] of TYearBoundRule = (
-    (FStart: 1937; FEnd: 1938; FRule: @CRules[677]),
-    (FStart: 1938; FEnd: 1942; FRule: @CRules[1136]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[1067]),
-    (FStart: 1940; FEnd: 1942; FRule: @CRules[677]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[402]),
-    (FStart: 1983; FEnd: 1983; FRule: @CRules[677]),
-    (FStart: 1984; FEnd: 1985; FRule: @CRules[1137]),
-    (FStart: 1984; FEnd: 1984; FRule: @CRules[1138]),
-    (FStart: 1985; FEnd: 2000; FRule: @CRules[1139]),
-    (FStart: 1986; FEnd: 2000; FRule: @CRules[1140]),
-    (FStart: 2001; FEnd: 2010; FRule: @CRules[1141]),
-    (FStart: 2001; FEnd: 2010; FRule: @CRules[1142])
+    (FStart: 1937; FEnd: 1938; FRule: @CRules[678]),
+    (FStart: 1938; FEnd: 1942; FRule: @CRules[1160]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[1091]),
+    (FStart: 1940; FEnd: 1942; FRule: @CRules[678]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[405]),
+    (FStart: 1983; FEnd: 1983; FRule: @CRules[678]),
+    (FStart: 1984; FEnd: 1985; FRule: @CRules[1161]),
+    (FStart: 1984; FEnd: 1984; FRule: @CRules[1162]),
+    (FStart: 1985; FEnd: 2000; FRule: @CRules[1163]),
+    (FStart: 1986; FEnd: 2000; FRule: @CRules[1164]),
+    (FStart: 2001; FEnd: 2010; FRule: @CRules[1165]),
+    (FStart: 2001; FEnd: 2010; FRule: @CRules[1166])
   );
 
   { Date-bound rules for Para family }
   CFamily_139_Arr: array[0 .. 21] of TYearBoundRule = (
-    (FStart: 1975; FEnd: 1988; FRule: @CRules[1067]),
-    (FStart: 1975; FEnd: 1978; FRule: @CRules[1063]),
-    (FStart: 1979; FEnd: 1991; FRule: @CRules[1061]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[1143]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1067]),
-    (FStart: 1991; FEnd: 1991; FRule: @CRules[1101]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1063]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1144]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[1085]),
-    (FStart: 1993; FEnd: 1995; FRule: @CRules[1067]),
-    (FStart: 1994; FEnd: 1995; FRule: @CRules[1145]),
-    (FStart: 1996; FEnd: 1996; FRule: @CRules[1063]),
-    (FStart: 1996; FEnd: 2001; FRule: @CRules[1070]),
-    (FStart: 1997; FEnd: 1997; FRule: @CRules[1145]),
-    (FStart: 1998; FEnd: 2001; FRule: @CRules[675]),
-    (FStart: 2002; FEnd: 2004; FRule: @CRules[1071]),
-    (FStart: 2002; FEnd: 2003; FRule: @CRules[1146]),
-    (FStart: 2004; FEnd: 2009; FRule: @CRules[1074]),
-    (FStart: 2005; FEnd: 2009; FRule: @CRules[1078]),
-    (FStart: 2010; FEnd: 9999; FRule: @CRules[1070]),
-    (FStart: 2010; FEnd: 2012; FRule: @CRules[1147]),
-    (FStart: 2013; FEnd: 9999; FRule: @CRules[1148])
+    (FStart: 1975; FEnd: 1988; FRule: @CRules[1091]),
+    (FStart: 1975; FEnd: 1978; FRule: @CRules[1087]),
+    (FStart: 1979; FEnd: 1991; FRule: @CRules[1085]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[1167]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1091]),
+    (FStart: 1991; FEnd: 1991; FRule: @CRules[1125]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1087]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1168]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[1109]),
+    (FStart: 1993; FEnd: 1995; FRule: @CRules[1091]),
+    (FStart: 1994; FEnd: 1995; FRule: @CRules[1169]),
+    (FStart: 1996; FEnd: 1996; FRule: @CRules[1087]),
+    (FStart: 1996; FEnd: 2001; FRule: @CRules[1094]),
+    (FStart: 1997; FEnd: 1997; FRule: @CRules[1169]),
+    (FStart: 1998; FEnd: 2001; FRule: @CRules[676]),
+    (FStart: 2002; FEnd: 2004; FRule: @CRules[1095]),
+    (FStart: 2002; FEnd: 2003; FRule: @CRules[1170]),
+    (FStart: 2004; FEnd: 2009; FRule: @CRules[1098]),
+    (FStart: 2005; FEnd: 2009; FRule: @CRules[1102]),
+    (FStart: 2010; FEnd: 9999; FRule: @CRules[1094]),
+    (FStart: 2010; FEnd: 2012; FRule: @CRules[1171]),
+    (FStart: 2013; FEnd: 9999; FRule: @CRules[1172])
   );
 
   { Date-bound rules for Peru family }
   CFamily_140_Arr: array[0 .. 9] of TYearBoundRule = (
-    (FStart: 1938; FEnd: 1938; FRule: @CRules[1149]),
-    (FStart: 1938; FEnd: 1938; FRule: @CRules[1061]),
-    (FStart: 1938; FEnd: 1939; FRule: @CRules[677]),
-    (FStart: 1939; FEnd: 1940; FRule: @CRules[1150]),
-    (FStart: 1986; FEnd: 1987; FRule: @CRules[1149]),
-    (FStart: 1986; FEnd: 1987; FRule: @CRules[1061]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1149]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1061]),
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[1149]),
-    (FStart: 1994; FEnd: 1994; FRule: @CRules[1061])
+    (FStart: 1938; FEnd: 1938; FRule: @CRules[1173]),
+    (FStart: 1938; FEnd: 1938; FRule: @CRules[1085]),
+    (FStart: 1938; FEnd: 1939; FRule: @CRules[678]),
+    (FStart: 1939; FEnd: 1940; FRule: @CRules[1174]),
+    (FStart: 1986; FEnd: 1987; FRule: @CRules[1173]),
+    (FStart: 1986; FEnd: 1987; FRule: @CRules[1085]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1173]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1085]),
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[1173]),
+    (FStart: 1994; FEnd: 1994; FRule: @CRules[1085])
   );
 
   { Date-bound rules for Uruguay family }
   CFamily_141_Arr: array[0 .. 47] of TYearBoundRule = (
-    (FStart: 1923; FEnd: 1925; FRule: @CRules[1151]),
-    (FStart: 1924; FEnd: 1926; FRule: @CRules[1061]),
-    (FStart: 1933; FEnd: 1938; FRule: @CRules[676]),
-    (FStart: 1934; FEnd: 1941; FRule: @CRules[1152]),
-    (FStart: 1939; FEnd: 1939; FRule: @CRules[1151]),
-    (FStart: 1940; FEnd: 1940; FRule: @CRules[1153]),
-    (FStart: 1941; FEnd: 1941; FRule: @CRules[1154]),
-    (FStart: 1942; FEnd: 1942; FRule: @CRules[1155]),
-    (FStart: 1943; FEnd: 1943; FRule: @CRules[1156]),
-    (FStart: 1959; FEnd: 1959; FRule: @CRules[1157]),
-    (FStart: 1959; FEnd: 1959; FRule: @CRules[1158]),
-    (FStart: 1960; FEnd: 1960; FRule: @CRules[1159]),
-    (FStart: 1960; FEnd: 1960; FRule: @CRules[1160]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[1161]),
-    (FStart: 1965; FEnd: 1965; FRule: @CRules[1162]),
-    (FStart: 1968; FEnd: 1968; FRule: @CRules[1163]),
-    (FStart: 1968; FEnd: 1968; FRule: @CRules[1164]),
-    (FStart: 1970; FEnd: 1970; FRule: @CRules[1165]),
-    (FStart: 1970; FEnd: 1970; FRule: @CRules[1166]),
-    (FStart: 1972; FEnd: 1972; FRule: @CRules[1167]),
-    (FStart: 1972; FEnd: 1972; FRule: @CRules[1168]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1169]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1170]),
+    (FStart: 1923; FEnd: 1925; FRule: @CRules[1175]),
+    (FStart: 1924; FEnd: 1926; FRule: @CRules[1085]),
+    (FStart: 1933; FEnd: 1938; FRule: @CRules[677]),
+    (FStart: 1934; FEnd: 1941; FRule: @CRules[1176]),
+    (FStart: 1939; FEnd: 1939; FRule: @CRules[1175]),
+    (FStart: 1940; FEnd: 1940; FRule: @CRules[1177]),
+    (FStart: 1941; FEnd: 1941; FRule: @CRules[1178]),
+    (FStart: 1942; FEnd: 1942; FRule: @CRules[1179]),
+    (FStart: 1943; FEnd: 1943; FRule: @CRules[1180]),
+    (FStart: 1959; FEnd: 1959; FRule: @CRules[1181]),
+    (FStart: 1959; FEnd: 1959; FRule: @CRules[1182]),
+    (FStart: 1960; FEnd: 1960; FRule: @CRules[1183]),
+    (FStart: 1960; FEnd: 1960; FRule: @CRules[1184]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[1185]),
+    (FStart: 1965; FEnd: 1965; FRule: @CRules[1186]),
+    (FStart: 1968; FEnd: 1968; FRule: @CRules[1187]),
+    (FStart: 1968; FEnd: 1968; FRule: @CRules[1188]),
+    (FStart: 1970; FEnd: 1970; FRule: @CRules[1189]),
+    (FStart: 1970; FEnd: 1970; FRule: @CRules[1190]),
+    (FStart: 1972; FEnd: 1972; FRule: @CRules[1191]),
+    (FStart: 1972; FEnd: 1972; FRule: @CRules[1192]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1193]),
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1194]),
     (FStart: 1974; FEnd: 1974; FRule: @CRules[203]),
-    (FStart: 1974; FEnd: 1974; FRule: @CRules[1171]),
-    (FStart: 1975; FEnd: 1975; FRule: @CRules[1172]),
-    (FStart: 1976; FEnd: 1976; FRule: @CRules[1173]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[1160]),
-    (FStart: 1977; FEnd: 1977; FRule: @CRules[1174]),
-    (FStart: 1978; FEnd: 1979; FRule: @CRules[675]),
-    (FStart: 1978; FEnd: 1978; FRule: @CRules[1175]),
-    (FStart: 1979; FEnd: 1979; FRule: @CRules[1176]),
-    (FStart: 1980; FEnd: 1980; FRule: @CRules[1177]),
-    (FStart: 1987; FEnd: 1987; FRule: @CRules[1178]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[1179]),
-    (FStart: 1988; FEnd: 1988; FRule: @CRules[1180]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[1181]),
-    (FStart: 1989; FEnd: 1989; FRule: @CRules[1182]),
-    (FStart: 1990; FEnd: 1990; FRule: @CRules[1108]),
-    (FStart: 1990; FEnd: 1991; FRule: @CRules[1183]),
-    (FStart: 1991; FEnd: 1992; FRule: @CRules[675]),
-    (FStart: 1992; FEnd: 1992; FRule: @CRules[1184]),
-    (FStart: 1993; FEnd: 1993; FRule: @CRules[1179]),
-    (FStart: 2004; FEnd: 2004; FRule: @CRules[1185]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[1186]),
-    (FStart: 2005; FEnd: 2005; FRule: @CRules[1187]),
-    (FStart: 2006; FEnd: 2015; FRule: @CRules[1188]),
-    (FStart: 2006; FEnd: 2014; FRule: @CRules[1189])
+    (FStart: 1974; FEnd: 1974; FRule: @CRules[1195]),
+    (FStart: 1975; FEnd: 1975; FRule: @CRules[1196]),
+    (FStart: 1976; FEnd: 1976; FRule: @CRules[1197]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[1184]),
+    (FStart: 1977; FEnd: 1977; FRule: @CRules[1198]),
+    (FStart: 1978; FEnd: 1979; FRule: @CRules[676]),
+    (FStart: 1978; FEnd: 1978; FRule: @CRules[1199]),
+    (FStart: 1979; FEnd: 1979; FRule: @CRules[1200]),
+    (FStart: 1980; FEnd: 1980; FRule: @CRules[1201]),
+    (FStart: 1987; FEnd: 1987; FRule: @CRules[1202]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[1203]),
+    (FStart: 1988; FEnd: 1988; FRule: @CRules[1204]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[1205]),
+    (FStart: 1989; FEnd: 1989; FRule: @CRules[1206]),
+    (FStart: 1990; FEnd: 1990; FRule: @CRules[1132]),
+    (FStart: 1990; FEnd: 1991; FRule: @CRules[1207]),
+    (FStart: 1991; FEnd: 1992; FRule: @CRules[676]),
+    (FStart: 1992; FEnd: 1992; FRule: @CRules[1208]),
+    (FStart: 1993; FEnd: 1993; FRule: @CRules[1203]),
+    (FStart: 2004; FEnd: 2004; FRule: @CRules[1209]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[1210]),
+    (FStart: 2005; FEnd: 2005; FRule: @CRules[1211]),
+    (FStart: 2006; FEnd: 2015; FRule: @CRules[1212]),
+    (FStart: 2006; FEnd: 2014; FRule: @CRules[1213])
   );
 
 var
@@ -5242,7 +5316,7 @@ var
     (FCount: 45; FFirstRule: @CFamily_34_Arr),
     (FCount: 22; FFirstRule: @CFamily_35_Arr),
     (FCount: 32; FFirstRule: @CFamily_36_Arr),
-    (FCount: 2; FFirstRule: @CFamily_37_Arr),
+    (FCount: 6; FFirstRule: @CFamily_37_Arr),
     (FCount: 17; FFirstRule: @CFamily_38_Arr),
     (FCount: 4; FFirstRule: @CFamily_39_Arr),
     (FCount: 183; FFirstRule: @CFamily_40_Arr),
@@ -5255,7 +5329,7 @@ var
     (FCount: 4; FFirstRule: @CFamily_47_Arr),
     (FCount: 2; FFirstRule: @CFamily_48_Arr),
     (FCount: 15; FFirstRule: @CFamily_49_Arr),
-    (FCount: 19; FFirstRule: @CFamily_50_Arr),
+    (FCount: 23; FFirstRule: @CFamily_50_Arr),
     (FCount: 14; FFirstRule: @CFamily_51_Arr),
     (FCount: 16; FFirstRule: @CFamily_52_Arr),
     (FCount: 14; FFirstRule: @CFamily_53_Arr),
@@ -5268,67 +5342,67 @@ var
     (FCount: 5; FFirstRule: @CFamily_60_Arr),
     (FCount: 6; FFirstRule: @CFamily_61_Arr),
     (FCount: 6; FFirstRule: @CFamily_62_Arr),
-    (FCount: 8; FFirstRule: @CFamily_63_Arr),
+    (FCount: 3; FFirstRule: @CFamily_63_Arr),
     (FCount: 3; FFirstRule: @CFamily_64_Arr),
-    (FCount: 3; FFirstRule: @CFamily_65_Arr),
-    (FCount: 5; FFirstRule: @CFamily_66_Arr),
+    (FCount: 5; FFirstRule: @CFamily_65_Arr),
+    (FCount: 2; FFirstRule: @CFamily_66_Arr),
     (FCount: 2; FFirstRule: @CFamily_67_Arr),
     (FCount: 2; FFirstRule: @CFamily_68_Arr),
-    (FCount: 2; FFirstRule: @CFamily_69_Arr),
-    (FCount: 14; FFirstRule: @CFamily_70_Arr),
-    (FCount: 3; FFirstRule: @CFamily_71_Arr),
-    (FCount: 14; FFirstRule: @CFamily_72_Arr),
-    (FCount: 15; FFirstRule: @CFamily_73_Arr),
-    (FCount: 27; FFirstRule: @CFamily_74_Arr),
-    (FCount: 9; FFirstRule: @CFamily_75_Arr),
-    (FCount: 101; FFirstRule: @CFamily_76_Arr),
-    (FCount: 8; FFirstRule: @CFamily_77_Arr),
-    (FCount: 87; FFirstRule: @CFamily_78_Arr),
-    (FCount: 4; FFirstRule: @CFamily_79_Arr),
-    (FCount: 31; FFirstRule: @CFamily_80_Arr),
-    (FCount: 4; FFirstRule: @CFamily_81_Arr),
-    (FCount: 14; FFirstRule: @CFamily_82_Arr),
-    (FCount: 24; FFirstRule: @CFamily_83_Arr),
-    (FCount: 2; FFirstRule: @CFamily_84_Arr),
-    (FCount: 9; FFirstRule: @CFamily_85_Arr),
-    (FCount: 5; FFirstRule: @CFamily_86_Arr),
-    (FCount: 6; FFirstRule: @CFamily_87_Arr),
-    (FCount: 28; FFirstRule: @CFamily_88_Arr),
-    (FCount: 6; FFirstRule: @CFamily_89_Arr),
-    (FCount: 41; FFirstRule: @CFamily_90_Arr),
-    (FCount: 4; FFirstRule: @CFamily_91_Arr),
-    (FCount: 29; FFirstRule: @CFamily_92_Arr),
-    (FCount: 12; FFirstRule: @CFamily_93_Arr),
-    (FCount: 14; FFirstRule: @CFamily_94_Arr),
-    (FCount: 20; FFirstRule: @CFamily_95_Arr),
-    (FCount: 10; FFirstRule: @CFamily_96_Arr),
-    (FCount: 13; FFirstRule: @CFamily_97_Arr),
-    (FCount: 5; FFirstRule: @CFamily_98_Arr),
-    (FCount: 6; FFirstRule: @CFamily_99_Arr),
+    (FCount: 14; FFirstRule: @CFamily_69_Arr),
+    (FCount: 3; FFirstRule: @CFamily_70_Arr),
+    (FCount: 14; FFirstRule: @CFamily_71_Arr),
+    (FCount: 15; FFirstRule: @CFamily_72_Arr),
+    (FCount: 27; FFirstRule: @CFamily_73_Arr),
+    (FCount: 9; FFirstRule: @CFamily_74_Arr),
+    (FCount: 101; FFirstRule: @CFamily_75_Arr),
+    (FCount: 8; FFirstRule: @CFamily_76_Arr),
+    (FCount: 85; FFirstRule: @CFamily_77_Arr),
+    (FCount: 4; FFirstRule: @CFamily_78_Arr),
+    (FCount: 31; FFirstRule: @CFamily_79_Arr),
+    (FCount: 4; FFirstRule: @CFamily_80_Arr),
+    (FCount: 14; FFirstRule: @CFamily_81_Arr),
+    (FCount: 24; FFirstRule: @CFamily_82_Arr),
+    (FCount: 2; FFirstRule: @CFamily_83_Arr),
+    (FCount: 9; FFirstRule: @CFamily_84_Arr),
+    (FCount: 5; FFirstRule: @CFamily_85_Arr),
+    (FCount: 6; FFirstRule: @CFamily_86_Arr),
+    (FCount: 28; FFirstRule: @CFamily_87_Arr),
+    (FCount: 6; FFirstRule: @CFamily_88_Arr),
+    (FCount: 41; FFirstRule: @CFamily_89_Arr),
+    (FCount: 4; FFirstRule: @CFamily_90_Arr),
+    (FCount: 29; FFirstRule: @CFamily_91_Arr),
+    (FCount: 12; FFirstRule: @CFamily_92_Arr),
+    (FCount: 14; FFirstRule: @CFamily_93_Arr),
+    (FCount: 20; FFirstRule: @CFamily_94_Arr),
+    (FCount: 10; FFirstRule: @CFamily_95_Arr),
+    (FCount: 13; FFirstRule: @CFamily_96_Arr),
+    (FCount: 5; FFirstRule: @CFamily_97_Arr),
+    (FCount: 6; FFirstRule: @CFamily_98_Arr),
+    (FCount: 5; FFirstRule: @CFamily_99_Arr),
     (FCount: 5; FFirstRule: @CFamily_100_Arr),
-    (FCount: 5; FFirstRule: @CFamily_101_Arr),
-    (FCount: 3; FFirstRule: @CFamily_102_Arr),
-    (FCount: 4; FFirstRule: @CFamily_103_Arr),
-    (FCount: 9; FFirstRule: @CFamily_104_Arr),
+    (FCount: 3; FFirstRule: @CFamily_101_Arr),
+    (FCount: 4; FFirstRule: @CFamily_102_Arr),
+    (FCount: 9; FFirstRule: @CFamily_103_Arr),
+    (FCount: 4; FFirstRule: @CFamily_104_Arr),
     (FCount: 4; FFirstRule: @CFamily_105_Arr),
-    (FCount: 4; FFirstRule: @CFamily_106_Arr),
-    (FCount: 5; FFirstRule: @CFamily_107_Arr),
-    (FCount: 4; FFirstRule: @CFamily_108_Arr),
-    (FCount: 9; FFirstRule: @CFamily_109_Arr),
-    (FCount: 2; FFirstRule: @CFamily_110_Arr),
-    (FCount: 4; FFirstRule: @CFamily_111_Arr),
-    (FCount: 19; FFirstRule: @CFamily_112_Arr),
-    (FCount: 41; FFirstRule: @CFamily_113_Arr),
-    (FCount: 13; FFirstRule: @CFamily_114_Arr),
-    (FCount: 22; FFirstRule: @CFamily_115_Arr),
-    (FCount: 24; FFirstRule: @CFamily_116_Arr),
-    (FCount: 17; FFirstRule: @CFamily_117_Arr),
-    (FCount: 5; FFirstRule: @CFamily_118_Arr),
-    (FCount: 13; FFirstRule: @CFamily_119_Arr),
-    (FCount: 9; FFirstRule: @CFamily_120_Arr),
-    (FCount: 2; FFirstRule: @CFamily_121_Arr),
-    (FCount: 5; FFirstRule: @CFamily_122_Arr),
-    (FCount: 6; FFirstRule: @CFamily_123_Arr),
+    (FCount: 5; FFirstRule: @CFamily_106_Arr),
+    (FCount: 4; FFirstRule: @CFamily_107_Arr),
+    (FCount: 9; FFirstRule: @CFamily_108_Arr),
+    (FCount: 2; FFirstRule: @CFamily_109_Arr),
+    (FCount: 4; FFirstRule: @CFamily_110_Arr),
+    (FCount: 19; FFirstRule: @CFamily_111_Arr),
+    (FCount: 41; FFirstRule: @CFamily_112_Arr),
+    (FCount: 13; FFirstRule: @CFamily_113_Arr),
+    (FCount: 22; FFirstRule: @CFamily_114_Arr),
+    (FCount: 24; FFirstRule: @CFamily_115_Arr),
+    (FCount: 17; FFirstRule: @CFamily_116_Arr),
+    (FCount: 5; FFirstRule: @CFamily_117_Arr),
+    (FCount: 13; FFirstRule: @CFamily_118_Arr),
+    (FCount: 9; FFirstRule: @CFamily_119_Arr),
+    (FCount: 7; FFirstRule: @CFamily_120_Arr),
+    (FCount: 5; FFirstRule: @CFamily_121_Arr),
+    (FCount: 11; FFirstRule: @CFamily_122_Arr),
+    (FCount: 16; FFirstRule: @CFamily_123_Arr),
     (FCount: 5; FFirstRule: @CFamily_124_Arr),
     (FCount: 39; FFirstRule: @CFamily_125_Arr),
     (FCount: 6; FFirstRule: @CFamily_126_Arr),
@@ -5357,9 +5431,11 @@ var
   );
 
   { Time periods for Africa/Accra zone }
-  CZone_1_Arr: array[0 .. 1] of TPeriod = (
-    (FOffset: -52; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 0; FRuleFamily: @CRuleFamilies[37]; FFmtStr: 'GMT/+0020'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+  CZone_1_Arr: array[0 .. 3] of TPeriod = (
+    (FOffset: -52; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1915; FUntilMonth: 11; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 0; FRuleFamily: @CRuleFamilies[37]; FFmtStr: '%s'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[2]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 1800; FRuleFamily: nil; FFmtStr: '+0030'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: @CRelativeDays[29]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 0; FRuleFamily: @CRuleFamilies[37]; FFmtStr: '%s'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Africa/Addis_Ababa zone }
@@ -5513,8 +5589,8 @@ var
   CZone_21_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -3180; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1882; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -3180; FRuleFamily: nil; FFmtStr: 'FMT'; FUntilYear: 1913; FUntilMonth: 6; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -3600; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '%s'; FUntilYear: 1957; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 0; FRuleFamily: @CRuleFamilies[91]; FFmtStr: 'GMT/+01'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -3600; FRuleFamily: @CRuleFamilies[90]; FFmtStr: '%s'; FUntilYear: 1957; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 0; FRuleFamily: @CRuleFamilies[90]; FFmtStr: 'GMT/+01'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Africa/Gaborone zone }
@@ -5540,10 +5616,11 @@ var
   );
 
   { Time periods for Africa/Juba zone }
-  CZone_25_Arr: array[0 .. 2] of TPeriod = (
+  CZone_25_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 7588; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1931; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: @CRuleFamilies[43]; FFmtStr: 'CA%sT'; FUntilYear: 2000; FUntilMonth: 1; FUntilDay: @CRelativeDays[44]; FUntilTime: 43200; FUntilTimeMode: trLocal),
-    (FOffset: 10800; FRuleFamily: nil; FFmtStr: 'EAT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 10800; FRuleFamily: nil; FFmtStr: 'EAT'; FUntilYear: 2021; FUntilMonth: 2; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: nil; FFmtStr: 'CAT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Africa/Kampala zone }
@@ -5576,8 +5653,11 @@ var
   );
 
   { Time periods for Africa/Lagos zone }
-  CZone_30_Arr: array[0 .. 1] of TPeriod = (
-    (FOffset: 816; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1919; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+  CZone_30_Arr: array[0 .. 4] of TPeriod = (
+    (FOffset: 815; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 7; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 0; FRuleFamily: nil; FFmtStr: 'GMT'; FUntilYear: 1908; FUntilMonth: 7; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 815; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1914; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 1800; FRuleFamily: nil; FFmtStr: '+0030'; FUntilYear: 1919; FUntilMonth: 9; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 3600; FRuleFamily: nil; FFmtStr: 'WAT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5656,11 +5736,12 @@ var
   );
 
   { Time periods for Africa/Nairobi zone }
-  CZone_42_Arr: array[0 .. 4] of TPeriod = (
-    (FOffset: 8836; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1928; FUntilMonth: 7; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 10800; FRuleFamily: nil; FFmtStr: 'EAT'; FUntilYear: 1930; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 9000; FRuleFamily: nil; FFmtStr: '+0230'; FUntilYear: 1940; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 9900; FRuleFamily: nil; FFmtStr: '+0245'; FUntilYear: 1960; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+  CZone_42_Arr: array[0 .. 5] of TPeriod = (
+    (FOffset: 8836; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1908; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 9000; FRuleFamily: nil; FFmtStr: '+0230'; FUntilYear: 1928; FUntilMonth: 6; FUntilDay: @CRelativeDays[5]; FUntilTime: 86400; FUntilTimeMode: trLocal),
+    (FOffset: 10800; FRuleFamily: nil; FFmtStr: 'EAT'; FUntilYear: 1930; FUntilMonth: 1; FUntilDay: @CRelativeDays[32]; FUntilTime: 86400; FUntilTimeMode: trLocal),
+    (FOffset: 9000; FRuleFamily: nil; FFmtStr: '+0230'; FUntilYear: 1936; FUntilMonth: 12; FUntilDay: @CRelativeDays[21]; FUntilTime: 86400; FUntilTimeMode: trLocal),
+    (FOffset: 9900; FRuleFamily: nil; FFmtStr: '+0245'; FUntilYear: 1942; FUntilMonth: 7; FUntilDay: @CRelativeDays[21]; FUntilTime: 86400; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: 'EAT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5751,12 +5832,12 @@ var
     (FOffset: 44002; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 45875; FUntilTimeMode: trLocal),
     (FOffset: -42398; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -39600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -39600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1967; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'BST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -39600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'B%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -36000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AH%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -36000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'H%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -39600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'B%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -36000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AH%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -36000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'H%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Anchorage zone }
@@ -5764,11 +5845,11 @@ var
     (FOffset: 50424; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 52297; FUntilTimeMode: trLocal),
     (FOffset: -35976; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -36000; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -36000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'A%sT'; FUntilYear: 1967; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -36000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1967; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -36000; FRuleFamily: nil; FFmtStr: 'AHST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -36000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AH%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -36000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AH%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Anguilla zone }
@@ -5800,10 +5881,10 @@ var
     (FOffset: -14028; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Argentina/Catamarca zone }
@@ -5811,14 +5892,14 @@ var
     (FOffset: -15788; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5827,11 +5908,11 @@ var
     (FOffset: -16200; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
@@ -5842,12 +5923,12 @@ var
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Argentina/Jujuy zone }
@@ -5855,15 +5936,15 @@ var
     (FOffset: -15672; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 3; FUntilDay: @CRelativeDays[32]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 3; FUntilDay: @CRelativeDays[32]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1990; FUntilMonth: 10; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[3]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[29]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-02'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5872,14 +5953,14 @@ var
     (FOffset: -16044; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 5; FUntilDay: @CRelativeDays[36]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5888,18 +5969,18 @@ var
     (FOffset: -16516; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 3; FUntilDay: @CRelativeDays[32]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 3; FUntilDay: @CRelativeDays[32]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1990; FUntilMonth: 10; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1992; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1992; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 5; FUntilDay: @CRelativeDays[40]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 9; FUntilDay: @CRelativeDays[10]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5908,12 +5989,12 @@ var
     (FOffset: -16612; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5922,12 +6003,12 @@ var
     (FOffset: -15700; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5936,14 +6017,14 @@ var
     (FOffset: -16444; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 5; FUntilDay: @CRelativeDays[36]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 5; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 7; FUntilDay: @CRelativeDays[8]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -5952,8 +6033,8 @@ var
     (FOffset: -15924; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1990; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-02'; FUntilYear: 1990; FUntilMonth: 3; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1990; FUntilMonth: 10; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
@@ -5962,7 +6043,7 @@ var
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 5; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 7; FUntilDay: @CRelativeDays[8]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 1; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 1; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: @CRuleFamilies[133]; FFmtStr: '-04/-03'; FUntilYear: 2009; FUntilMonth: 10; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -5972,14 +6053,14 @@ var
     (FOffset: -15652; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[17]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Argentina/Ushuaia zone }
@@ -5987,12 +6068,12 @@ var
     (FOffset: -16392; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15408; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 2004; FUntilMonth: 5; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 2008; FUntilMonth: 10; FUntilDay: @CRelativeDays[26]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6015,9 +6096,9 @@ var
   { Time periods for America/Atikokan zone }
   CZone_73_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -21988; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CDT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6041,15 +6122,15 @@ var
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1942; FUntilMonth: 4; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1949; FUntilMonth: 1; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 4; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 4; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Barbados zone }
   CZone_76_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -14309; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14309; FRuleFamily: nil; FFmtStr: 'BMT'; FUntilYear: 1932; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[122]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[121]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Belem zone }
@@ -6061,14 +6142,14 @@ var
 
   { Time periods for America/Belize zone }
   CZone_78_Arr: array[0 .. 1] of TPeriod = (
-    (FOffset: -21168; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1912; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[123]; FFmtStr: '%s'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21168; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1912; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[122]; FFmtStr: '%s'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Blanc-Sablon zone }
   CZone_79_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -13708; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6091,20 +6172,20 @@ var
   { Time periods for America/Boise zone }
   CZone_82_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -27889; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44111; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1923; FUntilMonth: 5; FUntilDay: @CRelativeDays[17]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1923; FUntilMonth: 5; FUntilDay: @CRelativeDays[17]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1974; FUntilMonth: 2; FUntilDay: @CRelativeDays[9]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Cambridge_Bay zone }
   CZone_83_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'M%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2000; FUntilMonth: 11; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 2001; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Campo_Grande zone }
@@ -6117,8 +6198,8 @@ var
   CZone_85_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -20824; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1922; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 776; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1981; FUntilMonth: 12; FUntilDay: @CRelativeDays[40]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'E%sT'; FUntilYear: 1998; FUntilMonth: 8; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 2015; FUntilMonth: 2; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'E%sT'; FUntilYear: 1998; FUntilMonth: 8; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 2015; FUntilMonth: 2; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6149,13 +6230,13 @@ var
   { Time periods for America/Chicago zone }
   CZone_89_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -21036; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43764; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[99]; FFmtStr: 'C%sT'; FUntilYear: 1936; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[98]; FFmtStr: 'C%sT'; FUntilYear: 1936; FUntilMonth: 3; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1936; FUntilMonth: 11; FUntilDay: @CRelativeDays[44]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[99]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[99]; FFmtStr: 'C%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[98]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[98]; FFmtStr: 'C%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Chihuahua zone }
@@ -6167,15 +6248,15 @@ var
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1931; FUntilMonth: 10; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1932; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 1998; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 1998; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1998; FUntilMonth: 4; FUntilDay: @CRelativeDays[30]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Coral_Harbour zone }
   CZone_91_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -19960; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6220,28 +6301,28 @@ var
   { Time periods for America/Dawson zone }
   CZone_97_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -33460; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'Y%sT'; FUntilYear: 1973; FUntilMonth: 10; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 2020; FUntilMonth: 11; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'Y%sT'; FUntilYear: 1973; FUntilMonth: 10; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'P%sT'; FUntilYear: 2020; FUntilMonth: 11; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Dawson_Creek zone }
   CZone_98_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -28856; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1947; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[120]; FFmtStr: 'P%sT'; FUntilYear: 1972; FUntilMonth: 8; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'P%sT'; FUntilYear: 1947; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[119]; FFmtStr: 'P%sT'; FUntilYear: 1972; FUntilMonth: 8; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Denver zone }
   CZone_99_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -25196; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43204; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[100]; FFmtStr: 'M%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[100]; FFmtStr: 'M%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[99]; FFmtStr: 'M%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[99]; FFmtStr: 'M%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Detroit zone }
@@ -6249,13 +6330,13 @@ var
     (FOffset: -19931; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1915; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[110]; FFmtStr: 'E%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[20]; FUntilTime: 60; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[109]; FFmtStr: 'E%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[20]; FUntilTime: 60; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1975; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1975; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1975; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Dominica zone }
@@ -6267,8 +6348,8 @@ var
   { Time periods for America/Edmonton zone }
   CZone_102_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -27232; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1906; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[119]; FFmtStr: 'M%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[118]; FFmtStr: 'M%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Eirunepe zone }
@@ -6296,7 +6377,7 @@ var
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1942; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1949; FUntilMonth: 1; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Fortaleza zone }
@@ -6313,35 +6394,35 @@ var
   { Time periods for America/Fort_Nelson zone }
   CZone_107_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -29447; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[120]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[119]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1947; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[120]; FFmtStr: 'P%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 2015; FUntilMonth: 3; FUntilDay: @CRelativeDays[2]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[119]; FFmtStr: 'P%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'P%sT'; FUntilYear: 2015; FUntilMonth: 3; FUntilDay: @CRelativeDays[2]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Glace_Bay zone }
   CZone_108_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -14388; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1902; FUntilMonth: 6; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1953; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1954; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1953; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 1954; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 1972; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Goose_Bay zone }
   CZone_109_Arr: array[0 .. 9] of TPeriod = (
     (FOffset: -14500; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -12652; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12652; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12652; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'N%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -12652; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1935; FUntilMonth: 3; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -12600; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1936; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 1966; FUntilMonth: 3; FUntilDay: @CRelativeDays[44]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 2011; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 1966; FUntilMonth: 3; FUntilDay: @CRelativeDays[44]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'A%sT'; FUntilYear: 2011; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Grand_Turk zone }
@@ -6349,9 +6430,9 @@ var
     (FOffset: -17072; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1890; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18430; FRuleFamily: nil; FFmtStr: 'KMT'; FUntilYear: 1912; FUntilMonth: 2; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1979; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 2015; FUntilMonth: 11; FUntilDay: @CRelativeDays[30]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 2015; FUntilMonth: 3; FUntilDay: @CRelativeDays[2]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 2018; FUntilMonth: 3; FUntilDay: @CRelativeDays[42]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Grenada zone }
@@ -6390,12 +6471,12 @@ var
   { Time periods for America/Halifax zone }
   CZone_116_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: -15264; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1902; FUntilMonth: 6; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'A%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Havana zone }
@@ -6416,121 +6497,121 @@ var
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1942; FUntilMonth: 4; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1949; FUntilMonth: 1; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'M%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Indianapolis zone }
   CZone_119_Arr: array[0 .. 10] of TPeriod = (
     (FOffset: -20678; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44122; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[102]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[102]; FFmtStr: 'C%sT'; FUntilYear: 1955; FUntilMonth: 4; FUntilDay: @CRelativeDays[4]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[101]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[101]; FFmtStr: 'C%sT'; FUntilYear: 1955; FUntilMonth: 4; FUntilDay: @CRelativeDays[4]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1957; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1958; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Knox zone }
   CZone_120_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: -20790; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44010; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1947; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[107]; FFmtStr: 'C%sT'; FUntilYear: 1962; FUntilMonth: 4; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1947; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[106]; FFmtStr: 'C%sT'; FUntilYear: 1962; FUntilMonth: 4; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1963; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1991; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 4; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Marengo zone }
   CZone_121_Arr: array[0 .. 8] of TPeriod = (
     (FOffset: -20723; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44077; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1951; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[103]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 4; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1951; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[102]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 4; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: @CRelativeDays[29]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: @CRelativeDays[29]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CDT'; FUntilYear: 1974; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Petersburg zone }
   CZone_122_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -20947; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43853; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1955; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[106]; FFmtStr: 'C%sT'; FUntilYear: 1965; FUntilMonth: 4; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1955; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[105]; FFmtStr: 'C%sT'; FUntilYear: 1965; FUntilMonth: 4; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1966; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1977; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1977; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 4; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Tell_City zone }
   CZone_123_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -20823; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43977; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[105]; FFmtStr: 'C%sT'; FUntilYear: 1964; FUntilMonth: 4; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[104]; FFmtStr: 'C%sT'; FUntilYear: 1964; FUntilMonth: 4; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1967; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1969; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1969; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 4; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Vevay zone }
   CZone_124_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -20416; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44384; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1954; FUntilMonth: 4; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1954; FUntilMonth: 4; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Vincennes zone }
   CZone_125_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -21007; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43793; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[104]; FFmtStr: 'C%sT'; FUntilYear: 1964; FUntilMonth: 4; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[103]; FFmtStr: 'C%sT'; FUntilYear: 1964; FUntilMonth: 4; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 4; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Indiana/Winamac zone }
   CZone_126_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -20785; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44015; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[108]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 4; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[107]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 4; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1971; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2006; FUntilMonth: 4; FUntilDay: @CRelativeDays[19]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 3; FUntilDay: @CRelativeDays[42]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2007; FUntilMonth: 3; FUntilDay: @CRelativeDays[42]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Inuvik zone }
   CZone_127_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1953; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 1979; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'P%sT'; FUntilYear: 1979; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'M%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Iqaluit zone }
   CZone_128_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1942; FUntilMonth: 8; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'E%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'E%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Jamaica zone }
@@ -6538,7 +6619,7 @@ var
     (FOffset: -18430; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1890; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18430; FRuleFamily: nil; FFmtStr: 'KMT'; FUntilYear: 1912; FUntilMonth: 2; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1984; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1984; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6547,35 +6628,35 @@ var
     (FOffset: 54139; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 56012; FUntilTimeMode: trLocal),
     (FOffset: -32261; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1980; FUntilMonth: 10; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1980; FUntilMonth: 10; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Kentucky/Louisville zone }
   CZone_131_Arr: array[0 .. 8] of TPeriod = (
     (FOffset: -20582; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44218; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1921; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[109]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[109]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 7; FUntilDay: @CRelativeDays[40]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1921; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[108]; FFmtStr: 'C%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[108]; FFmtStr: 'C%sT'; FUntilYear: 1961; FUntilMonth: 7; FUntilDay: @CRelativeDays[40]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1968; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: @CRelativeDays[29]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: @CRelativeDays[29]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CDT'; FUntilYear: 1974; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Kentucky/Monticello zone }
   CZone_132_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -20364; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44436; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1968; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/La_Paz zone }
@@ -6596,9 +6677,9 @@ var
   { Time periods for America/Los_Angeles zone }
   CZone_135_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -28378; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43622; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[101]; FFmtStr: 'P%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[100]; FFmtStr: 'P%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Maceio zone }
@@ -6649,9 +6730,9 @@ var
   CZone_140_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -24000; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1921; FUntilMonth: 12; FUntilDay: @CRelativeDays[21]; FUntilTime: 84000; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1988; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1989; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1989; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Mazatlan zone }
@@ -6665,16 +6746,16 @@ var
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1942; FUntilMonth: 4; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1949; FUntilMonth: 1; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Menominee zone }
   CZone_142_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -21027; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1885; FUntilMonth: 9; FUntilDay: @CRelativeDays[26]; FUntilTime: 43200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'C%sT'; FUntilYear: 1969; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[110]; FFmtStr: 'C%sT'; FUntilYear: 1969; FUntilMonth: 4; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1973; FUntilMonth: 4; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Merida zone }
@@ -6682,7 +6763,7 @@ var
     (FOffset: -21508; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1922; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 92; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1981; FUntilMonth: 12; FUntilDay: @CRelativeDays[40]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1982; FUntilMonth: 12; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Metlakatla zone }
@@ -6690,13 +6771,13 @@ var
     (FOffset: 54822; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 56695; FUntilTimeMode: trLocal),
     (FOffset: -31578; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 2015; FUntilMonth: 11; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 2018; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 2018; FUntilMonth: 11; FUntilDay: @CRelativeDays[32]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 2019; FUntilMonth: 1; FUntilDay: @CRelativeDays[34]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Mexico_City zone }
@@ -6707,9 +6788,9 @@ var
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1931; FUntilMonth: 5; FUntilDay: @CRelativeDays[1]; FUntilTime: 82800; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1931; FUntilMonth: 10; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1932; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 2001; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 2001; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 2002; FUntilMonth: 2; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Miquelon zone }
@@ -6717,28 +6798,28 @@ var
     (FOffset: -13480; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1911; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 1980; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: '-03/-02'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Moncton zone }
   CZone_147_Arr: array[0 .. 8] of TPeriod = (
     (FOffset: -15548; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 12; FUntilDay: @CRelativeDays[38]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1902; FUntilMonth: 6; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1933; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'A%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'A%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1993; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'A%sT'; FUntilYear: 2007; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1933; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1993; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[113]; FFmtStr: 'A%sT'; FUntilYear: 2007; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Monterrey zone }
   CZone_148_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -24076; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1921; FUntilMonth: 12; FUntilDay: @CRelativeDays[21]; FUntilTime: 83924; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1988; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 1989; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1989; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Montevideo zone }
@@ -6759,12 +6840,12 @@ var
   { Time periods for America/Montreal zone }
   CZone_150_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: -17656; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'E%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Montserrat zone }
@@ -6776,26 +6857,26 @@ var
   { Time periods for America/Nassau zone }
   CZone_152_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -18570; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1912; FUntilMonth: 3; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[121]; FFmtStr: 'E%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[120]; FFmtStr: 'E%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/New_York zone }
   CZone_153_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -17762; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43438; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[98]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[98]; FFmtStr: 'E%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Nipigon zone }
   CZone_154_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -21184; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EDT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Nome zone }
@@ -6803,12 +6884,12 @@ var
     (FOffset: 46702; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 48575; FUntilTimeMode: trLocal),
     (FOffset: -39698; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -39600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -39600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'NST'; FUntilYear: 1967; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -39600; FRuleFamily: nil; FFmtStr: 'BST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -39600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'B%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -39600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'B%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Noronha zone }
@@ -6825,22 +6906,22 @@ var
   { Time periods for America/North_Dakota/Beulah zone }
   CZone_157_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -24427; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 43973; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 11; FUntilDay: @CRelativeDays[36]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 11; FUntilDay: @CRelativeDays[36]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/North_Dakota/Center zone }
   CZone_158_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -24312; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44088; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1992; FUntilMonth: 10; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1992; FUntilMonth: 10; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/North_Dakota/New_Salem zone }
   CZone_159_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -24339; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 44061; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 2003; FUntilMonth: 10; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 2003; FUntilMonth: 10; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Nuuk zone }
@@ -6859,10 +6940,10 @@ var
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1931; FUntilMonth: 10; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1932; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'C%sT'; FUntilYear: 1998; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 1998; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1998; FUntilMonth: 4; FUntilDay: @CRelativeDays[30]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Panama zone }
@@ -6875,10 +6956,10 @@ var
   { Time periods for America/Pangnirtung zone }
   CZone_163_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1921; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'A%sT'; FUntilYear: 1995; FUntilMonth: 4; FUntilDay: @CRelativeDays[30]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'A%sT'; FUntilYear: 1995; FUntilMonth: 4; FUntilDay: @CRelativeDays[30]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Paramaribo zone }
@@ -6893,11 +6974,11 @@ var
   { Time periods for America/Phoenix zone }
   CZone_165_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: -26898; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1883; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 41502; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1944; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 60; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1944; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 60; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1944; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 60; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1944; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 60; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1944; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 60; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 1968; FUntilMonth: 3; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1968; FUntilMonth: 3; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6925,7 +7006,7 @@ var
   CZone_169_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -15865; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1899; FUntilMonth: 3; FUntilDay: @CRelativeDays[7]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -6949,17 +7030,17 @@ var
   { Time periods for America/Rainy_River zone }
   CZone_171_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: -22696; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 1940; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CDT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Rankin_Inlet zone }
   CZone_172_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1957; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2001; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Recife zone }
@@ -6976,18 +7057,18 @@ var
   { Time periods for America/Regina zone }
   CZone_174_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -25116; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[117]; FFmtStr: 'M%sT'; FUntilYear: 1960; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[116]; FFmtStr: 'M%sT'; FUntilYear: 1960; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Resolute zone }
   CZone_175_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1947; FUntilMonth: 8; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'C%sT'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2001; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 2006; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 2006; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 2007; FUntilMonth: 3; FUntilDay: @CRelativeDays[42]; FUntilTime: 10800; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Rio_Branco zone }
@@ -7004,10 +7085,10 @@ var
     (FOffset: -14560; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1894; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -15404; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1920; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: '-04'; FUntilYear: 1930; FUntilMonth: 12; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 7; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1991; FUntilMonth: 7; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 1999; FUntilMonth: 10; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 2000; FUntilMonth: 3; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7043,7 +7124,7 @@ var
     (FOffset: -16800; FRuleFamily: nil; FFmtStr: 'SDMT'; FUntilYear: 1933; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: @CRuleFamilies[126]; FFmtStr: '%s'; FUntilYear: 1974; FUntilMonth: 10; FUntilDay: @CRelativeDays[28]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 2000; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 2000; FUntilMonth: 12; FUntilDay: @CRelativeDays[9]; FUntilTime: 3600; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 2000; FUntilMonth: 12; FUntilDay: @CRelativeDays[9]; FUntilTime: 3600; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7068,23 +7149,23 @@ var
     (FOffset: 53927; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 55800; FUntilTimeMode: trLocal),
     (FOffset: -32473; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1983; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/St_Johns zone }
   CZone_184_Arr: array[0 .. 7] of TPeriod = (
     (FOffset: -12652; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12652; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12652; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12652; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 1935; FUntilMonth: 3; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[112]; FFmtStr: 'N%sT'; FUntilYear: 2011; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -12600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'N%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -12652; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12652; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'N%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12652; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 1935; FUntilMonth: 3; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'N%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[111]; FFmtStr: 'N%sT'; FUntilYear: 2011; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -12600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'N%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/St_Kitts zone }
@@ -7116,9 +7197,9 @@ var
   { Time periods for America/Swift_Current zone }
   CZone_189_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -25880; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 1946; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[117]; FFmtStr: 'M%sT'; FUntilYear: 1950; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[118]; FFmtStr: 'M%sT'; FUntilYear: 1972; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'M%sT'; FUntilYear: 1946; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[116]; FFmtStr: 'M%sT'; FUntilYear: 1950; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[117]; FFmtStr: 'M%sT'; FUntilYear: 1972; FUntilMonth: 4; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7139,10 +7220,10 @@ var
     (FOffset: -21420; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -21600; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1910; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[115]; FFmtStr: 'E%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1970; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'E%sT'; FUntilYear: 1973; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -18000; FRuleFamily: nil; FFmtStr: 'EST'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Tijuana zone }
@@ -7159,23 +7240,23 @@ var
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1948; FUntilMonth: 4; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PDT'; FUntilYear: 1949; FUntilMonth: 1; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1954; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[101]; FFmtStr: 'P%sT'; FUntilYear: 1961; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[100]; FFmtStr: 'P%sT'; FUntilYear: 1961; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -28800; FRuleFamily: nil; FFmtStr: 'PST'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'P%sT'; FUntilYear: 2001; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 2002; FUntilMonth: 2; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[94]; FFmtStr: 'P%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 2001; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 2002; FUntilMonth: 2; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Toronto zone }
   CZone_194_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: -19052; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[115]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[115]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1919; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'E%sT'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[114]; FFmtStr: 'E%sT'; FUntilYear: 1974; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Tortola zone }
@@ -7187,24 +7268,24 @@ var
   { Time periods for America/Vancouver zone }
   CZone_196_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -29548; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1884; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[120]; FFmtStr: 'P%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[119]; FFmtStr: 'P%sT'; FUntilYear: 1987; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Whitehorse zone }
   CZone_197_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -32412; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'Y%sT'; FUntilYear: 1967; FUntilMonth: 5; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 2020; FUntilMonth: 11; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'Y%sT'; FUntilYear: 1967; FUntilMonth: 5; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'P%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'P%sT'; FUntilYear: 2020; FUntilMonth: 11; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -25200; FRuleFamily: nil; FFmtStr: 'MST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Winnipeg zone }
   CZone_198_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: -23316; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1887; FUntilMonth: 7; FUntilDay: @CRelativeDays[16]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[116]; FFmtStr: 'C%sT'; FUntilYear: 2006; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[115]; FFmtStr: 'C%sT'; FUntilYear: 2006; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Yakutat zone }
@@ -7212,17 +7293,17 @@ var
     (FOffset: 52865; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1867; FUntilMonth: 10; FUntilDay: @CRelativeDays[41]; FUntilTime: 54738; FUntilTimeMode: trLocal),
     (FOffset: -33535; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 8; FUntilDay: @CRelativeDays[34]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -32400; FRuleFamily: nil; FFmtStr: 'YST'; FUntilYear: 1942; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -32400; FRuleFamily: nil; FFmtStr: 'YST'; FUntilYear: 1969; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -32400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'Y%sT'; FUntilYear: 1983; FUntilMonth: 11; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -32400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'AK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for America/Yellowknife zone }
   CZone_200_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1935; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[93]; FFmtStr: 'M%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[92]; FFmtStr: 'M%sT'; FUntilYear: 1980; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Antarctica/Casey zone }
@@ -7291,8 +7372,8 @@ var
   { Time periods for Antarctica/Palmer zone }
   CZone_207_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 0; FRuleFamily: nil; FFmtStr: '-00'; FUntilYear: 1965; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -10800; FRuleFamily: @CRuleFamilies[92]; FFmtStr: '-03/-02'; FUntilYear: 1982; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-04/-03'; FUntilYear: 1969; FUntilMonth: 10; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -10800; FRuleFamily: @CRuleFamilies[91]; FFmtStr: '-03/-02'; FUntilYear: 1982; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -14400; FRuleFamily: @CRuleFamilies[135]; FFmtStr: '-04/-03'; FUntilYear: 2016; FUntilMonth: 12; FUntilDay: @CRelativeDays[32]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: -10800; FRuleFamily: nil; FFmtStr: '-03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -7331,16 +7412,16 @@ var
   CZone_213_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: 18468; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Amman zone }
   CZone_214_Arr: array[0 .. 1] of TPeriod = (
     (FOffset: 8624; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1931; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[80]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[79]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Anadyr zone }
@@ -7361,10 +7442,10 @@ var
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1994; FUntilMonth: 9; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1994; FUntilMonth: 9; FUntilDay: @CRelativeDays[8]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7375,9 +7456,9 @@ var
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7385,8 +7466,8 @@ var
   CZone_218_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 14012; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7396,10 +7477,10 @@ var
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1999; FUntilMonth: 3; FUntilDay: @CRelativeDays[7]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1999; FUntilMonth: 3; FUntilDay: @CRelativeDays[7]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7408,7 +7489,7 @@ var
     (FOffset: 10660; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1890; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10656; FRuleFamily: nil; FFmtStr: 'BMT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1982; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[77]; FFmtStr: '+03/+04'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[76]; FFmtStr: '+03/+04'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Bahrain zone }
@@ -7423,11 +7504,11 @@ var
   CZone_222_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: 11964; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1957; FUntilMonth: 3; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+03/+04'; FUntilYear: 1992; FUntilMonth: 9; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+03/+04'; FUntilYear: 1992; FUntilMonth: 9; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[64]; FFmtStr: '+04/+05'; FUntilYear: 1997; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[68]; FFmtStr: '+04/+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[63]; FFmtStr: '+04/+05'; FUntilYear: 1997; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[67]; FFmtStr: '+04/+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Bangkok zone }
@@ -7453,16 +7534,16 @@ var
   { Time periods for Asia/Beirut zone }
   CZone_225_Arr: array[0 .. 1] of TPeriod = (
     (FOffset: 8520; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1880; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[83]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[82]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Bishkek zone }
   CZone_226_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: 17904; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 8; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[81]; FFmtStr: '+05/+06'; FUntilYear: 2005; FUntilMonth: 8; FUntilDay: @CRelativeDays[37]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 8; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[80]; FFmtStr: '+05/+06'; FUntilYear: 2005; FUntilMonth: 8; FUntilDay: @CRelativeDays[37]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7490,15 +7571,15 @@ var
     (FOffset: 27480; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 8; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 25200; FRuleFamily: nil; FFmtStr: '+07'; FUntilYear: 1978; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: '+08'; FUntilYear: 1983; FUntilMonth: 4; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 32400; FRuleFamily: @CRuleFamilies[85]; FFmtStr: '+09/+10'; FUntilYear: 2008; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[85]; FFmtStr: '+08/+09'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 32400; FRuleFamily: @CRuleFamilies[84]; FFmtStr: '+09/+10'; FUntilYear: 2008; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[84]; FFmtStr: '+08/+09'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Chongqing zone }
   CZone_230_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 25580; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1928; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 25200; FRuleFamily: nil; FFmtStr: '+07'; FUntilYear: 1980; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[71]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[70]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Colombo zone }
@@ -7517,7 +7598,7 @@ var
   { Time periods for Asia/Damascus zone }
   CZone_232_Arr: array[0 .. 1] of TPeriod = (
     (FOffset: 8712; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[90]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[89]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Dhaka zone }
@@ -7528,7 +7609,7 @@ var
     (FOffset: 19800; FRuleFamily: nil; FFmtStr: '+0530'; FUntilYear: 1942; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 23400; FRuleFamily: nil; FFmtStr: '+0630'; FUntilYear: 1951; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 2009; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[69]; FFmtStr: '+06/+07'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[68]; FFmtStr: '+06/+07'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Dili zone }
@@ -7550,7 +7631,7 @@ var
   CZone_236_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 16512; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 9; FUntilDay: @CRelativeDays[38]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -7558,26 +7639,26 @@ var
   { Time periods for Asia/Famagusta zone }
   CZone_237_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 8148; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1921; FUntilMonth: 11; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[75]; FFmtStr: 'EE%sT'; FUntilYear: 1998; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[64]; FFmtStr: 'EE%sT'; FUntilYear: 2016; FUntilMonth: 9; FUntilDay: @CRelativeDays[2]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[74]; FFmtStr: 'EE%sT'; FUntilYear: 1998; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[63]; FFmtStr: 'EE%sT'; FUntilYear: 2016; FUntilMonth: 9; FUntilDay: @CRelativeDays[2]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 2017; FUntilMonth: 10; FUntilDay: @CRelativeDays[6]; FUntilTime: 3600; FUntilTimeMode: trUniversal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[64]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[63]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Gaza zone }
   CZone_238_Arr: array[0 .. 11] of TPeriod = (
     (FOffset: 8272; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 10; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'EET/EEST'; FUntilYear: 1948; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'I%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[80]; FFmtStr: 'EE%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'EE%sT'; FUntilYear: 2008; FUntilMonth: 8; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'EET/EEST'; FUntilYear: 1948; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[86]; FFmtStr: 'EE%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'I%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[79]; FFmtStr: 'EE%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 2008; FUntilMonth: 8; FUntilDay: @CRelativeDays[6]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: nil; FFmtStr: 'EET'; FUntilYear: 2008; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'EE%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 2010; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: nil; FFmtStr: 'EET'; FUntilYear: 2010; FUntilMonth: 3; FUntilDay: @CRelativeDays[28]; FUntilTime: 60; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'EE%sT'; FUntilYear: 2011; FUntilMonth: 8; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 2011; FUntilMonth: 8; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: nil; FFmtStr: 'EET'; FUntilYear: 2012; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Hanoi zone }
@@ -7599,17 +7680,17 @@ var
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1940; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: '+09'; FUntilYear: 1966; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 30600; FRuleFamily: nil; FFmtStr: '+0830'; FUntilYear: 1980; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[71]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[70]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Hebron zone }
   CZone_241_Arr: array[0 .. 5] of TPeriod = (
     (FOffset: 8423; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1900; FUntilMonth: 10; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'EET/EEST'; FUntilYear: 1948; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'I%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[80]; FFmtStr: 'EE%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'EET/EEST'; FUntilYear: 1948; FUntilMonth: 5; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[86]; FFmtStr: 'EE%sT'; FUntilYear: 1967; FUntilMonth: 6; FUntilDay: @CRelativeDays[35]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'I%sT'; FUntilYear: 1996; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[79]; FFmtStr: 'EE%sT'; FUntilYear: 1999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[87]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Hong_Kong zone }
@@ -7619,14 +7700,14 @@ var
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: 'HKST'; FUntilYear: 1941; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 14400; FUntilTimeMode: trLocal),
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: 'HKWT'; FUntilYear: 1941; FUntilMonth: 12; FUntilDay: @CRelativeDays[8]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: 'JST'; FUntilYear: 1945; FUntilMonth: 11; FUntilDay: @CRelativeDays[26]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[72]; FFmtStr: 'HK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[71]; FFmtStr: 'HK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Hovd zone }
   CZone_243_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 21996; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 8; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1978; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 25200; FRuleFamily: @CRuleFamilies[85]; FFmtStr: '+07/+08'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 25200; FRuleFamily: @CRuleFamilies[84]; FFmtStr: '+07/+08'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Ho_Chi_Minh zone }
@@ -7680,7 +7761,7 @@ var
   CZone_248_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 8454; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1880; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 8440; FRuleFamily: nil; FFmtStr: 'JMT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'I%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'I%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Kabul zone }
@@ -7708,7 +7789,7 @@ var
     (FOffset: 19800; FRuleFamily: nil; FFmtStr: '+0630'; FUntilYear: 1945; FUntilMonth: 10; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 19800; FRuleFamily: nil; FFmtStr: '+0530'; FUntilYear: 1951; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1971; FUntilMonth: 3; FUntilDay: @CRelativeDays[10]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[86]; FFmtStr: 'PK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[85]; FFmtStr: 'PK%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Kashgar zone }
@@ -7716,7 +7797,7 @@ var
     (FOffset: 18236; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1928; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 19800; FRuleFamily: nil; FFmtStr: '+0530'; FUntilYear: 1940; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1980; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[71]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[70]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Kathmandu zone }
@@ -7779,7 +7860,7 @@ var
   CZone_258_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 26480; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1926; FUntilMonth: 3; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 27000; FRuleFamily: nil; FFmtStr: '+0730'; FUntilYear: 1933; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[84]; FFmtStr: '+08/+0820'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[16]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[83]; FFmtStr: '+08/+0820'; FUntilYear: 1942; FUntilMonth: 2; FUntilDay: @CRelativeDays[16]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: '+09'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[37]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: '+08'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -7794,8 +7875,8 @@ var
   CZone_260_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 27250; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1904; FUntilMonth: 10; FUntilDay: @CRelativeDays[5]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1941; FUntilMonth: 12; FUntilDay: @CRelativeDays[0]; FUntilTime: 82800; FUntilTimeMode: trLocal),
-    (FOffset: 32400; FRuleFamily: @CRuleFamilies[74]; FFmtStr: '+09/+10'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 86400; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[74]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 32400; FRuleFamily: @CRuleFamilies[73]; FFmtStr: '+09/+10'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[5]; FUntilTime: 86400; FUntilTimeMode: trLocal),
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[73]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Magadan zone }
@@ -7823,9 +7904,9 @@ var
   CZone_263_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: -57360; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1844; FUntilMonth: 12; FUntilDay: @CRelativeDays[21]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 29040; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1899; FUntilMonth: 5; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[89]; FFmtStr: 'P%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'P%sT'; FUntilYear: 1942; FUntilMonth: 5; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: 'JST'; FUntilYear: 1944; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[89]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[88]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Muscat zone }
@@ -7837,8 +7918,8 @@ var
   { Time periods for Asia/Nicosia zone }
   CZone_265_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 8008; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1921; FUntilMonth: 11; FUntilDay: @CRelativeDays[20]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[75]; FFmtStr: 'EE%sT'; FUntilYear: 1998; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[64]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[74]; FFmtStr: 'EE%sT'; FUntilYear: 1998; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[63]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Novokuznetsk zone }
@@ -7883,10 +7964,10 @@ var
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1989; FUntilMonth: 3; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 3; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1989; FUntilMonth: 3; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 3; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7937,9 +8018,9 @@ var
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7950,11 +8031,11 @@ var
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 1992; FUntilMonth: 3; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 9; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: @CRelativeDays[41]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 1992; FUntilMonth: 3; FUntilDay: @CRelativeDays[6]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 2004; FUntilMonth: 10; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 2018; FUntilMonth: 12; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -7985,7 +8066,7 @@ var
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1981; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1981; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 21600; FRuleFamily: nil; FFmtStr: '+06'; FUntilYear: 1982; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -7994,16 +8075,16 @@ var
     (FOffset: 30472; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1908; FUntilMonth: 4; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 30600; FRuleFamily: nil; FFmtStr: 'KST'; FUntilYear: 1912; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: 'JST'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[2]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 32400; FRuleFamily: @CRuleFamilies[82]; FFmtStr: 'K%sT'; FUntilYear: 1954; FUntilMonth: 3; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 30600; FRuleFamily: @CRuleFamilies[82]; FFmtStr: 'K%sT'; FUntilYear: 1961; FUntilMonth: 8; FUntilDay: @CRelativeDays[18]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 32400; FRuleFamily: @CRuleFamilies[82]; FFmtStr: 'K%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 32400; FRuleFamily: @CRuleFamilies[81]; FFmtStr: 'K%sT'; FUntilYear: 1954; FUntilMonth: 3; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 30600; FRuleFamily: @CRuleFamilies[81]; FFmtStr: 'K%sT'; FUntilYear: 1961; FUntilMonth: 8; FUntilDay: @CRelativeDays[18]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 32400; FRuleFamily: @CRuleFamilies[81]; FFmtStr: 'K%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Shanghai zone }
   CZone_280_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 29143; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1901; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[70]; FFmtStr: 'C%sT'; FUntilYear: 1949; FUntilMonth: 5; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[71]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[69]; FFmtStr: 'C%sT'; FUntilYear: 1949; FUntilMonth: 5; FUntilDay: @CRelativeDays[7]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[70]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Singapore zone }
@@ -8035,15 +8116,15 @@ var
     (FOffset: 29160; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1896; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 28800; FRuleFamily: nil; FFmtStr: 'CST'; FUntilYear: 1937; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 32400; FRuleFamily: nil; FFmtStr: 'JST'; FUntilYear: 1945; FUntilMonth: 9; FUntilDay: @CRelativeDays[0]; FUntilTime: 3600; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[73]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[72]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Tashkent zone }
   CZone_284_Arr: array[0 .. 4] of TPeriod = (
     (FOffset: 16631; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 21600; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 18000; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 21600; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+06/+07'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: 18000; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+05/+06'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 18000; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -8052,13 +8133,13 @@ var
     (FOffset: 10751; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1880; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10751; FRuleFamily: nil; FFmtStr: 'TBMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1957; FUntilMonth: 3; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+03/+04'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+03/+04'; FUntilYear: 1994; FUntilMonth: 9; FUntilDay: @CRelativeDays[24]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1996; FUntilMonth: 10; FUntilDay: @CRelativeDays[24]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+03/+04'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[64]; FFmtStr: '+03/+04'; FUntilYear: 1994; FUntilMonth: 9; FUntilDay: @CRelativeDays[24]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[64]; FFmtStr: '+04/+05'; FUntilYear: 1996; FUntilMonth: 10; FUntilDay: @CRelativeDays[24]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+05'; FUntilYear: 1997; FUntilMonth: 3; FUntilDay: @CRelativeDays[24]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[28]; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+03/+04'; FUntilYear: 2005; FUntilMonth: 3; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[64]; FFmtStr: '+04/+05'; FUntilYear: 2004; FUntilMonth: 6; FUntilDay: @CRelativeDays[28]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+03/+04'; FUntilYear: 2005; FUntilMonth: 3; FUntilDay: @CRelativeDays[24]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -8067,15 +8148,15 @@ var
     (FOffset: 12344; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1916; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 12344; FRuleFamily: nil; FFmtStr: 'TMT'; FUntilYear: 1946; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 12600; FRuleFamily: nil; FFmtStr: '+0330'; FUntilYear: 1977; FUntilMonth: 11; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[76]; FFmtStr: '+04/+05'; FUntilYear: 1979; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 12600; FRuleFamily: @CRuleFamilies[76]; FFmtStr: '+0330/+0430'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[75]; FFmtStr: '+04/+05'; FUntilYear: 1979; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 12600; FRuleFamily: @CRuleFamilies[75]; FFmtStr: '+0330/+0430'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Tel_Aviv zone }
   CZone_287_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 8344; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1880; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 8460; FRuleFamily: nil; FFmtStr: 'JMT'; FUntilYear: 1918; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'I%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[77]; FFmtStr: 'I%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Thimphu zone }
@@ -8088,7 +8169,7 @@ var
   { Time periods for Asia/Tokyo zone }
   CZone_289_Arr: array[0 .. 1] of TPeriod = (
     (FOffset: 33539; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1887; FUntilMonth: 12; FUntilDay: @CRelativeDays[21]; FUntilTime: 54000; FUntilTimeMode: trUniversal),
-    (FOffset: 32400; FRuleFamily: @CRuleFamilies[79]; FFmtStr: 'J%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 32400; FRuleFamily: @CRuleFamilies[78]; FFmtStr: 'J%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Tomsk zone }
@@ -8108,7 +8189,7 @@ var
   CZone_291_Arr: array[0 .. 2] of TPeriod = (
     (FOffset: 25652; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1905; FUntilMonth: 8; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 25200; FRuleFamily: nil; FFmtStr: '+07'; FUntilYear: 1978; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 28800; FRuleFamily: @CRuleFamilies[85]; FFmtStr: '+08/+09'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 28800; FRuleFamily: @CRuleFamilies[84]; FFmtStr: '+08/+09'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Asia/Urumqi zone }
@@ -8189,11 +8270,11 @@ var
   CZone_299_Arr: array[0 .. 6] of TPeriod = (
     (FOffset: 10680; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1924; FUntilMonth: 5; FUntilDay: @CRelativeDays[19]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1957; FUntilMonth: 3; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 10800; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+03/+04'; FUntilYear: 1995; FUntilMonth: 9; FUntilDay: @CRelativeDays[4]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 1991; FUntilMonth: 3; FUntilDay: @CRelativeDays[21]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 10800; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+03/+04'; FUntilYear: 1995; FUntilMonth: 9; FUntilDay: @CRelativeDays[4]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 1997; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 2011; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 14400; FRuleFamily: @CRuleFamilies[67]; FFmtStr: '+04/+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[65]; FFmtStr: '+04/+05'; FUntilYear: 2011; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 14400; FRuleFamily: @CRuleFamilies[66]; FFmtStr: '+04/+05'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Atlantic/Azores zone }
@@ -8216,11 +8297,12 @@ var
   );
 
   { Time periods for Atlantic/Bermuda zone }
-  CZone_301_Arr: array[0 .. 3] of TPeriod = (
-    (FOffset: -15558; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1930; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: nil; FFmtStr: 'AST'; FUntilYear: 1974; FUntilMonth: 4; FUntilDay: @CRelativeDays[7]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: -14400; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+  CZone_301_Arr: array[0 .. 4] of TPeriod = (
+    (FOffset: -15558; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1890; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -15558; FRuleFamily: @CRuleFamilies[123]; FFmtStr: 'BMT/BST'; FUntilYear: 1930; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[123]; FFmtStr: 'A%sT'; FUntilYear: 1974; FUntilMonth: 4; FUntilDay: @CRelativeDays[7]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[95]; FFmtStr: 'A%sT'; FUntilYear: 1976; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: -14400; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'A%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Atlantic/Canary zone }
@@ -8326,11 +8408,10 @@ var
   );
 
   { Time periods for Australia/Currie zone }
-  CZone_314_Arr: array[0 .. 4] of TPeriod = (
+  CZone_314_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 34528; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 36000; FRuleFamily: nil; FFmtStr: 'AEST'; FUntilYear: 1916; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 36000; FRuleFamily: nil; FFmtStr: 'AEDT'; FUntilYear: 1917; FUntilMonth: 2; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 36000; FRuleFamily: @CRuleFamilies[45]; FFmtStr: 'AE%sT'; FUntilYear: 1971; FUntilMonth: 7; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 36000; FRuleFamily: @CRuleFamilies[50]; FFmtStr: 'AE%sT'; FUntilYear: 1919; FUntilMonth: 10; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 36000; FRuleFamily: @CRuleFamilies[45]; FFmtStr: 'AE%sT'; FUntilYear: 1968; FUntilMonth: 10; FUntilDay: @CRelativeDays[44]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 36000; FRuleFamily: @CRuleFamilies[50]; FFmtStr: 'AE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -8349,10 +8430,9 @@ var
   );
 
   { Time periods for Australia/Hobart zone }
-  CZone_317_Arr: array[0 .. 4] of TPeriod = (
+  CZone_317_Arr: array[0 .. 3] of TPeriod = (
     (FOffset: 35356; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1895; FUntilMonth: 9; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 36000; FRuleFamily: nil; FFmtStr: 'AEST'; FUntilYear: 1916; FUntilMonth: 10; FUntilDay: @CRelativeDays[1]; FUntilTime: 7200; FUntilTimeMode: trLocal),
-    (FOffset: 36000; FRuleFamily: nil; FFmtStr: 'AEDT'; FUntilYear: 1917; FUntilMonth: 2; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 36000; FRuleFamily: @CRuleFamilies[50]; FFmtStr: 'AE%sT'; FUntilYear: 1919; FUntilMonth: 10; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 36000; FRuleFamily: @CRuleFamilies[45]; FFmtStr: 'AE%sT'; FUntilYear: 1967; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 36000; FRuleFamily: @CRuleFamilies[50]; FFmtStr: 'AE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
@@ -8401,7 +8481,7 @@ var
 
   { Time periods for CST6CDT zone }
   CZone_324_Arr: array[0 .. 0] of TPeriod = (
-    (FOffset: -21600; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -21600; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'C%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for EET zone }
@@ -8416,7 +8496,7 @@ var
 
   { Time periods for EST5EDT zone }
   CZone_327_Arr: array[0 .. 0] of TPeriod = (
-    (FOffset: -18000; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -18000; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'E%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Etc/GMT zone }
@@ -9155,7 +9235,7 @@ var
   );
 
   { Time periods for Europe/Volgograd zone }
-  CZone_407_Arr: array[0 .. 9] of TPeriod = (
+  CZone_407_Arr: array[0 .. 10] of TPeriod = (
     (FOffset: 10660; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1920; FUntilMonth: 1; FUntilDay: @CRelativeDays[9]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 1930; FUntilMonth: 6; FUntilDay: @CRelativeDays[0]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 1961; FUntilMonth: 11; FUntilDay: @CRelativeDays[42]; FUntilTime: 0; FUntilTimeMode: trLocal),
@@ -9165,7 +9245,8 @@ var
     (FOffset: 10800; FRuleFamily: @CRuleFamilies[6]; FFmtStr: '+03/+04'; FUntilYear: 2011; FUntilMonth: 3; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 2014; FUntilMonth: 10; FUntilDay: @CRelativeDays[10]; FUntilTime: 7200; FUntilTimeMode: trStandard),
     (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 2018; FUntilMonth: 10; FUntilDay: @CRelativeDays[7]; FUntilTime: 7200; FUntilTimeMode: trStandard),
-    (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 2020; FUntilMonth: 12; FUntilDay: @CRelativeDays[28]; FUntilTime: 7200; FUntilTimeMode: trStandard),
+    (FOffset: 10800; FRuleFamily: nil; FFmtStr: '+03'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Europe/Warsaw zone }
@@ -9262,7 +9343,7 @@ var
 
   { Time periods for Indian/Mahe zone }
   CZone_420_Arr: array[0 .. 1] of TPeriod = (
-    (FOffset: 13308; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1906; FUntilMonth: 6; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 13308; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1907; FUntilMonth: 1; FUntilDay: @CRelativeDays[1]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 14400; FRuleFamily: nil; FFmtStr: '+04'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -9303,7 +9384,7 @@ var
 
   { Time periods for MST7MDT zone }
   CZone_427_Arr: array[0 .. 0] of TPeriod = (
-    (FOffset: -25200; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -25200; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'M%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Pacific/Apia zone }
@@ -9425,7 +9506,7 @@ var
     (FOffset: -37886; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1896; FUntilMonth: 1; FUntilDay: @CRelativeDays[17]; FUntilTime: 43200; FUntilTimeMode: trLocal),
     (FOffset: -37800; FRuleFamily: nil; FFmtStr: 'HST'; FUntilYear: 1933; FUntilMonth: 4; FUntilDay: @CRelativeDays[5]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -37800; FRuleFamily: nil; FFmtStr: 'HDT'; FUntilYear: 1933; FUntilMonth: 5; FUntilDay: @CRelativeDays[0]; FUntilTime: 43200; FUntilTimeMode: trLocal),
-    (FOffset: -37800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'H%sT'; FUntilYear: 1947; FUntilMonth: 6; FUntilDay: @CRelativeDays[2]; FUntilTime: 7200; FUntilTimeMode: trLocal),
+    (FOffset: -37800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'H%sT'; FUntilYear: 1947; FUntilMonth: 6; FUntilDay: @CRelativeDays[2]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: -36000; FRuleFamily: nil; FFmtStr: 'HST'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
@@ -9617,7 +9698,7 @@ var
 
   { Time periods for PST8PDT zone }
   CZone_467_Arr: array[0 .. 0] of TPeriod = (
-    (FOffset: -28800; FRuleFamily: @CRuleFamilies[97]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: -28800; FRuleFamily: @CRuleFamilies[96]; FFmtStr: 'P%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for WET zone }
@@ -9629,7 +9710,7 @@ var
   { This array contains zones. }
   CZones: array[0 .. 468] of TZone = (
     (FName: 'Africa/Abidjan'; FCount: 2; FFirstPeriod: @CZone_0_Arr),
-    (FName: 'Africa/Accra'; FCount: 2; FFirstPeriod: @CZone_1_Arr),
+    (FName: 'Africa/Accra'; FCount: 4; FFirstPeriod: @CZone_1_Arr),
     (FName: 'Africa/Addis_Ababa'; FCount: 3; FFirstPeriod: @CZone_2_Arr),
     (FName: 'Africa/Algiers'; FCount: 10; FFirstPeriod: @CZone_3_Arr),
     (FName: 'Africa/Asmara'; FCount: 4; FFirstPeriod: @CZone_4_Arr),
@@ -9653,12 +9734,12 @@ var
     (FName: 'Africa/Gaborone'; FCount: 5; FFirstPeriod: @CZone_22_Arr),
     (FName: 'Africa/Harare'; FCount: 2; FFirstPeriod: @CZone_23_Arr),
     (FName: 'Africa/Johannesburg'; FCount: 3; FFirstPeriod: @CZone_24_Arr),
-    (FName: 'Africa/Juba'; FCount: 3; FFirstPeriod: @CZone_25_Arr),
+    (FName: 'Africa/Juba'; FCount: 4; FFirstPeriod: @CZone_25_Arr),
     (FName: 'Africa/Kampala'; FCount: 5; FFirstPeriod: @CZone_26_Arr),
     (FName: 'Africa/Khartoum'; FCount: 4; FFirstPeriod: @CZone_27_Arr),
     (FName: 'Africa/Kigali'; FCount: 2; FFirstPeriod: @CZone_28_Arr),
     (FName: 'Africa/Kinshasa'; FCount: 2; FFirstPeriod: @CZone_29_Arr),
-    (FName: 'Africa/Lagos'; FCount: 2; FFirstPeriod: @CZone_30_Arr),
+    (FName: 'Africa/Lagos'; FCount: 5; FFirstPeriod: @CZone_30_Arr),
     (FName: 'Africa/Libreville'; FCount: 2; FFirstPeriod: @CZone_31_Arr),
     (FName: 'Africa/Lome'; FCount: 2; FFirstPeriod: @CZone_32_Arr),
     (FName: 'Africa/Luanda'; FCount: 3; FFirstPeriod: @CZone_33_Arr),
@@ -9670,7 +9751,7 @@ var
     (FName: 'Africa/Mbabane'; FCount: 2; FFirstPeriod: @CZone_39_Arr),
     (FName: 'Africa/Mogadishu'; FCount: 4; FFirstPeriod: @CZone_40_Arr),
     (FName: 'Africa/Monrovia'; FCount: 4; FFirstPeriod: @CZone_41_Arr),
-    (FName: 'Africa/Nairobi'; FCount: 5; FFirstPeriod: @CZone_42_Arr),
+    (FName: 'Africa/Nairobi'; FCount: 6; FFirstPeriod: @CZone_42_Arr),
     (FName: 'Africa/Ndjamena'; FCount: 4; FFirstPeriod: @CZone_43_Arr),
     (FName: 'Africa/Niamey'; FCount: 4; FFirstPeriod: @CZone_44_Arr),
     (FName: 'Africa/Nouakchott'; FCount: 4; FFirstPeriod: @CZone_45_Arr),
@@ -9929,7 +10010,7 @@ var
     (FName: 'Asia/Yekaterinburg'; FCount: 8; FFirstPeriod: @CZone_298_Arr),
     (FName: 'Asia/Yerevan'; FCount: 7; FFirstPeriod: @CZone_299_Arr),
     (FName: 'Atlantic/Azores'; FCount: 15; FFirstPeriod: @CZone_300_Arr),
-    (FName: 'Atlantic/Bermuda'; FCount: 4; FFirstPeriod: @CZone_301_Arr),
+    (FName: 'Atlantic/Bermuda'; FCount: 5; FFirstPeriod: @CZone_301_Arr),
     (FName: 'Atlantic/Canary'; FCount: 5; FFirstPeriod: @CZone_302_Arr),
     (FName: 'Atlantic/Cape_Verde'; FCount: 5; FFirstPeriod: @CZone_303_Arr),
     (FName: 'Atlantic/Faroe'; FCount: 3; FFirstPeriod: @CZone_304_Arr),
@@ -9942,10 +10023,10 @@ var
     (FName: 'Australia/Adelaide'; FCount: 4; FFirstPeriod: @CZone_311_Arr),
     (FName: 'Australia/Brisbane'; FCount: 3; FFirstPeriod: @CZone_312_Arr),
     (FName: 'Australia/Broken_Hill'; FCount: 6; FFirstPeriod: @CZone_313_Arr),
-    (FName: 'Australia/Currie'; FCount: 5; FFirstPeriod: @CZone_314_Arr),
+    (FName: 'Australia/Currie'; FCount: 4; FFirstPeriod: @CZone_314_Arr),
     (FName: 'Australia/Darwin'; FCount: 3; FFirstPeriod: @CZone_315_Arr),
     (FName: 'Australia/Eucla'; FCount: 3; FFirstPeriod: @CZone_316_Arr),
-    (FName: 'Australia/Hobart'; FCount: 5; FFirstPeriod: @CZone_317_Arr),
+    (FName: 'Australia/Hobart'; FCount: 4; FFirstPeriod: @CZone_317_Arr),
     (FName: 'Australia/Lindeman'; FCount: 4; FFirstPeriod: @CZone_318_Arr),
     (FName: 'Australia/Lord_Howe'; FCount: 4; FFirstPeriod: @CZone_319_Arr),
     (FName: 'Australia/Melbourne'; FCount: 3; FFirstPeriod: @CZone_320_Arr),
@@ -10035,7 +10116,7 @@ var
     (FName: 'Europe/Vaduz'; FCount: 3; FFirstPeriod: @CZone_404_Arr),
     (FName: 'Europe/Vienna'; FCount: 8; FFirstPeriod: @CZone_405_Arr),
     (FName: 'Europe/Vilnius'; FCount: 15; FFirstPeriod: @CZone_406_Arr),
-    (FName: 'Europe/Volgograd'; FCount: 10; FFirstPeriod: @CZone_407_Arr),
+    (FName: 'Europe/Volgograd'; FCount: 11; FFirstPeriod: @CZone_407_Arr),
     (FName: 'Europe/Warsaw'; FCount: 9; FFirstPeriod: @CZone_408_Arr),
     (FName: 'Europe/Zagreb'; FCount: 6; FFirstPeriod: @CZone_409_Arr),
     (FName: 'Europe/Zaporozhye'; FCount: 8; FFirstPeriod: @CZone_410_Arr),
@@ -10101,7 +10182,7 @@ var
 
 var
   { This array contains zone aliases. }
-  CAliases: array[0 .. 368] of TZoneAlias = (
+  CAliases: array[0 .. 369] of TZoneAlias = (
     (FName: 'AUS Central Standard Time'; FAliasTo: @CZones[315]),
     (FName: 'AUS Eastern Standard Time'; FAliasTo: @CZones[322]),
     (FName: 'Afghanistan Standard Time'; FAliasTo: @CZones[249]),
@@ -10216,6 +10297,7 @@ var
     (FName: 'Aus Central W. Standard Time'; FAliasTo: @CZones[316]),
     (FName: 'Australia/ACT'; FAliasTo: @CZones[322]),
     (FName: 'Australia/Canberra'; FAliasTo: @CZones[322]),
+    (FName: 'Australia/Currie'; FAliasTo: @CZones[317]),
     (FName: 'Australia/LHI'; FAliasTo: @CZones[319]),
     (FName: 'Australia/NSW'; FAliasTo: @CZones[322]),
     (FName: 'Australia/North'; FAliasTo: @CZones[315]),
@@ -10447,7 +10529,6 @@ var
     (FName: 'US/Michigan'; FAliasTo: @CZones[100]),
     (FName: 'US/Mountain'; FAliasTo: @CZones[99]),
     (FName: 'US/Pacific'; FAliasTo: @CZones[135]),
-    (FName: 'US/Pacific-New'; FAliasTo: @CZones[135]),
     (FName: 'US/Samoa'; FAliasTo: @CZones[455]),
     (FName: 'UTC'; FAliasTo: @CZones[355]),
     (FName: 'UTC+12'; FAliasTo: @CZones[344]),
@@ -10470,6 +10551,7 @@ var
     (FName: 'West Bank Standard Time'; FAliasTo: @CZones[241]),
     (FName: 'West Pacific Standard Time'; FAliasTo: @CZones[459]),
     (FName: 'Yakutsk Standard Time'; FAliasTo: @CZones[296]),
+    (FName: 'Yukon Standard Time'; FAliasTo: @CZones[197]),
     (FName: 'Zulu'; FAliasTo: @CZones[355])
   );
 

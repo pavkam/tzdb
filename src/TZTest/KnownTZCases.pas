@@ -79,7 +79,7 @@ const
 const
   CAfrica_Accra_1997: array[0 .. 0] of TDecomposedPeriod = (
     (FStartsAt: 35431; FEndsAt: 35795.9999999884; FType: lttStandard; FAbbrv_AsDST: 'GMT'; FAbbrv_AsSTD: 'GMT';
-      FName_AsDST: 'GMT'; FName_AsSTD: 'GMT'; FBias_AsDST: 0; FBias_AsSTD: 0)
+      FName_AsDST: ''; FName_AsSTD: ''; FBias_AsDST: 0; FBias_AsSTD: 0)
   );
 
 const

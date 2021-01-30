@@ -11,6 +11,7 @@
 			GlobalCache.AddAlias('US Mountain Standard Time', 'America/Phoenix');
 			GlobalCache.AddAlias('Mountain Standard Time (Mexico)', 'America/Chihuahua');
 			GlobalCache.AddAlias('Mountain Standard Time', 'America/Denver');
+			GlobalCache.AddAlias('Yukon Standard Time', 'America/Whitehorse');
 			GlobalCache.AddAlias('Central America Standard Time', 'America/Guatemala');
 			GlobalCache.AddAlias('Central Standard Time', 'America/Chicago');
 			GlobalCache.AddAlias('Easter Island Standard Time', 'Pacific/Easter');

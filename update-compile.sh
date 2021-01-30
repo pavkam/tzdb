@@ -104,7 +104,7 @@ rm tzdata-latest.tar.gz
 
 IANAV=`cat $REPO/iana_temp/version`
 echo "Current TZDB database version is v$IANAV."
-FILES=( africa antarctica asia australasia backward backzone etcetera europe factory northamerica pacificnew southamerica systemv )
+FILES=( africa antarctica asia australasia backward backzone etcetera europe factory northamerica southamerica )
 for fn in "${FILES[@]}"; do
     echo "Replacing file $fn ..."
     cp $REPO/iana_temp/$fn $REPO/tz_database_latest/$fn
