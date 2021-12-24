@@ -1218,7 +1218,7 @@ begin
   LTZ := TBundledTimeZone.GetTimeZone('Europe/London');
   C := LTZ.ToLocalTime(EncodeDateTime(2018, 03, 25, 1, 0, 0, 0));
 
-  CheckEquals('2018-03-25 02:00:00.000+01:00', LTZ.ToISO8601Format(C));
+  CheckEquals('2018-03-25T02:00:00.000+01:00', LTZ.ToISO8601Format(C));
 end;
 
 procedure TTZDBTest.Test_TZ_ToLocal_Regression_2;
@@ -1229,10 +1229,10 @@ begin
   LTZ := TBundledTimeZone.GetTimeZone('Europe/Bucharest');
 
   C := LTZ.ToLocalTime(EncodeDateTime(2010, 10, 31, 1, 0, 0, 0));
-  CheckEquals('2010-10-31 03:00:00.000+02:00', LTZ.ToISO8601Format(C));
+  CheckEquals('2010-10-31T03:00:00.000+02:00', LTZ.ToISO8601Format(C));
 
   C := LTZ.ToLocalTime(EncodeDateTime(2010, 10, 31, 2, 0, 0, 0));
-  CheckEquals('2010-10-31 04:00:00.000+02:00', LTZ.ToISO8601Format(C));
+  CheckEquals('2010-10-31T04:00:00.000+02:00', LTZ.ToISO8601Format(C));
 end;
 
 procedure TTZDBTest.Test_TZ_ToLocal_Regression_3;
@@ -1243,7 +1243,7 @@ begin
   LTZ := TBundledTimeZone.GetTimeZone('Africa/Cairo');
   C := LTZ.ToLocalTime(EncodeDateTime(2010, 8, 10, 21, 0, 0, 0));
 
-  CheckEquals('2010-08-10 23:00:00.000+02:00', LTZ.ToISO8601Format(C));
+  CheckEquals('2010-08-10T23:00:00.000+02:00', LTZ.ToISO8601Format(C));
 end;
 
 procedure TTZDBTest.Test_TZ_Version;
@@ -1270,12 +1270,12 @@ begin
     //Local time 2018-04-01 02:00:00  DST
     LDateTime  := EncodeDateTime(2018,3,31,15,00,00,0); //UTC Datetime
     LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
-    CheckEquals('2018-03-31 15:00:00.000+11:00', LDateTimeStr, LTimeZone);
+    CheckEquals('2018-03-31T15:00:00.000+11:00', LDateTimeStr, LTimeZone);
 
     //Local time 2018-04-01 02:00:00  STD
     LDateTime  := EncodeDateTime(2018,3,31,16,00,00,0); //UTC Datetime
     LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
-    CheckEquals('2018-03-31 16:00:00.000+10:00', LDateTimeStr, LTimeZone);
+    CheckEquals('2018-03-31T16:00:00.000+10:00', LDateTimeStr, LTimeZone);
   finally
    LTZ.Free;
   end;
@@ -1292,12 +1292,12 @@ begin
     //Local time 2018-10-28 02:00:00  DST
     LDateTime  := EncodeDateTime(2018,10,28,00,00,00,0); //UTC Datetime
     LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
-    CheckEquals('2018-10-28 00:00:00.000+01:00', LDateTimeStr, LTimeZone);
+    CheckEquals('2018-10-28T00:00:00.000+01:00', LDateTimeStr, LTimeZone);
 
     //Local time 2018-10-28 02:00:00  STD
     LDateTime  := EncodeDateTime(2018,10,28,01,00,00,0); //UTC Datetime
     LDateTimeStr := LTZ.ToISO8601Format(LDateTime);
-    CheckEquals('2018-10-28 01:00:00.000Z', LDateTimeStr, LTimeZone);
+    CheckEquals('2018-10-28T01:00:00.000Z', LDateTimeStr, LTimeZone);
   finally
    LTZ.Free;
   end;

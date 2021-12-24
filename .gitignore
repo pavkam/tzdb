@@ -10,7 +10,6 @@ bin
 *.o
 *.ppu
 *.rsj
-.vscode/
 vscode.code-workspace
 *.identcache
 *.groupproj.local
