@@ -198,8 +198,8 @@ function HasDaylightTime(const AYear: word): Boolean;
 ```pascal
   function ToISO8601Format(const ADateTime: TDateTime): String;
 ```
-> Converts an UTC date/time to the full ISO-8601 date time string.
-> Argument `ADateTime` is the UTC date/time to format.
+> Converts a local date/time to the full ISO-8601 date time string.
+> Argument `ADateTime` is the local date/time to format.
 > Raises `EUnknownTimeZoneYear` if the date year is not in the bundled database.
 
 ```pascal

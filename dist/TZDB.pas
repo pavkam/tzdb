@@ -278,9 +278,9 @@ type
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function HasDaylightTime(const AYear: word): Boolean; inline;
 
-    ///  <summary>Converts an UTC date/time to ISO8601 date time string.</summary>
-    ///  <param name="ADateTime">The UTC date/time to convert.</param>
-    ///  <returns>The ISO8601 date/time string that corresponds to the passed UTC time.</returns>
+    ///  <summary>Converts a give local date/time to ISO8601 date time string.</summary>
+    ///  <param name="ADateTime">The local date/time to convert.</param>
+    ///  <returns>The ISO8601 date/time string that corresponds to the passed local time.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified year is not in the bundled database.</exception>
     function ToISO8601Format(const ADateTime: TDateTime): String;
 
@@ -290,7 +290,7 @@ type
     ///  <returns>A string containing the abbreviation.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function GetAbbreviation(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;
+    function GetAbbreviation(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): String;
 
     ///  <summary>Generates a diplay string for the given local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
@@ -298,7 +298,7 @@ type
     ///  <returns>A string containing the display name.</returns>
     ///  <exception cref="TZDB|EUnknownTimeZoneYear">The specified date/time year is not in the bundled database.</exception>
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
-    function GetDisplayName(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): string;
+    function GetDisplayName(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): String;
 
     ///  <summary>Returns the type of the local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
@@ -382,7 +382,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.1.136';
+  CComponentVersion = '2.1.2.137';
 
 type
   { Day type. Specifies the "relative" day in a month }
@@ -11966,8 +11966,8 @@ end;
 
 function TBundledTimeZone.ToISO8601Format(const ADateTime: TDateTime): string;
 const
-  CZFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3dZ';
-  CFullFormat = '%.4d-%.2d-%.2d %.2d:%.2d:%.2d.%.3d%s%.2d:%.2d';
+  CZFormat = '%.4d-%.2d-%.2dT%.2d:%.2d:%.2d.%.3dZ';
+  CFullFormat = '%.4d-%.2d-%.2dT%.2d:%.2d:%.2d.%.3d%s%.2d:%.2d';
 var
   LSegment: TYearSegment;
   LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis: Word;
