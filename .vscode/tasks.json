@@ -1,0 +1,43 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build Debug",
+            "group": "build",
+            "type": "shell",
+            "command": "fpc -glpsw2 -godwarfcpp -B -Xg -O- -CroOti ${workspaceFolder}/src/TZTest/TZTest.dpr -Fu${workspaceFolder}/src/TZDBPK -Fu${workspaceFolder}/src/TZDBLIB -FE${workspaceFolder}/bin -FU${workspaceFolder}/bin",
+            "presentation": {
+                "focus": true,
+            },
+            "problemMatcher": {
+                "owner": "objectpascal",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": [
+                    {
+                        "regexp"    : "Compiling (.*)",
+                        "file"      : 1,
+                    },
+                    {
+                        "regexp"    : "^(.*)\\((\\d.*),(\\d.*)\\) (Warning|Error|Fatal): (.*)$",
+                        "file"      : 1,
+                        "line"      : 2,
+                        "column"    : 3,
+                        "severity"  : 4,
+                        "message"   : 5,
+                        "loop"      : true
+                    }
+                ]
+              }
+        },
+        {
+            "label": "Test",
+            "group": "test",
+            "type": "shell",
+            "dependsOn": [ "Build Debug" ],
+            "command": "${workspaceFolder}/bin/TZTest --format=plain --all --progress --sparse",
+            "presentation": {
+                "focus": true,
+            }
+        }
+    ]
+}

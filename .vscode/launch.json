@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "gdb",
+        "request": "launch",
+        "target": "TZTest",
+        "name": "Test Debugger",
+        "cwd": "${workspaceFolder}/bin",
+        "args": [],
+        "terminal": "integrated",
+        "valuesFormatting": "parseText",
+        "preLaunchTask": "Build Debug"
+      },
+    ]
+  }
