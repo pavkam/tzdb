@@ -43,7 +43,7 @@
 			GlobalCache.AddAlias('UTC-02', 'Etc/GMT+2');
 			GlobalCache.AddAlias('Azores Standard Time', 'Atlantic/Azores');
 			GlobalCache.AddAlias('Cape Verde Standard Time', 'Atlantic/Cape_Verde');
-			GlobalCache.AddAlias('UTC', 'Etc/GMT');
+			GlobalCache.AddAlias('UTC', 'Etc/UTC');
 			GlobalCache.AddAlias('GMT Standard Time', 'Europe/London');
 			GlobalCache.AddAlias('Greenwich Standard Time', 'Atlantic/Reykjavik');
 			GlobalCache.AddAlias('Sao Tome Standard Time', 'Africa/Sao_Tome');
@@ -63,6 +63,7 @@
 			GlobalCache.AddAlias('South Africa Standard Time', 'Africa/Johannesburg');
 			GlobalCache.AddAlias('FLE Standard Time', 'Europe/Kiev');
 			GlobalCache.AddAlias('Israel Standard Time', 'Asia/Jerusalem');
+			GlobalCache.AddAlias('South Sudan Standard Time', 'Africa/Juba');
 			GlobalCache.AddAlias('Kaliningrad Standard Time', 'Europe/Kaliningrad');
 			GlobalCache.AddAlias('Sudan Standard Time', 'Africa/Khartoum');
 			GlobalCache.AddAlias('Libya Standard Time', 'Africa/Tripoli');
