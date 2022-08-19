@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - './*.sh'
+      - '**/*.sh'
     types: [closed]
   schedule:
     - cron: '0 9 1 1-12 *'
