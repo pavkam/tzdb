@@ -12,7 +12,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Prepare Structure
-        run: mkdir ./bin
       - name: Run a multi-line script
-        run: fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FE./bin -FU./bin && ./bin/TZTest --format=plain --all --progress --sparse
+        run: mkdir ./bin && fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FE./bin -FU./bin && ./bin/TZTest --format=plain --all --progress --sparse
