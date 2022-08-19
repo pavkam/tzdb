@@ -8,7 +8,7 @@ on:
 
 jobs:
   test:
-    runs-on: luri/free-pascal:latest
+    runs-on: frolvlad/alpine-fpc
 
     steps:
       - uses: actions/checkout@v3
