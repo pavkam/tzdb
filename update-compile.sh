@@ -10,11 +10,19 @@ REPO=`dirname "$0"`
 echo "Running in '$REPO' path."
 
 TZDB_PAS=$REPO/src/TZDBPK/TZDB.pas
+INPUT_VER=`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\ *=\ *'\(.*\)';.*/\1/p"`
+CUSTOM_VER=0
+CI=0
 
-if [ "$1" != "" ]; then
-  INPUT_VER=$1
-else
-  INPUT_VER=`cat $TZDB_PAS | sed -n "s/.*CComponentVersion\ *=\ *'\(.*\)';.*/\1/p"`
+if [ "$1" == "ci" ]; then
+    CI=1
+    if ! command -v git &> /dev/null; then
+        echo "[ERR] CI mode only supported when git is installed!"
+        exit 1
+    fi
+elif [ "$1" != "" ]; then
+    INPUT_VER=$1
+    CUSTOM_VER=1
 fi
 
 IFS='.'; DOT_ARR=($INPUT_VER); unset IFS;
@@ -24,14 +32,14 @@ VER_2=${DOT_ARR[2]}
 VER_3=${DOT_ARR[3]}
 
 if [[ $VER_0 =~ ^[0-9]+$ ]] && [[ $VER_1 =~ ^[0-9]+$ ]] && [[ $VER_2 =~ ^[0-9]+$ ]] && [[ $VER_3 =~ ^[0-9]+$ ]]; then
-  if [ "$1" == "" ]; then
-    # increment the build number
-    ((VER_3++))
-  fi
-  echo "Will bump the version of the project to $VER_0.$VER_1.$VER_2.$VER_3."
+    if [ $CUSTOM_VER -eq 0 ]; then
+        # Increment the build number
+        ((VER_3++))
+    fi
+    echo "Will bump the version of the project to $VER_0.$VER_1.$VER_2.$VER_3."
 else
-  echo "[ERR] Invalid version info provided: $1. Expected 'n.n.n.n' format."
-  exit 1
+    echo "[ERR] Invalid version info provided: $INPUT_VER. Expected 'n.n.n.n' format."
+    exit 1
 fi
 
 if [ ! -d "$REPO/tz_database_latest" ] || [ ! -e "$REPO/cldr/windowsZones.xml" ] || [ ! -d "$REPO/src/TZDBPK" ] || [ ! -e "$REPO/src/TZCompile/TZCompile.dpr" ]; then
@@ -115,6 +123,18 @@ rm -rf $REPO/iana_temp
 if [ "$?" -ne 0 ]; then
     echo "[ERR] Failed to replace required TZ files from the IANA archive."
     exit 1
+fi
+
+# CI mode checks
+if [ $CI -eq 1 ]; then
+    CHK=`git status -s $REPO/cldr $REPO/tz_database_latest`
+    if [ "$CHK" == "" ]; then
+        echo "Nothing has been updated. Finishing the rest of the process."
+        exit 0
+    fi
+
+    git add $REPO/cldr $REPO/tz_database_latest
+    git commit -m "chore: update to the latest tzdb/cldr"
 fi
 
 # Compile the IANA DB
@@ -237,7 +257,7 @@ echo "Merging the TZDB components into one source file..."
 TZDB_PAS_DIST=$DIST/TZDB.pas
 rm $TZDB_PAS_DIST 2> /dev/null
 cp $REPO/media/logo-64x64.ico $DIST/TZDB.ico
-cat $REPO/src/TZDBPK/TZDBPK.dpk | sed 's/TZDBPK/TZDB/g' > $DIST/TZDB.dpk 
+cat $REPO/src/TZDBPK/TZDBPK.dpk | sed 's/TZDBPK/TZDB/g' > $DIST/TZDB.dpk
 
 cleanup () {
   rm -fr $REPO/xx00 2> /dev/null
@@ -271,7 +291,16 @@ echo "Downloading the API documentation..."
 wget https://raw.githubusercontent.com/wiki/pavkam/tzdb/API-Documentation.md -q -O $DIST/API.md
 
 if [ "$?" -ne 0 ]; then
-    echo "[WARN] Failed to download the API documentation."
+    echo "[ERR] Failed to download the API documentation."
+    exit 1
+fi
+
+# Finish up in CI mode.
+
+if [ $CI -eq 1 ]; then
+    git add .
+    git commit -m "chore: bump version"
+    git push
 fi
 
 echo "DONE!"
