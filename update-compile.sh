@@ -298,10 +298,8 @@ fi
 # Finish up in CI mode.
 
 if [ $CI -eq 1 ]; then
-    git add .
-    git commit -m "chore: bump version"
-    git tag "$VER_0.$VER_1.$VER_2.$IANAV"
-    git push
+    TAG="$VER_0.$VER_1.$VER_2.$IANAV"
+    git add . && git commit -m "chore: bump version" && git tag $TAG && git push origin $TAG && git push
 fi
 
 echo "DONE!"
