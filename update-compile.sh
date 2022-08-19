@@ -300,6 +300,7 @@ fi
 if [ $CI -eq 1 ]; then
     git add .
     git commit -m "chore: bump version"
+    git tag "$VER_0.$VER_1.$VER_2.$IANAV"
     git push
 fi
 
