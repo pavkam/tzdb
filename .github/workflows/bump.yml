@@ -1,0 +1,24 @@
+name: TZDB/CLDR Bump
+
+on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - './update-compile.sh'
+  schedule:
+    - cron: '0 9 1 1-12 *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 
+      - name: Install Free-Pascal
+        run: sudo apt-get install -y fpc
+      - name: Configure git
+        run: |
+          git config --global user.name 'Alexandru Ciobanu [bot]'
+          git config --global user.email 'alex+git[bot]@ciobanu.org'
+      - name: Update the Library
+        run: mkdir ./bin && ./update-compile.sh ci
