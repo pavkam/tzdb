@@ -1,6 +1,10 @@
 name: TZDB/CLDR Bump
 
 on:
+  push:
+    branches: [ "master" ]
+    paths:
+      - './update-compile.sh'
   schedule:
     - cron: '0 9 1 1-12 *'
   workflow_dispatch:
@@ -17,4 +21,4 @@ jobs:
           git config --global user.name 'Alexandru Ciobanu [bot]'
           git config --global user.email 'alex+git[bot]@ciobanu.org'
       - name: Update the Library
-        run: mkdir ./bin && ./update_compile.sh ci
+        run: mkdir ./bin && ./update-compile.sh ci
