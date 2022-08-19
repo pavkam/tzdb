@@ -1,6 +1,6 @@
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 const
-  CIANAVersion = '2022b';
+  CIANAVersion = '2022c';
 
 var
   { This array contains the definitions of relative days used later on in the rules. }
