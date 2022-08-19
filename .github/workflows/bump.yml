@@ -4,8 +4,7 @@ on:
   push:
     branches: [ "master" ]
     paths:
-      - '**/*.sh'
-    types: [closed]
+      - './update-compile.sh'
   schedule:
     - cron: '0 9 1 1-12 *'
   workflow_dispatch:
