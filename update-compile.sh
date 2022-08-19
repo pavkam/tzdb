@@ -42,11 +42,8 @@ else
     exit 1
 fi
 
-mkdir "$REPO/tz_database_latest" >/dev/null 2>/dev/null
-mkdir "$REPO/cldr" >/dev/null 2>/dev/null
-
-if [ ! -d "$REPO/src/TZDBPK" ] || [ ! -e "$REPO/src/TZCompile/TZCompile.dpr" ]; then
-    echo "[ERR] Script located in '$REPO' but cannot find required files!"
+if [ ! -d "$REPO/tz_database_latest" ] || [ ! -e "$REPO/cldr/converter.xsl" ] || [ ! -d "$REPO/src/TZDBPK" ] || [ ! -e "$REPO/src/TZCompile/TZCompile.dpr" ]; then
+    echo "[ERR] Script located in '$REPO' but cannot find required sub-directories. Make sure you have full repo downloaded."
     exit 1
 fi
 
