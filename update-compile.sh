@@ -302,5 +302,4 @@ if [ $CI -eq 1 ]; then
     git add . && git commit -m "chore: bump version" && git tag $TAG && git push origin $TAG && git push
 fi
 
-
 echo "DONE!"
