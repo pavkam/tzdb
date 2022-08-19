@@ -8,11 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: luri/free-pascal:latest
 
     steps:
       - uses: actions/checkout@v3
-      - name: Install Free-Pascal
-        run: sudo apt-get install -y fpc
+      - name: Prepare Structure
+        run: mkdir ./bin
       - name: Run a multi-line script
-        run: fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FEbin -FUbin && ./bin/TZTest --format=plain --all --progress --sparse
+        run: fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FE./bin -FU./bin && ./bin/TZTest --format=plain --all --progress --sparse
