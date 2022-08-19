@@ -8,9 +8,11 @@ on:
 
 jobs:
   test:
-    runs-on: frolvlad/alpine-fpc
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
+      - name: Install Free-Pascal
+        run: sudo apt-get install -y fpc
       - name: Run a multi-line script
         run: mkdir ./bin && fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FE./bin -FU./bin && ./bin/TZTest --format=plain --all --progress --sparse
