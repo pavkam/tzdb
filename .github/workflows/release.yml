@@ -3,8 +3,7 @@ name: Release
 on:
   push:
     tags:        
-      - '*'      
-  workflow_dispatch:
+      - '*'
 
 jobs:
   release:
@@ -25,7 +24,7 @@ jobs:
               await github.rest.repos.createRelease({
                 draft: false,
                 generate_release_notes: true,
-                name: process.env.RELEASE_TAG,
+                name: 'TZDB ' + process.env.RELEASE_TAG,
                 owner: context.repo.owner,
                 prerelease: false,
                 repo: context.repo.repo,
