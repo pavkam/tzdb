@@ -1,0 +1,18 @@
+name: Test 
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Free-Pascal
+        run: sudo apt-get install -y fpc
+      - name: Run a multi-line script
+        run: fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FEbin -FUbin && ./bin/TZTest --format=plain --all --progress --sparse
