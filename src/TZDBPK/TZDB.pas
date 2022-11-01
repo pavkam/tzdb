@@ -361,7 +361,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.2.147';
+  CComponentVersion = '2.1.2.148';
 
 type
   { Day type. Specifies the "relative" day in a month }
