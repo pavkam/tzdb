@@ -3,8 +3,6 @@ name: TZDB/CLDR Bump
 on:
   push:
     branches: [ "master" ]
-    paths:
-      - './update-compile.sh'
   schedule:
     - cron: '0 9 1 1-12 *'
   workflow_dispatch:
