@@ -15,7 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3 
       - name: Install Free-Pascal
-        run: sudo apt-get install -y fpc
+        run: |
+          sudo sed -i 's/azure\.//' /etc/apt/sources.list
+          sudo apt-get update
+          sudo apt-get install -y fpc
       - name: Configure git
         run: |
           git config --global user.name 'Alexandru Ciobanu [bot]'
