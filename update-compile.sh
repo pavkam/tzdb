@@ -100,12 +100,12 @@ fi
 echo "Pulling the latest TZDB database from IANA ..."
 
 rm -rf $REPO/iana_temp 2> /dev/null
-wget -q https://www.iana.org/time-zones
-IANA_GZ_URL=$( cat time-zones.html | sed -nr 's/.*href="(.*tzdata.*\.tar\.gz)".*/\1/p' )
-rm time-zones.html
+wget -q https://www.iana.org/time-zones -O $REPO/time-zones.html
+IANA_GZ_URL=$( cat $REPO/time-zones.html | sed -nr 's/.*href="(.*tzdata.*\.tar\.gz)".*/\1/p' )
+rm $REPO/time-zones.html
 
 wget -q "$IANA_GZ_URL"
-mv tzdata*.tar.gz tzdata-latest.tar.gz
+mv $REPO/tzdata*.tar.gz $REPO/tzdata-latest.tar.gz
 mkdir $REPO/iana_temp
 tar -xf tzdata-latest.tar.gz -C $REPO/iana_temp
 if [ "$?" -ne 0 ]; then
