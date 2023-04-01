@@ -9,7 +9,7 @@
 			GlobalCache.AddAlias('UTC-08', 'Etc/GMT+8');
 			GlobalCache.AddAlias('Pacific Standard Time', 'America/Los_Angeles');
 			GlobalCache.AddAlias('US Mountain Standard Time', 'America/Phoenix');
-			GlobalCache.AddAlias('Mountain Standard Time (Mexico)', 'America/Chihuahua');
+			GlobalCache.AddAlias('Mountain Standard Time (Mexico)', 'America/Mazatlan');
 			GlobalCache.AddAlias('Mountain Standard Time', 'America/Denver');
 			GlobalCache.AddAlias('Yukon Standard Time', 'America/Whitehorse');
 			GlobalCache.AddAlias('Central America Standard Time', 'America/Guatemala');
