@@ -92,7 +92,7 @@
 			GlobalCache.AddAlias('India Standard Time', 'Asia/Calcutta');
 			GlobalCache.AddAlias('Sri Lanka Standard Time', 'Asia/Colombo');
 			GlobalCache.AddAlias('Nepal Standard Time', 'Asia/Katmandu');
-			GlobalCache.AddAlias('Central Asia Standard Time', 'Asia/Almaty');
+			GlobalCache.AddAlias('Central Asia Standard Time', 'Asia/Bishkek');
 			GlobalCache.AddAlias('Bangladesh Standard Time', 'Asia/Dhaka');
 			GlobalCache.AddAlias('Omsk Standard Time', 'Asia/Omsk');
 			GlobalCache.AddAlias('Myanmar Standard Time', 'Asia/Rangoon');
