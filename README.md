@@ -1,6 +1,5 @@
 # TZDB - IANA Time Zone Database for Delphi/FreePascal
 
-===========
 [![Test](https://github.com/pavkam/tzdb/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/test.yml)
 [![TZDB/CLDR Bump](https://github.com/pavkam/tzdb/actions/workflows/bump.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/bump.yml)
 [![Release](https://github.com/pavkam/tzdb/actions/workflows/release.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/release.yml)
