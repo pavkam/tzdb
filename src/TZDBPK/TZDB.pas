@@ -28,8 +28,9 @@
 { General conditional section. Checks for specific RTL "features" shared across
   FreePascal and different versions of Delphi. Recommended version is Delphi XE though ... }
 
-{$INCLUDE 'Version.inc'}
 unit TZDB;
+
+{$INCLUDE 'Version.inc'}
 
 interface
 uses
@@ -361,7 +362,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.3.1';
+  CComponentVersion = '2.1.3.9';
 
 type
   { Day type. Specifies the "relative" day in a month }
