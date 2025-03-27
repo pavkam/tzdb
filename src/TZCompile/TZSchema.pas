@@ -353,7 +353,7 @@ begin
       { Kill the WS flag }
       LWasWS := false;
 
-      { Copy the charcter over }
+      { Copy the character over }
       Result[X] := AInput[I];
       Inc(X);
     end;
@@ -367,6 +367,10 @@ function TzStrToMonth(const Abb: string): Word;
 begin
   for Result := Low(CAbbMonthNames) to High(CAbbMonthNames) do
     if SameText(CAbbMonthNames[Result], Abb) then
+      Exit;
+
+  for Result := Low(CAbbFullMonthNames) to High(CAbbFullMonthNames) do
+    if SameText(CAbbFullMonthNames[Result], Abb) then
       Exit;
 
   raise EProcessMonthError.CreateFmt(CPMBadMonthIdentifier, [Abb]);
@@ -452,7 +456,7 @@ var
 begin
   if StartsText(CLastDoW, AStr) then
   begin
-    { Reccurence on last day of specified kind }
+    { Recurrence on last day of specified kind }
     LDoWStr := Copy(AStr, 5, Length(AStr));
 
     try
@@ -467,7 +471,7 @@ begin
   begin
     LPos := Pos(CNthDoW, AStr);
 
-    { Reccurence on Nth day of specified kind }
+    { Recurrence on Nth day of specified kind }
     LDoWStr := Copy(AStr, 1, LPos - 1);
     LIndexStr := Copy(AStr, LPos + Length(CNthDoW), Length(AStr));
 
@@ -488,7 +492,7 @@ begin
   begin
     LPos := Pos(CPreDoW, AStr);
 
-    { Reccurence on Nth day of specified kind }
+    { Recurrence on Nth day of specified kind }
     LDoWStr := Copy(AStr, 1, LPos - 1);
     LIndexStr := Copy(AStr, LPos + Length(CPreDoW), Length(AStr));
 
@@ -980,7 +984,7 @@ var
   LDayIdx, LRuleIdx: string;
   LAliasList: {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<string>;
 begin
-  { SOOOOOORT the collections that require lookup later }
+  { Sort the collections that require lookup later }
 {$IFDEF FPC}
   FZones.Sort(CompareTzZones);
 {$ELSE}
@@ -1042,7 +1046,7 @@ begin
     begin
       LRule := FRules[I];
       LRule.FIndexInFile := I;
-      WriteLn(LFile, '   {CRules['+inttostr(i)+']}');
+      WriteLn(LFile, '   {CRules['+IntToStr(i)+']}');
       Write(LFile,
         Format('    (FInMonth: %d; FOnDay: @CRelativeDays[%d]; FAt: %d; FAtMode: %s; FOffset: %d; FFmtPart: ''%s'')',
           [LRule.FInMonth, LRule.FOnDay.FIndexInFile, LRule.FAt, CharToRel(LRule.FAtChar), LRule.FSave,
@@ -1069,7 +1073,7 @@ begin
         LFam.FIndexInFile := (I - LGhosts)
       else begin
         Inc(LGhosts);
-        { Some inconsitencies in the input files make us mark and skip "phantom" rules }
+        { Some inconsistencies in the input files make us mark and skip "phantom" rules }
         LFam.FIndexInFile := -1;
         continue;
       end;
@@ -1079,7 +1083,6 @@ begin
           IntToStr(LFam.FRules.Count - 1) + '] of TYearBoundRule = (');
 
       { Sort the rule array in desc order to allow simpler lookup }
-
       for X := 0 to LFam.FRules.Count - 1 do
       begin
         Write(LFile, Format('    (FStart: %d; FEnd: %d; FRule: @CRules[%d])', [LFam.FRules[X].FStart,
@@ -1136,7 +1139,7 @@ begin
       else begin
         Inc(LGhosts);
 
-        { Some inconsitencies in the input files make us mark and skip "phantom" zones }
+        { Some inconsistencies in the input files make us mark and skip "phantom" zones }
         LZone.FIndexInFile := -1;
         continue;
       end;

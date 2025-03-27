@@ -15,3 +15,8 @@ vscode.code-workspace
 *.groupproj.local
 /dist/lib
 /dist/backup
+
+GPATH
+GRTAGS
+GTAGS
+.vscode/GTEMP.pas

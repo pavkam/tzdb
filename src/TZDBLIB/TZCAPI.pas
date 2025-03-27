@@ -33,10 +33,10 @@ type
   ///  <summary>Time zone enumerator procedure.</summary>
   ///  <param name="Data">A data object provided by the consumer code.</param>
   ///  <param name="Name">The name of the currently enumerated time zone.</param>
-  ///  <returns>Consmer must return <c>True</c> to interrupt the enumeraton process.</returns>
+  ///  <returns>Consumer must return <c>True</c> to interrupt the enumeration process.</returns>
   TZ_EnumProc = function(Data: Pointer; Name: PChar): Boolean; stdcall;
 
-  ///  <summary>A <c>Pointer</c> to a <see cref="TZCAPI|TZ_Instance"/> stucture.</summary>
+  ///  <summary>A <c>Pointer</c> to a <see cref="TZCAPI|TZ_Instance"/> structure.</summary>
   PTZ_Instance = ^TZ_Instance;
 
   ///  <summary>An opaque structure that identifies a time zone object.</summary>
@@ -65,7 +65,7 @@ const
   LOCAL_TIME_AMBIGUOUS = 3;
   ///  <summary>The local time is in the Standard -> DST year period.</summary>
   LOCAL_TIME_INVALID = 4;
-  ///  <summary>A generic error. Source or cause unknwown.</summary>
+  ///  <summary>A generic error. Source or cause unknown.</summary>
   ERROR_UNKNOWN = -1;
   ///  <summary>An argument passed to the function was invalid.</summary>
   ERROR_INVALID_ARG = -2;
@@ -90,7 +90,7 @@ const
 
   ///  <summary>Releases a previously acquired instance.</summary>
   ///  <param name="Instance">The time zone instance.</param>
-  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possile errors (if the value is negative).</returns>
+  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possible errors (if the value is negative).</returns>
   function TZ_ReleaseInstance(Instance: PTZ_Instance): TZ_Result; stdcall;
 
   ///  <summary>Generates an abbreviation string for the given local time.</summary>
@@ -99,8 +99,8 @@ const
   ///  <param name="ForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
   ///  <param name="Abbrev">The output string parameter. Should be allocated.</param>
   ///  <param name="AbbrevLen">The number of characters that <paramref name="Abbrev"/> can hold (excluding trailing \0).</param>
-  ///  <returns>The length of the actual name. If the value is negative, then an error occured.
-  ///  See <c>ERROR_*</c> constants for possile errors.</returns>
+  ///  <returns>The length of the actual name. If the value is negative, then an error occurred.
+  ///  See <c>ERROR_*</c> constants for possible errors.</returns>
   ///  <remarks>It is important to note that the consumer must specify an allocated memory block pointed by <paramref name="Abbrev"/>.
   ///  The <paramref name="AbbrevLen"/> parameter must contain the number of bytes allocated. This method will fill this memory
   ///  with the actual abbreviation and return the actual length of the abbreviation. There may be cases when the passed memory block
@@ -109,14 +109,14 @@ const
   function TZ_GetAbbreviation(Instance: PTZ_Instance; Time: TZ_Time;
     ForceDaylight: Boolean; Abbrev: PChar; AbbrevLen: Integer): TZ_Result; stdcall;
 
-  ///  <summary>Generates a diplay name for the given local time.</summary>
+  ///  <summary>Generates a display name for the given local time.</summary>
   ///  <param name="Instance">The time zone instance.</param>
   ///  <param name="Time">The local time (C format).</param>
   ///  <param name="ForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
   ///  <param name="DispName">The output string parameter. Should be allocated.</param>
   ///  <param name="DispNameLen">The number of characters that <paramref name="DispName"/> can hold (excluding trailing \0).</param>
-  ///  <returns>The length of the actual name. If the value is negative, then an error occured.
-  ///  See <c>ERROR_*</c> constants for possile errors.</returns>
+  ///  <returns>The length of the actual name. If the value is negative, then an error occurred.
+  ///  See <c>ERROR_*</c> constants for possible errors.</returns>
   ///  <remarks>It is important to note that the consumer must specify an allocated memory block pointed by <paramref name="DispName"/>.
   ///  The <paramref name="DispNameLen"/> parameter must contain the number of bytes allocated. This method will fill this memory
   ///  with the actual name and return the actual length of the name. There may be cases when the passed memory block
@@ -129,7 +129,7 @@ const
   ///  <param name="Instance">The time zone instance.</param>
   ///  <param name="Time">The local time.</param>
   ///  <returns>A zero or a positive result means success. See <c>LOCAL_TIME_*</c> constants for possible types.
-  ///  See <c>ERROR_*</c> constants for possile errors (if the value is negative).</returns>
+  ///  See <c>ERROR_*</c> constants for possible errors (if the value is negative).</returns>
   function TZ_GetLocalTimeType(Instance: PTZ_Instance; Time: TZ_Time): TZ_Result; stdcall;
 
   ///  <summary>Returns the UTC offset of the given local time.</summary>
@@ -144,7 +144,7 @@ const
   ///  <param name="Instance">The time zone instance.</param>
   ///  <param name="UtcTime">The UTC time to be converted.</param>
   ///  <param name="LocalTime">The output parameter to hold the converted local time.</param>
-  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possile errors (if the value is negative).</returns>
+  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possible errors (if the value is negative).</returns>
   function TZ_UtcToLocal(Instance: PTZ_Instance; UtcTime: TZ_Time; LocalTime: PTZ_Time): TZ_Result; stdcall;
 
   ///  <summary>Converts a local time to UTC time.</summary>
@@ -152,7 +152,7 @@ const
   ///  <param name="LocalTime">The local time to be converted.</param>
   ///  <param name="ForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
   ///  <param name="UtcTime">The output parameter to hold the converted UTC time.</param>
-  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possile errors (if the value is negative).</returns>
+  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possible errors (if the value is negative).</returns>
   function TZ_LocalToUtc(Instance: PTZ_Instance; LocalTime: TZ_Time; ForceDaylight: Boolean; UtcTime: PTZ_Time): TZ_Result; stdcall;
 
 implementation

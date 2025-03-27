@@ -127,7 +127,7 @@ type
   /// <summary>An array of year segments.</summary>
   TYearSegmentArray = array of TYearSegment;
 
-  ///  <summary>A timezone class implementation that retreives its data from the bundled database.</summary>
+  ///  <summary>A timezone class implementation that retrieves its data from the bundled database.</summary>
   ///  <remarks>This class inherits the standard <c>TTimeZone</c> class in Delphi XE.</remarks>
   TBundledTimeZone = class
   private
@@ -271,7 +271,7 @@ type
     ///  <exception cref="TZDB|ELocalTimeInvalid">The specified local time is invalid.</exception>
     function GetAbbreviation(const ADateTime: TDateTime; const AForceDaylight: Boolean = false): String;
 
-    ///  <summary>Generates a diplay string for the given local time.</summary>
+    ///  <summary>Generates a display string for the given local time.</summary>
     ///  <param name="ADateTime">The local time.</param>
     ///  <param name="AForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
     ///  <returns>A string containing the display name.</returns>
@@ -361,7 +361,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.2.153';
+  CComponentVersion = '2.1.3.0';
 
 type
   { Day type. Specifies the "relative" day in a month }
@@ -661,10 +661,10 @@ begin
   From IANA TZDB  https://data.iana.org/time-zones/tz-how-to.html
 
   The FORMAT column specifies the usual abbreviation of the time zone name. It can have one of three forms:
-    * A string of three or more characters that are either ASCII alphanumerics, \93+\94, or \93-\94, in which case that\92s the abbreviation.
-    * A pair of strings separated by a slash (\91/\92), in which case the first string is the abbreviation for the standard
+    * A string of three or more characters that are either ASCII alphanumerics, "+" or "-", in which case that is the abbreviation.
+    * A pair of strings separated by a slash ("/"), in which case the first string is the abbreviation for the standard
       time name and the second string is the abbreviation for the daylight saving time name.
-    * A string containing \93%s,\94 in which case the \93%s\94 will be replaced by the text in the appropriate Rule\92s LETTER column.
+    * A string containing "%s," in which case the "%s" will be replaced by the text in the appropriate Rule's LETTER column.
 }
   LDelimIndex := Pos('/', APeriod^.FFmtStr);
   if LDelimIndex > 0 then
@@ -768,7 +768,7 @@ var
 begin
   Result := nil;
 
-  { Check whether we actually have a fule family attached }
+  { Check whether we actually have a rule family attached }
   if APeriod^.FRuleFamily <> nil then
   begin
     LRules := {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TPRuleAndYear>.Create;
@@ -942,7 +942,7 @@ begin
     if LYPlus1.FPeriod <> nil then
       LY1.Add(LYPlus1);
 
-    { Re-calculate the start dates now and moveto result. }
+    { Re-calculate the start dates now and move them to the result. }
     SetLength(Result, LY1.Count);
 
     L := 0;
@@ -1027,6 +1027,7 @@ var
   LCarryDelta, LDelta: Int64;
   LSegments: {$IFDEF DELPHI}TList{$ELSE}TFPGList{$ENDIF}<TYearSegment>;
   LYStart, LYEnd: TPreciseTime;
+  LZoneFmt: string;
 begin
   Result := nil;
   LCarryDelta := 0;
@@ -1070,6 +1071,28 @@ begin
           LSegment.FType := lttDaylight;
           LSegment.FName := FormatAbbreviation(LRule.FPeriod, LRule.FRule, lttStandard);
         end;
+      end;
+
+      if Pos('%z', LSegment.FName) > 0 then
+      begin
+        LDelta := LSegment.FPeriodOffset + LSegment.FBias;
+
+        if LDelta mod SecsPerHour = 0 then
+        begin
+          if LDelta > 0 then
+            LZoneFmt := Format('+%.2d', [LDelta div SecsPerHour])
+          else
+            LZoneFmt := Format('%.2d', [LDelta div SecsPerHour]);
+        end
+        else
+        begin
+          if LDelta > 0 then
+            LZoneFmt := Format('+%.2d%.2d', [LDelta div SecsPerHour, (LDelta mod SecsPerHour) div SecsPerMin])
+          else
+            LZoneFmt := Format('%.2d%.2d', [LDelta div SecsPerHour, (LDelta mod SecsPerHour) div SecsPerMin]);
+        end;
+
+        LSegment.FName := StringReplace(LSegment.FName, '%z', LZoneFmt, [rfReplaceAll]);
       end;
 
       LSegment.FStartsAt := IncSecond(LRule.FStartsOn, LCarryDelta);
@@ -1119,7 +1142,7 @@ begin
       end;
     end;
 
-    { Finalize the wortk by clipping the boundaries. }
+    { Finalize the work by clipping the boundaries. }
     LYStart := EncodePreciseDate(AYear, 1, 1);
     LYEnd := IncMilliSecond(EncodePreciseDate(AYear + 1, 1, 1), -1);
 
@@ -1348,7 +1371,7 @@ begin
   LSegment := GetSegmentUtc({$IFDEF DELPHI}System.{$ENDIF}DateUtils.YearOf(ADateTime), DateTimeToPreciseTime(ADateTime));
   LBias := (LSegment.FPeriodOffset + LSegment.FBias) div SecsPerMin;
 
-  { Decode the local time (as we will include the bias into the repr.) }
+  { Decode the local time (as we will include the bias into the representation). }
   DecodeDateTime(ADateTime, LYear, LMonth, LDay, LHours, LMins, LSecs, LMillis);
 
   if LBias = 0 then

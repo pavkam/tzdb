@@ -252,7 +252,7 @@ mv $TZDB_PAS.tmp $TZDB_PAS
 # Merge the files into one
 DIST=$REPO/dist
 if [ ! -d "$DIST" ]; then
-    echo "[WARN] Unable to locate the distribution dorectory. Skipping the last step."
+    echo "[WARN] Unable to locate the distribution directory. Skipping the last step."
     echo "DONE!"
     exit 0
 fi

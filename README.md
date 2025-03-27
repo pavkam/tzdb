@@ -1,4 +1,5 @@
-TZDB - IANA Time Zone Database for Delphi/FreePascal
+# TZDB - IANA Time Zone Database for Delphi/FreePascal
+
 ===========
 [![Test](https://github.com/pavkam/tzdb/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/test.yml)
 [![TZDB/CLDR Bump](https://github.com/pavkam/tzdb/actions/workflows/bump.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/bump.yml)
@@ -6,13 +7,13 @@ TZDB - IANA Time Zone Database for Delphi/FreePascal
 
 ## Introduction
 
-**TZDB** is an offline, in-process compiled database for  IANA's (https://www.iana.org/time-zones) TZDB project.
+**TZDB** is an offline, in-process compiled database for  [IANA's TZDB project.](https://www.iana.org/time-zones)
 
 The source code is compatible with **Delphi XE+** and **FreePascal 3+**, though some components are only available for Delphi.
 
-The current version of TZDB is compiled with **2024a** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
+The current version of TZDB is compiled with **2025b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
 
-[API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) and [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples). 
+[API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) and [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples).
 
 ## Manually updating to latest TZDB from IANA
 

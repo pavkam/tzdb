@@ -40,6 +40,8 @@ const
   CAbbDayNames: array[1..7] of string = ('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
   CAbbMonthNames: array[1..12] of string = (
     'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
+  CAbbFullMonthNames: array[1..12] of string = (
+    'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 
   CLastDoW = 'last';
   CNthDoW  = '>=';
@@ -77,9 +79,9 @@ resourcestring
   CPMBadHour            = 'Found an invalid hour value "%s" (in "time of day").';
   CPMBadMinute          = 'Found an invalid minute value "%s" (in "time of day").';
   CPMBadSecond          = 'Found an invalid second value "%s" (in "time of day").';
-  CPMBadDoWInLast       = 'Found an invalid "day of week" "%s" (in "last occurence of" mode).';
-  CPMBadDoWInNth        = 'Found an invalid "day of week" "%s" (in "Nth occurence of" mode).';
-  CPMBadIndexInNth      = 'Found an invalid "after day index" "%s" (in "Nth occurence of" mode).';
+  CPMBadDoWInLast       = 'Found an invalid "day of week" "%s" (in "last occurrence of" mode).';
+  CPMBadDoWInNth        = 'Found an invalid "day of week" "%s" (in "Nth occurrence of" mode).';
+  CPMBadIndexInNth      = 'Found an invalid "after day index" "%s" (in "Nth occurrence of" mode).';
   CPMBadIndexInFixed    = 'Found an invalid "day index" "%s" (in "fixed day" mode).';
 
   CPMBadRuleSplitCount  = 'Found a rule line with an invalid number of elements: %d.';
@@ -111,7 +113,8 @@ resourcestring
 
   CPMStartedFile = 'Processing file "%s" ...';
   CPMStats = 'Processed %d rules; %d zones; %d day parts; %d unique rules; %d unique rule families; %d aliases.';
-CPMStartDump = 'Dumping parsed contents to "%s" ...';
+
+CPMStartDump = 'Dumping parsed contents to "%s" ...';
 
 implementation
 
