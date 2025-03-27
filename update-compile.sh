@@ -115,9 +115,13 @@ fi
 
 rm tzdata-latest.tar.gz
 
+echo "Pulling the latest ICU zones ..."
+
+wget -q https://raw.githubusercontent.com/unicode-org/icu/refs/heads/main/icu4c/source/tools/tzcode/icuzones -O $REPO/iana_temp/icuzones
+
 IANAV=`cat $REPO/iana_temp/version`
 echo "Current TZDB database version is v$IANAV."
-FILES=( africa antarctica asia australasia backward backzone etcetera europe factory northamerica southamerica )
+FILES=( africa antarctica asia australasia backward backzone etcetera europe factory northamerica southamerica icuzones )
 for fn in "${FILES[@]}"; do
     echo "Replacing file $fn ..."
     cp $REPO/iana_temp/$fn $REPO/tz_database_latest/$fn
