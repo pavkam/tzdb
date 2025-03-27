@@ -25,9 +25,10 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+unit KnownTZCases;
+
 {$INCLUDE '..\TZDBPK\Version.inc'}
 
-unit KnownTZCases;
 interface
 uses
   SysUtils,

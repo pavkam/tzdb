@@ -135,22 +135,22 @@ end;
 
 function Decompose(const ADelphiTimeZone: TTimeZone; const AYear: Word): TList<TDecomposedPeriod>;
 var
-  LShoudStop: Boolean;
+  LShouldStop: Boolean;
   LStart, LEnd: TDateTime;
   LType: TLocalTimeType;
   LAbbrv, LDispName: string;
   LBias: TTimeSpan;
   LRec: TDecomposedPeriod;
 begin
-  { Start the process from the beggining of the year }
+  { Start the process from the beginning of the year }
   LStart := EncodeDateTime(AYear, MonthJanuary, 1, 0, 0, 0, 0);
   Result := TList<TDecomposedPeriod>.Create();
 
-  LShoudStop := false;
+  LShouldStop := false;
 
-  while (not LShoudStop) do
+  while (not LShouldStop) do
   begin
-    LShoudStop := ProcessPeriod(ADelphiTimeZone, LStart, LEnd, LType, LAbbrv, LDispName, LBias);
+    LShouldStop := ProcessPeriod(ADelphiTimeZone, LStart, LEnd, LType, LAbbrv, LDispName, LBias);
 
     { Create a decomposed period }
     LRec.FStartsAt := LStart;

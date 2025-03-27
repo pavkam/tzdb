@@ -25,9 +25,10 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+unit TZStrs;
+
 {$INCLUDE '../TZDBPK/Version.inc'}
 
-unit TZStrs;
 interface
 
 procedure CLIError(const AMessage: string);

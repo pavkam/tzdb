@@ -25,9 +25,10 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+unit TZCAPI;
+
 {$INCLUDE '..\TZDBPK\Version.inc'}
 
-unit TZCAPI;
 interface
 type
   ///  <summary>Time zone enumerator procedure.</summary>
@@ -137,7 +138,7 @@ const
   ///  <param name="Time">The local time.</param>
   ///  <param name="ForceDaylight">Specify a <c>True</c> value if ambiguous periods should be treated as DST.</param>
   ///  <param name="TimeType">An output parameter to which the UTC offset if copied.</param>
-  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possile errors (if the value is negative).</returns>
+  ///  <returns>A zero or a positive value means success. See <c>ERROR_*</c> constants for possible errors (if the value is negative).</returns>
   function TZ_GetUtcOffset(Instance: PTZ_Instance; Time: TZ_Time; ForceDaylight: Boolean; Offset: PInteger): TZ_Result; stdcall;
 
   ///  <summary>Converts an UTC time to a local time.</summary>

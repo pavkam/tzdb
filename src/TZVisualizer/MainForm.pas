@@ -232,7 +232,7 @@ begin
         WritePretty(FormatDateTime('yyyy-MM-dd hh:mm:ss.zzz', LDec.EndsAt), clRed, [fsBold]);
         WritePretty(':' + sLineBreak, clRed, []);
         WritePretty('In this period the local time (wall clock) is invalid. This hour does not "exist" in this time zone. ' +
-                    'The clock should have been adjusted accordinly.' + sLineBreak, clRed, [fsItalic]);
+                    'The clock should have been adjusted accordingly.' + sLineBreak, clRed, [fsItalic]);
 
         { More }
         WritePretty('Time zone abbreviation: ', clRed, []);

@@ -25,10 +25,10 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+library TZDBLIB;
 
 {$INCLUDE '../TZDBPK/Version.inc'}
 
-library TZDBLIB;
 uses
   TZCAPI in 'TZCAPI.pas',
   TZDB in '..\TZDBPK\TZDB.pas';

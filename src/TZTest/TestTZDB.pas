@@ -25,9 +25,10 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *)
 
+unit TestTZDB;
+
 {$INCLUDE '..\TZDBPK\Version.inc'}
 
-unit TestTZDB;
 interface
 
 uses
@@ -62,7 +63,7 @@ type
     procedure CompareKnown(const AConst: array of TDecomposedPeriod; const AZoneId: string; const AYear: Word);
 
   published
-    procedure Test_TZ_Contructor;
+    procedure Test_TZ_Constructor;
     procedure Test_TZ_GetTimeZone;
     procedure Test_TZ_KnownTimeZones;
     procedure Test_TZ_ISO8601_Conversion;
@@ -474,7 +475,7 @@ begin
 
   try
     CheckTrue(LDecomposed <> nil, 'Expected an initialized decomposed list.');
-    CheckTrue(LDecomposed.Count > 0, 'Expected a decomposed list with at leat one element.');
+    CheckTrue(LDecomposed.Count > 0, 'Expected a decomposed list with at least one element.');
 
     CheckEquals(Length(AConst), LDecomposed.Count, 'Expected the decomposed count to be correct');
 
@@ -508,7 +509,7 @@ var
   LStart, LEnd: TDateTime;
   LRec: TDecomposedPeriod;
 begin
-  { Start the process from the beggining of the year }
+  { Start the process from the beginning of the year }
   LStart := EncodeDateTime(AYear, 1, 1, 0, 0, 0, 0);
   Result := {$IFDEF FPC}TFPGList{$ELSE}TList{$ENDIF}<TDecomposedPeriod>.Create();
 
@@ -899,7 +900,7 @@ var
 begin
   LTZ := TBundledTimeZone.GetTimeZone('Pacific/Auckland');
   LLocal := LTZ.ToLocalTime(EncodeDateTime(2019, 12, 31, 23, 0, 0, 0));
-  
+
   CheckEquals(0, CompareDateTime(EncodeDateTime(2020, 1, 1, 12, 0, 0, 0), LLocal), DateTimeToStr(LLocal));
 end;
 
@@ -910,7 +911,7 @@ var
 begin
   LTZ := TBundledTimeZone.GetTimeZone('America/Los_Angeles');
   LLocal := LTZ.ToLocalTime(EncodeDateTime(2020, 1, 1, 1, 0, 0, 0));
-  
+
   CheckEquals(0, CompareDateTime(EncodeDateTime(2019, 12, 31, 17, 0, 0, 0), LLocal), DateTimeToStr(LLocal));
 end;
 
@@ -1121,7 +1122,7 @@ begin
   CheckEquals(0, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF});
 end;
 
-procedure TTZDBTest.Test_TZ_Contructor;
+procedure TTZDBTest.Test_TZ_Constructor;
 var
   LTZ: TBundledTimeZone;
   LWasEx: Boolean;
@@ -1204,7 +1205,7 @@ begin
   { Load names with aliases }
   L2 := TBundledTimeZone.KnownTimeZones(true);
 
-  CheckTrue(Length(L2) >= Length(L1), 'Array with aliases whould be longer.');
+  CheckTrue(Length(L2) >= Length(L1), 'Array with aliases should be longer.');
 
   for I := 0 to Length(L1) - 1 do
     CheckEquals(L1[I], L2[I], 'Expected same order for known tables');
@@ -1308,27 +1309,26 @@ end;
 
 function TTZDBTimezoneTest.RandomDate(AFromDatetime, AToDatetime: TDateTime): TDateTime;
 var
-  iFrom,
-  iTo: Cardinal;
-  iDay :Cardinal;
-  fTime: Single;
+  LFrom, LTo: Cardinal;
+  LDay: Cardinal;
+  LTime: Single;
 begin
   Randomize;
-  iFrom := Trunc(aFromDatetime);
-  iTo := Trunc(aToDatetime);
+  LFrom := Trunc(AFromDatetime);
+  LTo := Trunc(AToDatetime);
 
-  iDay := RandomRange(ifrom, ito);
+  LDay := RandomRange(LFrom, LTo);
 
   repeat
-    fTime := Random;
-    Result := iDay + fTime;
+    LTime := Random;
+    Result := LDay + LTime;
   until (Result >= AFromDatetime) and (Result <= AToDatetime);
 end;
 
 procedure TTZDBTimezoneTest.Setup;
 begin
   inherited;
-  FTZ := TBundledTimeZone.Create(fTimeZoneID);
+  FTZ := TBundledTimeZone.Create(FTimeZoneID);
 end;
 
 procedure TTZDBTimezoneTest.TearDown;
@@ -1406,7 +1406,7 @@ begin
 
   lType := FTZ.GetLocalTimeType(InvalidDt);
   CheckEquals(ord(lttInvalid), ord(lType), 'Expected local Invalid time type for:' +
-    datetimetostr(InvalidDt));
+    DateTimeToStr(InvalidDt));
 end;
 
 procedure TTZDBTimezoneTest.Test_InvalidTimeEnd;
@@ -1432,10 +1432,10 @@ end;
 
 procedure TTZDBTimezoneTest.Test_OperatesDST;
 var
-  OperatesdDST: Boolean;
+  OperatesDST: Boolean;
 begin
-  OperatesdDST := FTZ.HasDaylightTime(fYear);
-  CheckTrue(OperatesdDST, 'Has DaylightSaving:');
+  OperatesDST := FTZ.HasDaylightTime(fYear);
+  CheckTrue(OperatesDST, 'Has DaylightSaving:');
 end;
 
 procedure TTZDBTimezoneTest.Test_StandardTime;
@@ -1472,8 +1472,8 @@ end;
 
 procedure TTZDB_St_Johns_2018_Test.Setup;
 begin
-  fyear := 2018;
-  FtimeZoneID := 'America/St_Johns';
+  FYear := 2018;
+  FTimeZoneID := 'America/St_Johns';
 
   {
   When local standard time was about to reach
@@ -1506,8 +1506,8 @@ end;
 
 procedure TTZDB_London_2018_Test.Setup;
 begin
-  fyear := 2018;
-  FtimeZoneID := 'Europe/London';
+  FYear := 2018;
+  FTimeZoneID := 'Europe/London';
 
   {
   When local standard time is about to reach
@@ -1540,8 +1540,8 @@ end;
 
 procedure TTZDB_Canberra_2018_Test.Setup;
 begin
-  fyear := 2018;
-  FtimeZoneID := 'Australia/Canberra';
+  FYear := 2018;
+  FTimeZoneID := 'Australia/Canberra';
 
   {
   When local daylight time is about to reach
@@ -1575,8 +1575,8 @@ end;
 
 procedure TTZDB_NewYork_2018_Test.Setup;
 begin
-  fyear := 2018;
-  FtimeZoneID := 'America/New_York';
+  FYear := 2018;
+  FTimeZoneID := 'America/New_York';
 
   {
   When local standard time was about to reach
