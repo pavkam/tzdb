@@ -3,56 +3,150 @@
 [![Test](https://github.com/pavkam/tzdb/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/test.yml)
 [![TZDB/CLDR Bump](https://github.com/pavkam/tzdb/actions/workflows/bump.yml/badge.svg?branch=master)](https://github.com/pavkam/tzdb/actions/workflows/bump.yml)
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Common Examples](#common-examples)
+- [Important Considerations](#important-considerations)
+- [Updating TZDB](#updating-tzdb)
+- [Tools](#tools)
+- [License](#license)
+
 ## Introduction
 
-**TZDB** is an offline, in-process compiled database for  [IANA's TZDB project.](https://www.iana.org/time-zones)
+**TZDB** is an offline, in-process compiled database for [IANA's TZDB project](https://www.iana.org/time-zones). It provides reliable time zone conversion and calculation capabilities without requiring external services or runtime dependencies.
+
+The current version is compiled with **2025b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
 
 The source code is compatible with **Delphi XE+** and **FreePascal 3+**, though some components are only available for Delphi.
 
-The current version of TZDB is compiled with **2025b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
+📚 [API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) | 💻 [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples)
 
-[API Documentation](https://github.com/pavkam/tzdb/wiki/API-Documentation) and [Code Examples](https://github.com/pavkam/tzdb/wiki/Code-Examples).
+## Features
 
-## Manually updating to latest TZDB from IANA
+- **Offline operation**: No network dependencies or external services required
+- **Small footprint**: Single-file implementation with pre-compiled TZDB database
+- **Windows alias support**: Easily convert between Windows time zone names and IANA identifiers
+- **Comprehensive API**: Rich set of methods for time zone conversions and calculations
+- **Pure Pascal implementation**: No external dependencies or DLLs
 
-This project follows the IANA releases quite closely, usually with 1-2 weeks delay. If you are inclined to update the library manually use the shell script located in the repository: [update-compile.sh](https://raw.githubusercontent.com/pavkam/tzdb/master/update-compile.sh).
+## Installation
 
-The shell script runs under MacOS, Linux or Windows WSL. You will need Free Pascal compiler installed though.
+### Option 1: Direct inclusion (simplest)
 
-## Using the Library
+Download [TZDB.pas](https://raw.githubusercontent.com/pavkam/tzdb/master/dist/TZDB.pas) and add it to your project.
 
-To use TZDB you only require one file: [TZDB.pas](https://raw.githubusercontent.com/pavkam/tzdb/master/dist/TZDB.pas). Download it and simply add it to your `uses` clause. This unit contains the whole pre-compiled TZ database and all the code required to interpret it.
+### Option 2: Git submodule
 
-All the other files in the project are optional.
-After you download the files to your local project, simply include the TZDB unit in the `uses` clause.
+```bash
+git submodule add https://github.com/pavkam/tzdb.git
+```
 
-Simplest example looks like:
+## Usage
+
+Simply include the TZDB unit in your `uses` clause:
+
+```pascal
+uses TZDB;
+```
+
+## Common Examples
+
+### Get a time zone and convert local time to UTC
 
 ```pascal
 uses TZDB;
 
+var
+  LTimeZone: TBundledTimeZone;
 begin
+  // Get time zone by IANA identifier
   LTimeZone := TBundledTimeZone.GetTimeZone('Africa/Cairo');
+
+  // Convert local time to UTC
   WriteLn(LTimeZone.ToUniversalTime(Now));
-end.
+end;
 ```
 
-A large number of methods are provided on the `TBundledTimeZone` class that allow date/time manipulation.
+### Using Windows time zone names
 
-## Things of Interest
+```pascal
+uses TZDB;
 
-There are a large number of misconceptions when it comes to time zones in general. And TZDB tries to deal with them in specific ways. The following list should shed some light on issue one might encounter during the use of this library:
+var
+  LTimeZone: TBundledTimeZone;
+begin
+  // Get time zone by Windows identifier
+  LTimeZone := TBundledTimeZone.GetTimeZone('Eastern Standard Time');
 
-* `TBundledTimeZone.Create` accepts both normal timezone IDs as well as Windows aliases such as `European Standard Time`. The method will throw an `ETimeZoneInvalid` if the given ID is unknown.
-* All methods that take date/times might throw an`EUnknownTimeZoneYear` exception. This can happen if one supplies a date/time that is not covered by the database. Example would be a date in `1800s` when such data is not available. One needs to catch such exceptions pro-actively.
-* All methods that take local time accept an optional parameter called `AForceDaylight` that defaults `true`. This is due to local times potentially being ambiguous in some time periods (between daylight time and standard time, there is an hour (s) that appear twice). This argument allows the code to assign the hour to either the daylight period or the standard period.
-* Methods might throw `ELocalTimeInvalid` exception if the give local time is in the invalid period (between standard time and daylight time there is the missing hour(s)). Use `GetLocalTimeType` to check the type of the local time before trying to operate on it.
-* There is no guarantee that a time zone supports daylight time. Use `HasDaylightTime` to detect whether this is the case.
-* Some time zones include multiple daylight periods so do not assume there is only one. This might throw methods such as `AmbiguousTimeStart` or `StandardTimeStart` off.
-* Do not rely on `DisplayName`, `Abbreviation` and especially `UtcOffset` properties of the `TBundledTimeZone` class. These are provided for information only and will change during the year.
+  // Display information
+  WriteLn('IANA ID: ', LTimeZone.ID);
+  WriteLn('Current offset: ', LTimeZone.UtcOffset);
+end;
+```
 
-## Time Zone Visualizer
+### Check for ambiguous or invalid times
 
-The Time Zone Visualizer is a development tool we use to display time zone details. It is currently only supported on Windows:
+```pascal
+uses TZDB;
+
+var
+  LTimeZone: TBundledTimeZone;
+  LLocalTime: TDateTime;
+  LTimeType: TLocalTimeType;
+begin
+  LTimeZone := TBundledTimeZone.GetTimeZone('America/New_York');
+  LLocalTime := EncodeDate(2023, 11, 5) + EncodeTime(1, 30, 0, 0); // Fall DST transition
+
+  // Check what type of local time this is
+  LTimeType := LTimeZone.GetLocalTimeType(LLocalTime);
+
+  case LTimeType of
+    lttInvalid: WriteLn('This time does not exist (skipped during DST start)');
+    lttAmbiguous: WriteLn('This time is ambiguous (occurs twice during DST end)');
+    lttStandard: WriteLn('This is a standard time');
+    lttDaylight: WriteLn('This is a daylight saving time');
+  end;
+end;
+```
+
+## Important Considerations
+
+| Issue | Description | Handling |
+|-------|-------------|----------|
+| **Invalid IDs** | Unknown time zone IDs cause exceptions | `TBundledTimeZone.Create` throws `ETimeZoneInvalid` |
+| **Year range** | The database covers a limited year range | Methods may throw `EUnknownTimeZoneYear` for dates outside coverage |
+| **Ambiguous times** | During DST→Standard transitions, some hours occur twice | Use `AForceDaylight` parameter to control interpretation |
+| **Invalid times** | During Standard→DST transitions, some hours are skipped | Handle `ELocalTimeInvalid` exceptions or check with `GetLocalTimeType` |
+| **Daylight support** | Not all time zones have daylight saving time | Use `HasDaylightTime` to check before DST operations |
+| **Multiple periods** | Some zones have multiple DST periods in a year | Don't assume a single daylight/standard transition per year |
+| **Dynamic properties** | Display names and offsets change throughout the year | Don't rely on `DisplayName`, `Abbreviation`, or `UtcOffset` as constants |
+
+## Updating TZDB
+
+### Automatic Updates
+
+This project follows IANA releases closely, typically with a 1-2 week delay.
+
+### Manual Updates
+
+To update manually:
+
+1. Use the [update-compile.sh](https://raw.githubusercontent.com/pavkam/tzdb/master/update-compile.sh) script
+2. Run under MacOS, Linux, or Windows WSL
+3. Requires Free Pascal compiler
+
+## Tools
+
+### Time Zone Visualizer
+
+A development tool to display time zone details (Windows only):
 
 ![Screen shot](media/tz_vis.jpg)
+
+## License
+
+This project is available under [MIT License](LICENSE).
