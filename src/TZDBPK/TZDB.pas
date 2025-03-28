@@ -388,7 +388,7 @@ begin
       if not LRegistry.OpenKeyReadOnly(CTimeZonesKey + LKeyNames[I]) then
         Exit(False);
 
-      if LRegistry.GetDataAsString('Std') = ALocalizedTZName then
+      if LRegistry.ReadString('Std') = ALocalizedTZName then
       begin
         ANonLocalizedTZName := LKeyNames[I];
         Exit(True);
@@ -1381,7 +1381,7 @@ begin
   if FZone = nil then
   begin
 {$IFDEF MSWINDOWS}
-    if not GetNonLocalizedTZName(ATimeZoneID, LResolvedTimeZoneID) then
+    if not GetNonLocalizedTZName(ATimeZoneID, LTimeZoneID) then
       LTimeZoneID := ATimeZoneID;
 {$ELSE}
     LTimeZoneID := ATimeZoneID;
