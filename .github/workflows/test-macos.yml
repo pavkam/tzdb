@@ -1,0 +1,15 @@
+name: Test on macOS
+on: ["push", "pull_request", "workflow_dispatch"]
+
+jobs:
+  test-macos:
+    name: Test on macOS
+    runs-on: macos-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install latest Free-Pascal
+        run: brew install fpc
+      - name: Execute Tests
+        run: make test-ci

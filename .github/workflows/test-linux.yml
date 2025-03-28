@@ -1,0 +1,15 @@
+name: Test on Linux
+on: ["push", "pull_request", "workflow_dispatch"]
+
+jobs:
+  test-linux:
+    name: Test on Linux
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install latest Free-Pascal
+        run: sudo apt-get install -y fpc
+      - name: Execute Tests
+        run: make test-ci

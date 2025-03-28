@@ -1,33 +1,9 @@
-name: Test
+name: Test on Windows (FPC 3.2.2)
 on: ["push", "pull_request", "workflow_dispatch"]
 
 jobs:
-  test-linux:
-    name: Test on Linux
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install latest Free-Pascal
-        run: sudo apt-get install -y fpc
-      - name: Execute Tests
-        run: make test-ci
-
-  test-macos:
-    name: Test on macOS
-    runs-on: macos-latest
-    timeout-minutes: 5
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Install latest Free-Pascal
-        run: brew install fpc
-      - name: Execute Tests
-        run: make test-ci
-
-  test-windows:
-    name: Test on Windows (FPC 3.2.2)
+  test:
+    name: Test
     runs-on: windows-latest
     timeout-minutes: 5
     steps:
