@@ -1,26 +1,42 @@
 name: Test
-on:
-  push:
-    branches: [ "master" ]
-    paths:
-      - './cldr/**'
-      - './src/**'
-      - './tz_database_latest/**'
-  pull_request:
-    branches: [ "master" ]
-    paths:
-      - './cldr/**'
-      - './src/**'
-      - './tz_database_latest/**'
-  workflow_dispatch:
+on: ["push", "pull_request", "workflow_dispatch"]
 
 jobs:
-  test:
+  test-linux:
+    name: Test on Linux
     runs-on: ubuntu-latest
-
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Free-Pascal
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install latest Free-Pascal
         run: sudo apt-get install -y fpc
       - name: Execute Tests
-        run: mkdir ./bin && fpc ./src/TZTest/TZTest.dpr -Fu./src/TZDBPK -Fu./src/TZDBLIB -FE./bin -FU./bin && ./bin/TZTest --format=plain --all --progress --sparse
+        run: make test-ci
+
+  test-macos:
+    name: Test on macOS
+    runs-on: macos-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install latest Free-Pascal
+        run: brew install fpc
+      - name: Execute Tests
+        run: make test-ci
+
+  test-windows:
+    name: Test on Windows (FPC 3.2.2)
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Free-Pascal
+        run: |
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.win32.exe/download" -OutFile "fpc-installer.exe"
+          Start-Process -FilePath $installer -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -Wait
+          $env:Path += ";C:\Program Files\Free Pascal\bin\i386-win32"
+      - name: Execute Tests
+        run: pwsh -File ./scripts/run_tests.ps1 ci

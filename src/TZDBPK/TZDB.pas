@@ -153,7 +153,7 @@ type
     ///  <summary>Returns the ID of the timezone. An ID is a string that should uniquely identify the timezone.</summary>
     ///  <returns>The ID of the timezone.</returns>
     function DoGetID: string;
-   public
+  public
     ///  <summary>Creates a new instance of this timezone class.</summary>
     ///  <param name="ATimeZoneID">The ID of the timezone to use (ex. "Europe/Bucharest").</param>
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
@@ -354,6 +354,57 @@ type
   end;
 
 implementation
+
+{$IFDEF MSWINDOWS}
+uses Registry;
+
+function GetNonLocalizedTZName(const ALocalizedTZName: string; out ANonLocalizedTZName: string): Boolean;
+const
+  CTimeZonesKey = 'SOFTWARE\Microsoft\Windows NT\CurrentVersion\Time Zones\';
+
+var
+  LRegistry: TRegistry;
+  LKeyNames: TStringList;
+  I: Integer;
+  LEnglishLocalizedTimeZoneStandardName: string;
+begin
+  LRegistry := nil;
+  LKeyNames := nil;
+
+  try
+    LRegistry := TRegistry.Create(KEY_READ);
+    LRegistry.RootKey := HKEY_LOCAL_MACHINE;
+
+    if not LRegistry.KeyExists(CTimeZonesKey) or not LRegistry.OpenKeyReadOnly(CTimeZonesKey) then
+        Exit(False);
+
+    LKeyNames := TStringList.Create();
+
+    LRegistry.GetKeyNames(LKeyNames);
+    LRegistry.CloseKey();
+
+    for I := 0 to LKeyNames.Count - 1 do
+    begin
+      if not LRegistry.OpenKeyReadOnly(CTimeZonesKey + LKeyNames[I]) then
+        Exit(False);
+
+      if LRegistry.GetDataAsString('Std') = ALocalizedTZName then
+      begin
+        ANonLocalizedTZName := LKeyNames[I];
+        Exit(True);
+      end;
+
+      LRegistry.CloseKey();
+    end;
+
+  finally
+    LKeyNames.Free();
+    LRegistry.Free();
+  end;
+
+  Result := False;
+end;
+{$ENDIF}
 
 resourcestring
   SNoBundledTZForName = 'Could not find any data for timezone "%s".';
@@ -1310,6 +1361,7 @@ end;
 constructor TBundledTimeZone.Create(const ATimeZoneID: string);
 var
   LIndex: Integer;
+  LTimeZoneID: string;
 begin
   FSegmentsByYear := {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<Word, TYearSegmentArray>.Create;
 
@@ -1327,12 +1379,20 @@ begin
 
   { Second, search in the aliases array }
   if FZone = nil then
+  begin
+{$IFDEF MSWINDOWS}
+    if not GetNonLocalizedTZName(ATimeZoneID, LResolvedTimeZoneID) then
+      LTimeZoneID := ATimeZoneID;
+{$ELSE}
+    LTimeZoneID := ATimeZoneID;
+{$ENDIF}
     for LIndex := Low(CAliases) to High(CAliases) do
-      if SameText(CAliases[LIndex].FName, ATimeZoneID) then
+      if SameText(CAliases[LIndex].FName, LTimeZoneID) then
       begin
         FZone := CAliases[LIndex].FAliasTo;
         break;
       end;
+  end;
 
   { Throw exception on error }
   if FZone = nil then
@@ -1672,7 +1732,7 @@ begin
     { Check if we know this TZ }
     if not FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(ATimeZoneID), Result) then
     begin
-      Result := TBundledTimeZone.Create(UpperCase(ATimeZoneID));
+      Result := TBundledTimeZone.Create(ATimeZoneID);
 
       { Check if maybe we used an alias and need to change things }
       if FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(Result.ID), LOut) then

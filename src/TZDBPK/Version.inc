@@ -49,3 +49,7 @@
 {$IFNDEF TZDB_SUPPORTED_COMPILER}
   {$MESSAGE ERROR 'TZDB requires at least Delphi XE or FreePascal 3.0 to compile!'}
 {$ENDIF}
+
+{$IF Defined(WIN32) or Defined(WIN64) or Defined(MSWindows)}
+  {$DEFINE MSWINDOWS}
+{$IFEND}
