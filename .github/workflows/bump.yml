@@ -6,18 +6,17 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Free-Pascal
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install latest Free-Pascal
         run: |
-          sudo sed -i 's/azure\.//' /etc/apt/sources.list
-          sudo apt-get update
           sudo apt-get install -y fpc
-      - name: Configure git
+      - name: Configure git (bot)
         run: |
           git config --global user.name 'Alexandru Ciobanu [bot]'
           git config --global user.email 'alex+git[bot]@ciobanu.org'
       - name: Update the Library
-        run: mkdir ./bin && ./update-compile.sh ci
+        run: make update-ci

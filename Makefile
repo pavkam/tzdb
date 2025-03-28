@@ -15,7 +15,7 @@ test-ci:
 
 # Update targets
 update:
-	@./scripts/update-compile.sh
+	@./scripts/update.sh
 
 update-ci:
-	@./scripts/update-compile.sh ci
+	@./scripts/update.sh ci
