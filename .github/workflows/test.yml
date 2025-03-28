@@ -36,7 +36,7 @@ jobs:
       - name: Install Free-Pascal
         run: |
           Invoke-WebRequest -Uri "https://sourceforge.net/projects/freepascal/files/Win32/3.2.2/fpc-3.2.2.win32.exe/download" -OutFile "fpc-installer.exe"
-          Start-Process -FilePath $installer -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -Wait
+          Start-Process -FilePath "fpc-installer.exe" -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -Wait
           $env:Path += ";C:\Program Files\Free Pascal\bin\i386-win32"
       - name: Execute Tests
         run: pwsh -File ./scripts/run_tests.ps1 ci

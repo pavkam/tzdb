@@ -1,8 +1,6 @@
 name: TZDB/CLDR Bump
 
 on:
-  push:
-    branches: [ "master" ]
   schedule:
     - cron: '0 9 1 1-12 *'
   workflow_dispatch:
@@ -11,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 
+      - uses: actions/checkout@v3
       - name: Install Free-Pascal
         run: |
           sudo sed -i 's/azure\.//' /etc/apt/sources.list
