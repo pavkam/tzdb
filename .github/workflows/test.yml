@@ -37,6 +37,7 @@ jobs:
         run: |
           Invoke-WebRequest -Uri "http://downloads.freepascal.org/fpc/dist/3.2.2/i386-win32/fpc-3.2.2.i386-win32.exe" -OutFile "fpc-installer.exe"
           Start-Process -FilePath "fpc-installer.exe" -ArgumentList "/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /SP-" -Wait
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
           $env:Path += ";C:\Program Files\Free Pascal\bin\i386-win32"
       - name: Execute Tests
         run: pwsh -File ./scripts/run_tests.ps1 ci
