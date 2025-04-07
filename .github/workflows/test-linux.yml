@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Update apt-get
+        run: sudo apt-get update
       - name: Install latest Free-Pascal
         run: sudo apt-get install -y fpc
       - name: Execute Tests

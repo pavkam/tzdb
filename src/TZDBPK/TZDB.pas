@@ -356,7 +356,7 @@ type
 implementation
 
 {$IFDEF MSWINDOWS}
-uses Registry, Windows;
+uses Registry{$IFDEF DELPHI}, Windows{$ENDIF};
 
 function GetNonLocalizedTZName(const ALocalizedTZName: string; out ANonLocalizedTZName: string): Boolean;
 const
