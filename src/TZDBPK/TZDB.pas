@@ -366,7 +366,6 @@ var
   LRegistry: TRegistry;
   LKeyNames: TStringList;
   I: Integer;
-  LEnglishLocalizedTimeZoneStandardName: string;
 begin
   LRegistry := nil;
   LKeyNames := nil;
@@ -413,7 +412,7 @@ resourcestring
   SInvalidLocalTime = 'Local date/time value %s is invalid (does not exist in the time zone).';
 
 const
-  CComponentVersion = '2.1.3.21';
+  CComponentVersion = '2.1.3.22';
 
 type
   { Day type. Specifies the "relative" day in a month }
