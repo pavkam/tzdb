@@ -208,6 +208,11 @@ type
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
+    ///  <summary>Returns <c>True</c> if time zone exists.</summary>
+    ///  <param name="ATimeZoneID">The ID of the timezone to validate (ex. "Europe/Zagreb").</param>
+    ///  <param name="AIncludeAliases">Pass <c>True</c> to include time zone aliases into the validation.</param>
+    class function IsValidTimeZone(const ATimeZoneID: string; const AIncludeAliases: Boolean = False): Boolean;
+
     ///  <summary>Returns the version of the TZDB component.</summary>
     ///  <returns>A string representing the version of the source.</returns>
     class function Version: string;
@@ -12757,6 +12762,62 @@ end;
 class function TBundledTimeZone.GetTimezoneFromAlias(const AAliasID: string): string;
 begin
   Result := GetTimeZone(AAliasID).ID;
+end;
+
+class function TBundledTimeZone.IsValidTimeZone(const ATimeZoneID: string; const AIncludeAliases: Boolean = False): Boolean;
+var
+  LIndex: Integer;
+  LTimeZoneID: string;
+begin
+  Result := False;
+  { Access the cache }
+{$IFDEF DELPHI}
+  MonitorEnter(FTimeZoneCache);
+{$ELSE}
+  FTimeZoneCacheLock.Enter();
+{$ENDIF}
+  try
+    { Check TZ is cached }
+{$IFNDEF FPC}
+    if FTimeZoneCache.ContainsKey(UpperCase(ATimeZoneID)) then
+{$ELSE}
+    if FTimeZoneCache.IndexOf(UpperCase(ATimeZoneID)) > -1 then
+{$ENDIF}
+      Result := True
+    else
+    begin
+      { First, search in the CZones array }
+      for LIndex := Low(CZones) to High(CZones) do
+        if SameText(CZones[LIndex].FName, ATimeZoneID) then
+        begin
+          Result := True;
+          break;
+        end;
+
+      { Second, search in the aliases array (if AIncludeAliases }
+      if not Result and AIncludeAliases then
+      begin
+    {$IFDEF MSWINDOWS}
+        if not GetNonLocalizedTZName(ATimeZoneID, LTimeZoneID) then
+          LTimeZoneID := ATimeZoneID;
+    {$ELSE}
+        LTimeZoneID := ATimeZoneID;
+    {$ENDIF}
+        for LIndex := Low(CAliases) to High(CAliases) do
+          if SameText(CAliases[LIndex].FName, LTimeZoneID) then
+          begin
+            Result := True;
+            break;
+          end;
+      end;
+    end;
+  finally
+{$IFDEF DELPHI}
+  MonitorExit(FTimeZoneCache);
+{$ELSE}
+  FTimeZoneCacheLock.Leave;
+{$ENDIF}
+  end;
 end;
 
 function TBundledTimeZone.GetYearBreakdown(const AYear: Word): TYearSegmentArray;
