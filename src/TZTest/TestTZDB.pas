@@ -107,6 +107,20 @@ type
     procedure Test_Asia_Jerusalem_2006;
 
     procedure Test_Stockholm_End_Of_2018_Regression;
+
+    { Alias tests }
+    procedure Test_TZ_Alias_EuropeKiev_ResolvesToKyiv;
+    procedure Test_TZ_Alias_GetTimeZone_CachesAlias;
+
+    { No-DST timezone tests }
+    procedure Test_TZ_NoDST_UTC;
+    procedure Test_TZ_NoDST_AsiaKolkata;
+
+    { Year-boundary DST test }
+    procedure Test_TZ_YearBoundary_NewYork;
+
+    { %z format for negative fractional-hour offset }
+    procedure Test_TZ_ZFormat_NegativeFractionalOffset;
   end;
 
 
@@ -606,6 +620,138 @@ begin
   LResult := LTZ.ToLocalTime(EncodeDateTime(2018, 12, 31, 22, 18, 01, 000));
 
   CheckEquals(0, CompareDateTime(EncodeDateTime(2018, 12, 31, 23, 18, 01, 000), LResult));
+end;
+
+procedure TTZDBTest.Test_TZ_Alias_EuropeKiev_ResolvesToKyiv;
+{ Europe/Kiev is a legacy alias for Europe/Kyiv. Creating a zone by either name
+  must resolve to the same canonical zone ID. }
+var
+  LByKiev, LByKyiv: TBundledTimeZone;
+  LLocalKiev, LLocalKyiv: TDateTime;
+begin
+  LByKiev := TBundledTimeZone.Create('Europe/Kiev');
+  try
+    CheckEquals('Europe/Kyiv', LByKiev.ID, 'Europe/Kiev should resolve to canonical ID Europe/Kyiv');
+
+    LByKyiv := TBundledTimeZone.Create('Europe/Kyiv');
+    try
+      CheckEquals(LByKiev.ID, LByKyiv.ID, 'Kiev and Kyiv must share the same canonical ID');
+
+      { Both must produce identical local times for a UTC instant }
+      LLocalKiev := LByKiev.ToLocalTime(EncodeDateTime(2023, 3, 26, 0, 0, 0, 0));
+      LLocalKyiv := LByKyiv.ToLocalTime(EncodeDateTime(2023, 3, 26, 0, 0, 0, 0));
+      CheckEquals(0, CompareDateTime(LLocalKyiv, LLocalKiev), 'Kiev and Kyiv must return the same local time');
+    finally
+      LByKyiv.Free;
+    end;
+  finally
+    LByKiev.Free;
+  end;
+end;
+
+procedure TTZDBTest.Test_TZ_Alias_GetTimeZone_CachesAlias;
+{ GetTimeZone called twice with an alias name must return the same cached object
+  (not create a fresh instance on every call). }
+var
+  LFirst, LSecond: TBundledTimeZone;
+begin
+  LFirst  := TBundledTimeZone.GetTimeZone('Europe/Kiev');
+  LSecond := TBundledTimeZone.GetTimeZone('Europe/Kiev');
+
+  CheckTrue(LFirst = LSecond,
+    'GetTimeZone with an alias must return the same cached TBundledTimeZone instance on repeated calls');
+  CheckEquals('Europe/Kyiv', LFirst.ID, 'Alias lookup must resolve to canonical ID');
+end;
+
+procedure TTZDBTest.Test_TZ_NoDST_UTC;
+{ UTC has no DST: the entire year must be a single lttStandard segment with
+  zero offset, and HasDaylightTime must return false. }
+var
+  LTZ: TBundledTimeZone;
+  LSegments: TYearSegmentArray;
+begin
+  LTZ := TBundledTimeZone.Create('UTC');
+  try
+    CheckFalse(LTZ.HasDaylightTime(2023), 'UTC must have no DST');
+
+    LSegments := LTZ.GetYearBreakdown(2023);
+    CheckEquals(1, Length(LSegments), 'UTC must have exactly one segment per year');
+    CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType), 'UTC segment must be standard time');
+    CheckEquals(0, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF}, 'UTC offset must be zero');
+  finally
+    LTZ.Free;
+  end;
+end;
+
+procedure TTZDBTest.Test_TZ_NoDST_AsiaKolkata;
+{ Asia/Kolkata (IST, UTC+05:30) has no DST in modern years. }
+var
+  LTZ: TBundledTimeZone;
+  LSegments: TYearSegmentArray;
+  LLocal: TDateTime;
+begin
+  LTZ := TBundledTimeZone.Create('Asia/Kolkata');
+  try
+    CheckFalse(LTZ.HasDaylightTime(2023), 'Asia/Kolkata must have no DST in 2023');
+
+    LSegments := LTZ.GetYearBreakdown(2023);
+    CheckEquals(1, Length(LSegments), 'Asia/Kolkata must have exactly one segment in 2023');
+    CheckEquals(Ord(lttStandard), Ord(LSegments[0].LocalType), 'Asia/Kolkata segment must be standard time');
+    CheckEquals(19800, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF},
+      'Asia/Kolkata UTC offset must be +05:30 (19800 s)');
+
+    { Spot-check: UTC 2023-01-01 00:00:00 -> IST 2023-01-01 05:30:00 }
+    LLocal := LTZ.ToLocalTime(EncodeDateTime(2023, 1, 1, 0, 0, 0, 0));
+    CheckEquals(0, CompareDateTime(EncodeDateTime(2023, 1, 1, 5, 30, 0, 0), LLocal),
+      'Asia/Kolkata UTC midnight must map to 05:30 IST');
+  finally
+    LTZ.Free;
+  end;
+end;
+
+procedure TTZDBTest.Test_TZ_YearBoundary_NewYork;
+{ Dec 31 23:59:59 UTC must map correctly to Dec 31 local standard time (EST = UTC-5),
+  and Jan 1 00:00:00 UTC must map to Dec 31 local (still EST). }
+var
+  LTZ: TBundledTimeZone;
+  LLocalBefore, LLocalAfter: TDateTime;
+begin
+  LTZ := TBundledTimeZone.GetTimeZone('America/New_York');
+
+  { 2019-12-31 23:59:59 UTC -> 2019-12-31 18:59:59 EST }
+  LLocalBefore := LTZ.ToLocalTime(EncodeDateTime(2019, 12, 31, 23, 59, 59, 0));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2019, 12, 31, 18, 59, 59, 0), LLocalBefore),
+    'Dec 31 23:59:59 UTC must be Dec 31 18:59:59 EST');
+
+  { 2020-01-01 00:00:00 UTC -> 2019-12-31 19:00:00 EST }
+  LLocalAfter := LTZ.ToLocalTime(EncodeDateTime(2020, 1, 1, 0, 0, 0, 0));
+  CheckEquals(0, CompareDateTime(EncodeDateTime(2019, 12, 31, 19, 0, 0, 0), LLocalAfter),
+    'Jan 1 00:00:00 UTC must be Dec 31 19:00:00 EST (prior year)');
+
+  { Local time type at New Year Eve 23:00 (no DST in Jan) must be standard }
+  CheckEquals(Ord(lttStandard), Ord(LTZ.GetLocalTimeType(EncodeDateTime(2019, 12, 31, 23, 0, 0, 0))),
+    'Dec 31 23:00 local New York must be standard time');
+end;
+
+procedure TTZDBTest.Test_TZ_ZFormat_NegativeFractionalOffset;
+{ Pacific/Marquesas is perpetually at UTC-09:30 (offset=-34200 s) and uses the
+  %z format placeholder.  The segment DisplayName must be "-0930", not "-09-30"
+  (which is what the buggy code produced when minutes were also negative). }
+var
+  LTZ: TBundledTimeZone;
+  LSegments: TYearSegmentArray;
+begin
+  LTZ := TBundledTimeZone.Create('Pacific/Marquesas');
+  try
+    LSegments := LTZ.GetYearBreakdown(2023);
+    CheckEquals(1, Length(LSegments), 'Pacific/Marquesas must have one segment in 2023');
+    CheckEquals('-0930', LSegments[0].DisplayName,
+      'Pacific/Marquesas %z abbreviation must be "-0930", not "-09-30"');
+    CheckEquals(-34200, LSegments[0].UtcOffset{$IFDEF DELPHI}.TotalSeconds{$ENDIF},
+      'Pacific/Marquesas UTC offset must be -34200 s (-09:30)');
+  finally
+    LTZ.Free;
+  end;
 end;
 
 procedure TTZDBTest.Test_TZ_GetYearBreakdown_Bucharest_2014;
