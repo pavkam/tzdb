@@ -1130,17 +1130,19 @@ begin
 
         if LDelta mod SecsPerHour = 0 then
         begin
-          if LDelta > 0 then
+          if LDelta >= 0 then
             LZoneFmt := Format('+%.2d', [LDelta div SecsPerHour])
           else
-            LZoneFmt := Format('%.2d', [LDelta div SecsPerHour]);
+            LZoneFmt := Format('-%.2d', [Abs(LDelta) div SecsPerHour]);
         end
         else
         begin
-          if LDelta > 0 then
+          { Use Abs() for components so negative fractional offsets format correctly.
+            Without Abs(), a delta of -16200s (-04:30) would render as "-04-30" instead of "-0430". }
+          if LDelta >= 0 then
             LZoneFmt := Format('+%.2d%.2d', [LDelta div SecsPerHour, (LDelta mod SecsPerHour) div SecsPerMin])
           else
-            LZoneFmt := Format('%.2d%.2d', [LDelta div SecsPerHour, (LDelta mod SecsPerHour) div SecsPerMin]);
+            LZoneFmt := Format('-%.2d%.2d', [Abs(LDelta) div SecsPerHour, (Abs(LDelta) mod SecsPerHour) div SecsPerMin]);
         end;
 
         LSegment.FName := StringReplace(LSegment.FName, '%z', LZoneFmt, [rfReplaceAll]);
@@ -1750,6 +1752,11 @@ begin
         Result := LOut;
       end else
         FTimeZoneCache.Add(UpperCase(Result.ID), Result);
+
+      { Also cache under the original input ID (e.g. an alias) to avoid repeated Create+Free cycles
+        on subsequent calls with the same alias name. Only add if it differs from the canonical ID. }
+      if UpperCase(ATimeZoneID) <> UpperCase(Result.ID) then
+        FTimeZoneCache.Add(UpperCase(ATimeZoneID), Result);
     end;
   finally
 {$IFDEF DELPHI}
@@ -1933,14 +1940,40 @@ end;
 procedure FinalizeDict(const ADict: {$IFDEF DELPHI}TDictionary{$ELSE}TFPGMap{$ENDIF}<string, TBundledTimeZone>);
 {$IFDEF FPC}
 var
-  I: Integer;
+  I, J: Integer;
+  LAlreadyFreed: Boolean;
 begin
-    for I := 0 to ADict.Count - 1 do ADict.Data[I].Free;
+  { Deduplicate before freeing: multiple cache keys may point to the same object
+    (e.g. an alias and its canonical zone), so only free each instance once. }
+  for I := 0 to ADict.Count - 1 do
+  begin
+    LAlreadyFreed := False;
+    for J := 0 to I - 1 do
+      if ADict.Data[J] = ADict.Data[I] then
+      begin
+        LAlreadyFreed := True;
+        Break;
+      end;
+    if not LAlreadyFreed then
+      ADict.Data[I].Free;
+  end;
 {$ELSE}
 var
   LTZ: TBundledTimeZone;
+  LFreed: TList<TBundledTimeZone>;
 begin
-  for LTZ in ADict.Values do LTZ.Free;
+  { Deduplicate before freeing: multiple cache keys may point to the same object. }
+  LFreed := TList<TBundledTimeZone>.Create;
+  try
+    for LTZ in ADict.Values do
+      if LFreed.IndexOf(LTZ) < 0 then
+      begin
+        LFreed.Add(LTZ);
+        LTZ.Free;
+      end;
+  finally
+    LFreed.Free;
+  end;
 {$ENDIF}
   FTimeZoneCache.Free;
 end;
