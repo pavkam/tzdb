@@ -1,6 +1,6 @@
 { This file is auto-generated. Do not change its contents since it is highly dependant on the consumer unit. }
 const
-  CIANAVersion = '2025c';
+  CIANAVersion = '2026a';
 
 var
   { This array contains the definitions of relative days used later on in the rules. }
@@ -3129,8 +3129,8 @@ var
 
   { Date-bound rules for Moldova family }
   CFamily_22_Arr: array[0 .. 1] of TYearBoundRule = (
-    (FStart: 1997; FEnd: 9999; FRule: @CRules[68]),
-    (FStart: 1997; FEnd: 9999; FRule: @CRules[246])
+    (FStart: 1997; FEnd: 2021; FRule: @CRules[68]),
+    (FStart: 1997; FEnd: 2021; FRule: @CRules[246])
   );
 
   { Date-bound rules for Romania family }
@@ -8992,7 +8992,7 @@ var
   );
 
   { Time periods for Europe/Chisinau zone }
-  CZone_368_Arr: array[0 .. 9] of TPeriod = (
+  CZone_368_Arr: array[0 .. 10] of TPeriod = (
     (FOffset: 6920; FRuleFamily: nil; FFmtStr: 'LMT'; FUntilYear: 1880; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 6900; FRuleFamily: nil; FFmtStr: 'CMT'; FUntilYear: 1918; FUntilMonth: 2; FUntilDay: @CRelativeDays[45]; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 6264; FRuleFamily: nil; FFmtStr: 'BMT'; FUntilYear: 1931; FUntilMonth: 7; FUntilDay: @CRelativeDays[4]; FUntilTime: 0; FUntilTimeMode: trLocal),
@@ -9002,7 +9002,8 @@ var
     (FOffset: 10800; FRuleFamily: @CRuleFamilies[6]; FFmtStr: 'MSK/MSD'; FUntilYear: 1990; FUntilMonth: 5; FUntilDay: @CRelativeDays[29]; FUntilTime: 7200; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: @CRuleFamilies[6]; FFmtStr: 'EE%sT'; FUntilYear: 1992; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
     (FOffset: 7200; FRuleFamily: @CRuleFamilies[5]; FFmtStr: 'EE%sT'; FUntilYear: 1997; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
-    (FOffset: 7200; FRuleFamily: @CRuleFamilies[22]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[22]; FFmtStr: 'EE%sT'; FUntilYear: 2022; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal),
+    (FOffset: 7200; FRuleFamily: @CRuleFamilies[1]; FFmtStr: 'EE%sT'; FUntilYear: 9999; FUntilMonth: 1; FUntilDay: nil; FUntilTime: 0; FUntilTimeMode: trLocal)
   );
 
   { Time periods for Europe/Copenhagen zone }
@@ -10403,7 +10404,7 @@ var
     (FName: 'Europe/Brussels'; FCount: 9; FFirstPeriod: @CZone_365_Arr),
     (FName: 'Europe/Bucharest'; FCount: 7; FFirstPeriod: @CZone_366_Arr),
     (FName: 'Europe/Budapest'; FCount: 6; FFirstPeriod: @CZone_367_Arr),
-    (FName: 'Europe/Chisinau'; FCount: 10; FFirstPeriod: @CZone_368_Arr),
+    (FName: 'Europe/Chisinau'; FCount: 11; FFirstPeriod: @CZone_368_Arr),
     (FName: 'Europe/Copenhagen'; FCount: 6; FFirstPeriod: @CZone_369_Arr),
     (FName: 'Europe/Dublin'; FCount: 11; FFirstPeriod: @CZone_370_Arr),
     (FName: 'Europe/Gibraltar'; FCount: 4; FFirstPeriod: @CZone_371_Arr),
