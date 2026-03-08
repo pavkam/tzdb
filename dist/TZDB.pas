@@ -208,6 +208,11 @@ type
     ///  <exception cref="TZDB|ETimeZoneInvalid">The specified ID cannot be found in the bundled database.</exception>
     class function GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
+    ///  <summary>Returns <c>True</c> if time zone exists.</summary>
+    ///  <param name="ATimeZoneID">The ID of the timezone to validate (ex. "Europe/Zagreb").</param>
+    ///  <param name="AIncludeAliases">Pass <c>True</c> to include time zone aliases into the validation.</param>
+    class function IsValidTimeZone(const ATimeZoneID: string; const AIncludeAliases: Boolean = False): Boolean;
+
     ///  <summary>Returns the version of the TZDB component.</summary>
     ///  <returns>A string representing the version of the source.</returns>
     class function Version: string;
@@ -12766,6 +12771,17 @@ end;
 class function TBundledTimeZone.GetTimezoneFromAlias(const AAliasID: string): string;
 begin
   Result := GetTimeZone(AAliasID).ID;
+end;
+
+class function TBundledTimeZone.IsValidTimeZone(const ATimeZoneID: string; const AIncludeAliases: Boolean = False): Boolean;
+begin
+  try
+    GetTimeZone(ATimeZoneID);
+    Result := True;
+  except
+    on E: ETimeZoneInvalid do
+      Result := False;
+  end;
 end;
 
 function TBundledTimeZone.GetYearBreakdown(const AYear: Word): TYearSegmentArray;
