@@ -12378,22 +12378,32 @@ begin
       break;
     end;
 
-  { Second, search in the aliases array }
+  { Second, search in the aliases array (fast in-memory lookup) }
   if FZone = nil then
   begin
-{$IFDEF MSWINDOWS}
-    if not GetNonLocalizedTZName(ATimeZoneID, LTimeZoneID) then
-      LTimeZoneID := ATimeZoneID;
-{$ELSE}
-    LTimeZoneID := ATimeZoneID;
-{$ENDIF}
     for LIndex := Low(CAliases) to High(CAliases) do
-      if SameText(CAliases[LIndex].FName, LTimeZoneID) then
+      if SameText(CAliases[LIndex].FName, ATimeZoneID) then
       begin
         FZone := CAliases[LIndex].FAliasTo;
         break;
       end;
   end;
+
+  { Third, fallback to Windows Registry for localized names (slow I/O) }
+{$IFDEF MSWINDOWS}
+  if FZone = nil then
+  begin
+    if GetNonLocalizedTZName(ATimeZoneID, LTimeZoneID) then
+    begin
+      for LIndex := Low(CAliases) to High(CAliases) do
+        if SameText(CAliases[LIndex].FName, LTimeZoneID) then
+        begin
+          FZone := CAliases[LIndex].FAliasTo;
+          break;
+        end;
+    end;
+  end;
+{$ENDIF}
 
   { Throw exception on error }
   if FZone = nil then
