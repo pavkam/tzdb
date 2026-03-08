@@ -148,6 +148,7 @@ type
     function GetCurrentAbbreviation: string;
     function GetCurrentDisplayName: string;
     function GetCurrentUtcOffset: {$IFDEF DELPHI}TTimeSpan{$ELSE}Int64{$ENDIF};
+    class function TryGetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 
   protected
     ///  <summary>Returns the ID of the timezone. An ID is a string that should uniquely identify the timezone.</summary>
@@ -1735,7 +1736,7 @@ begin
     Result[I + T] := LNext[I];
 end;
 
-class function TBundledTimeZone.GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
+class function TBundledTimeZone.TryGetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
 var
   LOut: TBundledTimeZone;
 begin
@@ -1749,7 +1750,15 @@ begin
     { Check if we know this TZ }
     if not FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(ATimeZoneID), Result) then
     begin
-      Result := TBundledTimeZone.Create(ATimeZoneID);
+      try
+        Result := TBundledTimeZone.Create(ATimeZoneID);
+      except
+        on E: ETimeZoneInvalid do
+        begin
+          Result := nil;
+          Exit;
+        end;
+      end;
 
       { Check if maybe we used an alias and need to change things }
       if FTimeZoneCache.{$IFNDEF FPC}TryGetValue{$ELSE}TryGetData{$ENDIF}(UpperCase(Result.ID), LOut) then
@@ -1773,15 +1782,16 @@ begin
   end;
 end;
 
+class function TBundledTimeZone.GetTimeZone(const ATimeZoneID: string): TBundledTimeZone;
+begin
+  Result := TryGetTimeZone(ATimeZoneID);
+  if Result = nil then
+    raise ETimeZoneInvalid.CreateResFmt(@SNoBundledTZForName, [ATimeZoneID]);
+end;
+
 class function TBundledTimeZone.IsValidTimeZone(const ATimeZoneID: string; const AIncludeAliases: Boolean = False): Boolean;
 begin
-  try
-    GetTimeZone(ATimeZoneID);
-    Result := True;
-  except
-    on E: ETimeZoneInvalid do
-      Result := False;
-  end;
+  Result := TryGetTimeZone(ATimeZoneID) <> nil;
 end;
 
 class function TBundledTimeZone.GetTimezoneFromAlias(const AAliasID: string): string;
