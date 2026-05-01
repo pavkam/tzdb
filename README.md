@@ -21,7 +21,7 @@
 
 **TZDB** is an offline, in-process compiled database for [IANA's TZDB project](https://www.iana.org/time-zones). It provides reliable time zone conversion and calculation capabilities without requiring external services or runtime dependencies.
 
-The current version is compiled with **2026a** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
+The current version is compiled with **2026b** version of IANA TZDB and the latest Windows alias translation table (from CLDR project).
 
 The source code is compatible with **Delphi XE+** and **FreePascal 3+**, though some components are only available for Delphi.
 
