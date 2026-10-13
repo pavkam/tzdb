@@ -137,7 +137,7 @@ This project follows IANA releases closely, typically with a 1-2 week delay.
 
 To update manually:
 
-1. Use the [update-compile.sh](https://raw.githubusercontent.com/pavkam/tzdb/master/update-compile.sh) script
+1. Use the [update.sh](https://raw.githubusercontent.com/pavkam/tzdb/master/scripts/update.sh) script
 2. Run under MacOS, Linux, or Windows WSL
 3. Requires Free Pascal compiler
 
