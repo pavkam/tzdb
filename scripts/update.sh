@@ -112,14 +112,9 @@ fpc ./src/TZCompile/TZCompile.dpr -FEbin -FUbin > ${LOG_FILE} 2>&1 || error "Fai
 info "Pulling the latest TZDB database from IANA ..."
 
 rm -rf ./iana_temp > ${LOG_FILE} 2>&1 || error "Failed to remove the iana_temp directory."
-wget -q https://www.iana.org/time-zones -O ./time-zones.html > ${LOG_FILE} 2>&1 || error "Failed to pull the latest TZDB database from IANA."
 
-IANA_GZ_URL=$( cat ./time-zones.html | sed -nr 's/.*href="(.*tzdata.*\.tar\.gz)".*/\1/p' ) || error "Failed to extract the IANA TZDB tar ball URL."
-rm ./time-zones.html > ${LOG_FILE} 2>&1 || error "Failed to remove the time-zones.html file."
+wget --no-verbose --tries=3 https://data.iana.org/time-zones/tzdata-latest.tar.gz > ${LOG_FILE} 2>&1 || error "Failed to pull the latest TZDB tar ball."
 
-wget -q "${IANA_GZ_URL}" > ${LOG_FILE} 2>&1 || error "Failed to pull the latest TZDB tar ball."
-
-mv ./tzdata*.tar.gz ./tzdata-latest.tar.gz > ${LOG_FILE} 2>&1 || error "Failed to move the latest TZDB tar ball."
 mkdir -p ./iana_temp > ${LOG_FILE} 2>&1 || error "Failed to create the iana_temp directory."
 tar -xf tzdata-latest.tar.gz -C ./iana_temp > ${LOG_FILE} 2>&1 || error "Failed to extract the latest TZDB tar ball."
 
