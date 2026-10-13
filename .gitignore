@@ -20,3 +20,5 @@ GPATH
 GRTAGS
 GTAGS
 .vscode/GTEMP.pas
+
+update-compile.log
